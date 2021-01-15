@@ -213,3 +213,53 @@ class CredentialsById(Credentials2x):
 
         raise KeyError('Credential with credential_id "%s" not found'
                        % credential_id)
+
+    def update(self, credential):
+        """
+        Creates or updates credential in Jenkins. The credential.credential_id
+        must be set.
+
+        If credential.credential_id already exists - this method is going to
+        update existing Credential
+
+        :param Credential credential: The credential to create/update.
+        """
+        if not credential.credential_id:
+            raise JenkinsAPIException('Credential Id must be set before '
+                                      'creating/update credential.')
+        cred_id = credential.credential_id
+        if cred_id not in self:
+            params = credential.get_attributes()
+            url = (
+                '%s/createCredentials'
+                % self.baseurl
+            )
+            try:
+                self.jenkins.requester.post_and_confirm_status(
+                    url, params={}, data=urlencode(params)
+                )
+            except JenkinsAPIException as jae:
+                raise JenkinsAPIException('Latest version of Credentials '
+                                          'plugin is required to be able '
+                                          'to create credentials. '
+                                          'Original exception: %s' % str(jae))
+        else:
+            params = credential.get_attributes_xml()
+            url = (
+                '%s/credential/%s/config.xml'
+                % (self.baseurl, cred_id)
+            )
+            try:
+                self.jenkins.requester.post_xml_and_confirm_status(
+                    url, params={}, data=params
+                )
+            except JenkinsAPIException as jae:
+                raise JenkinsAPIException('Latest version of Credentials '
+                                          'plugin is required to be able '
+                                          'to update credentials. '
+                                          'Original exception: %s' % str(jae))
+
+        self.poll()
+        self.credentials = self._data['credentials']
+        if cred_id not in self:
+            raise JenkinsAPIException('Problem creating/updating credential.')
