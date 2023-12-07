@@ -284,9 +284,7 @@ class Node(JenkinsBase):
                 "It is not allowed to manually launch this node."
             )
 
-        url = (
-            self.baseurl + "/launchSlaveAgent"
-        )
+        url = self.baseurl + "/launchSlaveAgent"
         html_result = self.jenkins.requester.post_and_confirm_status(
             url, data={}
         )
