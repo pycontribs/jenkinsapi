@@ -36,7 +36,7 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
 ]
-requires_python = ">=2.7"
+requires-python = ">=2.7"
 dynamic = ["version"]
 dependencies = [
     "pytz>=2014.4",
