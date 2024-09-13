@@ -398,7 +398,7 @@ class Jenkins(JenkinsBase):
 
     def install_plugin(
         self,
-        plugin: str | Plugin,
+        plugin: str | dict | Plugin,
         restart: bool = True,
         force_restart: bool = False,
         wait_for_reboot: bool = True,
@@ -406,7 +406,7 @@ class Jenkins(JenkinsBase):
     ):
         """
         Install a plugin and optionally restart jenkins.
-        @param plugin: Plugin (string or Plugin object) to be installed
+        @param plugin: Plugin (string or dict or Plugin object) to be installed
         @param restart: Boolean, restart Jenkins when required by plugin
         @param force_restart: Boolean, force Jenkins to restart,
             ignoring plugin preferences
@@ -649,7 +649,14 @@ class Jenkins(JenkinsBase):
 
     def get_plugins(self, depth: int = 1) -> Plugins:
         url = self.get_plugins_url(depth=depth)
-        return Plugins(url, self)
+        # If the plugins object is not already created or the baseurl has changed
+        # then we recreate a new one
+        if (
+            not hasattr(self, "_get_plugins")
+            or self._plugin_cache.baseurl != url
+        ):
+            self._plugin_cache = Plugins(url, self)
+        return self._plugin_cache
 
     def has_plugin(self, plugin_name: str) -> bool:
         return plugin_name in self.plugins
