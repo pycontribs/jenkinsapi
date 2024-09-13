@@ -362,7 +362,7 @@ class TestPlugins(unittest.TestCase):
                 "shortName": "subversion",
             }
         )
-        self.assertEqual(repr(p), "<jenkinsapi.plugin.Plugin subversion>")
+        self.assertEqual(repr(p), "<jenkinsapi.plugin.Plugin subversion@Unknown>")
 
 
 if __name__ == "__main__":

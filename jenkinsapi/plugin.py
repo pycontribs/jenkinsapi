@@ -38,7 +38,7 @@ class Plugin(object):
         return self.__dict__ == other.__dict__
 
     def __str__(self) -> str:
-        return self.shortName
+        return f"{self.shortName}@{self.version}"
 
     def __repr__(self) -> str:
         return "<%s.%s %s>" % (
