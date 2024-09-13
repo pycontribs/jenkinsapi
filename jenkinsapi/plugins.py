@@ -209,6 +209,24 @@ class Plugins(JenkinsBase):
         except JenkinsAPIException:
             return False  # lack of update_center in Jenkins 1.X
 
+    def _plugins_has_finished_installation(self) -> bool:
+        """
+        Return True if installation is marked as 'Success' or
+        'SuccessButRequiresRestart' in Jenkins' update_center,
+        else return False.
+        """
+        try:
+            jobs = self.update_center_install_status["data"]["jobs"]
+            for job in jobs:
+                if job["installStatus"] not in [
+                    "Success",
+                    "SuccessButRequiresRestart",
+                ]:
+                    return False
+            return True
+        except JenkinsAPIException:
+            return False  # lack of update_center in Jenkins 1.X
+
     def plugin_version_is_being_installed(self, plugin) -> bool:
         """
         Return true if plugin is currently being installed.
