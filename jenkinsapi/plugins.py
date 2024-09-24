@@ -46,9 +46,12 @@ class Plugins(JenkinsBase):
 
     @property
     def update_center_dict(self):
-        update_center = "https://updates.jenkins.io/update-center.json"
-        jsonp = requests.get(update_center).content.decode("utf-8")
-        return json.loads(jsonp_to_json(jsonp))
+        if not hasattr(self, "_update_center_dict"):
+            update_center = (
+                "https://updates.jenkins.io/update-center.actual.json"
+            )
+            self._update_center_dict = requests.get(update_center).json()
+        return self._update_center_dict
 
     def _poll(self, tree=None):
         return self.get_data(self.baseurl, tree=tree)
