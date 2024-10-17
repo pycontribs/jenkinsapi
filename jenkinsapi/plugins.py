@@ -46,9 +46,22 @@ class Plugins(JenkinsBase):
 
     @property
     def update_center_dict(self):
-        update_center = "https://updates.jenkins.io/update-center.json"
-        jsonp = requests.get(update_center).content.decode("utf-8")
-        return json.loads(jsonp_to_json(jsonp))
+        if not hasattr(self, "_update_center_dict"):
+            update_center = (
+                "https://updates.jenkins.io/update-center.actual.json"
+            )
+            jsonp = requests.get(update_center).content.decode("utf-8")
+            self._update_center_dict = json.loads(jsonp)
+        return self._update_center_dict
+
+    @property
+    def update_center_dict_server(self):
+        if not hasattr(self, "_update_center_dict_server"):
+            jsonp = self.jenkins_obj.requester.get_url(
+                self.jenkins_obj.get_update_center_url(2)
+            ).content.decode("utf-8")
+            self._update_center_dict_server = json.loads(jsonp)
+        return self._update_center_dict_server
 
     def _poll(self, tree=None):
         return self.get_data(self.baseurl, tree=tree)
@@ -145,16 +158,11 @@ class Plugins(JenkinsBase):
         download_link: str = plugin.get_download_link(
             update_center_dict=self.update_center_dict
         )
-        downloaded_plugin: BytesIO = self._download_plugin(download_link)
-        plugin_dependencies = self._get_plugin_dependencies(downloaded_plugin)
-        log.debug("Installing dependencies for plugin '%s'", plugin.shortName)
-        self.jenkins_obj.install_plugins(plugin_dependencies)
         url = "%s/pluginManager/uploadPlugin" % self.jenkins_obj.baseurl
         requester = self.jenkins_obj.requester
-        downloaded_plugin.seek(0)
         requester.post_and_confirm_status(
             url,
-            files={"file": ("plugin.hpi", downloaded_plugin)},
+            files={"filename": plugin.shortName, "pluginUrl": download_link},
             data={},
             params={},
         )
@@ -206,6 +214,24 @@ class Plugins(JenkinsBase):
                 ]:
                     return True
             return False
+        except JenkinsAPIException:
+            return False  # lack of update_center in Jenkins 1.X
+
+    def _plugins_has_finished_installation(self) -> bool:
+        """
+        Return True if installation is marked as 'Success' or
+        'SuccessButRequiresRestart' in Jenkins' update_center,
+        else return False.
+        """
+        try:
+            jobs = self.update_center_install_status["data"]["jobs"]
+            for job in jobs:
+                if job["installStatus"] not in [
+                    "Success",
+                    "SuccessButRequiresRestart",
+                ]:
+                    return False
+            return True
         except JenkinsAPIException:
             return False  # lack of update_center in Jenkins 1.X
 
