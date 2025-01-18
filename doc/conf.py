@@ -23,14 +23,12 @@ log = logging.getLogger(__name__)
 
 # CHANGE THIS
 PROJECT_NAME = "JenkinsAPI"
-PROJECT_AUTHORS = "Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko"
+PROJECT_AUTHORS = "Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner"
 PROJECT_EMAILS = (
     "salimfadhley@gmail.com, ramon@vanalteren.nl, ruslan.lutcenko@gmail.com"
 )
-PROJECT_URL = "https://github.com/salimfadhley/jenkinsapi"
-SHORT_DESCRIPTION = "A Python API for accessing resources on a Jenkins \
-        continuous-integration server."
-# CHANGE THIS
+PROJECT_URL = "https://github.com/pycontribs/jenkinsapi"
+SHORT_DESCRIPTION = "A Python API to automate common Jenkins operations"
 
 # -- General configuration -----------------------------------------------
 
@@ -48,9 +46,6 @@ extensions = [
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
-
-# The suffix of source filenames.
-source_suffix = ".rst"
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
@@ -110,7 +105,7 @@ pygments_style = "sphinx"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = "default"
+html_theme = "furo"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -181,6 +176,10 @@ html_static_path = ["_static"]
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 # html_file_suffix = None
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "markdown",
+}
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = "JenkinsAPIdoc"
