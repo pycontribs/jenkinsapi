@@ -25,16 +25,16 @@ Sections
    artifact
    build
    using_jenkinsapi
-   contributing
+   ../CONTRIBUTING
 
 Important Links
 ---------------
 
 Support & bug-reports
-    https://github.com/salimfadhley/jenkinsapi/issues?direction=desc&sort=comments&state=open
+    https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open
 
 Project source code
-    github: https://github.com/salimfadhley/jenkinsapi
+    github: https://github.com/pycontribs/jenkinsapi
 
 Project documentation
     https://jenkinsapi.readthedocs.org/en/latest/
@@ -118,6 +118,8 @@ Project Authors
  * Salim Fadhley (sal@stodge.org)
  * Ramon van Alteren (ramon@vanalteren.nl)
  * Ruslan Lutsenko (ruslan.lutcenko@gmail.com)
+ * Aleksey Maksimov
+ * Clinton Steiner
 
 Plus many others, please see the README file for a more complete list of contributors and how to contact them.
 
@@ -126,30 +128,20 @@ Extending and Improving JenkinsAPI
 
 JenkinsAPI is a pure-Python project and can be improved with almost any programmer's text-editor or IDE. I'd recommend the following project layout which has been shown to work with both SublimeText2 and Eclipse/PyDev
 
- * Make sure that pip and virtualenv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.
-
- * Create a new virtualenv for the project::
-
- 	virtualenv jenkinsapi
+ * Make sure that pip and uv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.
 
  * Change to the new directory and check out the project code into the **src** subdirectory::
 
  	cd jenkinsapi
- 	git clone https://github.com/salimfadhley/jenkinsapi.git src
+ 	git clone https://github.com/pycontribs/jenkinsapi.git src
 
- * Activate your jenkinsapi virtual environment::
+ * Install python dependencies and test the project
 
- 	cd bin
- 	source activate
+.. code-block:: bash
 
- * Install the jenkinsapi project in 'developer mode' - this step will automatically download all of the project's dependancies::
-
- 	cd ../src
- 	python setup.py develop
-
- * Test the project - this step will automatically download and install the project's test-only dependencies. Having these installed will be helpful during development::
-
- 	python setup.py test
+    uv venv
+    uv python install
+    uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
  * Set up your IDE/Editor configuration - the **misc** folder contains configuration for Sublime Text 2. I hope in time that other developers will contribute useful configurations for their favorite development tools.
 
