@@ -79,10 +79,16 @@ dev = [
     "pylint>=1.7.1",
     "tox>=2.3.1",
     "mock>=5.1.0",
-    "myst-parser>=3.0.0",
     "codecov>=2.1.13",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+]
+docs = [
+    "docutils>=0.20.1",
+    "furo>=2024.8.6",
+    "myst-parser>=3.0.1",
+    "pygments>=2.19.1",
+    "sphinx>=7.1.2",
 ]
 
 [tool.ruff]
@@ -91,3 +97,4 @@ line-length = 79
 [tool.ruff.lint]
 select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8’s default rules
 ignore = ["F821"] #, "W503", "W504"
+
