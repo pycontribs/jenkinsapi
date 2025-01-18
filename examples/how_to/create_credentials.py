@@ -1,6 +1,7 @@
 """
 This example shows how to create credentials
 """
+
 import logging
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.credential import UsernamePasswordCredential, SSHKeyCredential

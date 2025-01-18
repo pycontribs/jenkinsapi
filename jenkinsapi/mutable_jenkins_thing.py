@@ -4,7 +4,6 @@ Module for MutableJenkinsThing
 
 
 class MutableJenkinsThing(object):
-
     """
     A mixin for certain mutable objects which can be renamed and deleted.
     """

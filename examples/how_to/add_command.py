@@ -1,6 +1,7 @@
 """
 This example shows how to add new command to "Shell" build step
 """
+
 from __future__ import print_function
 import xml.etree.ElementTree as et
 from jenkinsapi.jenkins import Jenkins

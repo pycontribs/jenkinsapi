@@ -17,6 +17,7 @@ install it with pip before running this script:
 pip install six
 ```
 """
+
 from six.moves import SimpleHTTPServer, socketserver
 import logging
 import cgi

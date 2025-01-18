@@ -1,6 +1,7 @@
 """
 jenkinsapi plugins
 """
+
 from __future__ import annotations
 
 from typing import Generator
@@ -24,7 +25,6 @@ log: logging.Logger = logging.getLogger(__name__)
 
 
 class Plugins(JenkinsBase):
-
     """
     Plugins class for jenkinsapi
     """

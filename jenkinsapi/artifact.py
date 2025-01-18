@@ -8,6 +8,7 @@ have any number of artifacts associated with it.
 This module provides a class called Artifact which allows you to download
 objects from the server and also access them as a stream.
 """
+
 from __future__ import annotations
 
 import os
@@ -22,7 +23,6 @@ log = logging.getLogger(__name__)
 
 
 class Artifact(object):
-
     """
     Represents a single Jenkins artifact, usually some kind of file
     generated as a by-product of executing a Jenkins build.

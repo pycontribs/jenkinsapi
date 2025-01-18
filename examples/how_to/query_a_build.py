@@ -1,6 +1,7 @@
 """
 How to get build from job and query that build
 """
+
 from __future__ import print_function
 from jenkinsapi.jenkins import Jenkins
 

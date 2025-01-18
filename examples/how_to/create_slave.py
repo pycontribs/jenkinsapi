@@ -1,6 +1,7 @@
 """
 How to create slaves/nodes
 """
+
 import logging
 import requests
 from jenkinsapi.jenkins import Jenkins

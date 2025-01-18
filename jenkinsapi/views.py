@@ -11,7 +11,6 @@ log = logging.getLogger(__name__)
 
 
 class Views(object):
-
     """
     An abstraction on a Jenkins object's views
     """

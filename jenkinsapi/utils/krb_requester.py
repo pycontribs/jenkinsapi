@@ -1,13 +1,13 @@
 """
 Kerberos aware Requester
 """
+
 from jenkinsapi.utils.requester import Requester
 from requests_kerberos import HTTPKerberosAuth, OPTIONAL
 
 
 # pylint: disable=W0222
 class KrbRequester(Requester):
-
     """
     A class which carries out HTTP requests with Kerberos/GSSAPI
     authentication.

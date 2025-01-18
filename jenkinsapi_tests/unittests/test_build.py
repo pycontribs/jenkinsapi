@@ -277,6 +277,7 @@ def test_build_env_vars_other_exception(monkeypatch, build):
 
     with pytest.raises(Exception) as excinfo:
         with warnings.catch_warnings():
+            warnings.simplefilter("error")
             build.get_env_vars()
     assert "" == str(excinfo.value)
 

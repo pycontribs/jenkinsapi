@@ -1,6 +1,7 @@
 """
 A lower level example of how we login with authentication
 """
+
 from __future__ import print_function
 
 from jenkinsapi import jenkins

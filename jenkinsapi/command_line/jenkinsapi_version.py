@@ -1,5 +1,6 @@
 """ jenkinsapi.command_line.jenkinsapi_version
 """
+
 from jenkinsapi import __version__ as version
 import sys
 

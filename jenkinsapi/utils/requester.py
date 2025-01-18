@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi requester (which is a wrapper around python-requests)
 """
+
 import requests
 import urllib.parse as urlparse
 
@@ -28,7 +29,6 @@ requests.adapters.DEFAULT_RETRIES = 5
 
 
 class Requester(object):
-
     """
     A class which carries out HTTP requests. You can replace this
     class with one of your own implementation if you require some other
@@ -173,7 +173,7 @@ class Requester(object):
         files=None,
         headers=None,
         allow_redirects=True,
-        **kwargs
+        **kwargs,
     ):
         requestKwargs = self.get_request_dict(
             params=params,
@@ -181,7 +181,7 @@ class Requester(object):
             files=files,
             headers=headers,
             allow_redirects=allow_redirects,
-            **kwargs
+            **kwargs,
         )
         return self.session.post(self._update_url_scheme(url), **requestKwargs)
 

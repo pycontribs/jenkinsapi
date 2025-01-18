@@ -1,13 +1,13 @@
 """
 Module for jenkinsapi Plugin
 """
+
 from __future__ import annotations
 
 from typing import Union
 
 
 class Plugin(object):
-
     """
     Plugin class
     """

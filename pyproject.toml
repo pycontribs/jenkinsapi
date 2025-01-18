@@ -7,9 +7,11 @@ name = "jenkinsapi"
 authors = [
     {name = "Salim Fadhley", email = "salimfadhley@gmail.com"},
     {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
+    {name = "Clinton Steiner", email = "clintonsteiner@gmail.com"},
 ]
 maintainers = [
-    {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"}
+    {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
+    {name = "Clinton Steiner", email = "clintonsteiner@gmail.com"},
 ]
 description = "A Python API for accessing resources on a Jenkins continuous-integration server."
 readme = "README.rst"
@@ -34,19 +36,17 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
 ]
-requires_python = ">=3.8"
+requires-python = ">=3.8"
 dynamic = ["version"]
 dependencies = [
     "pytz>=2014.4",
     "requests>=2.3.0",
-    "six>=1.10.0"
+    "six>=1.10.0",
 ]
 
-[tool.files]
-packages = """
-jenkinsapi
-jenkinsapi_utils
-jenkinsapi_tests"""
+[tool.setuptools]
+packages = ["jenkinsapi", "jenkinsapi_utils", "jenkinsapi_tests"]
+include-package-data = false
 
 [tool.pbr]
 warnerrors = "True"
@@ -70,5 +70,18 @@ universal = 1
 exclude = ".tox,doc/source/conf.py,build,.venv,.eggs"
 max-line-length = "99"
 
-[tool.setuptools]
-include-package-data = false
+[dependency-groups]
+dev = [
+    "pytest-mock>=3.14.0",
+    "pytest>=8.3.4",
+    "pytest-cov>=4.0.0",
+    "pycodestyle>=2.3.1",
+    "astroid>=1.4.8",
+    "pylint>=1.7.1",
+    "tox>=2.3.1",
+    "mock>=5.1.0",
+    "myst-parser>=3.0.0",
+    "codecov>=2.1.13",
+    "requests-kerberos>=0.15.0",
+    "flake8>=5.0.0",
+]

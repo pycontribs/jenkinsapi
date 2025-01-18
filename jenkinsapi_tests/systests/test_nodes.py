@@ -1,6 +1,7 @@
 """
 System tests for `jenkinsapi.jenkins` module.
 """
+
 import logging
 import pytest
 from jenkinsapi.node import Node

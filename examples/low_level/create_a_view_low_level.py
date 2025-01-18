@@ -2,6 +2,7 @@
 A low level example:
 This is how JenkinsAPI creates views
 """
+
 from __future__ import print_function
 import json
 import requests

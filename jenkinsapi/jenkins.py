@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi Jenkins object
 """
+
 from __future__ import annotations
 
 import time
@@ -40,7 +41,6 @@ log = logging.getLogger(__name__)
 
 
 class Jenkins(JenkinsBase):
-
     """
     Represents a jenkins environment.
     """

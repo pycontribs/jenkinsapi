@@ -47,6 +47,7 @@ Project Authors
 Current code lives on github: https://github.com/salimfadhley/jenkinsapi
 
 """
+
 from jenkinsapi import (
     # Modules
     command_line,

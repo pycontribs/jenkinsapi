@@ -1,6 +1,7 @@
 """
 System tests for generation new api token for logged in user
 """
+
 import pytest
 import logging
 from jenkinsapi.utils.crumb_requester import CrumbRequester

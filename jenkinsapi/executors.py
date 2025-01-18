@@ -3,6 +3,7 @@ This module implements the Executors class, which is intended to be a
 container-like interface for all of the executors defined on a single
 Jenkins node.
 """
+
 from __future__ import annotations
 
 import logging
@@ -15,7 +16,6 @@ log: logging.Logger = logging.getLogger(__name__)
 
 
 class Executors(JenkinsBase):
-
     """
     This class provides a container-like API which gives
     access to all executors on a Jenkins node.

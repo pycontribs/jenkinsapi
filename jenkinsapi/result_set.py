@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi ResultSet
 """
+
 from __future__ import annotations
 
 from jenkinsapi.jenkinsbase import JenkinsBase
@@ -8,7 +9,6 @@ from jenkinsapi.result import Result
 
 
 class ResultSet(JenkinsBase):
-
     """
     Represents a result from a completed Jenkins run.
     """

@@ -104,17 +104,17 @@ the testsuite with the following command:
 
 .. code-block:: bash
 
-    python setup.py test
+    uv python sync
+    uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
 missing test dependencies:
 
 .. code-block:: bash
 
-    python -m venv ./.venv/jenkinsapi
-    source .venv/jenkinsapi/bin/activate
-    pip install -r requirements.txt
-    python setup.py test
+    uv venv
+    uv python install
+    uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Development
 -----------
@@ -126,13 +126,13 @@ Development
 
 .. code-block:: bash
 
-    pip install -r test-requirements.txt
+    uv sync
 
 * Make your changes, write tests and check your code
 
 .. code-block:: bash
 
-    pytest -sv
+    uv run pytest -sv
 
 Python versions
 ---------------
@@ -140,7 +140,6 @@ Python versions
 The project has been tested against Python versions:
 
 * 3.8 - 3.13
-* 2.7 - last version compatible with Python 2.7 is tagged Py2 in repository and available on PyPi as version 0.3.13
 
 Jenkins versions
 ----------------
@@ -162,16 +161,8 @@ Project Contributors
 * Sascha Peilicke (saschpe@gmx.de)
 * David Johansen (david@makewhat.is)
 * Misha Behersky (bmwant@gmail.com)
+* Clinton Steiner (clintonsteiner@gmail.com)
 
 Please do not contact these contributors directly for support questions! Use the GitHub tracker instead.
-
-License
---------
-
-The MIT License (MIT): Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 .. _Java: https://www.oracle.com/java/technologies/downloads/#java17

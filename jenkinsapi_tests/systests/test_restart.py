@@ -4,6 +4,7 @@ System tests for restarting jenkins
 NB: this test will be very time consuming because
     after restart it will wait for jenkins to boot
 """
+
 import time
 import logging
 import pytest

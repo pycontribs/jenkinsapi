@@ -1,6 +1,7 @@
 """
 A lower-level implementation of copying a job in Jenkins
 """
+
 from __future__ import print_function
 
 import requests

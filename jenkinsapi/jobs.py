@@ -2,6 +2,7 @@
 This module implements the Jobs class, which is intended to be a container-like
 interface for all of the jobs defined on a single Jenkins server.
 """
+
 from __future__ import annotations
 
 from typing import Iterator
@@ -15,7 +16,6 @@ log = logging.getLogger(__name__)
 
 
 class Jobs(object):
-
     """
     This class provides a container-like API which gives
     access to all jobs defined on the Jenkins server. It behaves

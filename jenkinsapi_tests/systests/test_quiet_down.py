@@ -1,6 +1,7 @@
 """
 System tests for setting jenkins in quietDown mode
 """
+
 import logging
 
 

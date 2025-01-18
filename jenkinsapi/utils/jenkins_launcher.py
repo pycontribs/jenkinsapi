@@ -61,7 +61,6 @@ class StreamThread(threading.Thread):
 
 
 class JenkinsLancher(object):
-
     """
     Launch jenkins
     """

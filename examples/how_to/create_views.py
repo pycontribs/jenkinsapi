@@ -1,6 +1,7 @@
 """
 How to create views
 """
+
 import logging
 from pkg_resources import resource_string
 from jenkinsapi.jenkins import Jenkins

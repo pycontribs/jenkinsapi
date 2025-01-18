@@ -3,6 +3,7 @@ This module implements the Credentials class, which is intended to be a
 container-like interface for all of the Global credentials defined on a single
 Jenkins node.
 """
+
 from __future__ import annotations
 
 from typing import Iterator

@@ -7,6 +7,7 @@ not. They can also have outcomes, such as whether they passed or failed.
 
 Build objects can be associated with Results and Artifacts.
 """
+
 from __future__ import annotations
 
 import time
@@ -36,7 +37,6 @@ log = logging.getLogger(__name__)
 
 
 class Build(JenkinsBase):
-
     """
     Represents a Jenkins build, executed in context of a job.
     """

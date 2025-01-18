@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi views
 """
+
 from __future__ import annotations
 
 from typing import Iterator, Tuple
@@ -16,7 +17,6 @@ log: logging.Logger = logging.getLogger(__name__)
 
 
 class View(JenkinsBase):
-
     """
     View class
     """

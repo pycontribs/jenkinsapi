@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi labels
 """
+
 from jenkinsapi.jenkinsbase import JenkinsBase
 import logging
 
@@ -8,7 +9,6 @@ log = logging.getLogger(__name__)
 
 
 class Label(JenkinsBase):
-
     """
     Class to hold information on labels that tied to a collection of jobs
     """

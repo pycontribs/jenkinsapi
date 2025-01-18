@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi nodes
 """
+
 from __future__ import annotations
 
 from typing import Iterator
@@ -18,7 +19,6 @@ log: logging.Logger = logging.getLogger(__name__)
 
 
 class Nodes(JenkinsBase):
-
     """
     Class to hold information on a collection of nodes
     """
@@ -30,9 +30,11 @@ class Nodes(JenkinsBase):
         self.jenkins = jenkins_obj
         JenkinsBase.__init__(
             self,
-            baseurl.rstrip("/")
-            if "/computer" in baseurl
-            else baseurl.rstrip("/") + "/computer",
+            (
+                baseurl.rstrip("/")
+                if "/computer" in baseurl
+                else baseurl.rstrip("/") + "/computer"
+            ),
         )
 
     def get_jenkins_obj(self) -> "Jenkins":

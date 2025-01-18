@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi Job
 """
+
 from __future__ import annotations
 
 import json
@@ -35,7 +36,6 @@ log = logging.getLogger(__name__)
 
 
 class Job(JenkinsBase, MutableJenkinsThing):
-
     """
     Represents a jenkins job
     A job can hold N builds which are the actual execution environments

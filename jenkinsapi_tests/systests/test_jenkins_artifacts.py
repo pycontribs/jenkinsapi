@@ -1,6 +1,7 @@
 """
 System tests for `jenkinsapi.jenkins` module.
 """
+
 import os
 from posixpath import join
 import re

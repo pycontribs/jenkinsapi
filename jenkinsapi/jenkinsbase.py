@@ -1,6 +1,7 @@
 """
 Module for JenkinsBase class
 """
+
 from __future__ import annotations
 
 import ast
@@ -14,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 
 class JenkinsBase(object):
-
     """
     This appears to be the base object that all other jenkins objects are
     inherited from

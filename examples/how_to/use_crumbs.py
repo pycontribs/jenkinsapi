@@ -1,6 +1,7 @@
 """
 Example of using CrumbRequester - when CSRF protection is enabled in Jenkins
 """
+
 from jenkinsapi.jenkins import Jenkins
 
 jenkins = Jenkins(

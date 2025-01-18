@@ -1,6 +1,7 @@
 """
 System tests for `jenkinsapi.jenkins` module.
 """
+
 import time
 import logging
 from jenkinsapi_tests.systests.job_configs import LONG_RUNNING_JOB

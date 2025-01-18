@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi Node class
 """
+
 from __future__ import annotations
 
 import json
@@ -18,7 +19,6 @@ log = logging.getLogger(__name__)
 
 
 class Node(JenkinsBase):
-
     """
     Class to hold information on nodes that are attached as slaves
     to the master jenkins instance

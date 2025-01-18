@@ -33,8 +33,8 @@ def test_verify_download_valid_positive(artifact, monkeypatch):
     monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
 
     def fake_validate(
-        cls, filename, job, build  # pylint: disable=unused-argument
-    ):  # pylint: disable=unused-argument
+        cls, filename, job, build
+    ):  # pylint: disable=unused-argument  # pylint: disable=unused-argument
         return True
 
     monkeypatch.setattr(Fingerprint, "validate_for_build", fake_validate)
@@ -56,8 +56,8 @@ def test_verify_download_valid_positive_with_rename(artifact, monkeypatch):
     monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
 
     def fake_validate(
-        cls, filename, job, build  # pylint: disable=unused-argument
-    ):  # pylint: disable=unused-argument
+        cls, filename, job, build
+    ):  # pylint: disable=unused-argument  # pylint: disable=unused-argument
         return filename == "artifact.zip"
 
     monkeypatch.setattr(Fingerprint, "validate_for_build", fake_validate)
@@ -87,8 +87,8 @@ def test_verify_download_valid_negative(artifact, monkeypatch):
     monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
 
     def fake_validate(
-        cls, filename, job, build  # pylint: disable=unused-argument
-    ):  # pylint: disable=unused-argument
+        cls, filename, job, build
+    ):  # pylint: disable=unused-argument  # pylint: disable=unused-argument
         return True
 
     monkeypatch.setattr(Fingerprint, "validate_for_build", fake_validate)
@@ -138,8 +138,8 @@ def test_verify_download_invalid(artifact, monkeypatch):
     monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
 
     def fake_validate(
-        cls, filename, job, build  # pylint: disable=unused-argument
-    ):  # pylint: disable=unused-argument
+        cls, filename, job, build
+    ):  # pylint: disable=unused-argument  # pylint: disable=unused-argument
         return False
 
     monkeypatch.setattr(Fingerprint, "validate_for_build", fake_validate)

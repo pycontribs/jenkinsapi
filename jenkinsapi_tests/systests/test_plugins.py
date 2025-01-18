@@ -1,6 +1,7 @@
 """
 System tests for `jenkinsapi.plugins` module.
 """
+
 import logging
 import pytest
 from jenkinsapi_tests.test_utils.random_strings import random_string

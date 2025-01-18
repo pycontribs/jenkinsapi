@@ -1,6 +1,7 @@
 """
 Queue module for jenkinsapi
 """
+
 from __future__ import annotations
 
 from typing import Iterator, Tuple
@@ -14,7 +15,6 @@ log: logging.Logger = logging.getLogger(__name__)
 
 
 class Queue(JenkinsBase):
-
     """
     Class that represents the Jenkins queue
     """
@@ -88,7 +88,6 @@ class Queue(JenkinsBase):
 
 
 class QueueItem(JenkinsBase):
-
     """An individual item in the queue"""
 
     def __init__(self, baseurl: str, jenkins_obj: "Jenkins") -> None:

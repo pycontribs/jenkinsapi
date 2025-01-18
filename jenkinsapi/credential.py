@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi Credential class
 """
+
 import logging
 import xml.etree.cElementTree as ET
 

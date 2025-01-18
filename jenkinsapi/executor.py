@@ -1,6 +1,7 @@
 """
 Module for jenkinsapi Executer class
 """
+
 from __future__ import annotations
 
 from jenkinsapi.jenkinsbase import JenkinsBase
@@ -10,7 +11,6 @@ log = logging.getLogger(__name__)
 
 
 class Executor(JenkinsBase):
-
     """
     Class to hold information on nodes that are attached as slaves to the
     master jenkins instance

@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 class CrumbRequester(Requester):
-
     """Adapter for Requester inserting the crumb in every request."""
 
     def __init__(self, *args, **kwargs):
@@ -24,7 +23,7 @@ class CrumbRequester(Requester):
         files=None,
         headers=None,
         allow_redirects=True,
-        **kwargs
+        **kwargs,
     ):
         if self._last_crumb_data:
             # first try request with previous crumb if available
@@ -36,7 +35,7 @@ class CrumbRequester(Requester):
                 files,
                 headers,
                 allow_redirects,
-                **kwargs
+                **kwargs,
             )
             # code 403 might indicate that the crumb is not valid anymore
             if response.status_code != 403:
@@ -54,7 +53,7 @@ class CrumbRequester(Requester):
             files,
             headers,
             allow_redirects,
-            **kwargs
+            **kwargs,
         )
 
     def _get_crumb_data(self):
@@ -79,7 +78,7 @@ class CrumbRequester(Requester):
         files,
         headers,
         allow_redirects,
-        **kwargs
+        **kwargs,
     ):
         if crumb_data:
             if headers is None:
