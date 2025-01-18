@@ -12,6 +12,11 @@ jobs:
         working-directory: ./doc
     steps:
       - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+          enable-cache: true
 
       - name: Build HTML
         run: make
