@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from __future__ import print_function
 
 try:
@@ -36,9 +37,10 @@ class ServerHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
 
-Handler = ServerHandler
+if __name__ == "__main__":
+    Handler = ServerHandler
 
-httpd = socketserver.TCPServer(("", PORT), Handler)
+    httpd = socketserver.TCPServer(("", PORT), Handler)
 
-print("serving at port", PORT)
-httpd.serve_forever()
+    print("serving at port", PORT)
+    httpd.serve_forever()
