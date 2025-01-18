@@ -1,7 +1,8 @@
 name: Sphinx build
 
 on:  # yamllint disable-line rule:truthy
-  workflow_call:
+  push:
+  workflow_dispatch:
 
 jobs:
   sphinx-build:
