@@ -539,6 +539,13 @@ class Job(JenkinsBase, MutableJenkinsThing):
             if scm_element:
                 # multibranch pipeline.
                 self._scm_prefix = multibranch_scm_prefix
+        if not scm_element:
+            pipeline_scm_prefix = "definition/"
+            _pipeline_scm_path = pipeline_scm_prefix + "scm"
+            scm_element = element_tree.find(_pipeline_scm_path)
+            if scm_element:
+                # standard pipeline.
+                self._scm_prefix = pipeline_scm_prefix
         scm_class = scm_element.get("class") if scm_element else None
         scm = self._scm_map.get(scm_class)
         if not scm:
