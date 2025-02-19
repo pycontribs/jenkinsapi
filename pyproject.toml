@@ -83,5 +83,10 @@ dev = [
     "myst-parser>=3.0.0",
     "codecov>=2.1.13",
     "requests-kerberos>=0.15.0",
-    "flake8>=5.0.0",
+    "ruff>=0.9.6",
 ]
+
+[tool.ruff.lint]
+line-length = 79
+select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8’s default rules
+ignore = ["F821"] #, "W503", "W504"
