@@ -71,7 +71,7 @@ jobs:
 
     - name: Lint with ruff
       run: |
-        uv run ruff jenkinsapi/ --output-format full
+        uv run ruff check jenkinsapi/ --output-format full
 
     - name: Test with pytest
       env:
