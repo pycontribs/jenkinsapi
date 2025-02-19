@@ -15,7 +15,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -67,7 +67,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get install libkrb5-dev
+        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
     - name: Lint with flake8
       run: |
