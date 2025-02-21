@@ -1,0 +1,63 @@
+# Changelog
+
+- feature: add launch method to Node class (#849)
+- convert to using ruff for linting (#895)
+- update harden runner (#894)
+- change url to pull jenkins.war file (#893)
+- Make sure to filter warnings to errors (#868)
+- Revert "dependabot" (#888)
+- dependabot (#887)
+- makefile: update for uv compatibility (#886)
+- update pre-commit versions (#885)
+- remove deprecated setup (#884)
+- housekeeping: readme, license, pyproject.toml (#881)
+- update install commands to use uv (#882)
+- ci: update java to 21 (#883)
+- convert to uv and pyproject.toml (#879)
+- ci: update checkout to v4 (#880)
+- ci: remove apt-get update, install, and pip upgrade as unnecessary (#878)
+- docs: fix build (#876)
+- add support for 3.12 and 3.13 (#877)
+- Correctly specify python version (#858)
+- Merge pull request #874 from clintonsteiner/fixSeveralCiIssues
+- ci: add in missing plugins
+- ci: harden runner - set to audit for now
+- ci: add mirrors to harden whitelist
+- test_build: fix failing tests
+- ci: tests fail because jenkins requires java 17 - setup in github action
+- makefile: fix py.test according to pytest documentation
+- ci: fix issue causing runner to crash in setup
+- Merge pull request #853 from clintonsteiner/updateReadme
+-  Readme Updates: Remove redundant words, move install and example to top
+- [pre-commit.ci] auto fixes from pre-commit.com hooks
+- fix: jenkinsapi crashing jenkins_is_unavaiable
+- [pre-commit.ci] auto fixes from pre-commit.com hooks
+- Support for using unicode characters in update_config
+- Decode content using the encoding specified in the response
+- Fixing plugin dependencies
+- Fix console scripts in pyproject.toml
+- Added Python typing hints to most of the code
+- Bump version
+- Move utils into jenkinsapi.utils module
+- Remove blank line
+- Update Build object docs
+- Add pyproject.toml
+- Rename Travis and Tox files
+- Flake8 fixes
+- [pre-commit.ci] auto fixes from pre-commit.com hooks
+- Do not call Jenkins site when testing plugins
+- Download Jenkins silently and improve plugin downloads
+- Fix failing tests and commented ones not working
+- Add flake8 to test requirements
+- Install test dependencies
+- Install krb and pytest-cov in workflow
+- Add Github action
+- Pyflake8 fixes
+- Add pre-commit.ci configuration
+- Add debug logs in Queue.block_until_building (#745)
+- Fixing retrying logic by introducing a max_retries param (#739)
+- Add quiet period parameter to job invoke (#758)
+- useCrumbs -> use_crumbs #755 (#756)
+- job.py: manage scm data for multibranch pipelines (#742)
+
+## 0.3.11 - Oct 31, 2019
