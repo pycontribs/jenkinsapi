@@ -16,6 +16,10 @@ jobs:
           python-version: "3.10"
           enable-cache: true
 
+    - name: Install dependencies
+      run: |
+        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
       - name: Build HTML
         run: make
         working-directory: ./doc
