@@ -7,7 +7,7 @@ BUILDDIR      = html
 all: clean html
 
 html:
-	uv sync --group docs --group dev
+	uv sync --group dev --group docs
 	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)"
 
 clean:
