@@ -92,4 +92,3 @@ __all__ = [
     "view",
 ]
 __docformat__ = "epytext"
-__version__ = "0.3.13"
