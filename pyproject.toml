@@ -1,10 +1,9 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
+requires = ["flit_core"]
 build-backend = "flit_core.buildapi"
 
 [project]
 name = "jenkinsapi"
-version = "0.3.13"
 authors = [
     {name = "Salim Fadhley", email = "salimfadhley@gmail.com"},
     {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
@@ -38,6 +37,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 requires-python = ">=3.8"
+dynamic = ["version"]
 dependencies = [
     "pytz>=2014.4",
     "requests>=2.3.0",
@@ -53,6 +53,7 @@ warnerrors = "True"
 
 [project.scripts]
 jenkins_invoke = "jenkinsapi.command_line.jenkins_invoke:main"
+jenkinsapi_version = "jenkinsapi.command_line.jenkinsapi_version:main"
 
 [tool.build_sphinx]
 source-dir = "doc/source"
