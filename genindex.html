@@ -1,0 +1,1800 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 --><title>Index - JenkinsAPI 0.3.14.dev2 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand"> JenkinsAPI 0.3.14.dev2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text"> JenkinsAPI 0.3.14.dev2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">User API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artifact.html">Artifact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.add_job">add_job() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.AlreadyExists">AlreadyExists</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.AmazonWebServicesCredentials">AmazonWebServicesCredentials (class in jenkinsapi.credential)</a>
+</li>
+        <li><a href="artifact.html#jenkinsapi.artifact.Artifact">Artifact (class in jenkinsapi.artifact)</a>, <a href="jenkinsapi.html#jenkinsapi.artifact.Artifact">[1]</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.ArtifactBroken">ArtifactBroken</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.ArtifactsMissing">ArtifactsMissing</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.SSHKeyCredential.attrs">attrs (jenkinsapi.credential.SSHKeyCredential property)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.AUTH_COOKIE">AUTH_COOKIE (jenkinsapi.utils.requester.Requester attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.BadParams">BadParams</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.BadURL">BadURL</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.base_server_url">base_server_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.block">block() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.block_until_building">block_until_building() (jenkinsapi.queue.QueueItem method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.block_until_complete">block_until_complete() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.block_until_complete">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.build.Build.block_until_complete">(jenkinsapi.build.Build method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.block_until_complete">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.block_until_idle">block_until_idle() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready">block_until_jenkins_ready() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build">Build (class in jenkinsapi.build)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.build">build() (jenkinsapi.jobs.Jobs method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.build_job">build_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.cancel_quiet_down">cancel_quiet_down() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.CATEGORIZED_VIEW">CATEGORIZED_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.check_updates_server">check_updates_server() (jenkinsapi.plugins.Plugins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.copy">copy() (jenkinsapi.jobs.Jobs method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.copy_job">copy_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.create">create() (jenkinsapi.jobs.Jobs method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.views.Views.create">(jenkinsapi.views.Views method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_job">create_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.create_multibranch_pipeline">create_multibranch_pipeline() (jenkinsapi.jobs.Jobs method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job">create_multibranch_pipeline_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_node">create_node() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.create_node">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_node_with_config">create_node_with_config() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.create_node_with_config">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.Credential">Credential (class in jenkinsapi.credential)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials">Credentials (class in jenkinsapi.credentials)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.credentials">credentials (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials2x">Credentials2x (class in jenkinsapi.credentials)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.credentials_by_id">credentials_by_id (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.CredentialsById">CredentialsById (class in jenkinsapi.credentials)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.crumb_requester.CrumbRequester">CrumbRequester (class in jenkinsapi.utils.crumb_requester)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.DASHBOARD_VIEW">DASHBOARD_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.delete">delete() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.delete_build">delete_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.delete_from_queue">delete_from_queue() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.delete_item">delete_item() (jenkinsapi.queue.Queue method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.delete_item_by_id">delete_item_by_id() (jenkinsapi.queue.Queue method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_job">delete_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_node">delete_node() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_plugin">delete_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_plugins">delete_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_view_by_url">delete_view_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.disable">disable() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler.do_GET">do_GET() (jenkinsapi.utils.simple_post_logger.ServerHandler method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler.do_POST">do_POST() (jenkinsapi.utils.simple_post_logger.ServerHandler method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.enable">enable() (jenkinsapi.job.Job method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor">Executor (class in jenkinsapi.executor)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.executors.Executors">Executors (class in jenkinsapi.executors)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.FailedNoResults">FailedNoResults</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.FailedToStart">FailedToStart</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint">Fingerprint (class in jenkinsapi.fingerprint)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.generate_new_api_token">generate_new_api_token() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials.get">get() (jenkinsapi.credentials.Credentials method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_actions">get_actions() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_and_confirm_status">get_and_confirm_status() (jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_architecture">get_architecture() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_artifact_data">get_artifact_data() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_artifact_dict">get_artifact_dict() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_artifacts">get_artifacts() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_artifacts">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_artifacts">(jenkinsapi.build.Build method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.AmazonWebServicesCredentials.get_attributes">get_attributes() (jenkinsapi.credential.AmazonWebServicesCredentials method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.Credential.get_attributes">(jenkinsapi.credential.Credential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.SecretTextCredential.get_attributes">(jenkinsapi.credential.SecretTextCredential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.SSHKeyCredential.get_attributes">(jenkinsapi.credential.SSHKeyCredential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.UsernamePasswordCredential.get_attributes">(jenkinsapi.credential.UsernamePasswordCredential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.plugin.Plugin.get_attributes">(jenkinsapi.plugin.Plugin method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.AmazonWebServicesCredentials.get_attributes_xml">get_attributes_xml() (jenkinsapi.credential.AmazonWebServicesCredentials method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.Credential.get_attributes_xml">(jenkinsapi.credential.Credential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.SecretTextCredential.get_attributes_xml">(jenkinsapi.credential.SecretTextCredential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.SSHKeyCredential.get_attributes_xml">(jenkinsapi.credential.SSHKeyCredential method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credential.UsernamePasswordCredential.get_attributes_xml">(jenkinsapi.credential.UsernamePasswordCredential method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_available_physical_memory">get_available_physical_memory() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_available_swap_space">get_available_swap_space() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_build">get_build() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_build">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build">(jenkinsapi.job.Job method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_build">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build_by_params">get_build_by_params() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build_dict">get_build_dict() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build_ids">get_build_ids() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build_metadata">get_build_metadata() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_build_number">get_build_number() (jenkinsapi.queue.QueueItem method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_build_triggerurl">get_build_triggerurl() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_build_url">get_build_url() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_buildnumber_for_revision">get_buildnumber_for_revision() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_causes">get_causes() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_causes">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_changeset_items">get_changeset_items() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_changeset_items">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_clock_difference">get_clock_difference() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_config">get_config() (jenkinsapi.job.Job method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_config">(jenkinsapi.node.Node method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_config">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_config_element">get_config_element() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_config_xml_url">get_config_xml_url() (jenkinsapi.job.Job method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_config_xml_url">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_console">get_console() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_console">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_create_url">get_create_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_credentials">get_credentials() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.get_current_executable">get_current_executable() (jenkinsapi.executor.Executor method)</a>
+</li>
+        <li><a href="artifact.html#jenkinsapi.artifact.Artifact.get_data">get_data() (jenkinsapi.artifact.Artifact method)</a>, <a href="jenkinsapi.html#jenkinsapi.artifact.Artifact.get_data">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.get_data">(jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.mutable_jenkins_thing.MutableJenkinsThing.get_delete_url">get_delete_url() (jenkinsapi.mutable_jenkins_thing.MutableJenkinsThing method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_description">get_description() (jenkinsapi.build.Build method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_description">(jenkinsapi.job.Job method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugin.Plugin.get_download_link">get_download_link() (jenkinsapi.plugin.Plugin method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_downstream_builds">get_downstream_builds() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_downstream_builds">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_downstream_job_names">get_downstream_job_names() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_downstream_job_names">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_downstream_job_names">(jenkinsapi.job.Job method)</a>
+</li>
+        </ul></li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_downstream_jobs">get_downstream_jobs() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_downstream_jobs">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_downstream_jobs">(jenkinsapi.job.Job method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_duration">get_duration() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_env_vars">get_env_vars() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_env_vars">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_estimated_duration">get_estimated_duration() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_estimated_duration">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_executors">get_executors() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_first_build">get_first_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_first_buildnumber">get_first_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_full_name">get_full_name() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_full_name_from_url_and_baseurl">get_full_name_from_url_and_baseurl() (jenkinsapi.job.Job static method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.get_info">get_info() (jenkinsapi.fingerprint.Fingerprint method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.artifact.Artifact.get_jenkins_obj">get_jenkins_obj() (jenkinsapi.artifact.Artifact method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_jenkins_obj">(jenkinsapi.build.Build method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials.get_jenkins_obj">(jenkinsapi.credentials.Credentials method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.get_jenkins_obj">(jenkinsapi.executor.Executor method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.executors.Executors.get_jenkins_obj">(jenkinsapi.executors.Executors method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.get_jenkins_obj">(jenkinsapi.fingerprint.Fingerprint method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj">(jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.get_jenkins_obj">(jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_jenkins_obj">(jenkinsapi.job.Job method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.label.Label.get_jenkins_obj">(jenkinsapi.label.Label method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_jenkins_obj">(jenkinsapi.node.Node method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.get_jenkins_obj">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.get_jenkins_obj">(jenkinsapi.plugins.Plugins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.get_jenkins_obj">(jenkinsapi.queue.Queue method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_jenkins_obj">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet.get_jenkins_obj">(jenkinsapi.result_set.ResultSet method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_jenkins_obj">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj_from_url">get_jenkins_obj_from_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_job">get_job() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_job">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">get_job_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_job_dict">get_job_dict() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_job_name">get_job_name() (jenkinsapi.queue.QueueItem method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_job_url">get_job_url() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs">get_jobs() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs_info">get_jobs_info() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs_list">get_jobs_list() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_label">get_label() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_labels">get_labels() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_build">get_last_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_build_or_none">get_last_build_or_none() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_buildnumber">get_last_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_completed_build">get_last_completed_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_completed_buildnumber">get_last_completed_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_failed_buildnumber">get_last_failed_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_good_build">get_last_good_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_good_buildnumber">get_last_good_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_stable_build">get_last_stable_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_last_stable_buildnumber">get_last_stable_buildnumber() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_latest_build">get_latest_build() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_latest_build">[1]</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_latest_complete_build">get_latest_complete_build() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_latest_complete_build">[1]</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_latest_test_results">get_latest_test_results() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_latest_test_results">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_master_build">get_master_build() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_master_build">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_master_build_number">get_master_build_number() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_master_build_number">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_master_data">get_master_data() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_master_job">get_master_job() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_master_job">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_master_job_name">get_master_job_name() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_master_job_name">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_matrix_runs">get_matrix_runs() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_matrix_runs">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_monitor">get_monitor() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.get_nested_view_dict">get_nested_view_dict() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_nested_view_from_url">get_nested_view_from_url() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_nested_view_from_url">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_next_build_number">get_next_build_number() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_node">get_node() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_node_attributes">get_node_attributes() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_node_url">get_node_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_nodes">get_nodes() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_nodes_url">get_nodes_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_num_executors">get_num_executors() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_number">get_number() (jenkinsapi.build.Build method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.get_number">(jenkinsapi.executor.Executor method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.get_parameters">get_parameters() (jenkinsapi.queue.QueueItem method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_params">get_params() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_params">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_params">(jenkinsapi.job.Job method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_params_list">get_params_list() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_plugins">get_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.get_plugins_dict">get_plugins_dict() (jenkinsapi.plugins.Plugins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_plugins_url">get_plugins_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.get_progress">get_progress() (jenkinsapi.executor.Executor method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_queue">get_queue() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_queue_item">get_queue_item() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.get_queue_item_url">get_queue_item_url() (jenkinsapi.queue.Queue method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.get_queue_items_for_job">get_queue_items_for_job() (jenkinsapi.queue.Queue method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_queue_url">get_queue_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.mutable_jenkins_thing.MutableJenkinsThing.get_rename_url">get_rename_url() (jenkinsapi.mutable_jenkins_thing.MutableJenkinsThing method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_repo_url">get_repo_url() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.krb_requester.KrbRequester.get_request_dict">get_request_dict() (jenkinsapi.utils.krb_requester.KrbRequester method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_request_dict">(jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_response_time">get_response_time() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_result_url">get_result_url() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_result_url">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_resultset">get_resultset() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_resultset">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_revision">get_revision() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_revision_branch">get_revision_branch() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_revision_dict">get_revision_dict() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_scm_branch">get_scm_branch() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_scm_type">get_scm_type() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_scm_url">get_scm_url() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_slave">get_slave() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.get_status">get_status() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_temp_path">get_temp_path() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_temp_size">get_temp_size() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.label.Label.get_tied_job_names">get_tied_job_names() (jenkinsapi.label.Label method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.label.Label.get_tied_jobs">get_tied_jobs() (jenkinsapi.label.Label method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_timestamp">get_timestamp() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_timestamp">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_total_physical_memory">get_total_physical_memory() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_total_swap_space">get_total_swap_space() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_upstream_build">get_upstream_build() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_upstream_build">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_upstream_build_number">get_upstream_build_number() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_upstream_build_number">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_upstream_job">get_upstream_job() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_upstream_job">[1]</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.get_upstream_job_name">get_upstream_job_name() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.get_upstream_job_name">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_upstream_job_names">get_upstream_job_names() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.get_upstream_jobs">get_upstream_jobs() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_url">get_url() (jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_view_by_url">get_view_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.get_view_from_url">get_view_from_url() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.get_view_from_url">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_workspace_path">get_workspace_path() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.get_workspace_size">get_workspace_size() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.grab_artifact">grab_artifact() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.grab_artifact">[1]</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_job">has_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_node">has_node() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.has_params">has_params() (jenkinsapi.job.Job method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_plugin">has_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.has_queued_build">has_queued_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.has_resultset">has_resultset() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.has_resultset">[1]</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.result.Result.identifier">identifier() (jenkinsapi.result.Result method)</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.install_artifacts">install_artifacts() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.install_artifacts">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.install_plugin">install_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.install_plugins">install_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.manifest.InvalidJarError">InvalidJarError</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.invoke">invoke() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.invokejob">invokejob() (jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.is_enabled">is_enabled() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.is_good">is_good() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.is_good">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.is_idle">is_idle() (jenkinsapi.executor.Executor method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.node.Node.is_idle">(jenkinsapi.node.Node method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.is_jnlpagent">is_jnlpagent() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.is_kept_forever">is_kept_forever() (jenkinsapi.build.Build method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugin.Plugin.is_latest">is_latest() (jenkinsapi.plugin.Plugin method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.label.Label.is_online">is_online() (jenkinsapi.label.Label method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.node.Node.is_online">(jenkinsapi.node.Node method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.is_queued">is_queued() (jenkinsapi.job.Job method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.is_queued">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.is_queued_or_running">is_queued_or_running() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.is_quieting_down">is_quieting_down (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.is_running">is_running() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.is_running">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.is_running">(jenkinsapi.job.Job method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.is_running">(jenkinsapi.queue.QueueItem method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.is_temporarily_offline">is_temporarily_offline() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.items">items() (jenkinsapi.jenkins.Jenkins method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.items">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet.items">(jenkinsapi.result_set.ResultSet method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.items">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials.iteritems">iteritems() (jenkinsapi.credentials.Credentials method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.credentials.CredentialsById.iteritems">(jenkinsapi.credentials.CredentialsById method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.iteritems">(jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.iteritems">(jenkinsapi.jobs.Jobs method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.iteritems">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.iteritems">(jenkinsapi.plugins.Plugins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.iteritems">(jenkinsapi.queue.Queue method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet.iteritems">(jenkinsapi.result_set.ResultSet method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.iteritems">(jenkinsapi.view.View method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.views.Views.iteritems">(jenkinsapi.views.Views method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials.iterkeys">iterkeys() (jenkinsapi.credentials.Credentials method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.iterkeys">(jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.iterkeys">(jenkinsapi.jobs.Jobs method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.iterkeys">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.iterkeys">(jenkinsapi.queue.Queue method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.views.Views.iterkeys">(jenkinsapi.views.Views method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.itervalues">itervalues() (jenkinsapi.jobs.Jobs method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.itervalues">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.itervalues">(jenkinsapi.queue.Queue method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins">Jenkins (class in jenkinsapi.jenkins)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL">JENKINS_LTS_WAR_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL">JENKINS_WEEKLY_WAR_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
+</li>
+        <li>
+    jenkinsapi
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.api
+
+        <ul>
+          <li><a href="api.html#module-jenkinsapi.api">module</a>, <a href="jenkinsapi.html#module-jenkinsapi.api">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.artifact
+
+        <ul>
+          <li><a href="artifact.html#module-jenkinsapi.artifact">module</a>, <a href="jenkinsapi.html#module-jenkinsapi.artifact">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.build
+
+        <ul>
+          <li><a href="build.html#module-jenkinsapi.build">module</a>, <a href="jenkinsapi.html#module-jenkinsapi.build">[1]</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.command_line
+
+        <ul>
+          <li><a href="jenkinsapi.command_line.html#module-jenkinsapi.command_line">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.command_line.jenkins_invoke
+
+        <ul>
+          <li><a href="jenkinsapi.command_line.html#module-jenkinsapi.command_line.jenkins_invoke">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.config
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.config">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.constants
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.constants">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.credential
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.credential">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.credentials
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.credentials">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.custom_exceptions
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.custom_exceptions">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.executor
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.executor">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.executors
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.executors">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.fingerprint
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.fingerprint">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.jenkins
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jenkins">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.jenkinsbase
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jenkinsbase">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.job
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.job">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.jobs
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jobs">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.label
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.label">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.mutable_jenkins_thing
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.mutable_jenkins_thing">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    jenkinsapi.node
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.node">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.nodes
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.nodes">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.plugin
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.plugin">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.plugins
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.plugins">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.queue
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.queue">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.result
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.result">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.result_set
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.result_set">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.crumb_requester
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.crumb_requester">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.jenkins_launcher
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.jenkins_launcher">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.jsonp_to_json
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.jsonp_to_json">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.krb_requester
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.krb_requester">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.manifest
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.manifest">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.requester
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.requester">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.utils.simple_post_logger
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.simple_post_logger">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.view
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.view">module</a>
+</li>
+        </ul></li>
+        <li>
+    jenkinsapi.views
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.views">module</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.JenkinsAPIException">JenkinsAPIException</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase">JenkinsBase (class in jenkinsapi.jenkinsbase)</a>
+</li>
+        <li><a href="jenkinsapi.command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke">JenkinsInvoke (class in jenkinsapi.command_line.jenkins_invoke)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher">JenkinsLancher (class in jenkinsapi.utils.jenkins_launcher)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job">Job (class in jenkinsapi.job)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs">Jobs (class in jenkinsapi.jobs)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.jobs">jobs (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jsonp_to_json.jsonp_to_json">jsonp_to_json() (in module jenkinsapi.utils.jsonp_to_json)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.credentials.Credentials.keys">keys() (jenkinsapi.credentials.Credentials method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.keys">(jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.keys">(jenkinsapi.jobs.Jobs method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.keys">(jenkinsapi.nodes.Nodes method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.keys">(jenkinsapi.plugins.Plugins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.keys">(jenkinsapi.queue.Queue method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet.keys">(jenkinsapi.result_set.ResultSet method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.keys">(jenkinsapi.view.View method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.views.Views.keys">(jenkinsapi.views.Views method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.krb_requester.KrbRequester">KrbRequester (class in jenkinsapi.utils.krb_requester)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.label.Label">Label (class in jenkinsapi.label)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.launch">launch() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.executor.Executor.likely_stuck">likely_stuck() (jenkinsapi.executor.Executor method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.LIST_VIEW">LIST_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.load_config">load_config() (jenkinsapi.job.Job method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.node.Node.load_config">(jenkinsapi.node.Node method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.command_line.html#jenkinsapi.command_line.jenkins_invoke.main">main() (in module jenkinsapi.command_line.jenkins_invoke)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.main">(jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke class method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.manifest.Manifest">Manifest (class in jenkinsapi.utils.manifest)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.mk_json_from_build_parameters">mk_json_from_build_parameters() (jenkinsapi.job.Job static method)</a>
+</li>
+        <li><a href="jenkinsapi.command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.mkparser">mkparser() (jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke class method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.modify_scm_branch">modify_scm_branch() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.modify_scm_url">modify_scm_url() (jenkinsapi.job.Job method)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="jenkinsapi.html#module-jenkinsapi">jenkinsapi</a>
+</li>
+          <li><a href="api.html#module-jenkinsapi.api">jenkinsapi.api</a>, <a href="jenkinsapi.html#module-jenkinsapi.api">[1]</a>
+</li>
+          <li><a href="artifact.html#module-jenkinsapi.artifact">jenkinsapi.artifact</a>, <a href="jenkinsapi.html#module-jenkinsapi.artifact">[1]</a>
+</li>
+          <li><a href="build.html#module-jenkinsapi.build">jenkinsapi.build</a>, <a href="jenkinsapi.html#module-jenkinsapi.build">[1]</a>
+</li>
+          <li><a href="jenkinsapi.command_line.html#module-jenkinsapi.command_line">jenkinsapi.command_line</a>
+</li>
+          <li><a href="jenkinsapi.command_line.html#module-jenkinsapi.command_line.jenkins_invoke">jenkinsapi.command_line.jenkins_invoke</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.config">jenkinsapi.config</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.constants">jenkinsapi.constants</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.credential">jenkinsapi.credential</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.credentials">jenkinsapi.credentials</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.custom_exceptions">jenkinsapi.custom_exceptions</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.executor">jenkinsapi.executor</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.executors">jenkinsapi.executors</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.fingerprint">jenkinsapi.fingerprint</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jenkins">jenkinsapi.jenkins</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jenkinsbase">jenkinsapi.jenkinsbase</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.job">jenkinsapi.job</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.jobs">jenkinsapi.jobs</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.label">jenkinsapi.label</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.mutable_jenkins_thing">jenkinsapi.mutable_jenkins_thing</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.node">jenkinsapi.node</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.nodes">jenkinsapi.nodes</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.plugin">jenkinsapi.plugin</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.plugins">jenkinsapi.plugins</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.queue">jenkinsapi.queue</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.result">jenkinsapi.result</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.result_set">jenkinsapi.result_set</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils">jenkinsapi.utils</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.crumb_requester">jenkinsapi.utils.crumb_requester</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.jenkins_launcher">jenkinsapi.utils.jenkins_launcher</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.jsonp_to_json">jenkinsapi.utils.jsonp_to_json</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.krb_requester">jenkinsapi.utils.krb_requester</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.manifest">jenkinsapi.utils.manifest</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.requester">jenkinsapi.utils.requester</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#module-jenkinsapi.utils.simple_post_logger">jenkinsapi.utils.simple_post_logger</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.view">jenkinsapi.view</a>
+</li>
+          <li><a href="jenkinsapi.html#module-jenkinsapi.views">jenkinsapi.views</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.mutable_jenkins_thing.MutableJenkinsThing">MutableJenkinsThing (class in jenkinsapi.mutable_jenkins_thing)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.MY_VIEW">MY_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.name">name (jenkinsapi.build.Build property)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.name">(jenkinsapi.queue.QueueItem property)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet.name">(jenkinsapi.result_set.ResultSet property)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.NESTED_VIEW">NESTED_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NoBuildData">NoBuildData</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node">Node (class in jenkinsapi.node)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes">Nodes (class in jenkinsapi.nodes)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.nodes">nodes (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NoResults">NoResults</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotAuthorized">NotAuthorized</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotBuiltYet">NotBuiltYet</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotConfiguredSCM">NotConfiguredSCM</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotFound">NotFound</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotInQueue">NotInQueue</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.NotSupportSCM">NotSupportSCM</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.offline_reason">offline_reason() (jenkinsapi.node.Node method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views.PIPELINE_VIEW">PIPELINE_VIEW (jenkinsapi.views.Views attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugin.Plugin">Plugin (class in jenkinsapi.plugin)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.plugin_version_already_installed">plugin_version_already_installed() (jenkinsapi.plugins.Plugins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.plugin_version_is_being_installed">plugin_version_is_being_installed() (jenkinsapi.plugins.Plugins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins">Plugins (class in jenkinsapi.plugins)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.plugins">plugins (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.poll">poll() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.job.Job.poll">(jenkinsapi.job.Job method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.poll">(jenkinsapi.jobs.Jobs method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.views.Views.poll">(jenkinsapi.views.Views method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_and_confirm_status">post_and_confirm_status() (jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.crumb_requester.CrumbRequester.post_url">post_url() (jenkinsapi.utils.crumb_requester.CrumbRequester method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_url">(jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_xml_and_confirm_status">post_xml_and_confirm_status() (jenkinsapi.utils.requester.Requester method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.PostRequired">PostRequired</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.pprint">pprint() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.process_job_folder">process_job_folder() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.python_api_url">python_api_url() (jenkinsapi.jenkinsbase.JenkinsBase class method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue">Queue (class in jenkinsapi.queue)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.queue_id">queue_id (jenkinsapi.queue.QueueItem property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem">QueueItem (class in jenkinsapi.queue)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.quiet_down">quiet_down() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.RE_MD5">RE_MD5 (jenkinsapi.fingerprint.Fingerprint attribute)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.manifest.read_manifest">read_manifest() (in module jenkinsapi.utils.manifest)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View.remove_job">remove_job() (jenkinsapi.view.View method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jobs.Jobs.rename">rename() (jenkinsapi.jobs.Jobs method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.rename_job">rename_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester">Requester (class in jenkinsapi.utils.requester)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.resolve_job_folders">resolve_job_folders() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.restart_required">restart_required (jenkinsapi.plugins.Plugins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.result.Result">Result (class in jenkinsapi.result)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.result_set.ResultSet">ResultSet (class in jenkinsapi.result_set)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.run">run() (jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.run_groovy_script">run_groovy_script() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.safe_exit">safe_exit() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.safe_restart">safe_restart() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="artifact.html#jenkinsapi.artifact.Artifact.save">save() (jenkinsapi.artifact.Artifact method)</a>, <a href="jenkinsapi.html#jenkinsapi.artifact.Artifact.save">[1]</a>
+</li>
+        <li><a href="artifact.html#jenkinsapi.artifact.Artifact.save_to_dir">save_to_dir() (jenkinsapi.artifact.Artifact method)</a>, <a href="jenkinsapi.html#jenkinsapi.artifact.Artifact.save_to_dir">[1]</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.search_artifact_by_regexp">search_artifact_by_regexp() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.search_artifact_by_regexp">[1]</a>
+</li>
+        <li><a href="api.html#jenkinsapi.api.search_artifacts">search_artifacts() (in module jenkinsapi.api)</a>, <a href="jenkinsapi.html#jenkinsapi.api.search_artifacts">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.SecretTextCredential">SecretTextCredential (class in jenkinsapi.credential)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler">ServerHandler (class in jenkinsapi.utils.simple_post_logger)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.set_offline">set_offline() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.set_online">set_online() (jenkinsapi.node.Node method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.shutdown">shutdown() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.SSHKeyCredential">SSHKeyCredential (class in jenkinsapi.credential)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start">start() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.stop">stop() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.stop">[1]</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stop">(jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stopped">stopped() (jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.STR_TOTALCOUNT">STR_TOTALCOUNT (jenkinsapi.build.Build attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.build.Build.STR_TPL_NOTESTS_ERR">STR_TPL_NOTESTS_ERR (jenkinsapi.build.Build attribute)</a>
+</li>
+        <li><a href="build.html#jenkinsapi.build.Build.stream_logs">stream_logs() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.stream_logs">[1]</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread">StreamThread (class in jenkinsapi.utils.jenkins_launcher)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkinsbase.JenkinsBase.strip_trailing_slash">strip_trailing_slash() (jenkinsapi.jenkinsbase.JenkinsBase class method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.TimeOut">TimeOut</a>, <a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.TimeOut">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugin.Plugin.to_plugin">to_plugin() (jenkinsapi.plugin.Plugin method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="build.html#jenkinsapi.build.Build.toggle_keep">toggle_keep() (jenkinsapi.build.Build method)</a>, <a href="jenkinsapi.html#jenkinsapi.build.Build.toggle_keep">[1]</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.toggle_keep_build">toggle_keep_build() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.toggle_temporarily_offline">toggle_temporarily_offline() (jenkinsapi.node.Node method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownJob">UnknownJob</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownNode">UnknownNode</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownPlugin">UnknownPlugin</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownQueueItem">UnknownQueueItem</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownView">UnknownView</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.update_center_dict">update_center_dict (jenkinsapi.plugins.Plugins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.update_center_install_status">update_center_install_status (jenkinsapi.plugins.Plugins property)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.job.Job.update_config">update_config() (jenkinsapi.job.Job method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.update_config">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.update_offline_reason">update_offline_reason() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war">update_war() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.node.Node.upload_config">upload_config() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.use_auth_cookie">use_auth_cookie() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.credential.UsernamePasswordCredential">UsernamePasswordCredential (class in jenkinsapi.credential)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.valid">valid() (jenkinsapi.fingerprint.Fingerprint method)</a>
+</li>
+        <li><a href="jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.VALID_STATUS_CODES">VALID_STATUS_CODES (jenkinsapi.utils.requester.Requester attribute)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.validate">validate() (jenkinsapi.fingerprint.Fingerprint method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint">validate_fingerprint() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint_for_build">validate_fingerprint_for_build() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.fingerprint.Fingerprint.validate_for_build">validate_for_build() (jenkinsapi.fingerprint.Fingerprint method)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.nodes.Nodes.values">values() (jenkinsapi.nodes.Nodes method)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.plugins.Plugins.values">(jenkinsapi.plugins.Plugins method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.queue.Queue.values">(jenkinsapi.queue.Queue method)</a>
+</li>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.values">(jenkinsapi.view.View method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.version">version (jenkinsapi.jenkins.Jenkins property)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.view.View">View (class in jenkinsapi.view)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.views.Views">Views (class in jenkinsapi.views)</a>
+</li>
+        <li><a href="jenkinsapi.html#jenkinsapi.jenkins.Jenkins.views">views (jenkinsapi.jenkins.Jenkins property)</a>
+
+        <ul>
+          <li><a href="jenkinsapi.html#jenkinsapi.view.View.views">(jenkinsapi.view.View property)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="jenkinsapi.html#jenkinsapi.queue.QueueItem.why">why (jenkinsapi.queue.QueueItem property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=c20607ac"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>

@@ -1,0 +1,1264 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>jenkinsapi.job - JenkinsAPI 0.3.14.dev2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand"> JenkinsAPI 0.3.14.dev2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text"> JenkinsAPI 0.3.14.dev2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <h1>Source code for jenkinsapi.job</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module for jenkinsapi Job</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xml.etree.ElementTree</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ET</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">urlparse</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">Build</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.custom_exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">NoBuildData</span><span class="p">,</span>
+    <span class="n">NotConfiguredSCM</span><span class="p">,</span>
+    <span class="n">NotFound</span><span class="p">,</span>
+    <span class="n">NotInQueue</span><span class="p">,</span>
+    <span class="n">NotSupportSCM</span><span class="p">,</span>
+    <span class="n">UnknownQueueItem</span><span class="p">,</span>
+    <span class="n">BadParams</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkinsbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">JenkinsBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.mutable_jenkins_thing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MutableJenkinsThing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">QueueItem</span>
+
+
+<span class="n">SVN_URL</span> <span class="o">=</span> <span class="s2">&quot;./scm/locations/hudson.scm.SubversionSCM_-ModuleLocation/remote&quot;</span>
+<span class="n">GIT_URL</span> <span class="o">=</span> <span class="s2">&quot;./scm/userRemoteConfigs/hudson.plugins.git.UserRemoteConfig/url&quot;</span>
+<span class="n">HG_URL</span> <span class="o">=</span> <span class="s2">&quot;./scm/source&quot;</span>
+<span class="n">GIT_BRANCH</span> <span class="o">=</span> <span class="s2">&quot;./scm/branches/hudson.plugins.git.BranchSpec/name&quot;</span>
+<span class="n">HG_BRANCH</span> <span class="o">=</span> <span class="s2">&quot;./scm/branch&quot;</span>
+<span class="n">DEFAULT_HG_BRANCH_NAME</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Job">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Job</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">,</span> <span class="n">MutableJenkinsThing</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a jenkins job</span>
+<span class="sd">    A job can hold N builds which are the actual execution environments</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="p">:</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">:</span> <span class="s2">&quot;Jenkins&quot;</span> <span class="o">=</span> <span class="n">jenkins_obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_revmap</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scm_map</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;hudson.scm.SubversionSCM&quot;</span><span class="p">:</span> <span class="s2">&quot;svn&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hudson.plugins.git.GitSCM&quot;</span><span class="p">:</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hudson.plugins.mercurial.MercurialSCM&quot;</span><span class="p">:</span> <span class="s2">&quot;hg&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hudson.scm.NullSCM&quot;</span><span class="p">:</span> <span class="s2">&quot;NullSCM&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scmurlmap</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;svn&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">element_tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">SVN_URL</span><span class="p">)),</span>
+            <span class="s2">&quot;git&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">element_tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">+</span> <span class="n">GIT_URL</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;hg&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">element_tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">HG_URL</span><span class="p">)),</span>
+            <span class="kc">None</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scmbranchmap</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;svn&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s2">&quot;git&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">element_tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">+</span> <span class="n">GIT_BRANCH</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;hg&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_hg_branch</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">element_tree</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="n">JenkinsBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<div class="viewcode-block" id="Job.get_description">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_description">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Job.get_jenkins_obj">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_jenkins_obj">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span></div>
+
+
+    <span class="c1"># When the name of the hg branch used in the job is default hg branch (i.e.</span>
+    <span class="c1"># default), Mercurial plugin doesn&#39;t store default branch name in</span>
+    <span class="c1"># config XML file of the job. Create XML node corresponding to</span>
+    <span class="c1"># default branch</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_hg_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_tree</span><span class="p">):</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">HG_BRANCH</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">branches</span><span class="p">:</span>
+            <span class="n">hg_default_branch</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;branch&quot;</span><span class="p">)</span>
+            <span class="n">hg_default_branch</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">DEFAULT_HG_BRANCH_NAME</span>
+            <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hg_default_branch</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">branches</span>
+
+<div class="viewcode-block" id="Job.poll">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.poll">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">Job</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tree</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">lazy</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_missing_builds</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+
+    <span class="c1"># pylint: disable=E1123</span>
+    <span class="c1"># Unexpected keyword arg &#39;params&#39;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_missing_builds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query Jenkins to get all builds of the job in the data object.</span>
+
+<span class="sd">        Jenkins API loads the first 100 builds and thus may not contain</span>
+<span class="sd">        all builds information. This method checks if all builds are loaded</span>
+<span class="sd">        in the data object and updates it with the missing builds if needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;builds&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="c1"># do not call _buildid_for_type here: it would poll and do an infinite</span>
+        <span class="c1"># loop</span>
+        <span class="n">oldest_loaded_build_number</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;builds&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;firstBuild&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;firstBuild&quot;</span><span class="p">]:</span>
+            <span class="n">first_build_number</span> <span class="o">=</span> <span class="n">oldest_loaded_build_number</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">first_build_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;firstBuild&quot;</span><span class="p">][</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
+        <span class="n">all_builds_loaded</span> <span class="o">=</span> <span class="n">oldest_loaded_build_number</span> <span class="o">==</span> <span class="n">first_build_number</span>
+        <span class="k">if</span> <span class="n">all_builds_loaded</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;allBuilds[number,url]&quot;</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">&quot;builds&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;allBuilds&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_config_element_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ElementTree objects creation is unnecessary, it can be</span>
+<span class="sd">        a singleton per job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_config</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span>
+
+<div class="viewcode-block" id="Job.get_build_triggerurl">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build_triggerurl">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build_triggerurl</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_params</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/build&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/buildWithParameters&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span></div>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_mk_json_from_build_parameters</span><span class="p">(</span><span class="n">build_params</span><span class="p">,</span> <span class="n">file_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build parameters must be submitted in a particular format</span>
+<span class="sd">        Key-Value pairs would be far too simple, no no!</span>
+<span class="sd">        Watch and read on and behold!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">build_params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Build parameters must be a dict&quot;</span><span class="p">)</span>
+
+        <span class="n">build_p</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">build_params</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="p">]</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="n">build_p</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">file_params</span><span class="p">:</span>
+            <span class="n">file_p</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">file_params</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">file_p</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">out</span>
+
+<div class="viewcode-block" id="Job.mk_json_from_build_parameters">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.mk_json_from_build_parameters">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mk_json_from_build_parameters</span><span class="p">(</span><span class="n">build_params</span><span class="p">,</span> <span class="n">file_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">json_structure</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="n">_mk_json_from_build_parameters</span><span class="p">(</span>
+            <span class="n">build_params</span><span class="p">,</span> <span class="n">file_params</span>
+        <span class="p">)</span>
+        <span class="n">json_structure</span><span class="p">[</span><span class="s2">&quot;statusCode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;303&quot;</span>
+        <span class="n">json_structure</span><span class="p">[</span><span class="s2">&quot;redirectTo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_structure</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.invoke">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.invoke">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">invoke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">securitytoken</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">block</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">build_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">cause</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">files</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">quiet_period</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QueueItem</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">build_params</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_params</span><span class="p">()):</span>
+            <span class="k">raise</span> <span class="n">BadParams</span><span class="p">(</span><span class="s2">&quot;This job does not support parameters&quot;</span><span class="p">)</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Via Get string</span>
+
+        <span class="k">if</span> <span class="n">securitytoken</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">securitytoken</span>
+
+        <span class="c1"># Either copy the params dict or make a new one.</span>
+        <span class="n">build_params</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">build_params</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="k">if</span> <span class="n">build_params</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="p">)</span>  <span class="c1"># Via POSTed JSON</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_triggerurl</span><span class="p">()</span>
+        <span class="c1"># If quiet period is set, the build will have {quiet_period} seconds</span>
+        <span class="c1"># quiet peroid before start.</span>
+        <span class="k">if</span> <span class="n">quiet_period</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">+=</span> <span class="s2">&quot;?delay=</span><span class="si">{0}</span><span class="s2">sec&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">quiet_period</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cause</span><span class="p">:</span>
+            <span class="n">build_params</span><span class="p">[</span><span class="s2">&quot;cause&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cause</span>
+
+        <span class="c1"># Build require params as form fields</span>
+        <span class="c1"># and as Json.</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mk_json_from_build_parameters</span><span class="p">(</span><span class="n">build_params</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">build_params</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+            <span class="n">valid</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">303</span><span class="p">],</span>
+            <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">redirect_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span>
+
+        <span class="c1">#</span>
+        <span class="c1"># Enterprise Jenkins implementations such as CloudBees locate their</span>
+        <span class="c1"># queue REST API base https://server.domain.com/jenkins/queue/api/</span>
+        <span class="c1"># above the team-specific REST API base</span>
+        <span class="c1"># https://server.domain.com/jenkins/job/my_team/api/</span>
+        <span class="c1">#</span>
+        <span class="n">queue_baseurl_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">baseurl</span><span class="p">]</span>
+        <span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">frag</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="p">)</span>
+        <span class="k">while</span> <span class="n">path</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">queue_baseurl_candidates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">urlparse</span><span class="o">.</span><span class="n">urlunsplit</span><span class="p">([</span><span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">frag</span><span class="p">])</span>
+            <span class="p">)</span>
+        <span class="n">redirect_url_valid</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">queue_baseurl_candidate</span> <span class="ow">in</span> <span class="n">queue_baseurl_candidates</span><span class="p">:</span>
+            <span class="n">redirect_url_valid</span> <span class="o">=</span> <span class="n">redirect_url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/queue/item&quot;</span> <span class="o">%</span> <span class="n">queue_baseurl_candidate</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">redirect_url_valid</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">redirect_url_valid</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not a Queue URL: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">redirect_url</span><span class="p">)</span>
+
+        <span class="n">qi</span> <span class="o">=</span> <span class="n">QueueItem</span><span class="p">(</span><span class="n">redirect_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
+            <span class="n">qi</span><span class="o">.</span><span class="n">block_until_complete</span><span class="p">(</span><span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">qi</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_buildid_for_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buildtype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a buildid for a given type of build</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">KNOWNBUILDTYPES</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;lastStableBuild&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lastSuccessfulBuild&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lastBuild&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lastCompletedBuild&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;firstBuild&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;lastFailedBuild&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">assert</span> <span class="n">buildtype</span> <span class="ow">in</span> <span class="n">KNOWNBUILDTYPES</span><span class="p">,</span> <span class="p">(</span>
+            <span class="s2">&quot;Unknown build info type: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">buildtype</span>
+        <span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">[number]&quot;</span> <span class="o">%</span> <span class="n">buildtype</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">buildtype</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">NoBuildData</span><span class="p">(</span><span class="n">buildtype</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">buildtype</span><span class="p">][</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Job.get_first_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_first_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_first_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the first build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="s2">&quot;firstBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_stable_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_stable_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_stable_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the last stable build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="s2">&quot;lastStableBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_good_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_good_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_good_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the last good build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="s2">&quot;lastSuccessfulBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_failed_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_failed_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_failed_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the last failed build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="n">buildtype</span><span class="o">=</span><span class="s2">&quot;lastFailedBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the last build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="s2">&quot;lastBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_completed_buildnumber">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_completed_buildnumber">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_completed_buildnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the numerical ID of the last complete build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildid_for_type</span><span class="p">(</span><span class="s2">&quot;lastCompletedBuild&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_build_dict">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">builds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;builds[number,url]&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">builds</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoBuildData</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="n">builds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_missing_builds</span><span class="p">(</span><span class="n">builds</span><span class="p">)</span>
+        <span class="n">builds</span> <span class="o">=</span> <span class="n">builds</span><span class="p">[</span><span class="s2">&quot;builds&quot;</span><span class="p">]</span>
+        <span class="n">last_build</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;lastBuild[number,url]&quot;</span><span class="p">)[</span><span class="s2">&quot;lastBuild&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">builds</span>
+            <span class="ow">and</span> <span class="n">last_build</span>
+            <span class="ow">and</span> <span class="n">builds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;number&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">last_build</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="n">builds</span> <span class="o">=</span> <span class="p">[</span><span class="n">last_build</span><span class="p">]</span> <span class="o">+</span> <span class="n">builds</span>
+        <span class="c1"># FIXME SO how is this supposed to work if build is false-y?</span>
+        <span class="c1"># I don&#39;t think that builds *can* be false here, so I don&#39;t</span>
+        <span class="c1"># understand the test above.</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">((</span><span class="n">build</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">],</span> <span class="n">build</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">build</span> <span class="ow">in</span> <span class="n">builds</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_build_by_params">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build_by_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build_by_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_params</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">first_build_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_buildnumber</span><span class="p">()</span>
+        <span class="n">last_build_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_buildnumber</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">order</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Direction should be ascending or descending (1/-1)&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first_build_number</span><span class="p">,</span> <span class="n">last_build_number</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[</span>
+            <span class="p">::</span><span class="n">order</span>
+        <span class="p">]:</span>
+            <span class="n">build</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">build</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span> <span class="o">==</span> <span class="n">build_params</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">build</span>
+
+        <span class="k">raise</span> <span class="n">NoBuildData</span><span class="p">(</span>
+            <span class="s2">&quot;No build with such params </span><span class="si">{params}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">build_params</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_revision_dict">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_revision_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_revision_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get dictionary of all revisions with a list of buildnumbers (int)</span>
+<span class="sd">        that used that particular revision</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">revs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;builds&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NoBuildData</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">buildnumber</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_ids</span><span class="p">():</span>
+            <span class="n">revs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">)</span><span class="o">.</span><span class="n">get_revision</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">buildnumber</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">revs</span></div>
+
+
+<div class="viewcode-block" id="Job.get_build_ids">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build_ids">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a sorted list of all good builds as ints.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_build_dict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="Job.get_next_build_number">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_next_build_number">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_next_build_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the next build number that Jenkins will assign.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nextBuildNumber&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_stable_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_stable_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_stable_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the last stable build</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_stable_buildnumber</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_good_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_good_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_good_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the last good build</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_good_buildnumber</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the last build</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_buildnumber</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_first_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_first_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_first_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">bn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_buildnumber</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_build_or_none">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_build_or_none">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_build_or_none</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the last build or None if there is no builds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_build</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">NoBuildData</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="Job.get_last_completed_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_last_completed_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_last_completed_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the last build regardless of status</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_completed_buildnumber</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">bn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_buildnumber_for_revision">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_buildnumber_for_revision">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_buildnumber_for_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param revision: subversion revision to look for, int</span>
+<span class="sd">        :param refresh: boolean, whether or not to refresh the</span>
+<span class="sd">            revision -&gt; buildnumber map</span>
+<span class="sd">        :return: list of buildnumbers, [int]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scm_type</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;svn&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">revision</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">revision</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_revmap</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">refresh</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_revmap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_revision_dict</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_revmap</span><span class="p">[</span><span class="n">revision</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t find a build with that revision&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buildnumber</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_dict</span><span class="p">()[</span><span class="n">buildnumber</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">Build</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">buildnumber</span><span class="p">,</span> <span class="n">job</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;Build #</span><span class="si">%s</span><span class="s2"> not found&quot;</span> <span class="o">%</span> <span class="n">buildnumber</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.delete_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.delete_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove build</span>
+
+<span class="sd">        :param int build_number:    Build number</span>
+<span class="sd">        :raises NotFound:           When build is not found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_dict</span><span class="p">()[</span><span class="n">build_number</span><span class="p">]</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/doDelete&quot;</span> <span class="o">%</span> <span class="n">url</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;Build #</span><span class="si">%s</span><span class="s2"> not found&quot;</span> <span class="o">%</span> <span class="n">build_number</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_build_metadata">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_build_metadata">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_build_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buildnumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the build metadata for a given build number. For large builds with</span>
+<span class="sd">        tons of tests, this method is faster than get_build by returning less</span>
+<span class="sd">        data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Parameter &quot;buildNumber&quot; must be int&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_dict</span><span class="p">()[</span><span class="n">buildnumber</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">Build</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">buildnumber</span><span class="p">,</span> <span class="n">job</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;Build #</span><span class="si">%s</span><span class="s2"> not found&quot;</span> <span class="o">%</span> <span class="n">buildnumber</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete_build</span><span class="p">(</span><span class="n">build_number</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buildnumber</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_build_dict</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Job.is_queued_or_running">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.is_queued_or_running">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_queued_or_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_queued</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Job.is_queued">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.is_queued">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_queued</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;inQueue&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inQueue&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_queue_item">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_queue_item">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queue_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a QueueItem if this object is in a queue, otherwise raise</span>
+<span class="sd">        an exception</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_queued</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">UnknownQueueItem</span><span class="p">()</span>
+        <span class="n">q_item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;queueItem[url]&quot;</span><span class="p">)</span>
+        <span class="n">qi_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">q_item</span><span class="p">[</span><span class="s2">&quot;queueItem&quot;</span><span class="p">][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">QueueItem</span><span class="p">(</span><span class="n">qi_url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.is_running">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.is_running">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># self.poll()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">build</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_last_build_or_none</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">build</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">NoBuildData</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;No build info available for </span><span class="si">%s</span><span class="s2">, assuming not running.&quot;</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Job.get_config">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the config.xml from the job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">get_and_confirm_status</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%(baseurl)s</span><span class="s2">/config.xml&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="Job.load_config">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.load_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Job.get_scm_type">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_scm_type">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_scm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">scm_element</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;scm&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">scm_element</span><span class="p">:</span>
+            <span class="n">multibranch_scm_prefix</span> <span class="o">=</span> <span class="s2">&quot;properties/org.jenkinsci.plugins.</span><span class="se">\</span>
+<span class="s2">                    workflow.multibranch.BranchJobProperty/branch/&quot;</span>
+            <span class="n">multibranch_path</span> <span class="o">=</span> <span class="n">multibranch_scm_prefix</span> <span class="o">+</span> <span class="s2">&quot;scm&quot;</span>
+            <span class="n">scm_element</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">multibranch_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">scm_element</span><span class="p">:</span>
+                <span class="c1"># multibranch pipeline.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">=</span> <span class="n">multibranch_scm_prefix</span>
+        <span class="n">scm_class</span> <span class="o">=</span> <span class="n">scm_element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">scm_element</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scm_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scm_class</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">scm</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotSupportSCM</span><span class="p">(</span>
+                <span class="s1">&#39;SCM class &quot;</span><span class="si">%s</span><span class="s1">&quot; not supported by API for job &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="n">scm_class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">scm</span> <span class="o">==</span> <span class="s2">&quot;NullSCM&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotConfiguredSCM</span><span class="p">(</span>
+                <span class="s1">&#39;SCM is not configured for job &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">scm</span></div>
+
+
+<div class="viewcode-block" id="Job.get_scm_url">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_scm_url">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_scm_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get list of project SCM urls</span>
+<span class="sd">        For some SCM&#39;s jenkins allow to configure and use number of SCM url&#39;s</span>
+<span class="sd">        : return: list of SCM urls</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scm_type</span><span class="p">()</span>
+        <span class="n">scm_url_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">scm_url</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">scm_url</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scmurlmap</span><span class="p">[</span><span class="n">scm</span><span class="p">](</span><span class="n">element_tree</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">scm_url_list</span></div>
+
+
+<div class="viewcode-block" id="Job.get_scm_branch">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_scm_branch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_scm_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get list of SCM branches</span>
+<span class="sd">        : return: list of SCM branches</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scm_type</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">scm_branch</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">for</span> <span class="n">scm_branch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scmbranchmap</span><span class="p">[</span><span class="n">scm</span><span class="p">](</span><span class="n">element_tree</span><span class="p">)</span>
+        <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Job.modify_scm_branch">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.modify_scm_branch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify_scm_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_branch</span><span class="p">,</span> <span class="n">old_branch</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify SCM (&quot;Source Code Management&quot;) branch name for configured job.</span>
+<span class="sd">        :param new_branch : new repository branch name to set.</span>
+<span class="sd">            If job has multiple branches configured and &quot;old_branch&quot;</span>
+<span class="sd">            not provided - method will allways modify first url.</span>
+<span class="sd">        :param old_branch (optional): exact value of branch name</span>
+<span class="sd">            to be replaced.</span>
+<span class="sd">            For some SCM&#39;s jenkins allow set multiple branches per job</span>
+<span class="sd">            this parameter intended to indicate which branch need to be</span>
+<span class="sd">            modified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scm_type</span><span class="p">()</span>
+        <span class="n">scm_branch_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scmbranchmap</span><span class="p">[</span><span class="n">scm</span><span class="p">](</span><span class="n">element_tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scm_branch_list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">old_branch</span><span class="p">:</span>
+            <span class="n">scm_branch_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_branch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">scm_branch</span> <span class="ow">in</span> <span class="n">scm_branch_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">scm_branch</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">old_branch</span><span class="p">:</span>
+                    <span class="n">scm_branch</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_branch</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Job.modify_scm_url">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.modify_scm_url">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modify_scm_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_source_url</span><span class="p">,</span> <span class="n">old_source_url</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify SCM (&quot;Source Code Management&quot;) url for configured job.</span>
+<span class="sd">        :param new_source_url : new repository url to set.</span>
+<span class="sd">            If job has multiple repositories configured and &quot;old_source_url&quot;</span>
+<span class="sd">            not provided - method will allways modify first url.</span>
+<span class="sd">        :param old_source_url (optional): for some SCM&#39;s jenkins allows</span>
+<span class="sd">            settting multiple repositories per job</span>
+<span class="sd">            this parameter intended to indicate which repository need</span>
+<span class="sd">            to be modified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scm_type</span><span class="p">()</span>
+        <span class="n">scm_url_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scmurlmap</span><span class="p">[</span><span class="n">scm</span><span class="p">](</span><span class="n">element_tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scm_url_list</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">old_source_url</span><span class="p">:</span>
+            <span class="n">scm_url_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_source_url</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">scm_url</span> <span class="ow">in</span> <span class="n">scm_url_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">scm_url</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="n">old_source_url</span><span class="p">:</span>
+                    <span class="n">scm_url</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_source_url</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Job.get_config_xml_url">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_config_xml_url">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_config_xml_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/config.xml&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span></div>
+
+
+<div class="viewcode-block" id="Job.update_config">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.update_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">full_response</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the config.xml to the job</span>
+<span class="sd">        Also refresh the ElementTree object since the config has changed</span>
+<span class="sd">        :param full_response (optional): if True, it will return the full</span>
+<span class="sd">            response object instead of just the response text.</span>
+<span class="sd">            Useful for debugging and validation workflows.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config_xml_url</span><span class="p">()</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>  <span class="c1"># cast unicode in case of Python 2</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_url</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">full_response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span></div>
+
+
+<div class="viewcode-block" id="Job.get_downstream_jobs">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_downstream_jobs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_downstream_jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the possible downstream jobs</span>
+<span class="sd">        :return List of Job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">downstream_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;downstreamProjects&quot;</span><span class="p">]:</span>
+                <span class="n">downstream_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()[</span><span class="n">j</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">downstream_jobs</span></div>
+
+
+<div class="viewcode-block" id="Job.get_downstream_job_names">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_downstream_job_names">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_downstream_job_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the possible downstream job names</span>
+<span class="sd">        :return List of String</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">downstream_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;downstreamProjects&quot;</span><span class="p">]:</span>
+                <span class="n">downstream_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">downstream_jobs</span></div>
+
+
+<div class="viewcode-block" id="Job.get_upstream_job_names">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_upstream_job_names">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_job_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the possible upstream job names</span>
+<span class="sd">        :return List of String</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">upstream_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;upstreamProjects&quot;</span><span class="p">]:</span>
+                <span class="n">upstream_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">upstream_jobs</span></div>
+
+
+<div class="viewcode-block" id="Job.get_upstream_jobs">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_upstream_jobs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the possible upstream jobs</span>
+<span class="sd">        :return List of Job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">upstream_jobs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;upstreamProjects&quot;</span><span class="p">]:</span>
+                <span class="n">upstream_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">get_job</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">upstream_jobs</span></div>
+
+
+<div class="viewcode-block" id="Job.is_enabled">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.is_enabled">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;color&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;disabled&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.disable">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.disable">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disable job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/disable&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.enable">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.enable">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enable job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/enable&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.delete_from_queue">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.delete_from_queue">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_from_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a job from the queue only if it&#39;s enqueued</span>
+<span class="sd">        :raise NotInQueue if the job is not in the queue</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_queued</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotInQueue</span><span class="p">()</span>
+        <span class="n">queue_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;queueItem&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">get_queue</span><span class="p">()</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span>
+            <span class="s2">&quot;queue/cancelItem?id=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">queue_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Job.get_params">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the parameters for this job. Format varies by parameter type. Here</span>
+<span class="sd">        is an example string parameter:</span>
+<span class="sd">            {</span>
+<span class="sd">                &#39;type&#39;: &#39;StringParameterDefinition&#39;,</span>
+<span class="sd">                &#39;description&#39;: &#39;Parameter description&#39;,</span>
+<span class="sd">                &#39;defaultParameterValue&#39;: {&#39;value&#39;: &#39;default value&#39;},</span>
+<span class="sd">                &#39;name&#39;: &#39;FOO_BAR&#39;</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">places</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;actions&quot;</span><span class="p">,</span> <span class="s2">&quot;property&quot;</span><span class="p">]</span>
+        <span class="n">found_definitions</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">place</span> <span class="ow">in</span> <span class="n">places</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">found_definitions</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">actions</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">place</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">action</span><span class="p">[</span><span class="s2">&quot;parameterDefinitions&quot;</span><span class="p">]:</span>
+                        <span class="n">found_definitions</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">yield</span> <span class="n">param</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="k">continue</span></div>
+
+
+<div class="viewcode-block" id="Job.get_params_list">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_params_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_params_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the list of parameter names for this job.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">param</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">()]</span></div>
+
+
+<div class="viewcode-block" id="Job.has_params">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.has_params">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If job has parameters, returns True, else False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="s2">&quot;parameterDefinitions&quot;</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;actions&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">a</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+            <span class="s2">&quot;parameterDefinitions&quot;</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;property&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">a</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Job.has_queued_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.has_queued_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_queued_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns True if a build with build_params is currently queued.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">get_queue</span><span class="p">()</span>
+        <span class="n">queued_builds</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get_queue_items_for_job</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">build</span> <span class="ow">in</span> <span class="n">queued_builds</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">build</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span> <span class="o">==</span> <span class="n">build_params</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="Job.get_full_name_from_url_and_baseurl">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_full_name_from_url_and_baseurl">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_full_name_from_url_and_baseurl</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">baseurl</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the full name for a job (including parent folders) from the</span>
+<span class="sd">        job URL.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">baseurl</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="p">[</span><span class="n">urlparse</span><span class="o">.</span><span class="n">unquote</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">split</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="n">part</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">split</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.get_full_name">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.get_full_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the full name for a job (including parent folders)</span>
+<span class="sd">        from the job URL.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Job</span><span class="o">.</span><span class="n">get_full_name_from_url_and_baseurl</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.toggle_keep_build">
+<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.job.Job.toggle_keep_build">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">toggle_keep_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">build_number</span><span class="p">)</span><span class="o">.</span><span class="n">toggle_keep</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=c20607ac"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>
