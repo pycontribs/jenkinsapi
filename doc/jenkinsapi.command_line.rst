@@ -12,14 +12,6 @@ jenkinsapi.command\_line.jenkins\_invoke module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.command\_line.jenkinsapi\_version module
----------------------------------------------------
-
-.. automodule:: jenkinsapi.command_line.jenkinsapi_version
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Module contents
 ---------------
 
