@@ -35,7 +35,7 @@ jobs:
           path: ./doc/html/
 
   deploy-preview:
-    needs: build
+    needs: sphinx-build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
@@ -53,7 +53,7 @@ jobs:
           destination_dir: pr-${{ github.event.pull_request.number }}
 
   deploy-master:
-    needs: build
+    needs: sphinx-build
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
