@@ -103,7 +103,8 @@ Getting the installed version of JenkinsAPI
 This package supports PEP-396 by implementing a __version__ attribute. This contains a string in the format x.y.z:
 
 	>>> import jenkinsapi
-	>>> print(jenkinsapi.__version__)
+    >>> import importlib.metadata
+    >>> print(importlib.metadata.version("jenkinsapi"))
 	0.2.23
 
 There is also a command-line tool for use in the shell:

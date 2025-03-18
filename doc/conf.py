@@ -12,9 +12,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 import logging
+import importlib.metadata
 import jenkinsapi
 
-VERSION = RELEASE = jenkinsapi.__version__
+VERSION = RELEASE = importlib.metadata.version("jenkinsapi")
 
 if __name__ == "__main__":
     logging.basicConfig()
