@@ -2,6 +2,8 @@ name: Sphinx build
 
 on:  # yamllint disable-line rule:truthy
   push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -29,9 +31,11 @@ jobs:
           name: html-docs
           path: ./doc/html/
 
-      - name: Deploy
+      - name: Deploy Master Docs to GitHub Pages
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./doc/html
+          publish_branch: gh-pages
+          keep_files: false

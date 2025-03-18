@@ -1,4 +1,4 @@
-jenkinsapi
+Jenkinsapi
 ==========
 
 .. image:: https://badge.fury.io/py/jenkinsapi.png
@@ -62,14 +62,6 @@ Most users can do the following:
 
 	pip install jenkinsapi
 
-Or:
-
-.. code-block:: bash
-
-	easy_install jenkinsapi
-
-Both of these techniques can be combined with virtualenv to create an application-specific installation.
-
 Using your operating-system's package manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -105,7 +97,7 @@ the testsuite with the following command:
 
 .. code-block:: bash
 
-    uv python sync
+    uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Otherwise using a virtualenv is recommended. Setuptools will automatically fetch

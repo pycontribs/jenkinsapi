@@ -20,12 +20,12 @@ Sections
 ========
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
 
-   api
-   artifact
-   build
+   readme_link
    using_jenkinsapi
    jenkinsapi
+   submodules/submodule
    ../CONTRIBUTING
 
 Important Links
@@ -60,24 +60,22 @@ Most users can do the following:
 Examples
 --------
 
-JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects::
+JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects
 
-    Python 2.7.4 (default, Apr 19 2013, 18:28:01)
-    [GCC 4.7.3] on linux2
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import jenkinsapi
-    >>> from jenkinsapi.jenkins import Jenkins
-    >>> J = Jenkins('http://localhost:8080')
-    >>> J.keys() # Jenkins objects appear to be dict-like, mapping keys (job-names) to
-    ['foo', 'test_jenkinsapi']
-    >>> J['test_jenkinsapi']
-    <jenkinsapi.job.Job test_jenkinsapi>
-    >>> J['test_jenkinsapi'].get_last_good_build()
-    <jenkinsapi.build.Build test_jenkinsapi #77>
+.. code-block:: python
+
+   import jenkinsapi
+   from jenkinsapi.jenkins import Jenkins
+   J = Jenkins('http://localhost:8080')
+   J.keys() # Jenkins objects appear to be dict-like, mapping keys (job-names) to ['foo', 'test_jenkinsapi']
+   J['test_jenkinsapi'] # <jenkinsapi.job.Job test_jenkinsapi>
+   J['test_jenkinsapi'].get_last_good_build() # <jenkinsapi.build.Build test_jenkinsapi #77>
 
 JenkinsAPI lets you query the state of a running Jenkins server. It also allows you to change configuration and automate minor tasks on nodes and jobs.
 
-You can use Jenkins to get information about recently completed builds. For example, you can get the revision number of the last successful build in order to trigger some kind of release process.::
+You can use Jenkins to get information about recently completed builds. For example, you can get the revision number of the last successful build in order to trigger some kind of release process.
+
+.. code-block:: python
 
     from jenkinsapi.jenkins import Jenkins
 
@@ -100,19 +98,19 @@ Tips & Tricks
 Getting the installed version of JenkinsAPI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This package supports PEP-396 by implementing a __version__ attribute. This contains a string in the format x.y.z:
+This package supports PEP-396 by implementing a version attribute. This contains a string in the format x.y.z:
 
-	>>> import jenkinsapi
-    >>> import importlib.metadata
-    >>> print(importlib.metadata.version("jenkinsapi"))
-	0.2.23
+.. code-block:: python
 
-There is also a command-line tool for use in the shell:
+    import jenkinsapi
+    print(jenkinsapi.__version__)
+
+
 
 .. code-block:: bash
 
-    $ jenkinsapi_version
-    0.2.23
+    jenkinsapi_version
+
 
 Project Authors
 ===============
@@ -132,10 +130,12 @@ JenkinsAPI is a pure-Python project and can be improved with almost any programm
 
  * Make sure that pip and uv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.
 
- * Change to the new directory and check out the project code into the **src** subdirectory::
+ * Change to the new directory and check out the project code into the **src** subdirectory
 
- 	cd jenkinsapi
- 	git clone https://github.com/pycontribs/jenkinsapi.git src
+.. code-block:: bash
+
+    cd jenkinsapi
+    git clone https://github.com/pycontribs/jenkinsapi.git src
 
  * Install python dependencies and test the project
 

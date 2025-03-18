@@ -4,7 +4,7 @@ About this library
 
 Jenkins is the market leading continuous integration system, originally created
 by Kohsuke Kawaguchi. This API makes Jenkins even easier to use by providing an
- easy to use conventional python interface.
+easy to use conventional python interface.
 
 Jenkins (and It's predecessor Hudson) are fantastic projects - but they are
 somewhat Java-centric. Thankfully the designers have provided an excellent and
@@ -31,11 +31,7 @@ to use pip or distribute to automatically install this project.
 
 Most users can do the following:
 
-easy_install jenkinsapi
-
-If you'd like to install in multi-version mode:
-
-easy_install -m jenkinsapi
+pip install jenkinsapi
 
 Project Authors
 ===============
@@ -43,10 +39,14 @@ Project Authors
  * Salim Fadhley (sal@stodge.org)
  * Ramon van Alteren (ramon@vanalteren.nl)
  * Ruslan Lutsenko (ruslan.lutcenko@gmail.com)
+ * Aleksey Maksimov
+ * Clinton Steiner
 
-Current code lives on github: https://github.com/salimfadhley/jenkinsapi
+Current code lives on github: https://github.com/pycontribs/jenkinsapi
 
 """
+
+from importlib.metadata import version
 
 from jenkinsapi import (
     # Modules
@@ -92,3 +92,4 @@ __all__ = [
     "view",
 ]
 __docformat__ = "epytext"
+__version__ = version("jenkinsapi")
