@@ -1,21 +1,5 @@
-jenkinsapi package
+Jenkinsapi package
 ==================
-
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   jenkinsapi.command_line
-   jenkinsapi.utils
-
-Submodules
-----------
-.. toctree::
-   :maxdepth: 2
-
-   submodules/submodule
 
 Module contents
 ---------------
@@ -24,3 +8,12 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   submodules/command_line
+   submodules/utils

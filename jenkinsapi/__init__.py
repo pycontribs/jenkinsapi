@@ -31,11 +31,7 @@ to use pip or distribute to automatically install this project.
 
 Most users can do the following:
 
-easy_install jenkinsapi
-
-If you'd like to install in multi-version mode:
-
-easy_install -m jenkinsapi
+pip install jenkinsapi
 
 Project Authors
 ===============

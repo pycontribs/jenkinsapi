@@ -6,7 +6,7 @@ The JenkinsAPI project welcomes contributions via GitHub. Please bear in mind th
 Python compatibility
 --------------------
 
-The project currently targets Python 3.8+. Last version compatible with Python 2.7 is tagged as Py2.
+The project currently targets Python 3.8+.
 
 Code formatting
 ---------------

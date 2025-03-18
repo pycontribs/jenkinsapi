@@ -8,6 +8,7 @@ Submodules
    build
    credentials
    custom_exceptions
+   command_line
    executors
    fingerprint
    jenkins
@@ -17,6 +18,7 @@ Submodules
    mutable_jenkins
    nodes
    plugins
+   utils
    queue
    results
    views

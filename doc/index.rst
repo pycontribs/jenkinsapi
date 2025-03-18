@@ -20,7 +20,9 @@ Sections
 ========
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
 
+   readme_link
    using_jenkinsapi
    jenkinsapi
    submodules/submodule
