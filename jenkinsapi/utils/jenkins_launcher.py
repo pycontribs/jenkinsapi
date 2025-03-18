@@ -48,7 +48,7 @@ class StreamThread(threading.Thread):
         log.info("Starting %s", self.name)
 
         while True:
-            if self._stop.isSet():
+            if self._stop.is_set():
                 break
             line = self.stream.readline()
             if line:

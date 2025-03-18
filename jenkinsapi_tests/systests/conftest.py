@@ -30,7 +30,6 @@ PLUGIN_DEPENDENCIES = [
     "http://updates.jenkins.io/latest/ssh-credentials.hpi",
     "http://updates.jenkins.io/latest/asm-api.hpi",
     "http://updates.jenkins.io/latest/scm-api.hpi",
-    "http://updates.jenkins.io/latest/mailer.hpi",
     "http://updates.jenkins.io/latest/git.hpi",
     "http://updates.jenkins.io/latest/git-client.hpi",
     "http://updates.jenkins.io/latest/jakarta-mail-api.hpi",
