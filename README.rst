@@ -32,7 +32,7 @@ Jenkins (and its predecessor Hudson) are useful projects for automating common d
 * Authentication support for username and password
 * Manage jenkins and plugin installation
 
-Full library capabilities are outlined in the `Documentation <http://jenkinsapi.readthedocs.io/en/latest/index.html>`_
+Full library capabilities are outlined in the `Documentation <http://jenkinsapi.readthedocs.io/en/latest/index.html>`__
 
 
 Known issues
@@ -45,7 +45,7 @@ Important Links
 ---------------
 * `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 * `Source Code <https://github.com/pycontribs/jenkinsapi>`_
-* `Documentation <https://jenkinsapi.readthedocs.org/en/latest/>`_
+* `Documentation <https://jenkinsapi.readthedocs.org/en/latest/>`__
 * `Releases <http://pypi.python.org/pypi/jenkinsapi>`_
 
 Installation
