@@ -17,7 +17,6 @@ Submodules
 
    submodules/submodule
 
-
 Module contents
 ---------------
 
