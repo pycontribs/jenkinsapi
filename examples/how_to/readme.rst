@@ -3,9 +3,9 @@
 
 This directory contains a set of examples or recipes for common tasks in JenkinsAPI.
 
-======================                    ==================================================
+========================================= ==================================================
      Example                                          Description
-----------------------                    --------------------------------------------------
+----------------------------------------- --------------------------------------------------
 add_command.py                            create new job and then add shell build step to it
 create_a_job.py                           create new job
 create_credentials.py                     create new credential
@@ -21,3 +21,4 @@ search_artifact_by_regexp.py              search for job artifacts using regular
 search_artifacts.py                       search for artifacts
 start_parameterized_build.py              start a build with parameters
 use_crumbs.py                             how to work with CSRF protection enabled in Jenkins
+========================================= ==================================================
