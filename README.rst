@@ -105,7 +105,7 @@ the testsuite with the following command:
 
 .. code-block:: bash
 
-    uv python sync
+    uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
