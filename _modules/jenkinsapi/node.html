@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -264,7 +284,7 @@
 
 
 <div class="viewcode-block" id="Node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to hold information on nodes that are attached as slaves</span>
@@ -356,7 +376,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Node.get_node_attributes">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_node_attributes">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_node_attributes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets node attributes as dict</span>
@@ -455,7 +475,7 @@
 
 
 <div class="viewcode-block" id="Node.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span></div>
 
@@ -464,31 +484,31 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
 <div class="viewcode-block" id="Node.is_online">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.is_online">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.is_online">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_online</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;offline&quot;</span><span class="p">)[</span><span class="s2">&quot;offline&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Node.is_temporarily_offline">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.is_temporarily_offline">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.is_temporarily_offline">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_temporarily_offline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;temporarilyOffline&quot;</span><span class="p">)[</span><span class="s2">&quot;temporarilyOffline&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Node.is_jnlpagent">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.is_jnlpagent">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.is_jnlpagent">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_jnlpagent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;jnlpAgent&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Node.is_idle">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.is_idle">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.is_idle">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">)[</span><span class="s2">&quot;idle&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Node.set_online">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.set_online">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.set_online">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_online</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set node online.</span>
@@ -521,7 +541,7 @@
 
 
 <div class="viewcode-block" id="Node.set_offline">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.set_offline">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.set_offline">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_offline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;requested from jenkinsapi&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set node offline.</span>
@@ -541,7 +561,7 @@
 
 
 <div class="viewcode-block" id="Node.launch">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.launch">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.launch">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tries to launch a connection with the slave if it is currently</span>
@@ -565,7 +585,7 @@
 
 
 <div class="viewcode-block" id="Node.toggle_temporarily_offline">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.toggle_temporarily_offline">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.toggle_temporarily_offline">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">toggle_temporarily_offline</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;requested from jenkinsapi&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -598,7 +618,7 @@
 
 
 <div class="viewcode-block" id="Node.update_offline_reason">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.update_offline_reason">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.update_offline_reason">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_offline_reason</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update offline reason on a temporary offline clsuter</span>
@@ -614,7 +634,7 @@
 
 
 <div class="viewcode-block" id="Node.offline_reason">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.offline_reason">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.offline_reason">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">offline_reason</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;offlineCauseReason&quot;</span><span class="p">]</span></div>
 
@@ -636,7 +656,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_tree</span>
 
 <div class="viewcode-block" id="Node.get_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the config.xml from the node.</span>
@@ -648,7 +668,7 @@
 
 
 <div class="viewcode-block" id="Node.load_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.load_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.load_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads the config.xml for the node allowing it to be re-queried</span>
@@ -662,7 +682,7 @@
 
 
 <div class="viewcode-block" id="Node.upload_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.upload_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.upload_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">upload_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_xml</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Uploads config_xml to the config.xml for the node.</span>
@@ -676,7 +696,7 @@
 
 
 <div class="viewcode-block" id="Node.get_labels">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_labels">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_labels">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the labels for a slave as a string with each label</span>
@@ -686,7 +706,7 @@
 
 
 <div class="viewcode-block" id="Node.get_num_executors">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_num_executors">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_num_executors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_num_executors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config_element</span><span class="p">(</span><span class="s2">&quot;numExecutors&quot;</span><span class="p">)</span>
@@ -695,7 +715,7 @@
 
 
 <div class="viewcode-block" id="Node.set_num_executors">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.set_num_executors">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_num_executors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets number of executors for node</span>
@@ -726,7 +746,7 @@
 
 
 <div class="viewcode-block" id="Node.get_config_element">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_config_element">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_config_element">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_config_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns simple config element.</span>
@@ -737,7 +757,7 @@
 
 
 <div class="viewcode-block" id="Node.set_config_element">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.set_config_element">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.set_config_element">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_config_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">el_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets simple config element</span>
@@ -748,7 +768,7 @@
 
 
 <div class="viewcode-block" id="Node.get_monitor">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_monitor">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_monitor">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitor_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">poll_monitor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Polls the node returning one of the monitors in the monitorData</span>
@@ -769,7 +789,7 @@
 
 
 <div class="viewcode-block" id="Node.get_available_physical_memory">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_available_physical_memory">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_available_physical_memory">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_available_physical_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the node&#39;s available physical memory in bytes.</span>
@@ -779,7 +799,7 @@
 
 
 <div class="viewcode-block" id="Node.get_available_swap_space">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_available_swap_space">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_available_swap_space">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_available_swap_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the node&#39;s available swap space in bytes.</span>
@@ -789,7 +809,7 @@
 
 
 <div class="viewcode-block" id="Node.get_total_physical_memory">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_total_physical_memory">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_total_physical_memory">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_total_physical_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the node&#39;s total physical memory in bytes.</span>
@@ -799,7 +819,7 @@
 
 
 <div class="viewcode-block" id="Node.get_total_swap_space">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_total_swap_space">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_total_swap_space">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_total_swap_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the node&#39;s total swap space in bytes.</span>
@@ -809,7 +829,7 @@
 
 
 <div class="viewcode-block" id="Node.get_workspace_path">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_workspace_path">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_workspace_path">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_workspace_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the local path to the node&#39;s Jenkins workspace directory.</span>
@@ -819,7 +839,7 @@
 
 
 <div class="viewcode-block" id="Node.get_workspace_size">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_workspace_size">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_workspace_size">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_workspace_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the size in bytes of the node&#39;s Jenkins workspace directory.</span>
@@ -829,7 +849,7 @@
 
 
 <div class="viewcode-block" id="Node.get_temp_path">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_temp_path">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_temp_path">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_temp_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the local path to the node&#39;s temp directory.</span>
@@ -839,7 +859,7 @@
 
 
 <div class="viewcode-block" id="Node.get_temp_size">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_temp_size">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_temp_size">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_temp_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the size in bytes of the node&#39;s temp directory.</span>
@@ -849,7 +869,7 @@
 
 
 <div class="viewcode-block" id="Node.get_architecture">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_architecture">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_architecture">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_architecture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the system architecture of the node eg. &quot;Linux (amd64)&quot;.</span>
@@ -859,7 +879,7 @@
 
 
 <div class="viewcode-block" id="Node.block_until_idle">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.block_until_idle">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.block_until_idle">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">block_until_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">poll_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Blocks until the node become idle.</span>
@@ -884,7 +904,7 @@
 
 
 <div class="viewcode-block" id="Node.get_response_time">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_response_time">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_response_time">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_response_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the node&#39;s average response time.</span>
@@ -894,7 +914,7 @@
 
 
 <div class="viewcode-block" id="Node.get_clock_difference">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.node.Node.get_clock_difference">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_clock_difference">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_clock_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the difference between the node&#39;s clock and</span>

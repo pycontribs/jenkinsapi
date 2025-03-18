@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="jenkinsapi.utils package" href="jenkinsapi.utils.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="View and Views" href="submodules/views.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Rules for Contributors - JenkinsAPI 0.3.14.dev5 documentation</title>
@@ -199,13 +199,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Rules for Contributors</a></li>
@@ -254,7 +274,7 @@
 <p>The JenkinsAPI project welcomes contributions via GitHub. Please bear in mind the following guidelines when preparing your pull-request.</p>
 <section id="python-compatibility">
 <h2>Python compatibility<a class="headerlink" href="#python-compatibility" title="Link to this heading">¶</a></h2>
-<p>The project currently targets Python 3.8+. Last version compatible with Python 2.7 is tagged as Py2.</p>
+<p>The project currently targets Python 3.8+.</p>
 </section>
 <section id="code-formatting">
 <h2>Code formatting<a class="headerlink" href="#code-formatting" title="Link to this heading">¶</a></h2>
@@ -283,14 +303,14 @@
         
         <div class="related-pages">
           
-          <a class="prev-page" href="jenkinsapi.utils.html">
+          <a class="prev-page" href="submodules/views.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">jenkinsapi.utils package</div>
+                <div class="title">View and Views</div>
                 
               </div>
             </a>

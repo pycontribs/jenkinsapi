@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -270,7 +290,7 @@
 
 
 <div class="viewcode-block" id="Plugins">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Plugins</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plugins class for jenkinsapi</span>
@@ -281,13 +301,13 @@
         <span class="n">JenkinsBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Plugins.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span></div>
 
 
 <div class="viewcode-block" id="Plugins.check_updates_server">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.check_updates_server">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.check_updates_server">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">check_updates_server</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">baseurl</span><span class="si">}</span><span class="s2">/pluginManager/checkUpdatesServer&quot;</span>
@@ -307,7 +327,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">tree</span><span class="o">=</span><span class="n">tree</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Plugins.keys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.keys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.keys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugins_dict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
@@ -315,13 +335,13 @@
     <span class="fm">__iter__</span> <span class="o">=</span> <span class="n">keys</span>
 
 <div class="viewcode-block" id="Plugins.iteritems">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.iteritems">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.iteritems">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iteritems</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Plugin&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_plugins</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Plugins.values">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.values">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;Plugin&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span></div>
 
@@ -332,7 +352,7 @@
                 <span class="k">yield</span> <span class="n">p_dict</span><span class="p">[</span><span class="s2">&quot;shortName&quot;</span><span class="p">],</span> <span class="n">Plugin</span><span class="p">(</span><span class="n">p_dict</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Plugins.get_plugins_dict">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.get_plugins_dict">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.get_plugins_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_plugins_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;Plugin&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_plugins</span><span class="p">())</span></div>
 
@@ -475,7 +495,7 @@
             <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># lack of update_center in Jenkins 1.X</span>
 
 <div class="viewcode-block" id="Plugins.plugin_version_is_being_installed">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.plugin_version_is_being_installed">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.plugin_version_is_being_installed">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plugin_version_is_being_installed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return true if plugin is currently being installed.</span>
@@ -495,7 +515,7 @@
 
 
 <div class="viewcode-block" id="Plugins.plugin_version_already_installed">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.plugins.Plugins.plugin_version_already_installed">[docs]</a>
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.plugin_version_already_installed">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plugin_version_already_installed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if plugin version is already installed</span>

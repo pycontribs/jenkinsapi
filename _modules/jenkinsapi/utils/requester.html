@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -274,7 +294,7 @@
 
 
 <div class="viewcode-block" id="Requester">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Requester</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class which carries out HTTP requests. You can replace this</span>
@@ -341,7 +361,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">retry_adapter</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Requester.get_request_dict">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_request_dict">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.get_request_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_request_dict</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
@@ -400,7 +420,7 @@
         <span class="k">return</span> <span class="n">url</span>
 
 <div class="viewcode-block" id="Requester.get_url">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_url">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.get_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_url</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">url</span><span class="p">,</span>
@@ -419,7 +439,7 @@
 
 
 <div class="viewcode-block" id="Requester.post_url">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_url">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.post_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">post_url</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">url</span><span class="p">,</span>
@@ -442,7 +462,7 @@
 
 
 <div class="viewcode-block" id="Requester.post_xml_and_confirm_status">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_xml_and_confirm_status">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.post_xml_and_confirm_status">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">post_xml_and_confirm_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
@@ -453,7 +473,7 @@
 
 
 <div class="viewcode-block" id="Requester.post_and_confirm_status">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.post_and_confirm_status">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.post_and_confirm_status">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">post_and_confirm_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">url</span><span class="p">,</span>
@@ -488,7 +508,7 @@
 
 
 <div class="viewcode-block" id="Requester.get_and_confirm_status">
-<a class="viewcode-back" href="../../../jenkinsapi.utils.html#jenkinsapi.utils.requester.Requester.get_and_confirm_status">[docs]</a>
+<a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.get_and_confirm_status">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_and_confirm_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>

@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -256,7 +276,7 @@
 
 
 <div class="viewcode-block" id="Executor">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Executor</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to hold information on nodes that are attached as slaves to the</span>
@@ -283,20 +303,20 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nodename</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2">&quot;</span>
 
 <div class="viewcode-block" id="Executor.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span></div>
 
 
 <div class="viewcode-block" id="Executor.get_progress">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.get_progress">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.get_progress">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns percentage&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;progress&quot;</span><span class="p">)[</span><span class="s2">&quot;progress&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Executor.get_number">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.get_number">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.get_number">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get Executor number.</span>
@@ -305,7 +325,7 @@
 
 
 <div class="viewcode-block" id="Executor.is_idle">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.is_idle">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.is_idle">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_idle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns Boolean: whether Executor is idle or not.</span>
@@ -314,7 +334,7 @@
 
 
 <div class="viewcode-block" id="Executor.likely_stuck">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.likely_stuck">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.likely_stuck">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">likely_stuck</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns Boolean: whether Executor is likely stuck or not.</span>
@@ -323,7 +343,7 @@
 
 
 <div class="viewcode-block" id="Executor.get_current_executable">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.executor.Executor.get_current_executable">[docs]</a>
+<a class="viewcode-back" href="../../submodules/executors.html#jenkinsapi.executor.Executor.get_current_executable">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_current_executable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the current Queue.Task this executor is running.</span>

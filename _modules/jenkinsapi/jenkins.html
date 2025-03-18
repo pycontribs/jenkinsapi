@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -286,7 +306,7 @@
 
 
 <div class="viewcode-block" id="Jenkins">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Jenkins</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents a jenkins environment.</span>
@@ -356,7 +376,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Jenkins.base_server_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.base_server_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.base_server_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">base_server_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">JENKINS_API</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">[:</span> <span class="o">-</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">JENKINS_API</span><span class="p">))]</span>
@@ -364,7 +384,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.validate_fingerprint">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_fingerprint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">):</span>
         <span class="n">obj_fingerprint</span> <span class="o">=</span> <span class="n">Fingerprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">id_</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">obj_fingerprint</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
@@ -372,7 +392,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_artifact_data">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_artifact_data">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_artifact_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_artifact_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">):</span>
         <span class="n">obj_fingerprint</span> <span class="o">=</span> <span class="n">Fingerprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">id_</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">obj_fingerprint</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
@@ -380,33 +400,33 @@
 
 
 <div class="viewcode-block" id="Jenkins.validate_fingerprint_for_build">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint_for_build">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.validate_fingerprint_for_build">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_fingerprint_for_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digest</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">build</span><span class="p">):</span>
         <span class="n">obj_fingerprint</span> <span class="o">=</span> <span class="n">Fingerprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">digest</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj_fingerprint</span><span class="o">.</span><span class="n">validate_for_build</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="n">build</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_jenkins_obj_from_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj_from_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jenkins_obj_from_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj_from_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Jenkins</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_create_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_create_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_create_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_create_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="c1"># This only ever needs to work on the base object</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/createItem&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_nodes_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_nodes_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_nodes_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_nodes_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="c1"># This only ever needs to work on the base object</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">baseurl</span></div>
@@ -420,7 +440,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs_container</span>
 
 <div class="viewcode-block" id="Jenkins.get_jobs">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fetch all the build-names on this Jenkins server.</span>
@@ -429,7 +449,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_jobs_info">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs_info">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs_info">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jobs_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the jobs information</span>
@@ -440,7 +460,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a job by name</span>
@@ -451,7 +471,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_job_by_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_job_by_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a job by url</span>
@@ -463,7 +483,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.has_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.has_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">has_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does a job by the name specified exist</span>
@@ -474,7 +494,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.create_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">xml</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a job</span>
@@ -489,7 +509,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.create_multibranch_pipeline_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_multibranch_pipeline_job</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">,</span> <span class="n">xml</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">60</span>
     <span class="p">):</span>
@@ -502,13 +522,13 @@
 
 
 <div class="viewcode-block" id="Jenkins.copy_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.copy_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.copy_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">copy_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">newjobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">jobname</span><span class="p">,</span> <span class="n">newjobname</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.build_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.build_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.build_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">build_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Invoke a build by job name</span>
@@ -520,7 +540,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.delete_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete a job by name</span>
@@ -531,7 +551,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.rename_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.rename_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.rename_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rename_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">newjobname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rename a job</span>
@@ -543,7 +563,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.items">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.items">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.items">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param return: A list of pairs.</span>
@@ -553,25 +573,25 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_jobs_list">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_jobs_list">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jobs_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.iterkeys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.iterkeys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.iterkeys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iterkeys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.iteritems">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.iteritems">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.iteritems">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iteritems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.keys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.keys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.keys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
@@ -584,7 +604,7 @@
         <span class="k">return</span> <span class="n">Views</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Jenkins.get_view_by_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_view_by_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_view_by_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_view_by_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># for nested view</span>
         <span class="n">view_name</span> <span class="o">=</span> <span class="n">view_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/view/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -592,7 +612,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.delete_view_by_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_view_by_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_view_by_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_view_by_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewurl</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viewurl</span><span class="si">}</span><span class="s2">/doDelete&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -601,7 +621,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_label">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_label">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Label</span><span class="p">:</span>
         <span class="n">label_url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/label/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">label_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Label</span><span class="p">(</span><span class="n">label_url</span><span class="p">,</span> <span class="n">label_name</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
@@ -630,14 +650,14 @@
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="p">[</span><span class="n">job_name</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Jenkins.get_node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a node object for a specific node&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">nodename</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_node_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_node_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_node_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the url for nodes&quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urljoin</span><span class="p">(</span>
@@ -647,21 +667,21 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_queue_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_queue_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_queue_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queue_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_server_url</span><span class="p">()</span><span class="si">}</span><span class="s2">/queue&quot;</span>
         <span class="k">return</span> <span class="n">url</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_queue">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_queue">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_queue">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_queue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Queue</span><span class="p">:</span>
         <span class="n">queue_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_queue_url</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">Queue</span><span class="p">(</span><span class="n">queue_url</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_nodes">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_nodes">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_nodes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Nodes</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
@@ -671,7 +691,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Jenkins.has_node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.has_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">has_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does a node by the name specified exist</span>
@@ -683,7 +703,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.delete_node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove a node from the managed slave list</span>
@@ -696,7 +716,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.create_node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_node</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -730,7 +750,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.create_node_with_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.create_node_with_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_node_with_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_node_with_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new slave node with specific configuration.</span>
@@ -745,14 +765,14 @@
 
 
 <div class="viewcode-block" id="Jenkins.get_plugins_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_plugins_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_plugins_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_plugins_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
         <span class="c1"># This only ever needs to work on the base object</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="si">}</span><span class="s2">/pluginManager/api/python?depth=</span><span class="si">{</span><span class="n">depth</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.install_plugin">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.install_plugin">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.install_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">install_plugin</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Plugin</span><span class="p">,</span>
@@ -783,7 +803,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.install_plugins">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.install_plugins">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.install_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">install_plugins</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plugin_list</span><span class="p">,</span>
@@ -815,7 +835,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.delete_plugin">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_plugin">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_plugin</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plugin</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Plugin</span><span class="p">,</span>
@@ -845,7 +865,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.delete_plugins">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.delete_plugins">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_plugins</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">plugin_list</span><span class="p">,</span>
@@ -875,7 +895,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.safe_restart">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.safe_restart">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.safe_restart">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">safe_restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_for_reboot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;restarts jenkins when no jobs are running&quot;&quot;&quot;</span>
         <span class="c1"># NB: unlike other methods, the value of resp.status_code</span>
@@ -945,7 +965,7 @@
                 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Jenkins.safe_exit">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.safe_exit">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.safe_exit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">safe_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_for_exit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">max_wait</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">360</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Restarts jenkins when no jobs are running, except for pipeline jobs</span>
@@ -992,7 +1012,7 @@
                 <span class="n">is_alive</span> <span class="o">=</span> <span class="kc">True</span>
 
 <div class="viewcode-block" id="Jenkins.quiet_down">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.quiet_down">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.quiet_down">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">quiet_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Put Jenkins in a Quiet mode, preparation for restart.</span>
@@ -1009,7 +1029,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.cancel_quiet_down">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.cancel_quiet_down">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.cancel_quiet_down">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cancel_quiet_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancel the effect of the quiet-down command&quot;&quot;&quot;</span>
         <span class="c1"># NB: unlike other methods, the value of resp.status_code</span>
@@ -1027,27 +1047,27 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugins</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Jenkins.get_plugins">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_plugins">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Plugins</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugins_url</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Plugins</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.has_plugin">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.has_plugin">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.has_plugin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">has_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_executors">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_executors">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_executors">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_executors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Executors</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="si">}</span><span class="s2">/computer/</span><span class="si">{</span><span class="n">nodename</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">Executors</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">nodename</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.get_master_data">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_master_data">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_master_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_master_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="si">}</span><span class="s2">/computer/api/python&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
@@ -1063,7 +1083,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">version_key</span><span class="p">,</span> <span class="s2">&quot;0.0&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Jenkins.get_credentials">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.get_credentials">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_credentials">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cred_class</span><span class="o">=</span><span class="n">Credentials2x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return credentials</span>
@@ -1095,14 +1115,14 @@
         <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;quietingDown&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Jenkins.shutdown">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.shutdown">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.shutdown">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/exit&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Jenkins.generate_new_api_token">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.generate_new_api_token">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.generate_new_api_token">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_new_api_token</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">new_token_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Token By jenkinsapi python&quot;</span>
     <span class="p">):</span>
@@ -1118,7 +1138,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.run_groovy_script">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.run_groovy_script">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.run_groovy_script">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_groovy_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the requested groovy script on the Jenkins server returning the</span>
@@ -1146,7 +1166,7 @@
 
 
 <div class="viewcode-block" id="Jenkins.use_auth_cookie">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.jenkins.Jenkins.use_auth_cookie">[docs]</a>
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.use_auth_cookie">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">use_auth_cookie</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="p">(</span>
             <span class="s2">&quot;Please provide jenkins url, username &quot;</span>

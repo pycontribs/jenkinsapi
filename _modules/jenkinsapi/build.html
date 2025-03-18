@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -282,7 +302,7 @@
 
 
 <div class="viewcode-block" id="Build">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Build</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents a Jenkins build, executed in context of a job.</span>
@@ -324,37 +344,37 @@
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Build.get_description">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_description">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_description">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Build.get_number">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_number">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_number">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Build.get_status">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_status">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_status">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Build.get_slave">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_slave">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_slave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_slave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;builtOn&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Build.get_revision">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_revision">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_revision">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;_get_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_vcs</span><span class="p">()</span><span class="si">}</span><span class="s2">_rev&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">)()</span></div>
 
 
 <div class="viewcode-block" id="Build.get_revision_branch">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_revision_branch">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_revision_branch">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_revision_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;_get_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_vcs</span><span class="p">()</span><span class="si">}</span><span class="s2">_rev_branch&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
@@ -362,13 +382,13 @@
 
 
 <div class="viewcode-block" id="Build.get_repo_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_repo_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_repo_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_repo_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;_get_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_vcs</span><span class="p">()</span><span class="si">}</span><span class="s2">_repo_url&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">)()</span></div>
 
 
 <div class="viewcode-block" id="Build.get_params">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_params">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_params">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dictionary of params names and their values, or an</span>
@@ -392,7 +412,7 @@
 
 
 <div class="viewcode-block" id="Build.get_changeset_items">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_changeset_items">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_changeset_items">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_changeset_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of changeSet items.</span>
@@ -474,19 +494,19 @@
         <span class="k">return</span> <span class="n">result</span>
 
 <div class="viewcode-block" id="Build.get_duration">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_duration">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_duration">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_duration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">milliseconds</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="Build.get_build_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_build_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_build_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Build.get_artifacts">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_artifacts">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_artifacts">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_artifacts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Artifact</span><span class="p">]:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;artifacts[relativePath,fileName]&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">afinfo</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;artifacts&quot;</span><span class="p">]:</span>
@@ -504,13 +524,13 @@
 
 
 <div class="viewcode-block" id="Build.get_artifact_dict">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_artifact_dict">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_artifact_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_artifact_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Artifact</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">af</span><span class="o">.</span><span class="n">relative_path</span><span class="p">:</span> <span class="n">af</span> <span class="k">for</span> <span class="n">af</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_artifacts</span><span class="p">()}</span></div>
 
 
 <div class="viewcode-block" id="Build.get_upstream_job_name">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_upstream_job_name">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_upstream_job_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_job_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the upstream job name if it exist, None otherwise</span>
@@ -523,7 +543,7 @@
 
 
 <div class="viewcode-block" id="Build.get_upstream_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_upstream_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_upstream_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_job</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the upstream job object if it exist, None otherwise</span>
@@ -535,7 +555,7 @@
 
 
 <div class="viewcode-block" id="Build.get_upstream_build_number">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_upstream_build_number">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_upstream_build_number">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_build_number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the upstream build number if it exist, None otherwise</span>
@@ -548,7 +568,7 @@
 
 
 <div class="viewcode-block" id="Build.get_upstream_build">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_upstream_build">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_upstream_build">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_upstream_build</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Build&quot;</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the upstream build if it exist, None otherwise</span>
@@ -562,7 +582,7 @@
 
 
 <div class="viewcode-block" id="Build.get_master_job_name">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_master_job_name">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_master_job_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_master_job_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the master job name if it exist, None otherwise</span>
@@ -575,7 +595,7 @@
 
 
 <div class="viewcode-block" id="Build.get_master_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_master_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_master_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_master_job</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the master job object if it exist, None otherwise</span>
@@ -588,7 +608,7 @@
 
 
 <div class="viewcode-block" id="Build.get_master_build_number">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_master_build_number">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_master_build_number">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_master_build_number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the master build number if it exist, None otherwise</span>
@@ -601,7 +621,7 @@
 
 
 <div class="viewcode-block" id="Build.get_master_build">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_master_build">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_master_build">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_master_build</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Build&quot;</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the master build if it exist, None otherwise</span>
@@ -615,7 +635,7 @@
 
 
 <div class="viewcode-block" id="Build.get_downstream_jobs">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_downstream_jobs">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_downstream_jobs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_downstream_jobs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Job</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the downstream jobs for this build</span>
@@ -633,7 +653,7 @@
 
 
 <div class="viewcode-block" id="Build.get_downstream_job_names">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_downstream_job_names">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_downstream_job_names">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_downstream_job_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the downstream job names for this build</span>
@@ -653,7 +673,7 @@
 
 
 <div class="viewcode-block" id="Build.get_downstream_builds">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_downstream_builds">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_downstream_builds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_downstream_builds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Build&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the downstream builds for this build</span>
@@ -680,7 +700,7 @@
 
 
 <div class="viewcode-block" id="Build.get_matrix_runs">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_matrix_runs">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_matrix_runs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_matrix_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="s2">&quot;Build&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        For a matrix job, get the individual builds for each</span>
@@ -695,7 +715,7 @@
 
 
 <div class="viewcode-block" id="Build.is_running">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.is_running">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.is_running">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a bool if running.</span>
@@ -705,14 +725,14 @@
 
 
 <div class="viewcode-block" id="Build.block">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.block">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.block">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">block</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Build.is_good">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.is_good">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.is_good">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_good</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a bool, true if the build was good.</span>
@@ -724,7 +744,7 @@
 
 
 <div class="viewcode-block" id="Build.block_until_complete">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.block_until_complete">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.block_until_complete">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">block_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
@@ -738,13 +758,13 @@
 
 
 <div class="viewcode-block" id="Build.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="Build.get_result_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_result_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_result_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_result_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the URL for the object which provides the job&#39;s result summary.</span>
@@ -754,7 +774,7 @@
 
 
 <div class="viewcode-block" id="Build.get_resultset">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_resultset">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_resultset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_resultset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultSet</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Obtain detailed results for this build.</span>
@@ -777,7 +797,7 @@
 
 
 <div class="viewcode-block" id="Build.has_resultset">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.has_resultset">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.has_resultset">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">has_resultset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a boolean, true if a result set is available. false if not.</span>
@@ -786,7 +806,7 @@
 
 
 <div class="viewcode-block" id="Build.get_actions">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_actions">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_actions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">all_actions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">dct_action</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;actions&quot;</span><span class="p">]:</span>
@@ -797,7 +817,7 @@
 
 
 <div class="viewcode-block" id="Build.get_causes">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_causes">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_causes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_causes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of causes. There can be multiple causes lists and</span>
@@ -815,7 +835,7 @@
 
 
 <div class="viewcode-block" id="Build.get_timestamp">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_timestamp">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_timestamp">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns build timestamp in UTC</span>
@@ -828,7 +848,7 @@
 
 
 <div class="viewcode-block" id="Build.get_console">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_console">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_console">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_console</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the current state of the text console.</span>
@@ -848,7 +868,7 @@
 
 
 <div class="viewcode-block" id="Build.stream_logs">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.stream_logs">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.stream_logs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stream_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return generator which streams parts of text console.</span>
@@ -876,7 +896,7 @@
 
 
 <div class="viewcode-block" id="Build.get_estimated_duration">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_estimated_duration">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_estimated_duration">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_estimated_duration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the estimated build duration (in seconds) or none.</span>
@@ -889,7 +909,7 @@
 
 
 <div class="viewcode-block" id="Build.stop">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.stop">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.stop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stops the build execution if it&#39;s running</span>
@@ -914,7 +934,7 @@
 
 
 <div class="viewcode-block" id="Build.get_env_vars">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.get_env_vars">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_env_vars">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_env_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the environment variables.</span>
@@ -934,7 +954,7 @@
 
 
 <div class="viewcode-block" id="Build.toggle_keep">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.toggle_keep">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.toggle_keep">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">toggle_keep</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Toggle &quot;keep this build forever&quot; on and off</span>
@@ -945,7 +965,7 @@
 
 
 <div class="viewcode-block" id="Build.is_kept_forever">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.build.Build.is_kept_forever">[docs]</a>
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.is_kept_forever">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_kept_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;keepLog&quot;</span><span class="p">]</span></div>
 </div>

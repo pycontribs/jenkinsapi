@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -262,7 +282,7 @@
 
 
 <div class="viewcode-block" id="View">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">View</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    View class</span>
@@ -295,7 +315,7 @@
         <span class="k">return</span> <span class="n">job_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
 <div class="viewcode-block" id="View.delete">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.delete">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.delete">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove this view object</span>
@@ -307,13 +327,13 @@
 
 
 <div class="viewcode-block" id="View.keys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.keys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.keys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="View.iteritems">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.iteritems">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.iteritems">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iteritems</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Job</span><span class="p">]]:</span>
         <span class="n">it</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 
@@ -322,13 +342,13 @@
 
 
 <div class="viewcode-block" id="View.values">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.values">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Job</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span></div>
 
 
 <div class="viewcode-block" id="View.items">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.items">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.items">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span></div>
 
@@ -339,13 +359,13 @@
                 <span class="k">yield</span> <span class="n">viewdict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">viewdict</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="View.get_job_dict">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_job_dict">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_job_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_job_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_jobs</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="View.get_job_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_job_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_job_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_job_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">str_job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">str_job_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()[</span><span class="n">str_job_name</span><span class="p">]</span>
@@ -359,13 +379,13 @@
 
 
 <div class="viewcode-block" id="View.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span></div>
 
 
 <div class="viewcode-block" id="View.add_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.add_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.add_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">job</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add job to a view</span>
@@ -414,7 +434,7 @@
 
 
 <div class="viewcode-block" id="View.remove_job">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.remove_job">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.remove_job">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove job from a view</span>
@@ -445,19 +465,19 @@
             <span class="k">yield</span> <span class="n">viewdict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">viewdict</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="View.get_nested_view_dict">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_nested_view_dict">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_nested_view_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_nested_view_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_nested_views</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="View.get_config_xml_url">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_config_xml_url">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_config_xml_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_config_xml_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/config.xml&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span></div>
 
 
 <div class="viewcode-block" id="View.get_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.get_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the config.xml from the view</span>
@@ -468,7 +488,7 @@
 
 
 <div class="viewcode-block" id="View.update_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.view.View.update_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.update_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the config.xml to the view</span>

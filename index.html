@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="User API" href="api.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Jenkinsapi" href="readme_link.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>JenkinsAPI 0.3.14.dev5 documentation</title>
@@ -199,13 +199,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -271,77 +291,36 @@
 <h1>Sections<a class="headerlink" href="#sections" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">User API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.block_until_complete"><code class="docutils literal notranslate"><span class="pre">block_until_complete()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_artifacts"><code class="docutils literal notranslate"><span class="pre">get_artifacts()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_build"><code class="docutils literal notranslate"><span class="pre">get_build()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_latest_build"><code class="docutils literal notranslate"><span class="pre">get_latest_build()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_latest_complete_build"><code class="docutils literal notranslate"><span class="pre">get_latest_complete_build()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_latest_test_results"><code class="docutils literal notranslate"><span class="pre">get_latest_test_results()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_nested_view_from_url"><code class="docutils literal notranslate"><span class="pre">get_nested_view_from_url()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.get_view_from_url"><code class="docutils literal notranslate"><span class="pre">get_view_from_url()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.grab_artifact"><code class="docutils literal notranslate"><span class="pre">grab_artifact()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.install_artifacts"><code class="docutils literal notranslate"><span class="pre">install_artifacts()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.search_artifact_by_regexp"><code class="docutils literal notranslate"><span class="pre">search_artifact_by_regexp()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#jenkinsapi.api.search_artifacts"><code class="docutils literal notranslate"><span class="pre">search_artifacts()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">Jenkinsapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jenkinsapi.html">Jenkinsapi package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="artifact.html">Artifact</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="artifact.html#jenkinsapi.artifact.Artifact"><code class="docutils literal notranslate"><span class="pre">Artifact</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="submodules/submodule.html">Submodules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/views.html">View and Views</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="build.html">Build</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="build.html#jenkinsapi.build.Build"><code class="docutils literal notranslate"><span class="pre">Build</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="using_jenkinsapi.html#example-1-get-version-of-jenkins">Example 1: Get version of Jenkins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_jenkinsapi.html#example-2-get-details-of-jobs-running-on-jenkins-server">Example 2: Get details of jobs running on Jenkins server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_jenkinsapi.html#example-3-disable-enable-a-jenkins-job">Example 3: Disable/Enable a Jenkins Job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_jenkinsapi.html#example-4-get-plugin-details">Example 4: Get Plugin details</a></li>
-<li class="toctree-l2"><a class="reference internal" href="using_jenkinsapi.html#example-5-getting-version-information-from-a-completed-build">Example 5: Getting version information from a completed build</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="jenkinsapi.html">jenkinsapi package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#subpackages">Subpackages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.api">jenkinsapi.api module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.artifact">jenkinsapi.artifact module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.build">jenkinsapi.build module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.config">jenkinsapi.config module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.constants">jenkinsapi.constants module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.credential">jenkinsapi.credential module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.credentials">jenkinsapi.credentials module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.custom_exceptions">jenkinsapi.custom_exceptions module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.executor">jenkinsapi.executor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.executors">jenkinsapi.executors module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.fingerprint">jenkinsapi.fingerprint module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.jenkins">jenkinsapi.jenkins module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.jenkinsbase">jenkinsapi.jenkinsbase module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.job">jenkinsapi.job module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.jobs">jenkinsapi.jobs module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.label">jenkinsapi.label module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.mutable_jenkins_thing">jenkinsapi.mutable_jenkins_thing module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.node">jenkinsapi.node module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.nodes">jenkinsapi.nodes module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.plugin">jenkinsapi.plugin module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.plugins">jenkinsapi.plugins module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.queue">jenkinsapi.queue module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.result">jenkinsapi.result module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.result_set">jenkinsapi.result_set module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.view">jenkinsapi.view module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi.views">jenkinsapi.views module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="jenkinsapi.html#module-jenkinsapi">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html#python-compatibility">Python compatibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html#code-formatting">Code formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html#test-driven-development">Test Driven Development</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html#check-the-ci-status-before-comitting">Check the CI status before comitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CONTRIBUTING.html#any-problems">Any problems?</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a></li>
 </ul>
 </div>
 <section id="important-links">
@@ -370,24 +349,18 @@
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
-<p>JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">2.7.4</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Apr</span> <span class="mi">19</span> <span class="mi">2013</span><span class="p">,</span> <span class="mi">18</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">01</span><span class="p">)</span>
-<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.7.3</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux2</span>
-<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">jenkinsapi</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">J</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># Jenkins objects appear to be dict-like, mapping keys (job-names) to</span>
-<span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">]</span>
-<span class="o">&lt;</span><span class="n">jenkinsapi</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">Job</span> <span class="n">test_jenkinsapi</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">J</span><span class="p">[</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_last_good_build</span><span class="p">()</span>
-<span class="o">&lt;</span><span class="n">jenkinsapi</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">Build</span> <span class="n">test_jenkinsapi</span> <span class="c1">#77&gt;</span>
+<p>JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkinsapi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">)</span>
+<span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c1"># Jenkins objects appear to be dict-like, mapping keys (job-names) to [&#39;foo&#39;, &#39;test_jenkinsapi&#39;]</span>
+<span class="n">J</span><span class="p">[</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">]</span> <span class="c1"># &lt;jenkinsapi.job.Job test_jenkinsapi&gt;</span>
+<span class="n">J</span><span class="p">[</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_last_good_build</span><span class="p">()</span> <span class="c1"># &lt;jenkinsapi.build.Build test_jenkinsapi #77&gt;</span>
 </pre></div>
 </div>
 <p>JenkinsAPI lets you query the state of a running Jenkins server. It also allows you to change configuration and automate minor tasks on nodes and jobs.</p>
-<p>You can use Jenkins to get information about recently completed builds. For example, you can get the revision number of the last successful build in order to trigger some kind of release process.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
+<p>You can use Jenkins to get information about recently completed builds. For example, you can get the revision number of the last successful build in order to trigger some kind of release process.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">getSCMInfroFromLatestGoodBuild</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">jobName</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">J</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
@@ -406,20 +379,12 @@
 <h2>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Link to this heading">¶</a></h2>
 <section id="getting-the-installed-version-of-jenkinsapi">
 <h3>Getting the installed version of JenkinsAPI<a class="headerlink" href="#getting-the-installed-version-of-jenkinsapi" title="Link to this heading">¶</a></h3>
-<p>This package supports PEP-396 by implementing a __version__ attribute. This contains a string in the format x.y.z:</p>
-<blockquote>
-<div><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkinsapi</span>
+<p>This package supports PEP-396 by implementing a version attribute. This contains a string in the format x.y.z:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jenkinsapi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jenkinsapi</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib.metadata</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="s2">&quot;jenkinsapi&quot;</span><span class="p">))</span>
-<span class="go">    0.2.23</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>There is also a command-line tool for use in the shell:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>jenkinsapi_version
-<span class="m">0</span>.2.23
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jenkinsapi_version
 </pre></div>
 </div>
 </section>
@@ -442,17 +407,17 @@
 <h1>Extending and Improving JenkinsAPI<a class="headerlink" href="#extending-and-improving-jenkinsapi" title="Link to this heading">¶</a></h1>
 <p>JenkinsAPI is a pure-Python project and can be improved with almost any programmer’s text-editor or IDE. I’d recommend the following project layout which has been shown to work with both SublimeText2 and Eclipse/PyDev</p>
 <blockquote>
-<div><ul>
+<div><ul class="simple">
 <li><p>Make sure that pip and uv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.</p></li>
-<li><p>Change to the new directory and check out the project code into the <strong>src</strong> subdirectory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">jenkinsapi</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pycontribs</span><span class="o">/</span><span class="n">jenkinsapi</span><span class="o">.</span><span class="n">git</span> <span class="n">src</span>
-</pre></div>
-</div>
-</li>
-<li><p>Install python dependencies and test the project</p></li>
+<li><p>Change to the new directory and check out the project code into the <strong>src</strong> subdirectory</p></li>
 </ul>
 </div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="nb">cd</span><span class="w"> </span>jenkinsapi
+<span class="w">   </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pycontribs/jenkinsapi.git<span class="w"> </span>src
+
+*<span class="w"> </span>Install<span class="w"> </span>python<span class="w"> </span>dependencies<span class="w"> </span>and<span class="w"> </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>project
+</pre></div>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>uv<span class="w"> </span>venv
 <span class="w">   </span>uv<span class="w"> </span>python<span class="w"> </span>install
 <span class="w">   </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
@@ -486,12 +451,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="api.html">
+          <a class="next-page" href="readme_link.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">User API</div>
+                <div class="title">Jenkinsapi</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

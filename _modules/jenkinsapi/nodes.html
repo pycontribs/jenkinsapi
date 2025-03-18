@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -264,7 +284,7 @@
 
 
 <div class="viewcode-block" id="Nodes">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Nodes</span><span class="p">(</span><span class="n">JenkinsBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to hold information on a collection of nodes</span>
@@ -285,7 +305,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Nodes.get_jenkins_obj">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.get_jenkins_obj">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.get_jenkins_obj">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span></div>
 
@@ -297,7 +317,7 @@
         <span class="k">return</span> <span class="n">node_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Nodes.iterkeys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.iterkeys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.iterkeys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iterkeys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an iterator over the container&#39;s node names.</span>
@@ -310,7 +330,7 @@
 
 
 <div class="viewcode-block" id="Nodes.keys">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.keys">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.keys">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a copy of the container&#39;s list of node names.</span>
@@ -330,7 +350,7 @@
         <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">,</span> <span class="n">nodeurl</span><span class="p">,</span> <span class="n">nodename</span><span class="p">,</span> <span class="n">node_dict</span><span class="o">=</span><span class="p">{})</span>
 
 <div class="viewcode-block" id="Nodes.iteritems">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.iteritems">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.iteritems">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">iteritems</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Node</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an iterator over the container&#39;s (name, node) pairs.</span>
@@ -347,7 +367,7 @@
 
 
 <div class="viewcode-block" id="Nodes.items">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.items">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.items">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Node</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a copy of the container&#39;s list of (name, node) pairs.</span>
@@ -356,7 +376,7 @@
 
 
 <div class="viewcode-block" id="Nodes.itervalues">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.itervalues">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.itervalues">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">itervalues</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an iterator over the container&#39;s nodes.</span>
@@ -372,7 +392,7 @@
 
 
 <div class="viewcode-block" id="Nodes.values">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.values">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a copy of the container&#39;s list of nodes.</span>
@@ -411,7 +431,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Nodes.create_node">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.create_node">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.create_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">node_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new slave node</span>
@@ -442,7 +462,7 @@
 
 
 <div class="viewcode-block" id="Nodes.create_node_with_config">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.nodes.Nodes.create_node_with_config">[docs]</a>
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.nodes.Nodes.create_node_with_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_node_with_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new slave node with specific configuration.</span>

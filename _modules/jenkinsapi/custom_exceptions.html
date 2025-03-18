@@ -198,13 +198,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">User API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../artifact.html">Artifact</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../build.html">Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme_link.html">Jenkinsapi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.command_line.html">jenkinsapi.command_line package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../jenkinsapi.utils.html">jenkinsapi.utils package</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/api.html">User API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/artifact.html">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/build.html">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/credentials.html">Credentials and Credential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/custom_exceptions.html">Custom_exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/command_line.html">Command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/executors.html">Exectors and Executor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/fingerprint.html">Fingerprint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkins.html">Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/utils.html">Utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/queue.html">Queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/results.html">Result_set and result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/views.html">View and Views</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Rules for Contributors</a></li>
@@ -251,7 +271,7 @@
 
 
 <div class="viewcode-block" id="JenkinsAPIException">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.JenkinsAPIException">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.JenkinsAPIException">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">JenkinsAPIException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all errors&quot;&quot;&quot;</span>
 
@@ -260,7 +280,7 @@
 
 
 <div class="viewcode-block" id="NotFound">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotFound">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotFound">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotFound</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource cannot be found&quot;&quot;&quot;</span>
 
@@ -269,7 +289,7 @@
 
 
 <div class="viewcode-block" id="ArtifactsMissing">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.ArtifactsMissing">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.ArtifactsMissing">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArtifactsMissing</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Cannot find a build with all of the required artifacts.&quot;&quot;&quot;</span>
 
@@ -278,7 +298,7 @@
 
 
 <div class="viewcode-block" id="UnknownJob">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownJob">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownJob">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UnknownJob</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Jenkins does not recognize the job requested.&quot;&quot;&quot;</span>
 
@@ -287,7 +307,7 @@
 
 
 <div class="viewcode-block" id="UnknownView">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownView">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownView">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UnknownView</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Jenkins does not recognize the view requested.&quot;&quot;&quot;</span>
 
@@ -296,7 +316,7 @@
 
 
 <div class="viewcode-block" id="UnknownNode">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownNode">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownNode">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UnknownNode</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Jenkins does not recognize the node requested.&quot;&quot;&quot;</span>
 
@@ -305,7 +325,7 @@
 
 
 <div class="viewcode-block" id="UnknownQueueItem">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownQueueItem">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownQueueItem">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UnknownQueueItem</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Jenkins does not recognize the requested queue item&quot;&quot;&quot;</span>
 
@@ -314,7 +334,7 @@
 
 
 <div class="viewcode-block" id="UnknownPlugin">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.UnknownPlugin">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownPlugin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UnknownPlugin</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Jenkins does not recognize the plugin requested.&quot;&quot;&quot;</span>
 
@@ -323,7 +343,7 @@
 
 
 <div class="viewcode-block" id="NoBuildData">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NoBuildData">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NoBuildData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NoBuildData</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A job has no build data.&quot;&quot;&quot;</span>
 
@@ -332,7 +352,7 @@
 
 
 <div class="viewcode-block" id="NotBuiltYet">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotBuiltYet">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotBuiltYet">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotBuiltYet</span><span class="p">(</span><span class="n">NotFound</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A job has no build data.&quot;&quot;&quot;</span>
 
@@ -341,7 +361,7 @@
 
 
 <div class="viewcode-block" id="ArtifactBroken">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.ArtifactBroken">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.ArtifactBroken">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ArtifactBroken</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An artifact is broken, wrong&quot;&quot;&quot;</span>
 
@@ -350,7 +370,7 @@
 
 
 <div class="viewcode-block" id="TimeOut">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.TimeOut">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.TimeOut">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TimeOut</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Some jobs have taken too long to complete.&quot;&quot;&quot;</span>
 
@@ -359,7 +379,7 @@
 
 
 <div class="viewcode-block" id="NoResults">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NoResults">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NoResults">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NoResults</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A build did not publish any results.&quot;&quot;&quot;</span>
 
@@ -368,7 +388,7 @@
 
 
 <div class="viewcode-block" id="FailedNoResults">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.FailedNoResults">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.FailedNoResults">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">FailedNoResults</span><span class="p">(</span><span class="n">NoResults</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A build did not publish any results because it failed&quot;&quot;&quot;</span>
 
@@ -377,7 +397,7 @@
 
 
 <div class="viewcode-block" id="BadURL">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.BadURL">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.BadURL">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">BadURL</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A URL appears to be broken&quot;&quot;&quot;</span>
 
@@ -386,7 +406,7 @@
 
 
 <div class="viewcode-block" id="NotAuthorized">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotAuthorized">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotAuthorized">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotAuthorized</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Not Authorized to access resource&quot;&quot;&quot;</span>
 
@@ -396,7 +416,7 @@
 
 
 <div class="viewcode-block" id="NotSupportSCM">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotSupportSCM">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotSupportSCM">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotSupportSCM</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    It&#39;s a SCM that does not supported by current version of jenkinsapi</span>
@@ -407,7 +427,7 @@
 
 
 <div class="viewcode-block" id="NotConfiguredSCM">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotConfiguredSCM">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotConfiguredSCM">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotConfiguredSCM</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;It&#39;s a job that doesn&#39;t have configured SCM&quot;&quot;&quot;</span>
 
@@ -416,7 +436,7 @@
 
 
 <div class="viewcode-block" id="NotInQueue">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.NotInQueue">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotInQueue">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NotInQueue</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;It&#39;s a job that is not in the queue&quot;&quot;&quot;</span>
 
@@ -425,7 +445,7 @@
 
 
 <div class="viewcode-block" id="PostRequired">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.PostRequired">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.PostRequired">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PostRequired</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Method requires POST and not GET&quot;&quot;&quot;</span>
 
@@ -434,7 +454,7 @@
 
 
 <div class="viewcode-block" id="BadParams">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.BadParams">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.BadParams">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">BadParams</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Invocation was given bad or inappropriate params&quot;&quot;&quot;</span>
 
@@ -443,7 +463,7 @@
 
 
 <div class="viewcode-block" id="AlreadyExists">
-<a class="viewcode-back" href="../../jenkinsapi.html#jenkinsapi.custom_exceptions.AlreadyExists">[docs]</a>
+<a class="viewcode-back" href="../../submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.AlreadyExists">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AlreadyExists</span><span class="p">(</span><span class="n">JenkinsAPIException</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Method requires POST and not GET</span>

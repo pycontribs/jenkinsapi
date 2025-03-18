@@ -1,10 +1,7 @@
-jenkinsapi.utils package
-========================
+Utils
+=====
 
-Submodules
-----------
-
-jenkinsapi.utils.crumb\_requester module
+crumb\_requester module
 ----------------------------------------
 
 .. automodule:: jenkinsapi.utils.crumb_requester
@@ -12,7 +9,7 @@ jenkinsapi.utils.crumb\_requester module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.jenkins\_launcher module
+jenkins\_launcher module
 -----------------------------------------
 
 .. automodule:: jenkinsapi.utils.jenkins_launcher
@@ -20,7 +17,7 @@ jenkinsapi.utils.jenkins\_launcher module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.jsonp\_to\_json module
+jsonp\_to\_json module
 ---------------------------------------
 
 .. automodule:: jenkinsapi.utils.jsonp_to_json
@@ -28,7 +25,7 @@ jenkinsapi.utils.jsonp\_to\_json module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.krb\_requester module
+krb\_requester module
 --------------------------------------
 
 .. automodule:: jenkinsapi.utils.krb_requester
@@ -36,7 +33,7 @@ jenkinsapi.utils.krb\_requester module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.manifest module
+manifest module
 --------------------------------
 
 .. automodule:: jenkinsapi.utils.manifest
@@ -44,7 +41,7 @@ jenkinsapi.utils.manifest module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.requester module
+requester module
 ---------------------------------
 
 .. automodule:: jenkinsapi.utils.requester
@@ -52,7 +49,7 @@ jenkinsapi.utils.requester module
    :undoc-members:
    :show-inheritance:
 
-jenkinsapi.utils.simple\_post\_logger module
+simple\_post\_logger module
 --------------------------------------------
 
 .. automodule:: jenkinsapi.utils.simple_post_logger
