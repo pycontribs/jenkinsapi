@@ -92,5 +92,3 @@ __all__ = [
     "view",
 ]
 __docformat__ = "epytext"
-# In case of jenkinsapi is not installed in 'develop' mode
-__version__ = "0.3.13"
