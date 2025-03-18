@@ -1,12 +1,12 @@
 """ jenkinsapi.command_line.jenkinsapi_version
 """
 
-from importlib.metadata import version
+import jenkinsapi
 import sys
 
 
 def main():
-    sys.stdout.write(version("jenkinsapi"))
+    sys.stdout.write(jenkinsapi.__version__)
 
 
 if __name__ == "__main__":

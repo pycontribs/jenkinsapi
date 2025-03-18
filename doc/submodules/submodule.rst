@@ -6,8 +6,7 @@ Submodules
    api
    artifact
    build
-   constants
-   credential
+   credentials
    custom_exceptions
    executors
    fingerprint

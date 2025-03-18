@@ -1,4 +1,4 @@
-label
+Label
 -----
 
 .. automodule:: jenkinsapi.label

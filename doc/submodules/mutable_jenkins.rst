@@ -1,4 +1,4 @@
-mutable_jenkins_thing
+Mutable_jenkins_thing
 ---------------------
 
 .. automodule:: jenkinsapi.mutable_jenkins_thing

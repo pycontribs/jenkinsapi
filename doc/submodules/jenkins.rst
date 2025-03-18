@@ -1,7 +1,7 @@
-queue
------
+Jenkins
+-------
 
-.. automodule:: jenkinsapi.queue
+.. automodule:: jenkinsapi.jenkins
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,7 +1,7 @@
-Config
-======
+Queue
+-----
 
-.. automodule:: jenkinsapi.config
+.. automodule:: jenkinsapi.queue
    :members:
    :undoc-members:
    :show-inheritance:
