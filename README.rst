@@ -38,7 +38,8 @@ Full library capabilities are outlined in the `Documentation <http://jenkinsapi.
 Known issues
 ------------
 * Job deletion operations fail unless Cross-Site scripting protection is disabled.
-| For other issues, please refer to the `support URL <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
+
+For other issues, please refer to the `support URL <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 
 Important Links
 ---------------
