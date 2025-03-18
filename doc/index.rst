@@ -1,9 +1,15 @@
 JenkinsAPI
 ==========
 
-Jenkins is the market leading continuous integration system, originally created by Kohsuke Kawaguchi. This API makes Jenkins even easier to use by providing an easy to use conventional Python interface.
+Jenkins is the market leading continuous integration system.
 
-Jenkins (and It's predecessor Hudson) are fantastic projects - but they are somewhat Java-centric. Thankfully the designers have provided an excellent and complete REST interface. This library wraps up that interface as more conventional Python objects in order to make most Jenkins oriented tasks simpler.
+This API makes Jenkins even easier to use by providing an easy to use conventional Python interface.
+
+Jenkins (and It's predecessor Hudson) are fantastic projects - but they are somewhat Java-centric.
+
+Thankfully the designers have provided an excellent and complete REST interface.
+
+This library wraps up that interface as more conventional Python objects in order to make most Jenkins oriented tasks simpler.
 
 This library can help you:
 
@@ -22,29 +28,21 @@ Sections
    :maxdepth: 2
    :titlesonly:
 
+   getting_started
    readme_link
-   using_jenkinsapi
-   jenkinsapi
-   submodules/submodule
+   module_reference
+   project_info
    ../CONTRIBUTING
 
 Important Links
 ---------------
-
-`Support & bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open/>`__
-
-`github: <https://github.com/pycontribs/jenkinsapi/>`__
-
-`Documentation <http://pycontribs.github.io/jenkinsapi/>`__
-
-`Releases <http://pypi.python.org/pypi/jenkinsapi/>`__
+* `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
+* `Source Code <https://github.com/pycontribs/jenkinsapi>`_
+* `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
+* `Releases <https://pypi.org/project/jenkinsapi/#history>`_
 
 Installation
 -------------
-
-Egg-files for this project are hosted on PyPi. Most Python users should be able to use pip or setuptools to automatically install this project.
-
-Most users can do the following:
 
 .. code-block:: bash
 

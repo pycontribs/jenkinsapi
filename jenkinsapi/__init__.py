@@ -26,11 +26,6 @@ This library can help you:
 Installing JenkinsAPI
 =====================
 
-Egg-files for this project are hosted on PyPi. Most Python users should be able
-to use pip or distribute to automatically install this project.
-
-Most users can do the following:
-
 pip install jenkinsapi
 
 Project Authors
