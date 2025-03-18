@@ -31,17 +31,13 @@ Sections
 Important Links
 ---------------
 
-Support & bug-reports
-    https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open
+`Support & bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open/>`__
 
-Project source code
-    github: https://github.com/pycontribs/jenkinsapi
+`github: <https://github.com/pycontribs/jenkinsapi/>`__
 
-Project documentation
-    https://jenkinsapi.readthedocs.org/en/latest/
+`Documentation <http://pycontribs.github.io/jenkinsapi/>`__
 
-Releases
-    http://pypi.python.org/pypi/jenkinsapi
+`Releases <http://pypi.python.org/pypi/jenkinsapi/>`__
 
 Installation
 -------------
