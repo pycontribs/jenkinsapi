@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Jenkinsapi package" href="jenkinsapi.html" /><link rel="prev" title="Jenkinsapi" href="readme_link.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Jenkinsapi" href="readme_link.html" /><link rel="prev" title="JenkinsAPI" href="index.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>Using Jenkins API - JenkinsAPI 0.3.14 documentation</title>
+        <title>Getting Started - JenkinsAPI 0.3.14 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
@@ -189,6 +189,9 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/jenkins.png" alt="Logo"/>
+  </div>
   
   <span class="sidebar-brand-text"> JenkinsAPI 0.3.14 documentation</span>
   
@@ -199,14 +202,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readme_link.html">Jenkinsapi</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="module_reference.html">Module Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Module Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="submodules/api.html">User API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/artifact.html">Artifact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/build.html">Build</a></li>
@@ -228,7 +226,8 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules/views.html">View and Views</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_info.html">Project Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
 </ul>
 
 </div>
@@ -249,7 +248,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/using_jenkinsapi.rst.txt" title="View this page">
+  <a class="muted-link" href="_sources/getting_started.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -269,9 +268,43 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="using-jenkins-api">
-<h1>Using Jenkins API<a class="headerlink" href="#using-jenkins-api" title="Link to this heading">¶</a></h1>
+          <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
 <p>JenkinsAPI lets you query the state of a running Jenkins server. It also allows you to change configuration and automate minor tasks on nodes and jobs.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jenkinsapi
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p>JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="c1"># 1.542</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="c1"># foo, test_jenkinsapi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">))</span> <span class="c1"># &lt;jenkinsapi.job.Job test_jenkinsapi&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_last_good_build</span><span class="p">())</span> <span class="c1"># &lt;jenkinsapi.build.Build test_jenkinsapi #77&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<p>If you have installed the test dependencies on your system already, you can run
+the testsuite with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
+</pre></div>
+</div>
+<p>Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
+missing test dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv
+uv<span class="w"> </span>python<span class="w"> </span>install
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
+</pre></div>
+</div>
+</section>
 <section id="get-version-of-jenkins">
 <h2>Get version of Jenkins<a class="headerlink" href="#get-version-of-jenkins" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
@@ -286,9 +319,9 @@
 </pre></div>
 </div>
 <p>The above code prints version of Jenkins running on the host <em>jenkins_host</em>.</p>
-<p>From Jenkins vesion 1.426 onward one can specify an API token instead of your real password while authenticating the user against Jenkins instance. Refer to the the Jenkis wiki page
-<a class="reference external" href="https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients">Authenticating scripted clients</a>
-for details about how a user can generate an API token. Once you have API token you can pass the API token instead of real password while creating an Jenkins server instance using Jenkins API.</p>
+<p>From Jenkins vesion 1.426 onward one can specify an API token instead of your real password while authenticating the user against Jenkins instance.</p>
+<p>Refer to the the Jenkis wiki page <a class="reference external" href="https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients">Authenticating scripted clients</a> for details about how a user can generate an API token.</p>
+<p>Once you have API token you can pass the API token instead of real password while creating an Jenkins server instance using Jenkins API.</p>
 </section>
 <section id="get-details-of-jobs-running-on-jenkins-server">
 <h2>Get details of jobs running on Jenkins server<a class="headerlink" href="#get-details-of-jobs-running-on-jenkins-server" title="Link to this heading">¶</a></h2>
@@ -338,7 +371,8 @@ Jenkins instance.</p>
 </section>
 <section id="getting-version-information-from-a-completed-build">
 <h2>Getting version information from a completed build<a class="headerlink" href="#getting-version-information-from-a-completed-build" title="Link to this heading">¶</a></h2>
-<p>This is a typical use of JenkinsAPI - it was the very first use I had in mind when the project was first built: In a continuous-integration environment you want to be able to programatically detect the version-control information of the last succsessful build in order to trigger some kind of release process.</p>
+<p>This is a typical use of JenkinsAPI - it was the very first use I had in mind when the project was first built.</p>
+<p>In a continuous-integration environment you want to be able to programatically detect the version-control information of the last succsessful build in order to trigger some kind of release process.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">getSCMInfroFromLatestGoodBuild</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">jobName</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -360,23 +394,23 @@ Jenkins instance.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="jenkinsapi.html">
+          <a class="next-page" href="readme_link.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Jenkinsapi package</div>
+                <div class="title">Jenkinsapi</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="readme_link.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Jenkinsapi</div>
+                <div class="title">Home</div>
                 
               </div>
             </a>
@@ -410,7 +444,10 @@ Jenkins instance.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Using Jenkins API</a><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
 <li><a class="reference internal" href="#get-version-of-jenkins">Get version of Jenkins</a></li>
 <li><a class="reference internal" href="#get-details-of-jobs-running-on-jenkins-server">Get details of jobs running on Jenkins server</a></li>
 <li><a class="reference internal" href="#disable-enable-a-jenkins-job">Disable/Enable a Jenkins Job</a></li>

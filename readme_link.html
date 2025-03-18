@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Using Jenkins API" href="using_jenkinsapi.html" /><link rel="prev" title="JenkinsAPI" href="index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Module Reference" href="module_reference.html" /><link rel="prev" title="Getting Started" href="getting_started.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Jenkinsapi - JenkinsAPI 0.3.14 documentation</title>
@@ -189,6 +189,9 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/jenkins.png" alt="Logo"/>
+  </div>
   
   <span class="sidebar-brand-text"> JenkinsAPI 0.3.14 documentation</span>
   
@@ -199,14 +202,9 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Jenkinsapi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_jenkinsapi.html">Using Jenkins API</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="jenkinsapi.html">Jenkinsapi package</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Jenkinsapi package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="submodules/command_line.html">Command_line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html">Utils</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="submodules/submodule.html">Submodules</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Submodules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="module_reference.html">Module Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Module Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="submodules/api.html">User API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/artifact.html">Artifact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/build.html">Build</a></li>
@@ -228,7 +226,8 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules/views.html">View and Views</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Rules for Contributors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_info.html">Project Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
 </ul>
 
 </div>
@@ -275,12 +274,27 @@
 </a>
 <a class="reference external image-reference" href="https://codecov.io/gh/pycontribs/jenkinsapi"><img alt="https://codecov.io/gh/pycontribs/jenkinsapi/branch/master/graph/badge.svg" src="https://codecov.io/gh/pycontribs/jenkinsapi/branch/master/graph/badge.svg" />
 </a>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jenkinsapi
+</pre></div>
+</div>
+</section>
+<section id="important-links">
+<h2>Important Links<a class="headerlink" href="#important-links" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://pycontribs.github.io/jenkinsapi/">Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pycontribs/jenkinsapi">Source Code</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pycontribs/jenkinsapi/issues?direction=desc&amp;sort=comments&amp;state=open">Support and bug-reports</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/jenkinsapi/#history">Releases</a></p></li>
+</ul>
+</section>
 <section id="about-this-library">
 <h2>About this library<a class="headerlink" href="#about-this-library" title="Link to this heading">¶</a></h2>
-<p>Jenkins is the market leading continuous integration system, originally created by Kohsuke Kawaguchi.</p>
-<p>Jenkins (and its predecessor Hudson) are useful projects for automating common development tasks (e.g. unit-testing, production batches) - but they are somewhat Java-centric.
-| Jenkinsapi makes scripting Jenkins tasks a breeze by wrapping the REST api into familiar python objects.
-| Here is a list of some of the most commonly used functionality</p>
+<p>Jenkins is the market leading continuous integration system.</p>
+<p>Jenkins (and its predecessor Hudson) are useful projects for automating common development tasks (e.g. unit-testing, production batches) - but they are somewhat Java-centric.</p>
+<p>Jenkinsapi makes scripting Jenkins tasks a breeze by wrapping the REST api into familiar python objects.</p>
+<p>Here is a list of some of the most commonly used functionality</p>
 <ul class="simple">
 <li><p>Add, remove, and query Jenkins jobs</p></li>
 <li><dl class="simple">
@@ -315,69 +329,41 @@
 </ul>
 <p>Full library capabilities are outlined in the <a class="reference external" href="http://pycontribs.github.io/jenkinsapi/">Documentation</a></p>
 </section>
+<section id="get-details-of-jobs-running-on-jenkins-server">
+<h2>Get details of jobs running on Jenkins server<a class="headerlink" href="#get-details-of-jobs-running-on-jenkins-server" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Get job details of each job that is running on the Jenkins instance&quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_job_details</span><span class="p">():</span>
+    <span class="c1"># Refer Example #1 for definition of function &#39;get_server_instance&#39;</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">get_server_instance</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">job_instance</span> <span class="ow">in</span> <span class="n">server</span><span class="o">.</span><span class="n">get_jobs</span><span class="p">():</span>
+        <span class="nb">print</span> <span class="s1">&#39;Job Name:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_instance</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s1">&#39;Job Description:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_instance</span><span class="o">.</span><span class="n">get_description</span><span class="p">())</span>
+        <span class="nb">print</span> <span class="s1">&#39;Is Job running:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_instance</span><span class="o">.</span><span class="n">is_running</span><span class="p">())</span>
+        <span class="nb">print</span> <span class="s1">&#39;Is Job enabled:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="disable-enable-a-jenkins-job">
+<h2>Disable/Enable a Jenkins Job<a class="headerlink" href="#disable-enable-a-jenkins-job" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">disable_job</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Disable a Jenkins job&quot;&quot;&quot;</span>
+    <span class="c1"># Refer Example #1 for definition of function &#39;get_server_instance&#39;</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">get_server_instance</span><span class="p">()</span>
+    <span class="n">job_name</span> <span class="o">=</span> <span class="s1">&#39;nightly-build-job&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">has_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)):</span>
+        <span class="n">job_instance</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
+        <span class="n">job_instance</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s1">&#39;Name:</span><span class="si">%s</span><span class="s1">,Is Job Enabled ?:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_name</span><span class="p">,</span><span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Use the call <code class="docutils literal notranslate"><span class="pre">job_instance.enable()</span></code> to enable a Jenkins Job.</p>
+</section>
 <section id="known-issues">
 <h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Job deletion operations fail unless Cross-Site scripting protection is disabled.</p></li>
 </ul>
 <p>For other issues, please refer to the <a class="reference external" href="https://github.com/pycontribs/jenkinsapi/issues?direction=desc&amp;sort=comments&amp;state=open">support URL</a></p>
-</section>
-<section id="important-links">
-<h2>Important Links<a class="headerlink" href="#important-links" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/pycontribs/jenkinsapi/issues?direction=desc&amp;sort=comments&amp;state=open">Support and bug-reports</a></p></li>
-<li><p><a class="reference external" href="https://github.com/pycontribs/jenkinsapi">Source Code</a></p></li>
-<li><p><a class="reference external" href="http://pycontribs.github.io/jenkinsapi/">Documentation</a></p></li>
-<li><p><a class="reference external" href="http://pypi.python.org/pypi/jenkinsapi">Releases</a></p></li>
-</ul>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
-<p>Egg-files for this project are hosted on PyPi. Most Python users should be able to use pip or setuptools to automatically install this project.</p>
-<section id="using-pip-or-setuptools">
-<h3>Using Pip or Setuptools<a class="headerlink" href="#using-pip-or-setuptools" title="Link to this heading">¶</a></h3>
-<p>Most users can do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jenkinsapi
-</pre></div>
-</div>
-</section>
-<section id="using-your-operating-system-s-package-manager">
-<h3>Using your operating-system’s package manager<a class="headerlink" href="#using-your-operating-system-s-package-manager" title="Link to this heading">¶</a></h3>
-<p>Ubuntu users can now use apt to install this package:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>python-jenkinsapi
-</pre></div>
-</div>
-<p>Beware that this technique will get a somewhat older version of Jenkinsapi.</p>
-</section>
-</section>
-<section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
-<p>JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
-<span class="n">J</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="c1"># 1.542</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="c1"># foo, test_jenkinsapi</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">))</span> <span class="c1"># &lt;jenkinsapi.job.Job test_jenkinsapi&gt;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;test_jenkinsapi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_last_good_build</span><span class="p">())</span> <span class="c1"># &lt;jenkinsapi.build.Build test_jenkinsapi #77&gt;</span>
-</pre></div>
-</div>
-<p>More examples available on <a class="reference external" href="https://github.com/pycontribs/jenkinsapi/tree/master/examples">Github</a></p>
-</section>
-<section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
-<p>If you have installed the test dependencies on your system already, you can run
-the testsuite with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
-uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
-</pre></div>
-</div>
-<p>Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
-missing test dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv
-uv<span class="w"> </span>python<span class="w"> </span>install
-uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
-</pre></div>
-</div>
 </section>
 <section id="development">
 <h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
@@ -434,23 +420,23 @@ downloaded and started during tests.</p></li>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="using_jenkinsapi.html">
+          <a class="next-page" href="module_reference.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Using Jenkins API</div>
+                <div class="title">Module Reference</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="index.html">
+          <a class="prev-page" href="getting_started.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">Getting Started</div>
                 
               </div>
             </a>
@@ -485,16 +471,12 @@ downloaded and started during tests.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Jenkinsapi</a><ul>
-<li><a class="reference internal" href="#about-this-library">About this library</a></li>
-<li><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#important-links">Important Links</a></li>
-<li><a class="reference internal" href="#installation">Installation</a><ul>
-<li><a class="reference internal" href="#using-pip-or-setuptools">Using Pip or Setuptools</a></li>
-<li><a class="reference internal" href="#using-your-operating-system-s-package-manager">Using your operating-system’s package manager</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#example">Example</a></li>
-<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#about-this-library">About this library</a></li>
+<li><a class="reference internal" href="#get-details-of-jobs-running-on-jenkins-server">Get details of jobs running on Jenkins server</a></li>
+<li><a class="reference internal" href="#disable-enable-a-jenkins-job">Disable/Enable a Jenkins Job</a></li>
+<li><a class="reference internal" href="#known-issues">Known issues</a></li>
 <li><a class="reference internal" href="#development">Development</a></li>
 <li><a class="reference internal" href="#python-versions">Python versions</a></li>
 <li><a class="reference internal" href="#jenkins-versions">Jenkins versions</a></li>
