@@ -5,9 +5,6 @@ on:  # yamllint disable-line rule:truthy
     branches:
       - master
   workflow_dispatch:
-  pull_request:
-    branches:
-      - master
 
 jobs:
   sphinx-build:
@@ -34,32 +31,6 @@ jobs:
           name: html-docs
           path: ./doc/html/
 
-  deploy-preview:
-    needs: sphinx-build
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Deploy PR Preview to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./doc/html
-          publish_branch: gh-pages
-          destination_dir: pr-${{ github.event.pull_request.number }}
-
-  deploy-master:
-    needs: sphinx-build
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Deploy Master Docs to GitHub Pages
         if: ${{ github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v4
@@ -67,4 +38,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./doc/html
           publish_branch: gh-pages
-          keep_files: false  # Remove previous PR previews when deploying master
+          keep_files: false
