@@ -33,10 +33,13 @@ Sections
    module_reference
    project_info
    ../CONTRIBUTING
+   Github <https://github.com/pycontribs/jenkinsapi>
+   Documentation <http://pycontribs.github.io/jenkinsapi/>
+   Releases <https://pypi.org/project/jenkinsapi/#history>
 
 Important Links
 ---------------
-* `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
+* `Documentation <http://pycontribs.github.io/jenkinsapi>`__
 * `Source Code <https://github.com/pycontribs/jenkinsapi>`_
 * `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 * `Releases <https://pypi.org/project/jenkinsapi/#history>`_
