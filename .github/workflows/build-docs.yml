@@ -62,6 +62,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy Master Docs to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
