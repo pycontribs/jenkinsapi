@@ -70,6 +70,8 @@ def test_enable_disable_job(jenkins):
 
     j = jenkins[job_name]
     j.invoke(block=True)  # run this at least once
+    # Ensure job begins as enabled
+    assert j.is_enabled() is True, "An enabled job is reporting incorrectly"
 
     j.disable()
     assert j.is_enabled() is False, "A disabled job is reporting incorrectly"
