@@ -692,7 +692,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Built-In Node&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">JenkinsAPIException</span><span class="p">(</span><span class="s2">&quot;Built-In node does not have config.xml&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_xml_and_confirm_status</span><span class="p">(</span>
             <span class="s2">&quot;</span><span class="si">%(baseurl)s</span><span class="s2">/config.xml&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">config_xml</span>
         <span class="p">)</span></div>
 
