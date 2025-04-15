@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from __future__ import print_function
 
 try:
     from SimpleHTTPServer import SimpleHTTPRequestHandler

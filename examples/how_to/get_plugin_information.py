@@ -2,7 +2,6 @@
 Get information about currently installed plugins
 """
 
-from __future__ import print_function
 from jenkinsapi.jenkins import Jenkins
 
 
