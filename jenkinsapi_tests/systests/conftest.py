@@ -18,8 +18,10 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/jsch.hpi",
     "https://updates.jenkins.io/latest/gson-api.hpi",
     "https://updates.jenkins.io/latest/trilead-api.hpi",
+    "https://updates.jenkins.io/latest/bouncycastle-api.hpi",
     "https://updates.jenkins.io/latest/ssh-slaves.hpi",
-    "https://updates.jenkins.io/latest/bootstrap5-api.hpi",
+    "https://updates.jenkins.io/latest/instance-identity.hpi",
+    "https://updates.jenkins.io/download/plugins/bootstrap5-api/5.3.3-2/bootstrap5-api.hpi",
     "https://updates.jenkins.io/latest/workflow-api.hpi",
     "https://updates.jenkins.io/latest/display-url-api.hpi",
     "https://updates.jenkins.io/latest/eddsa-api.hpi",
@@ -39,7 +41,7 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/nested-view.hpi",
     "https://updates.jenkins.io/latest/structs.hpi",
     "https://updates.jenkins.io/latest/plain-credentials.hpi",
-    "https://updates.jenkins.io/download/plugins/envinject/2.922.v2274200dd258/envinject.hpi",
+    "https://updates.jenkins.io/latest/envinject.hpi",
     "https://updates.jenkins.io/latest/envinject-api.hpi",
     "https://updates.jenkins.io/latest/jdk-tool.hpi",
     "https://updates.jenkins.io/latest/credentials-binding.hpi",
@@ -66,6 +68,7 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/javax-activation-api.hpi",
     "https://updates.jenkins.io/latest/jaxb.hpi",
     "https://updates.jenkins.io/latest/instance-identity.hpi",
+    "https://updates.jenkins.io/latest/mailer.hpi",
 ]
 
 
