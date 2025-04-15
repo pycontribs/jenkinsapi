@@ -14,9 +14,9 @@ ADMIN_PASSWORD = "admin"
 # Extra plugins required by the systests
 PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/"
-    "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
-    "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
     "apache-httpcomponents-client-4-api.hpi",
+    "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
+    "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
     "https://updates.jenkins.io/latest/jsch.hpi",
     "https://updates.jenkins.io/latest/gson-api.hpi",
     "https://updates.jenkins.io/latest/trilead-api.hpi",
