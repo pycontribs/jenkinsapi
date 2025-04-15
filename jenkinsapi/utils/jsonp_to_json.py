@@ -2,8 +2,6 @@
 Module for converting jsonp to json.
 """
 
-from __future__ import print_function
-
 
 def jsonp_to_json(jsonp):
     try:

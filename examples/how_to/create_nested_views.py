@@ -5,7 +5,6 @@ This example requires NestedViews plugin to be installed in Jenkins
 You need to have at least one job in your Jenkins to see views
 """
 
-from __future__ import print_function
 import logging
 from pkg_resources import resource_string
 from jenkinsapi.views import Views
