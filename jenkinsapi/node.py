@@ -379,9 +379,17 @@ class Node(JenkinsBase):
         if self.name == "Built-In Node":
             raise JenkinsAPIException("Built-In node does not have config.xml")
 
-        self.jenkins.requester.post_xml_and_confirm_status(
-            "%(baseurl)s/config.xml" % self.__dict__, data=config_xml
-        )
+        try:
+            self.jenkins.requester.post_xml_and_confirm_status(
+                "%(baseurl)s/config.xml" % self.__dict__, data=config_xml
+            )
+        except JenkinsAPIException:
+            log.debug(
+                "Post XML For node config failed - attempting normal post_and_confirm_status"
+            )
+            self.jenkins.requester.post_and_confirm_status(
+                "%(baseurl)s/config.xml" % self.__dict__, data=config_xml
+            )
 
     def get_labels(self) -> str | None:
         """
