@@ -16,7 +16,7 @@ Installation
 
 Important Links
 ---------------
-* `Documentation <https://jenkinsapi.uk>`__
+* `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
 * `Source Code <https://github.com/pycontribs/jenkinsapi>`_
 * `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 * `Releases <https://pypi.org/project/jenkinsapi/#history>`_
@@ -49,7 +49,7 @@ Here is a list of some of the most commonly used functionality
 * Authentication support for username and password
 * Manage jenkins and plugin installation
 
-Full library capabilities are outlined in the `Documentation <https://jenkinsapi.uk>`__
+Full library capabilities are outlined in the `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
 
 Get details of jobs running on Jenkins server
 ---------------------------------------------
