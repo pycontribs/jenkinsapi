@@ -531,21 +531,26 @@ class Job(JenkinsBase, MutableJenkinsThing):
     def get_scm_type(self):
         element_tree = self._get_config_element_tree()
         scm_element = element_tree.find("scm")
+        multibranch_scm_prefix = "properties/org.jenkinsci.plugins.\
+                workflow.multibranch.BranchJobProperty/branch/"
+        pipeline_scm_prefix = "definition/"
+        alt_scm_elems = [
+            {
+                "prefix" : multibranch_scm_prefix, # multibranch pipeline.
+                "path" : multibranch_scm_prefix + "scm"
+            },
+            {
+                "prefix" : pipeline_scm_prefix, # standard pipeline.
+                "path" : pipeline_scm_prefix + "scm"
+            },
+        ]
         if not scm_element:
-            multibranch_scm_prefix = "properties/org.jenkinsci.plugins.\
-                    workflow.multibranch.BranchJobProperty/branch/"
-            multibranch_path = multibranch_scm_prefix + "scm"
-            scm_element = element_tree.find(multibranch_path)
-            if scm_element:
-                # multibranch pipeline.
-                self._scm_prefix = multibranch_scm_prefix
-        if not scm_element:
-            pipeline_scm_prefix = "definition/"
-            _pipeline_scm_path = pipeline_scm_prefix + "scm"
-            scm_element = element_tree.find(_pipeline_scm_path)
-            if scm_element:
-                # standard pipeline.
-                self._scm_prefix = pipeline_scm_prefix
+            for scm_elm_conf in alt_scm_elems:
+                scm_element = element_tree.find(scm_elm_conf['path'])
+                if scm_element:
+                    # SCM Element found.
+                    self._scm_prefix = scm_elm_conf['prefix']
+                    break
         scm_class = scm_element.get("class") if scm_element else None
         scm = self._scm_map.get(scm_class)
         if not scm:
