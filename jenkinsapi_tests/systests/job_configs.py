@@ -358,20 +358,13 @@ PIPELINE_SCM_JOB = f"""<?xml version='1.1' encoding='UTF-8'?>
   </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty plugin="gitlab-plugin@1.9.7">
-      <gitLabConnection>GitLab</gitLabConnection>
-      <jobCredentialId></jobCredentialId>
-      <useAlternativeCredential>false</useAlternativeCredential>
-    </com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty>
-  </properties>
+  <properties></properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@4046.v90b_1b_9edec67">
     <scm class="{PIPELINE_SCM_CONF_TEST_PARAMS['scm_class']}" plugin="git@5.7.0">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
           <url>{PIPELINE_SCM_CONF_TEST_PARAMS['git_url']}</url>
-          <credentialsId>09aef3c0-4b97-4b42-b23a-29d134dfb763</credentialsId>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
