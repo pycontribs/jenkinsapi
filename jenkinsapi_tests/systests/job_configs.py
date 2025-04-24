@@ -341,8 +341,8 @@ JOB_WITH_ENV_VARS = """\
 """.strip()
 
 PIPELINE_SCM_CONF_TEST_PARAMS = {
-    "scm_class" : "hudson.plugins.git.GitSCM",
-    "git_url" : "https://example.com/sairk/pipeline-test.git"
+    "scm_class": "hudson.plugins.git.GitSCM",
+    "git_url": "https://example.com/sairk/pipeline-test.git",
 }
 
 PIPELINE_SCM_JOB = f"""<?xml version='1.1' encoding='UTF-8'?>
