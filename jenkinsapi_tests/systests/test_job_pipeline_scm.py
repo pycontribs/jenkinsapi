@@ -4,6 +4,7 @@ from jenkinsapi_tests.systests.job_configs import (
 )
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
+
 def test_pipeline_scm(jenkins):
     """
     Can we extract scm info from a pipeline scm job?
