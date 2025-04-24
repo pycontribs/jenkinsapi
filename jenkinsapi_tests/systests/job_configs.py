@@ -346,21 +346,9 @@ PIPELINE_SCM_CONF_TEST_PARAMS = {
 }
 
 PIPELINE_SCM_JOB = f"""<?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@1506.v77f78a_b_8cc5e">
-  <actions>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2247.va_423189a_7dff"/>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2247.va_423189a_7dff">
-      <jobProperties/>
-      <triggers/>
-      <parameters/>
-      <options/>
-    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
-  </actions>
-  <description></description>
-  <keepDependencies>false</keepDependencies>
-  <properties></properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@4046.v90b_1b_9edec67">
-    <scm class="{PIPELINE_SCM_CONF_TEST_PARAMS['scm_class']}" plugin="git@5.7.0">
+<flow-definition>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+    <scm class="{PIPELINE_SCM_CONF_TEST_PARAMS['scm_class']}">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
@@ -372,13 +360,6 @@ PIPELINE_SCM_JOB = f"""<?xml version='1.1' encoding='UTF-8'?>
           <name>main</name>
         </hudson.plugins.git.BranchSpec>
       </branches>
-      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-      <submoduleCfg class="empty-list"/>
-      <extensions/>
     </scm>
-    <scriptPath>Jenkinsfile</scriptPath>
-    <lightweight>true</lightweight>
   </definition>
-  <triggers/>
-  <disabled>false</disabled>
 </flow-definition>"""
