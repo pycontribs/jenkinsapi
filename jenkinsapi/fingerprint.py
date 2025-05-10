@@ -71,6 +71,7 @@ class Fingerprint(JenkinsBase):
         return True
 
     def validate_for_build(self, filename: str, job: str, build: int) -> bool:
+        _ = filename  # Currently unused
         if not self.valid():
             log.info("Fingerprint is not known to jenkins.")
             return False
@@ -81,10 +82,11 @@ class Fingerprint(JenkinsBase):
             if self._data["original"]["name"] == job:
                 if self._data["original"]["number"] == build:
                     return True
-        if self._data["fileName"] != filename:
+        if self._data["hash"] != self.id_:
             log.info(
-                msg="Filename from jenkins (%s) did not match provided (%s)"
-                % (self._data["fileName"], filename)
+                "File hash from Jenkins (%s) did not match local hash (%s)",
+                self._data["hash"],
+                self.id_,
             )
             return False
         for usage_item in self._data["usage"]:
