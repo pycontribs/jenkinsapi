@@ -57,7 +57,6 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/ionicons-api.hpi",
     "https://updates.jenkins.io/latest/plugin-util-api.hpi",
     "https://updates.jenkins.io/latest/font-awesome-api.hpi",
-    "https://updates.jenkins.io/latest/popper2-api.hpi",
     "https://updates.jenkins.io/latest/commons-text-api.hpi",
     "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
     "https://updates.jenkins.io/latest/plugin-util-api.hpi",
