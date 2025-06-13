@@ -15,6 +15,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.13"]
+        token: ["stable"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
+    - name: Lint with ruff
+      run: |
+        uv run ruff check jenkinsapi/ --output-format full
+
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -68,10 +96,6 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
-
-    - name: Lint with ruff
-      run: |
-        uv run ruff check jenkinsapi/ --output-format full
 
     - name: Test with pytest
       env:
