@@ -23,7 +23,7 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/bouncycastle-api.hpi",
     "https://updates.jenkins.io/latest/ssh-slaves.hpi",
     "https://updates.jenkins.io/latest/instance-identity.hpi",
-    "https://updates.jenkins.io/download/plugins/bootstrap5-api/5.3.3-2/bootstrap5-api.hpi",
+    "https://updates.jenkins.io/latest/bootstrap5-api.hpi",
     "https://updates.jenkins.io/latest/workflow-api.hpi",
     "https://updates.jenkins.io/latest/display-url-api.hpi",
     "https://updates.jenkins.io/latest/eddsa-api.hpi",
