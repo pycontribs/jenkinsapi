@@ -46,7 +46,7 @@ class Plugins(JenkinsBase):
 
     @property
     def update_center_dict(self):
-        update_center = "https://updates.jenkins.io/update-center.json"
+        update_center = "https://azure.updates.jenkins.io/update-center.json"
         jsonp = requests.get(update_center).content.decode("utf-8")
         return json.loads(jsonp_to_json(jsonp))
 
