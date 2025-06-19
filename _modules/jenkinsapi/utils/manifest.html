@@ -203,6 +203,8 @@
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../readme_link.html">Jenkinsapi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">How to use JenkinsAPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../low_level_examples.html">Low level examples of module code</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../module_reference.html">Module Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Module Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../submodules/api.html">User API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../submodules/artifact.html">Artifact</a></li>
@@ -291,7 +293,8 @@
 <div class="viewcode-block" id="Manifest">
 <a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.manifest.Manifest">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Manifest</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The parsed manifest from a jar file.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The parsed manifest from a jar file.</span>
 <span class="sd">    Attributes:</span>
 <span class="sd">      main_section: a dict representing the main (first)</span>
 <span class="sd">        section of the manifest.</span>
@@ -313,13 +316,16 @@
 <div class="viewcode-block" id="read_manifest">
 <a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.manifest.read_manifest">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">read_manifest</span><span class="p">(</span><span class="n">jar_file_name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read and parse the manifest out of the given jar.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read and parse the manifest out of the given jar.</span>
 <span class="sd">    Args:</span>
-<span class="sd">      jar_file_name: the name of the jar from which the manifest is to be read.</span>
+<span class="sd">        jar_file_name: the name of the jar from which the manifest is to be read.</span>
+
 <span class="sd">    Returns:</span>
-<span class="sd">      A parsed Manifest object, or None if the jar has no manifest.</span>
+<span class="sd">        A parsed Manifest object, or None if the jar has no manifest.</span>
+
 <span class="sd">    Raises:</span>
-<span class="sd">      IOError: if the jar does not exist or cannot be read.</span>
+<span class="sd">        IOError: if the jar does not exist or cannot be read.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">jar_file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">jar</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
@@ -331,7 +337,8 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_parse_manifest</span><span class="p">(</span><span class="n">manifest_string</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse a Manifest object out of the given string.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse a Manifest object out of the given string.</span>
 <span class="sd">    Args:</span>
 <span class="sd">      manifest_string: a str or unicode that is the manifest contents.</span>
 <span class="sd">    Returns:</span>

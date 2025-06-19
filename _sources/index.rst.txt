@@ -30,6 +30,8 @@ Sections
 
    getting_started
    readme_link
+   examples
+   low_level_examples
    module_reference
    project_info
    ../CONTRIBUTING
