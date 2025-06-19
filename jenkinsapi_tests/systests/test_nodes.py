@@ -142,6 +142,87 @@ def test_get_node_labels(jenkins):
     del jenkins.nodes[node_name]
 
 
+def test_add_node_labels(jenkins):
+    node_name = random_string()
+    extra_label = random_string()
+    node_labels = "LABEL1 LABEL2"
+    node_dict = {
+        "num_executors": 1,
+        "node_description": "Test Node with Labels",
+        "remote_fs": "/tmp",
+        "labels": node_labels,
+        "exclusive": True,
+    }
+    node = jenkins.nodes.create_node(node_name, node_dict)
+    node.add_labels(extra_label)
+    assert node.get_labels() == " ".join([node_labels, extra_label])
+
+    del jenkins.nodes[node_name]
+
+
+def test_add_list_node_labels(jenkins):
+    node_name = random_string()
+    extra_labels = [random_string(), random_string()]
+    node_labels = "LABEL1 LABEL2"
+    node_dict = {
+        "num_executors": 1,
+        "node_description": "Test Node with Labels",
+        "remote_fs": "/tmp",
+        "labels": node_labels,
+        "exclusive": True,
+    }
+    node = jenkins.nodes.create_node(node_name, node_dict)
+    node.add_labels(extra_labels)
+    labels_on_node = node.get_labels().split(" ")
+    for label in extra_labels + node_labels.split(" "):
+        assert label in labels_on_node
+
+    del jenkins.nodes[node_name]
+
+
+def test_modify_node_labels(jenkins):
+    node_name = random_string()
+    extra_label = random_string()
+    node_labels = "LABEL1 LABEL2"
+    node_dict = {
+        "num_executors": 1,
+        "node_description": "Test Node with Labels",
+        "remote_fs": "/tmp",
+        "labels": node_labels,
+        "exclusive": True,
+    }
+    node = jenkins.nodes.create_node(node_name, node_dict)
+    node.modify_labels(extra_label)
+    assert node.get_labels() == extra_label
+
+    del jenkins.nodes[node_name]
+
+
+def test_delete_list_node_labels(jenkins):
+    node_name = random_string()
+    extra_labels = [random_string(), random_string()]
+    node_labels = "LABEL1 LABEL2"
+    node_dict = {
+        "num_executors": 1,
+        "node_description": "Test Node with Labels",
+        "remote_fs": "/tmp",
+        "labels": node_labels,
+        "exclusive": True,
+    }
+    node = jenkins.nodes.create_node(node_name, node_dict)
+    node.add_labels(extra_labels)
+    labels_on_node = node.get_labels().split(" ")
+    for label in extra_labels + node_labels.split(" "):
+        assert label in labels_on_node
+    node.delete_labels(extra_labels)
+
+    labels_on_node = node.get_labels().split(" ")
+    for label in node_labels.split(" "):
+        assert label in labels_on_node
+
+    del jenkins.nodes[node_name]
+
+
 def test_get_executors(jenkins):
     node_name = random_string()
     node_labels = "LABEL1 LABEL2"
