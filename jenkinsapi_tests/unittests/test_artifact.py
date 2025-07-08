@@ -6,10 +6,7 @@ from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.fingerprint import Fingerprint
 from jenkinsapi.custom_exceptions import ArtifactBroken
 
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 
 @pytest.fixture()
