@@ -1,5 +1,5 @@
 # flake8: noqa
-#    import mock
+#    from unittest import mock
 #
 #    import unittest
 #

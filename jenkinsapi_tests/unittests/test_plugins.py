@@ -2,7 +2,7 @@
 jenkinsapi_tests.test_plugins
 """
 
-import mock
+from unittest import mock
 
 import unittest
 
@@ -224,7 +224,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -250,7 +250,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -314,7 +314,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_required_after_plugin_installation(
         self, status, _poll_plugins
@@ -341,7 +341,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_not_required_after_plugin_installation(
         self, status, _poll_plugins
