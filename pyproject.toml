@@ -64,6 +64,9 @@ upload-dir = "doc/build/html"
 [tool.distutils.bdist_wheel]
 universal = 1
 
+[tool.mypy]
+files = "jenkinsapi, jenkinsapi_tests"
+
 [tool.pycodestyle]
 exclude = ".tox,doc/source/conf.py,build,.venv,.eggs"
 max-line-length = "99"
