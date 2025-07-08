@@ -4,7 +4,7 @@ jenkinsapi plugins
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Iterable, Tuple
 import logging
 import time
 import re
@@ -55,18 +55,18 @@ class Plugins(JenkinsBase):
     def _poll(self, tree=None):
         return self.get_data(self.baseurl, tree=tree)
 
-    def keys(self) -> list[str]:
+    def keys(self) -> Iterable[str]:
         return self.get_plugins_dict().keys()
 
     __iter__ = keys
 
-    def iteritems(self) -> Generator[str, "Plugin"]:
+    def iteritems(self) -> Iterable[Tuple[str, "Plugin"]]:
         return self._get_plugins()
 
     def values(self) -> list["Plugin"]:
         return [a[1] for a in self.iteritems()]
 
-    def _get_plugins(self) -> Generator[str, "Plugin"]:
+    def _get_plugins(self) -> Iterable[Tuple[str, "Plugin"]]:
         if "plugins" in self._data:
             for p_dict in self._data["plugins"]:
                 yield p_dict["shortName"], Plugin(p_dict)
