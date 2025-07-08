@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 
-try:
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-except ImportError:
-    from http.server import SimpleHTTPRequestHandler
-
-try:
-    import SocketServer as socketserver
-except ImportError:
-    import socketserver
+from http.server import SimpleHTTPRequestHandler
+import socketserver
 
 import logging
 import cgi
