@@ -4,7 +4,7 @@ jenkinsapi plugins
 
 from __future__ import annotations
 
-from typing import Generator
+from typing import TYPE_CHECKING, Generator
 import logging
 import time
 import re
@@ -20,8 +20,10 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException
 from jenkinsapi.utils.jsonp_to_json import jsonp_to_json
 from jenkinsapi.utils.manifest import Manifest, read_manifest
 
-
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Plugins(JenkinsBase):

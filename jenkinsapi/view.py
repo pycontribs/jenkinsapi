@@ -4,7 +4,7 @@ Module for jenkinsapi views
 
 from __future__ import annotations
 
-from typing import Iterator, Tuple
+from typing import TYPE_CHECKING, Iterator, Tuple
 
 import logging
 
@@ -14,6 +14,9 @@ from jenkinsapi.custom_exceptions import NotFound
 
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class View(JenkinsBase):

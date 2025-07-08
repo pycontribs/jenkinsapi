@@ -7,12 +7,15 @@ Jenkins node.
 from __future__ import annotations
 
 import logging
-from typing import Iterator
+from typing import TYPE_CHECKING, Iterator
 
 from jenkinsapi.executor import Executor
 from jenkinsapi.jenkinsbase import JenkinsBase
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Executors(JenkinsBase):
@@ -27,7 +30,7 @@ class Executors(JenkinsBase):
         self, baseurl: str, nodename: str, jenkins: "Jenkins"
     ) -> None:
         self.nodename: str = nodename
-        self.jenkins: str = jenkins
+        self.jenkins: "Jenkins" = jenkins
         JenkinsBase.__init__(self, baseurl)
         self.count: int = self._data["numExecutors"]
 

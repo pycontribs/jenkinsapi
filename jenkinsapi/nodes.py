@@ -4,7 +4,7 @@ Module for jenkinsapi nodes
 
 from __future__ import annotations
 
-from typing import Iterator
+from typing import TYPE_CHECKING, Iterator
 
 import logging
 
@@ -16,6 +16,9 @@ from jenkinsapi.custom_exceptions import UnknownNode
 from jenkinsapi.custom_exceptions import PostRequired
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Nodes(JenkinsBase):

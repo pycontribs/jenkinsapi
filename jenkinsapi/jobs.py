@@ -5,7 +5,7 @@ interface for all of the jobs defined on a single Jenkins server.
 
 from __future__ import annotations
 
-from typing import Iterator
+from typing import TYPE_CHECKING, Iterator
 import logging
 import time
 
@@ -13,6 +13,10 @@ from jenkinsapi.job import Job
 from jenkinsapi.custom_exceptions import JenkinsAPIException, UnknownJob
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
+    from jenkinsapi.queue import QueueItem
 
 
 class Jobs(object):

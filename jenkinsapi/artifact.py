@@ -14,12 +14,16 @@ from __future__ import annotations
 import os
 import logging
 import hashlib
-from typing import Any, Literal
+from typing import Any, Literal, TYPE_CHECKING
 
 from jenkinsapi.fingerprint import Fingerprint
 from jenkinsapi.custom_exceptions import ArtifactBroken
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.build import Build
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Artifact(object):

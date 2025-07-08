@@ -3,11 +3,15 @@ Module for jenkinsapi Executer class
 """
 
 from __future__ import annotations
+from typing import TYPE_CHECKING
 
 from jenkinsapi.jenkinsbase import JenkinsBase
 import logging
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Executor(JenkinsBase):

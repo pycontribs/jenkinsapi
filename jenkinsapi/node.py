@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import logging
 
+from typing import TYPE_CHECKING
 import xml.etree.ElementTree as ET
 
 import time
@@ -16,6 +17,9 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException
 from urllib.parse import quote as urlquote
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Node(JenkinsBase):

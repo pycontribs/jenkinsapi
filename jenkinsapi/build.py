@@ -16,7 +16,7 @@ import warnings
 import datetime
 
 from time import sleep
-from typing import Iterator, List, Dict, Any
+from typing import TYPE_CHECKING, Iterator, List, Dict, Any
 
 import pytz
 from jenkinsapi import config
@@ -34,6 +34,10 @@ from requests import HTTPError
 
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
+    from jenkinsapi.job import Job
 
 
 class Build(JenkinsBase):

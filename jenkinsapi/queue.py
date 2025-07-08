@@ -4,7 +4,7 @@ Queue module for jenkinsapi
 
 from __future__ import annotations
 
-from typing import Iterator, Tuple
+from typing import TYPE_CHECKING, Iterator, Tuple
 import logging
 import time
 from requests import HTTPError
@@ -12,6 +12,11 @@ from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.custom_exceptions import UnknownQueueItem, NotBuiltYet
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.build import Build
+    from jenkinsapi.jenkins import Jenkins
+    from jenkinsapi.job import Job
 
 
 class Queue(JenkinsBase):
