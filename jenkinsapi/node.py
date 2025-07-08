@@ -7,7 +7,7 @@ from __future__ import annotations
 import json
 import logging
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 import xml.etree.ElementTree as ET
 
 import time
@@ -27,6 +27,8 @@ class Node(JenkinsBase):
     Class to hold information on nodes that are attached as slaves
     to the master jenkins instance
     """
+
+    _element_tree: Optional[ET.Element]
 
     def __init__(
         self,
