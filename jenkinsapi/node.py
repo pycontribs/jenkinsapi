@@ -379,7 +379,7 @@ class Node(JenkinsBase):
         self._config = self.get_config()
         self._get_config_element_tree()
 
-    def upload_config(self, config_xml: str) -> None:
+    def upload_config(self, config_xml: Union[str, bytes]) -> None:
         """
         Uploads config_xml to the config.xml for the node.
         """
