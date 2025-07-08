@@ -121,6 +121,7 @@ class Node(JenkinsBase):
         :return: Node attributes dict formatted for Jenkins API request
             to create node
         """
+        launcher: dict[str, object]
         na: dict = self.node_attributes
         if not na.get("credential_description", False):
             # If credentials description is not present - we will create
