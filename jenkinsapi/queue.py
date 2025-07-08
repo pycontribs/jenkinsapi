@@ -41,12 +41,7 @@ class Queue(JenkinsBase):
 
     def iteritems(self) -> Iterator[Tuple[str, "QueueItem"]]:
         for item in self._data["items"]:
-            queue_id = item["id"]
-            item_baseurl = "%s/item/%i" % (self.baseurl, queue_id)
-            yield (
-                item["id"],
-                QueueItem(baseurl=item_baseurl, jenkins_obj=self.jenkins),
-            )
+            yield item["id"], self._get_queue_item(item)
 
     def iterkeys(self) -> Iterator[str]:
         for item in self._data["items"]:
@@ -54,7 +49,7 @@ class Queue(JenkinsBase):
 
     def itervalues(self) -> Iterator["QueueItem"]:
         for item in self._data["items"]:
-            yield QueueItem(self.jenkins, **item)
+            yield self._get_queue_item(item)
 
     def keys(self) -> list[str]:
         return list(self.iterkeys())
@@ -75,12 +70,17 @@ class Queue(JenkinsBase):
     def _get_queue_items_for_job(self, job_name: str) -> Iterator["QueueItem"]:
         for item in self._data["items"]:
             if "name" in item["task"] and item["task"]["name"] == job_name:
-                yield QueueItem(
-                    self.get_queue_item_url(item), jenkins_obj=self.jenkins
-                )
+                yield self._get_queue_item(item)
 
     def get_queue_items_for_job(self, job_name: str):
         return list(self._get_queue_items_for_job(job_name))
+
+    def _get_queue_item(self, item: dict) -> QueueItem:
+        """Get a QueueItem object from a queue item dict"""
+        return QueueItem(
+            baseurl=self.get_queue_item_url(item),
+            jenkins_obj=self.jenkins,
+        )
 
     def get_queue_item_url(self, item: dict) -> str:
         return "%s/item/%i" % (self.baseurl, item["id"])
