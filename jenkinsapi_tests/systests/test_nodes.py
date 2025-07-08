@@ -316,3 +316,8 @@ def test_offline_reason(jenkins):
     assert node.offline_reason() == "test2"
 
     del jenkins.nodes[node_name]
+
+
+def test_get_node_architecture(jenkins):
+    mn = jenkins.get_node("Built-In Node")
+    assert isinstance(mn.get_architecture(), str)
