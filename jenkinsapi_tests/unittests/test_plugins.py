@@ -6,10 +6,7 @@ from unittest import mock
 
 import unittest
 
-try:
-    from StringIO import StringIO  # python2
-except ImportError:
-    from io import BytesIO as StringIO  # python3
+from io import BytesIO
 import zipfile
 
 from jenkinsapi.jenkins import Requester
@@ -279,7 +276,7 @@ class TestPlugins(unittest.TestCase):
             "bla: somestuff\n"
             "Plugin-Dependencies: aws-java-sdk:1.10.45,aws-credentials:1.15"
         )
-        downloaded_plugin = StringIO()
+        downloaded_plugin = BytesIO()
         zipfile.ZipFile(downloaded_plugin, mode="w").writestr(
             "META-INF/MANIFEST.MF", manifest
         )
