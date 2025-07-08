@@ -6,7 +6,7 @@ Jenkins node.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterator
+from typing import TYPE_CHECKING, Iterator, Tuple
 
 import logging
 from urllib.parse import urlencode
@@ -68,7 +68,7 @@ class Credentials(JenkinsBase):
     def keys(self):
         return list(self.iterkeys())
 
-    def iteritems(self) -> Iterator[str, "Credential"]:
+    def iteritems(self) -> Iterator[Tuple[str, "Credential"]]:
         for cred in self.credentials.values():
             yield cred.description, cred
 
