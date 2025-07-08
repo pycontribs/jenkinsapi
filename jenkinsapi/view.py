@@ -4,7 +4,7 @@ Module for jenkinsapi views
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterator, Tuple
+from typing import TYPE_CHECKING, Iterable, Iterator, Tuple
 
 import logging
 
@@ -59,7 +59,7 @@ class View(JenkinsBase):
         self.jenkins_obj.poll()
         self.deleted = True
 
-    def keys(self) -> list[str]:
+    def keys(self) -> Iterable[str]:
         return self.get_job_dict().keys()
 
     def iteritems(self) -> Iterator[Tuple[str, Job]]:
