@@ -81,6 +81,9 @@ dev = [
     "codecov>=2.1.13",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+    "mypy",
+    "types-pytz",
+    "types-requests",
 ]
 docs = [
     "docutils>=0.20.1",
