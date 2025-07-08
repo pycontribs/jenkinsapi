@@ -82,7 +82,7 @@ class Queue(JenkinsBase):
     def get_queue_items_for_job(self, job_name: str):
         return list(self._get_queue_items_for_job(job_name))
 
-    def get_queue_item_url(self, item: str) -> str:
+    def get_queue_item_url(self, item: dict) -> str:
         return "%s/item/%i" % (self.baseurl, item["id"])
 
     def delete_item(self, queue_item: "QueueItem"):
