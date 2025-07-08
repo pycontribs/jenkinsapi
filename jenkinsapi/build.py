@@ -242,8 +242,8 @@ class Build(JenkinsBase):
         Get the upstream job object if it exist, None otherwise
         :return: Job or None
         """
-        if self.get_upstream_job_name():
-            return self.get_jenkins_obj().get_job(self.get_upstream_job_name())
+        if name := self.get_upstream_job_name():
+            return self.get_jenkins_obj().get_job(name)
         return None
 
     def get_upstream_build_number(self) -> int | None:
@@ -282,8 +282,8 @@ class Build(JenkinsBase):
         Get the master job object if it exist, None otherwise
         :return: Job or None
         """
-        if self.get_master_job_name():
-            return self.get_jenkins_obj().get_job(self.get_master_job_name())
+        if name := self.get_master_job_name():
+            return self.get_jenkins_obj().get_job(name)
 
         return None
 
