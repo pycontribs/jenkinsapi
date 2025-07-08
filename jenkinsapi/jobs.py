@@ -5,7 +5,7 @@ interface for all of the jobs defined on a single Jenkins server.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterator
+from typing import TYPE_CHECKING, Iterator, Tuple
 import logging
 import time
 
@@ -98,7 +98,7 @@ class Jobs(object):
         else:
             raise UnknownJob(job_name)
 
-    def iteritems(self) -> Iterator[str, "Job"]:
+    def iteritems(self) -> Iterator[Tuple[str, "Job"]]:
         """
         Iterate over the names & objects for all jobs
         """
