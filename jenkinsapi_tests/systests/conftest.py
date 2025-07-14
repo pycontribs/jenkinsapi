@@ -67,6 +67,8 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/jaxb.hpi",
     "https://updates.jenkins.io/latest/instance-identity.hpi",
     "https://updates.jenkins.io/latest/mailer.hpi",
+    "https://updates.jenkins.io/latest/data-tables-api.hpi",
+    "https://updates.jenkins.io/latest/lockable-resources.hpi",
 ]
 
 
