@@ -16,6 +16,7 @@ Module Reference
    submodules/jenkinsbase
    submodules/jobs
    submodules/label
+   submodules/lockable_resources
    submodules/mutable_jenkins
    submodules/nodes
    submodules/plugins
