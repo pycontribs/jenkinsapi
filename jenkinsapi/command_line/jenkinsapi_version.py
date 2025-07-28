@@ -1,5 +1,4 @@
-""" jenkinsapi.command_line.jenkinsapi_version
-"""
+"""jenkinsapi.command_line.jenkinsapi_version"""
 
 import jenkinsapi
 import sys
