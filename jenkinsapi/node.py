@@ -390,18 +390,23 @@ class Node(JenkinsBase):
         """
         return self.get_config_element("label")
 
-    def add_labels(self, labels: str | list) -> None:
+    def add_labels(self, labels: str | list, dryRun: bool = False) -> None:
         """Adds new label(s) to a node"""
         if isinstance(labels, str):
             labels = labels.split()
         current_labels = self.get_labels() or ""
+        log.info(f"Current Node Labels: {current_labels}")
         current_labels_set = set(current_labels.split())
         updated_labels_set = current_labels_set.union(labels)
         updated_labels = " ".join(sorted(updated_labels_set))
-        self.set_config_element("label", updated_labels)
-        self.poll()
+        log.info(f"Updated Node Labels: {updated_labels}")
+        if not dryRun:
+            self.set_config_element("label", updated_labels)
+            self.poll()
 
-    def modify_labels(self, new_labels: str | list[str]) -> None:
+    def modify_labels(
+        self, new_labels: str | list[str], dryRun: bool = False
+    ) -> None:
         """
         Replaces the current node labels with new label(s).
 
@@ -409,10 +414,14 @@ class Node(JenkinsBase):
         """
         if isinstance(new_labels, list):
             new_labels = " ".join(new_labels)
-        self.set_config_element("label", new_labels)
-        self.poll()
+        log.info(f"Setting node labels to: {new_labels}")
+        if not dryRun:
+            self.set_config_element("label", new_labels)
+            self.poll()
 
-    def delete_labels(self, labels_to_remove: str | list[str]) -> None:
+    def delete_labels(
+        self, labels_to_remove: str | list[str], dryRun: bool = False
+    ) -> None:
         """
         Removes label(s) from the node.
 
@@ -420,12 +429,15 @@ class Node(JenkinsBase):
         """
         if isinstance(labels_to_remove, str):
             labels_to_remove = labels_to_remove.split()
+        log.info(f"Removing labels {labels_to_remove} from Node")
         current_labels = self.get_labels() or ""
         current_labels_set = set(current_labels.split())
         updated_labels_set = current_labels_set.difference(labels_to_remove)
         updated_labels = " ".join(sorted(updated_labels_set))
-        self.set_config_element("label", updated_labels)
-        self.poll()
+        log.info(f"Updated Node Labels: {updated_labels}")
+        if not dryRun:
+            self.set_config_element("label", new_labels)
+            self.poll()
 
     def get_num_executors(self) -> str:
         try:

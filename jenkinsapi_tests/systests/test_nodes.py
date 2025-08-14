@@ -174,8 +174,7 @@ def test_add_list_node_labels(jenkins):
     node = jenkins.nodes.create_node(node_name, node_dict)
     node.add_labels(extra_labels)
     labels_on_node = node.get_labels().split(" ")
-    for label in extra_labels + node_labels.split(" "):
-        assert label in labels_on_node
+    assert set(extra_labels + node_labels.split(" ")) == set(labels_on_node)
 
     del jenkins.nodes[node_name]
 
@@ -212,13 +211,36 @@ def test_delete_list_node_labels(jenkins):
     node = jenkins.nodes.create_node(node_name, node_dict)
     node.add_labels(extra_labels)
     labels_on_node = node.get_labels().split(" ")
-    for label in extra_labels + node_labels.split(" "):
-        assert label in labels_on_node
+
+    assert set(extra_labels + node_labels.split(" ")) == set(labels_on_node)
     node.delete_labels(extra_labels)
 
     labels_on_node = node.get_labels().split(" ")
-    for label in node_labels.split(" "):
-        assert label in labels_on_node
+    assert set(node_labels.split(" ")) == set(labels_on_node)
+
+    del jenkins.nodes[node_name]
+
+
+def test_dryrun_delete_list_node_labels(jenkins):
+    node_name = random_string()
+    extra_labels = [random_string(), random_string()]
+    node_labels = "LABEL1 LABEL2"
+    node_dict = {
+        "num_executors": 1,
+        "node_description": "Test Node with Labels",
+        "remote_fs": "/tmp",
+        "labels": node_labels,
+        "exclusive": True,
+    }
+    node = jenkins.nodes.create_node(node_name, node_dict)
+    node.add_labels(extra_labels)
+    labels_on_node = node.get_labels().split(" ")
+
+    assert set(extra_labels + node_labels.split(" ")) == set(labels_on_node)
+    node.delete_labels(extra_labels, dryRun=True)
+
+    labels_on_node = node.get_labels().split(" ")
+    assert set(extra_labels + node_labels.split(" ")) == set(labels_on_node)
 
     del jenkins.nodes[node_name]
 
