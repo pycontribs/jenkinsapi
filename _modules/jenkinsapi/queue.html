@@ -314,8 +314,9 @@
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]:</span>
             <span class="n">queue_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
             <span class="n">item_baseurl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/item/</span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">queue_id</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">QueueItem</span><span class="p">(</span>
-                <span class="n">baseurl</span><span class="o">=</span><span class="n">item_baseurl</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span>
+            <span class="k">yield</span> <span class="p">(</span>
+                <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+                <span class="n">QueueItem</span><span class="p">(</span><span class="n">baseurl</span><span class="o">=</span><span class="n">item_baseurl</span><span class="p">,</span> <span class="n">jenkins_obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">),</span>
             <span class="p">)</span></div>
 
 
