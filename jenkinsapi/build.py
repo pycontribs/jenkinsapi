@@ -43,7 +43,7 @@ class Build(JenkinsBase):
 
     STR_TOTALCOUNT = "totalCount"
     STR_TPL_NOTESTS_ERR = (
-        "%s has status %s, and does not have " "any test results"
+        "%s has status %s, and does not have any test results"
     )
 
     def __init__(

@@ -181,7 +181,7 @@ class TestPlugins(unittest.TestCase):
         self.assertEqual("subversion", plugin.shortName)
         self.assertEqual("Jenkins Subversion Plug-in", plugin.longName)
         self.assertEqual(
-            "http://wiki.jenkins-ci.org/display/JENKINS/" "Subversion+Plugin",
+            "http://wiki.jenkins-ci.org/display/JENKINS/Subversion+Plugin",
             plugin.url,
         )
 
