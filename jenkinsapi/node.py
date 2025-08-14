@@ -395,11 +395,11 @@ class Node(JenkinsBase):
         if isinstance(labels, str):
             labels = labels.split()
         current_labels = self.get_labels() or ""
-        log.info(f"Current Node Labels: {current_labels}")
+        log.info("Current Node Labels: %s", current_labels)
         current_labels_set = set(current_labels.split())
         updated_labels_set = current_labels_set.union(labels)
         updated_labels = " ".join(sorted(updated_labels_set))
-        log.info(f"Updated Node Labels: {updated_labels}")
+        log.info("Updated Node Labels: %s", updated_labels)
         if not dryRun:
             self.set_config_element("label", updated_labels)
             self.poll()
