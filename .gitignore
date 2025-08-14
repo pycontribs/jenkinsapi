@@ -31,4 +31,3 @@ coverage.xml
 venv/
 tags
 .pytype/
-uv.lock
