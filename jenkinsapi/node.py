@@ -390,6 +390,55 @@ class Node(JenkinsBase):
         """
         return self.get_config_element("label")
 
+    def add_labels(self, labels: str | list, dryRun: bool = False) -> None:
+        """Adds new label(s) to a node"""
+        if isinstance(labels, str):
+            labels = labels.split()
+        current_labels = self.get_labels() or ""
+        log.info("Current Node Labels: %s", current_labels)
+        current_labels_set = set(current_labels.split())
+        updated_labels_set = current_labels_set.union(labels)
+        updated_labels = " ".join(sorted(updated_labels_set))
+        log.info("Updated Node Labels: %s", updated_labels)
+        if not dryRun:
+            self.set_config_element("label", updated_labels)
+            self.poll()
+
+    def modify_labels(
+        self, new_labels: str | list[str], dryRun: bool = False
+    ) -> None:
+        """
+        Replaces the current node labels with new label(s).
+
+        :param new_labels: A string of space-separated labels or a list of labels to set.
+        """
+        if isinstance(new_labels, list):
+            new_labels = " ".join(new_labels)
+        log.info("Setting node labels to: %s", new_labels)
+        if not dryRun:
+            self.set_config_element("label", new_labels)
+            self.poll()
+
+    def delete_labels(
+        self, labels_to_remove: str | list[str], dryRun: bool = False
+    ) -> None:
+        """
+        Removes label(s) from the node.
+
+        :param labels_to_remove: A string of space-separated labels or a list of labels to remove.
+        """
+        if isinstance(labels_to_remove, str):
+            labels_to_remove = labels_to_remove.split()
+        log.info("Removing labels %s from Node", labels_to_remove)
+        current_labels = self.get_labels() or ""
+        current_labels_set = set(current_labels.split())
+        updated_labels_set = current_labels_set.difference(labels_to_remove)
+        updated_labels = " ".join(sorted(updated_labels_set))
+        log.info("Updated Node Labels: %s", updated_labels)
+        if not dryRun:
+            self.set_config_element("label", updated_labels)
+            self.poll()
+
     def get_num_executors(self) -> str:
         try:
             return self.get_config_element("numExecutors")

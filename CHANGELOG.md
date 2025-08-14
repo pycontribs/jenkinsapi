@@ -1,5 +1,7 @@
 # Changelog
 
+- node class: add ability to add, modify, and delete node labels
+
 ## 3.3.13
 
 - docs: fix doc and add autobuild
