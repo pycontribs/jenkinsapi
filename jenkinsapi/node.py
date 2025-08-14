@@ -414,7 +414,7 @@ class Node(JenkinsBase):
         """
         if isinstance(new_labels, list):
             new_labels = " ".join(new_labels)
-        log.info(f"Setting node labels to: {new_labels}")
+        log.info("Setting node labels to: %s", new_labels)
         if not dryRun:
             self.set_config_element("label", new_labels)
             self.poll()
@@ -429,14 +429,14 @@ class Node(JenkinsBase):
         """
         if isinstance(labels_to_remove, str):
             labels_to_remove = labels_to_remove.split()
-        log.info(f"Removing labels {labels_to_remove} from Node")
+        log.info("Removing labels %s from Node", labels_to_remove)
         current_labels = self.get_labels() or ""
         current_labels_set = set(current_labels.split())
         updated_labels_set = current_labels_set.difference(labels_to_remove)
         updated_labels = " ".join(sorted(updated_labels_set))
-        log.info(f"Updated Node Labels: {updated_labels}")
+        log.info("Updated Node Labels: %s", updated_labels)
         if not dryRun:
-            self.set_config_element("label", new_labels)
+            self.set_config_element("label", updated_labels)
             self.poll()
 
     def get_num_executors(self) -> str:
