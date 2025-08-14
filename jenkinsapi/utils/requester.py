@@ -102,13 +102,13 @@ class Requester(object):
 
         if params:
             assert isinstance(params, dict), (
-                "Params must be a dict, got %s" % repr(params)
+                f"Params must be a dict, got {repr(params)}"
             )
             requestKwargs["params"] = params
 
         if headers:
             assert isinstance(headers, dict), (
-                "headers must be a dict, got %s" % repr(headers)
+                f"headers must be a dict, got {repr(headers)}"
             )
             requestKwargs["headers"] = headers
 
