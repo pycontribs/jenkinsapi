@@ -384,12 +384,29 @@ or fail to iterate over all entries.</p>
 <p>Class to hold information on nodes that are attached as slaves
 to the master jenkins instance</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.node.Node.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dryRun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/node.html#Node.add_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.node.Node.add_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Adds new label(s) to a node</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.node.Node.block_until_idle">
 <span class="sig-name descname"><span class="pre">block_until_idle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/node.html#Node.block_until_idle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.node.Node.block_until_idle" title="Link to this definition">¶</a></dt>
 <dd><p>Blocks until the node become idle.
 :param timeout: Time in second when the wait is aborted.
 :param poll_time: Interval in seconds between each check.
 :&#64;raise TimeOut</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.node.Node.delete_labels">
+<span class="sig-name descname"><span class="pre">delete_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels_to_remove</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dryRun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/node.html#Node.delete_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.node.Node.delete_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Removes label(s) from the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>labels_to_remove</strong> – A string of space-separated labels or a list of labels to remove.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -547,6 +564,17 @@ without generating new requests.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.node.Node.modify_labels">
+<span class="sig-name descname"><span class="pre">modify_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dryRun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/node.html#Node.modify_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.node.Node.modify_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Replaces the current node labels with new label(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_labels</strong> – A string of space-separated labels or a list of labels to set.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.node.Node.offline_reason">
 <span class="sig-name descname"><span class="pre">offline_reason</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/node.html#Node.offline_reason"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.node.Node.offline_reason" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -688,7 +716,9 @@ Calling the same method again will bring node status back.
 </li>
 <li><a class="reference internal" href="#module-jenkinsapi.node">node</a><ul>
 <li><a class="reference internal" href="#jenkinsapi.node.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li><a class="reference internal" href="#jenkinsapi.node.Node.add_labels"><code class="docutils literal notranslate"><span class="pre">Node.add_labels()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.block_until_idle"><code class="docutils literal notranslate"><span class="pre">Node.block_until_idle()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.node.Node.delete_labels"><code class="docutils literal notranslate"><span class="pre">Node.delete_labels()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.get_architecture"><code class="docutils literal notranslate"><span class="pre">Node.get_architecture()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.get_available_physical_memory"><code class="docutils literal notranslate"><span class="pre">Node.get_available_physical_memory()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.get_available_swap_space"><code class="docutils literal notranslate"><span class="pre">Node.get_available_swap_space()</span></code></a></li>
@@ -713,6 +743,7 @@ Calling the same method again will bring node status back.
 <li><a class="reference internal" href="#jenkinsapi.node.Node.is_temporarily_offline"><code class="docutils literal notranslate"><span class="pre">Node.is_temporarily_offline()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.launch"><code class="docutils literal notranslate"><span class="pre">Node.launch()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.load_config"><code class="docutils literal notranslate"><span class="pre">Node.load_config()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.node.Node.modify_labels"><code class="docutils literal notranslate"><span class="pre">Node.modify_labels()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.offline_reason"><code class="docutils literal notranslate"><span class="pre">Node.offline_reason()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.set_config_element"><code class="docutils literal notranslate"><span class="pre">Node.set_config_element()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.node.Node.set_num_executors"><code class="docutils literal notranslate"><span class="pre">Node.set_num_executors()</span></code></a></li>
