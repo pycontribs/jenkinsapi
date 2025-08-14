@@ -38,8 +38,9 @@ class Queue(JenkinsBase):
         for item in self._data["items"]:
             queue_id = item["id"]
             item_baseurl = "%s/item/%i" % (self.baseurl, queue_id)
-            yield item["id"], QueueItem(
-                baseurl=item_baseurl, jenkins_obj=self.jenkins
+            yield (
+                item["id"],
+                QueueItem(baseurl=item_baseurl, jenkins_obj=self.jenkins),
             )
 
     def iterkeys(self) -> Iterator[str]:

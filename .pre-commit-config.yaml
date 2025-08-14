@@ -1,23 +1,5 @@
 ---
 repos:
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
-    hooks:
-      - id: black
-        args:
-          - --line-length=79
-          # these folders wont be formatted by black
-          - --exclude="""\.git |
-            \.__pycache__|
-            \.hg|
-            \.mypy_cache|
-            \.tox|
-            \.venv|
-            _build|
-            buck-out|
-            build|
-            dist"""
-        language_version: python3
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -32,3 +14,8 @@ repos:
       - id: debug-statements
       - id: check-yaml
         files: .*\.(yaml|yml)$
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.9 # Use latest Ruff version
+    hooks:
+      - id: ruff
+      - id: ruff-format

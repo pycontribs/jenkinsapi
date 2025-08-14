@@ -264,7 +264,7 @@ def test_build_env_vars_wo_injected_env_vars_plugin(monkeypatch, build):
     assert "404" == str(excinfo.value)
     assert len(record) == 1
     expected = UserWarning(
-        "Make sure the Environment Injector " "plugin is installed."
+        "Make sure the Environment Injector plugin is installed."
     )
     assert str(record[0].message) == str(expected)
 

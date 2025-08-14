@@ -13,8 +13,7 @@ ADMIN_PASSWORD = "admin"
 
 # Extra plugins required by the systests
 PLUGIN_DEPENDENCIES = [
-    "https://updates.jenkins.io/latest/"
-    "apache-httpcomponents-client-4-api.hpi",
+    "https://updates.jenkins.io/latest/apache-httpcomponents-client-4-api.hpi",
     "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
     "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
     "https://updates.jenkins.io/latest/jsch.hpi",
@@ -106,9 +105,7 @@ instance.setSecurityRealm(hudsonRealm)
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
-    """.format(
-        ADMIN_USER, ADMIN_PASSWORD
-    )
+    """.format(ADMIN_USER, ADMIN_PASSWORD)
 
     url = launched_jenkins.jenkins_url
     jenkins_instance = Jenkins(url)
@@ -181,9 +178,7 @@ def lazy_jenkins(launched_jenkins):
 
 
 @pytest.fixture(scope="function")
-def jenkins_admin_admin(
-    launched_jenkins, jenkins
-):  # pylint: disable=unused-argument
+def jenkins_admin_admin(launched_jenkins, jenkins):  # pylint: disable=unused-argument
     # Using "jenkins" fixture makes sure that jobs/views/credentials are
     # cleaned before security is enabled.
     url = launched_jenkins.jenkins_url

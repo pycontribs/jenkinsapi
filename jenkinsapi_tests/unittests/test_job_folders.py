@@ -260,9 +260,7 @@ def test_multiple_folder_levels(jenkinsbase, monkeypatch, mocker):
         },
         {
             "name": "Baz",
-            "url": (
-                "http://localhost:8080/job/Folder1" "/job/Folder2/job/Baz"
-            ),
+            "url": ("http://localhost:8080/job/Folder1/job/Folder2/job/Baz"),
             "color": "disabled",
         },
     ]
@@ -273,7 +271,7 @@ def test_multiple_folder_levels(jenkinsbase, monkeypatch, mocker):
             tree="jobs[name,color]",
         ),
         mock.call(
-            "http://localhost:8080/job/Folder1" "/job/Folder2/api/python",
+            "http://localhost:8080/job/Folder1/job/Folder2/api/python",
             tree="jobs[name,color]",
         ),
     ]
