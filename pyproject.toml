@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "jenkinsapi"
-version = "0.3.14"
+version = "0.3.15dev2"
 authors = [
     {name = "Salim Fadhley", email = "salimfadhley@gmail.com"},
     {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
