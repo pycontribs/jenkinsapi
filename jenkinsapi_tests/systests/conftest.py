@@ -1,6 +1,8 @@
 import os
 import logging
 import pytest
+import time
+import requests
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
@@ -151,11 +153,26 @@ def launched_jenkins():
     launcher.stop()
 
 
+def ensure_jenkins_up(url, timeout=30):
+    timeout = 30
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            resp = requests.get(url)
+            if resp.status_code == 200:
+                return
+        except Exception as err:
+            print("Exception connecting to jenkins", err)
+        time.sleep(2)
+    pytest.exit("Jenkins didnt become available to call")
+
+
 @pytest.fixture(scope="function")
 def jenkins(launched_jenkins):
     url = launched_jenkins.jenkins_url
 
     jenkins_instance = Jenkins(url, timeout=30)
+    ensure_jenkins_up(url, timeout=30)
 
     _delete_all_jobs(jenkins_instance)
     _delete_all_views(jenkins_instance)
