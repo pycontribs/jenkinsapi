@@ -21,10 +21,7 @@ jobs:
 
       - name: Set pyproject.toml version from release tag
         run: |
-          release_tag="${GITHUB_REF##*/}"
-          # Remove leading "v" in tags like "v2.0.1"
-          version="${release_tag#v}"
-          uv version "$version"
+          uv version "${GITHUB_REF##*/}"
 
       - name: Install python
         run: uv python install
