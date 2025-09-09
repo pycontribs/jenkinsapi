@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+    contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +18,13 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.13"
+
+      - name: Set pyproject.toml version from release tag
+        run: |
+          release_tag="${GITHUB_REF##*/}"
+          # Remove leading "v" in tags like "v2.0.1"
+          version="${release_tag#v}"
+          uv version "$version"
 
       - name: Install python
         run: uv python install
