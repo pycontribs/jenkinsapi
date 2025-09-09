@@ -47,7 +47,7 @@ jobs:
     permissions:
       id-token: write
     environment:
-        name: pypi-publishing
+        name: gha
         url: https://pypi.org/project/jenkinsapi/
     steps:
       - name: Download artifact
