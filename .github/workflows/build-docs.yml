@@ -6,9 +6,16 @@ on:  # yamllint disable-line rule:truthy
       - master
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sphinx-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pages: write
     steps:
       - uses: actions/checkout@v5
 
