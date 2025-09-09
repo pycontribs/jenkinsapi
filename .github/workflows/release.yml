@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+    contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +18,13 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.13"
+
+      - name: Set pyproject.toml version from release tag
+        run: |
+          release_tag="${GITHUB_REF##*/}"
+          # Remove leading "v" in tags like "v2.0.1"
+          version="${release_tag#v}"
+          uv version "$version"
 
       - name: Install python
         run: uv python install
@@ -31,6 +41,7 @@ jobs:
           if-no-files-found: error
 
   pypi:
+    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
     needs: [build]
     runs-on: ubuntu-latest
     permissions:
@@ -50,9 +61,6 @@ jobs:
 
       - name: Publish
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          attestations: false
 
   asset:
     needs: [build]
@@ -70,7 +78,7 @@ jobs:
         run: tree
 
       - name: Add release asset
-        uses: softprops/action-gh-release@6cbd405e2c4e67a21c47fa9e383d020e4e28b836
+        uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8
         with:
           tag_name: ${{ github.event.release.tag_name }}
           fail_on_unmatched_files: true
