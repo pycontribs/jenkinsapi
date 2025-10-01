@@ -168,7 +168,7 @@ MATRIX_JOB = """
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <axes>
     <hudson.matrix.TextAxis>
@@ -182,7 +182,7 @@ MATRIX_JOB = """
   </axes>
   <builders>
     <hudson.tasks.Shell>
-      <command>ping -c 10 127.0.0.1</command>
+      <command>ping -c 3 127.0.0.1</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>

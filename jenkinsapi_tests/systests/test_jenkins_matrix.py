@@ -12,12 +12,13 @@ def test_invoke_matrix_job(jenkins):
     job_name = "create_%s" % random_string()
     job = jenkins.create_job(job_name, MATRIX_JOB)
     queueItem = job.invoke()
-    queueItem.block_until_complete()
+    time.sleep(3)  # give jenkins time to catch up
+    queueItem.block_until_complete(delay=3)
 
     build = job.get_last_build()
 
     while build.is_running():
-        time.sleep(1)
+        time.sleep(3)
 
     set_of_groups = set()
     for run in build.get_matrix_runs():
