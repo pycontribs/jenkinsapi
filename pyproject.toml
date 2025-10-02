@@ -66,6 +66,9 @@ upload-dir = "doc/build/html"
 [tool.distutils.bdist_wheel]
 universal = 1
 
+[tool.mypy]
+files = "jenkinsapi, jenkinsapi_tests"
+
 [tool.pycodestyle]
 exclude = ".tox,doc/source/conf.py,build,.venv,.eggs"
 max-line-length = "99"
@@ -79,10 +82,12 @@ dev = [
     "astroid>=1.4.8",
     "pylint>=1.7.1",
     "tox>=2.3.1",
-    "mock>=5.1.0",
     "codecov>=2.1.13",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+    "mypy",
+    "types-pytz",
+    "types-requests",
 ]
 docs = [
     "docutils>=0.20.1",

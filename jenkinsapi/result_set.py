@@ -3,9 +3,14 @@ Module for jenkinsapi ResultSet
 """
 
 from __future__ import annotations
+from typing import TYPE_CHECKING
 
 from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.result import Result
+
+if TYPE_CHECKING:
+    from jenkinsapi.build import Build
+    from jenkinsapi.jenkins import Jenkins
 
 
 class ResultSet(JenkinsBase):

@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import re
 import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import requests
 
@@ -14,6 +14,9 @@ from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.custom_exceptions import ArtifactBroken
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class Fingerprint(JenkinsBase):

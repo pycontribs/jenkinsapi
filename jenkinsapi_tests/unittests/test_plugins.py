@@ -2,17 +2,11 @@
 jenkinsapi_tests.test_plugins
 """
 
-import mock
+from unittest import mock
 
-# To run unittests on python 2.6 please use unittest2 library
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-try:
-    from StringIO import StringIO  # python2
-except ImportError:
-    from io import BytesIO as StringIO  # python3
+import unittest
+
+from io import BytesIO
 import zipfile
 
 from jenkinsapi.jenkins import Requester
@@ -227,7 +221,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -253,7 +247,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -282,7 +276,7 @@ class TestPlugins(unittest.TestCase):
             "bla: somestuff\n"
             "Plugin-Dependencies: aws-java-sdk:1.10.45,aws-credentials:1.15"
         )
-        downloaded_plugin = StringIO()
+        downloaded_plugin = BytesIO()
         zipfile.ZipFile(downloaded_plugin, mode="w").writestr(
             "META-INF/MANIFEST.MF", manifest
         )
@@ -317,7 +311,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_required_after_plugin_installation(
         self, status, _poll_plugins
@@ -344,7 +338,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_not_required_after_plugin_installation(
         self, status, _poll_plugins

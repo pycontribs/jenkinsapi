@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import logging
 
+from typing import TYPE_CHECKING, Optional, Union
 import xml.etree.ElementTree as ET
 
 import time
@@ -17,12 +18,17 @@ from urllib.parse import quote as urlquote
 
 log = logging.getLogger(__name__)
 
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
+
 
 class Node(JenkinsBase):
     """
     Class to hold information on nodes that are attached as slaves
     to the master jenkins instance
     """
+
+    _element_tree: Optional[ET.Element]
 
     def __init__(
         self,
@@ -117,6 +123,7 @@ class Node(JenkinsBase):
         :return: Node attributes dict formatted for Jenkins API request
             to create node
         """
+        launcher: dict[str, object]
         na: dict = self.node_attributes
         if not na.get("credential_description", False):
             # If credentials description is not present - we will create
@@ -372,7 +379,7 @@ class Node(JenkinsBase):
         self._config = self.get_config()
         self._get_config_element_tree()
 
-    def upload_config(self, config_xml: str) -> None:
+    def upload_config(self, config_xml: Union[str, bytes]) -> None:
         """
         Uploads config_xml to the config.xml for the node.
         """
@@ -489,7 +496,7 @@ class Node(JenkinsBase):
         xml_str = ET.tostring(self._et)
         self.upload_config(xml_str)
 
-    def get_monitor(self, monitor_name: str, poll_monitor=True) -> str:
+    def get_monitor(self, monitor_name: str, poll_monitor=True) -> object:
         """
         Polls the node returning one of the monitors in the monitorData
         branch of the returned node api tree.
@@ -507,60 +514,72 @@ class Node(JenkinsBase):
 
         return monitor_data[full_monitor_name]
 
+    def get_monitor_dict(
+        self,
+        monitor_name: str,
+        poll_monitor: bool = True,
+    ) -> dict:
+        value = self.get_monitor(monitor_name, poll_monitor)
+        if not isinstance(value, dict):
+            raise JenkinsAPIException(
+                f"Monitor {monitor_name!r} did not return a dictionary"
+            )
+        return value
+
     def get_available_physical_memory(self) -> int:
         """
         Returns the node's available physical memory in bytes.
         """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
+        monitor_data = self.get_monitor_dict("SwapSpaceMonitor")
         return monitor_data["availablePhysicalMemory"]
 
     def get_available_swap_space(self) -> int:
         """
         Returns the node's available swap space in bytes.
         """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
+        monitor_data = self.get_monitor_dict("SwapSpaceMonitor")
         return monitor_data["availableSwapSpace"]
 
     def get_total_physical_memory(self) -> int:
         """
         Returns the node's total physical memory in bytes.
         """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
+        monitor_data = self.get_monitor_dict("SwapSpaceMonitor")
         return monitor_data["totalPhysicalMemory"]
 
     def get_total_swap_space(self) -> int:
         """
         Returns the node's total swap space in bytes.
         """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
+        monitor_data = self.get_monitor_dict("SwapSpaceMonitor")
         return monitor_data["totalSwapSpace"]
 
     def get_workspace_path(self) -> str:
         """
         Returns the local path to the node's Jenkins workspace directory.
         """
-        monitor_data = self.get_monitor("DiskSpaceMonitor")
+        monitor_data = self.get_monitor_dict("DiskSpaceMonitor")
         return monitor_data["path"]
 
     def get_workspace_size(self) -> int:
         """
         Returns the size in bytes of the node's Jenkins workspace directory.
         """
-        monitor_data = self.get_monitor("DiskSpaceMonitor")
+        monitor_data = self.get_monitor_dict("DiskSpaceMonitor")
         return monitor_data["size"]
 
     def get_temp_path(self) -> str:
         """
         Returns the local path to the node's temp directory.
         """
-        monitor_data = self.get_monitor("TemporarySpaceMonitor")
+        monitor_data = self.get_monitor_dict("TemporarySpaceMonitor")
         return monitor_data["path"]
 
     def get_temp_size(self) -> int:
         """
         Returns the size in bytes of the node's temp directory.
         """
-        monitor_data = self.get_monitor("TemporarySpaceMonitor")
+        monitor_data = self.get_monitor_dict("TemporarySpaceMonitor")
         return monitor_data["size"]
 
     def get_architecture(self) -> str:
@@ -568,7 +587,12 @@ class Node(JenkinsBase):
         Returns the system architecture of the node eg. "Linux (amd64)".
         """
         # no need to poll as the architecture will never change
-        return self.get_monitor("ArchitectureMonitor", poll_monitor=False)
+        value = self.get_monitor("ArchitectureMonitor", poll_monitor=False)
+        if not isinstance(value, str):
+            raise JenkinsAPIException(
+                "Monitor ArchitectureMonitor did not return a string"
+            )
+        return value
 
     def block_until_idle(self, timeout: int, poll_time: int = 5) -> None:
         """
@@ -596,7 +620,7 @@ class Node(JenkinsBase):
         """
         Returns the node's average response time.
         """
-        monitor_data = self.get_monitor("ResponseTimeMonitor")
+        monitor_data = self.get_monitor_dict("ResponseTimeMonitor")
         return monitor_data["average"]
 
     def get_clock_difference(self) -> int:
@@ -605,5 +629,5 @@ class Node(JenkinsBase):
         the master Jenkins clock.
         Used to detect out of sync clocks.
         """
-        monitor_data = self.get_monitor("ClockMonitor")
+        monitor_data = self.get_monitor_dict("ClockMonitor")
         return monitor_data["diff"]

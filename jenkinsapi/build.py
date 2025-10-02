@@ -16,7 +16,7 @@ import warnings
 import datetime
 
 from time import sleep
-from typing import Iterator, List, Dict, Any
+from typing import TYPE_CHECKING, Iterator, List, Dict, Any
 
 import pytz
 from jenkinsapi import config
@@ -34,6 +34,10 @@ from requests import HTTPError
 
 
 log = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
+    from jenkinsapi.job import Job
 
 
 class Build(JenkinsBase):
@@ -238,8 +242,8 @@ class Build(JenkinsBase):
         Get the upstream job object if it exist, None otherwise
         :return: Job or None
         """
-        if self.get_upstream_job_name():
-            return self.get_jenkins_obj().get_job(self.get_upstream_job_name())
+        if name := self.get_upstream_job_name():
+            return self.get_jenkins_obj().get_job(name)
         return None
 
     def get_upstream_build_number(self) -> int | None:
@@ -278,8 +282,8 @@ class Build(JenkinsBase):
         Get the master job object if it exist, None otherwise
         :return: Job or None
         """
-        if self.get_master_job_name():
-            return self.get_jenkins_obj().get_job(self.get_master_job_name())
+        if name := self.get_master_job_name():
+            return self.get_jenkins_obj().get_job(name)
 
         return None
 

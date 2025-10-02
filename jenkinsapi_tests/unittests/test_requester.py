@@ -2,7 +2,7 @@ import pytest
 import requests
 from jenkinsapi.jenkins import Requester
 from jenkinsapi.custom_exceptions import JenkinsAPIException
-from mock import patch
+from unittest.mock import patch
 
 
 def test_no_parameters_uses_default_values():

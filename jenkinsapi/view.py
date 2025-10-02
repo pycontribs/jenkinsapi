@@ -4,7 +4,7 @@ Module for jenkinsapi views
 
 from __future__ import annotations
 
-from typing import Iterator, Tuple
+from typing import TYPE_CHECKING, Iterable, Iterator, Tuple
 
 import logging
 
@@ -14,6 +14,9 @@ from jenkinsapi.custom_exceptions import NotFound
 
 
 log: logging.Logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from jenkinsapi.jenkins import Jenkins
 
 
 class View(JenkinsBase):
@@ -56,7 +59,7 @@ class View(JenkinsBase):
         self.jenkins_obj.poll()
         self.deleted = True
 
-    def keys(self) -> list[str]:
+    def keys(self) -> Iterable[str]:
         return self.get_job_dict().keys()
 
     def iteritems(self) -> Iterator[Tuple[str, Job]]:

@@ -20,6 +20,8 @@ class JenkinsBase(object):
     inherited from
     """
 
+    _data: dict
+
     def __repr__(self):
         return """<%s.%s %s>""" % (
             self.__class__.__module__,
