@@ -11,11 +11,11 @@ readonly JENKINS_PATH=$2
 readonly WAR_FILENAME=$3
 
 echo "Downloading $JENKINS_WAR_URL to ${JENKINS_PATH}"
-if   [[ $(type -t wget) ]]; then wget -O ${JENKINS_PATH}/${WAR_FILENAME} -q $JENKINS_WAR_URL
-elif [[ $(type -t curl) ]]; then curl -sSL -o ${JENKINS_PATH}/${WAR_FILENAME} $JENKINS_WAR_URL
-else
-    echo "Could not find wget or curl"
-    exit 1
-fi
+VER="$(curl -fsSL "$JENKINS_WAR_URL/" | grep -oE 'href="[0-9]+\.[0-9]+\.[0-9]+/' | sed 's/href="//;s:/$::' | sort -V | tail -1)"
+
+curl -fL -o "$JENKINS_PATH/jenkins.war" "$JENKINS_WAR_URL/$VER/jenkins.war"
+
+# Optional: verify checksum (Linux)
+#curl -fsSL "$JENKINS_WAR_URL/$VER/jenkins.war.sha256" | awk '{print $1" "}' | sha256sum -c -
 
 echo "Jenkins downloaded"
