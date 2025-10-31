@@ -65,10 +65,8 @@ class JenkinsLancher(object):
     Launch jenkins
     """
 
-    JENKINS_WEEKLY_WAR_URL = "http://get.jenkins.io/war/latest/jenkins.war"
-    JENKINS_LTS_WAR_URL = (
-        "https://get.jenkins.io/war-stable/latest/jenkins.war"
-    )
+    JENKINS_WEEKLY_WAR_URL = "https://get.jenkins.io/war"
+    JENKINS_LTS_WAR_URL = "https://get.jenkins.io/war-stable"
 
     def __init__(
         self,
@@ -109,7 +107,7 @@ class JenkinsLancher(object):
         self.jenkins_process = None
         self.queue = queue.Queue()
         self.plugin_urls = plugin_urls or []
-        if os.environ.get("JENKINS_VERSION", "stable") == "stable":
+        if os.environ.get("JENKINS_VERSION", "") == "stable":
             self.JENKINS_WAR_URL = self.JENKINS_LTS_WAR_URL
         else:
             self.JENKINS_WAR_URL = self.JENKINS_WEEKLY_WAR_URL
