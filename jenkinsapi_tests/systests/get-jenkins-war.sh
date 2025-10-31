@@ -11,7 +11,8 @@ readonly JENKINS_PATH=$2
 readonly WAR_FILENAME=$3
 
 echo "Downloading $JENKINS_WAR_URL to ${JENKINS_PATH}"
-VER="$(curl -fsSL "$JENKINS_WAR_URL/" | grep -oE 'href="[0-9]+\.[0-9]+\.[0-9]+/' | sed 's/href="//;s:/$::' | sort -V | tail -1)"
+VER="$(curl -fsSL "$JENKINS_WAR_URL/" | grep -oE 'href="[0-9]+\.[0-9]+/' | sed 's/href="//;s:/$::' | sort -V | tail -1)"
+echo "Downloading version $VER"
 
 curl -fL -o "$JENKINS_PATH/jenkins.war" "$JENKINS_WAR_URL/$VER/jenkins.war"
 

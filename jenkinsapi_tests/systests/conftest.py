@@ -50,7 +50,6 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/credentials-binding.hpi",
     "https://updates.jenkins.io/latest/jakarta-activation-api.hpi",
     "https://updates.jenkins.io/latest/caffeine-api.hpi",
-    "https://updates.jenkins.io/latest/script-security.hpi",
     "https://updates.jenkins.io/latest/checks-api.hpi",
     "https://updates.jenkins.io/latest/json-api.hpi",
     "https://updates.jenkins.io/latest/jackson2-api.hpi",
@@ -60,14 +59,11 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/font-awesome-api.hpi",
     "https://updates.jenkins.io/latest/commons-text-api.hpi",
     "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
-    "https://updates.jenkins.io/latest/plugin-util-api.hpi",
     "https://updates.jenkins.io/latest/snakeyaml-api.hpi",
     "https://updates.jenkins.io/latest/workflow-support.hpi",
     "https://updates.jenkins.io/latest/jquery3-api.hpi",
-    "https://updates.jenkins.io/latest/checks-api.hpi",
     "https://updates.jenkins.io/latest/javax-activation-api.hpi",
     "https://updates.jenkins.io/latest/jaxb.hpi",
-    "https://updates.jenkins.io/latest/instance-identity.hpi",
     "https://updates.jenkins.io/latest/mailer.hpi",
 ]
 

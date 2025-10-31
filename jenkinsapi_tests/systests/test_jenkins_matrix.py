@@ -4,12 +4,10 @@ System tests for `jenkinsapi.jenkins` module.
 
 import re
 import time
-import pytest
 from jenkinsapi_tests.systests.job_configs import MATRIX_JOB
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
 
-@pytest.mark.skip(reason="Intermittently failing")
 def test_invoke_matrix_job(jenkins):
     job_name = "create_%s" % random_string()
     job = jenkins.create_job(job_name, MATRIX_JOB)

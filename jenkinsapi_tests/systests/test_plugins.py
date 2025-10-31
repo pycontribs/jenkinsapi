@@ -17,7 +17,7 @@ def test_plugin_data(jenkins):
     jenkins.plugins.check_updates_server()
     jenkins.requester.timeout = timeout
 
-    assert "commons-text-api" in jenkins.plugins
+    assert "workflow-api" in jenkins.plugins
 
 
 def test_get_missing_plugin(jenkins):

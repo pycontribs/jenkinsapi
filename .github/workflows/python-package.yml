@@ -24,7 +24,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.13"]
-        token: ["stable"]
 
     steps:
     - name: Checkout
@@ -52,7 +51,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
-        token: ["stable"]
 
     steps:
     - name: Harden Runner
@@ -101,7 +99,5 @@ jobs:
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
     - name: Test with pytest
-      env:
-        JENKINS_VERSION: ${{ matrix.token }}
       run: |
         uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
