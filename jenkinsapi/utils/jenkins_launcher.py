@@ -294,10 +294,20 @@ if __name__ == "__main__":
 
     log.info("Hello!")
 
+    utils_dir = os.path.dirname(os.path.abspath(__file__))  # jenkinsapi/utils
+    jenkinsapi_tests_path = os.path.join(
+        utils_dir, "..", "..", "jenkinsapi_tests"
+    )
+    systests_jenkinsapi_tests_path = os.path.join(
+        jenkinsapi_tests_path, "systests"
+    )
+    localinstance_files_path = os.path.join(
+        systests_jenkinsapi_tests_path, "localinstance_files"
+    )
     jl = JenkinsLancher(
-        "/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests"
-        "/systests/localinstance_files",
-        "/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests/systests",
+        jenkinsapi_tests_path,
+        localinstance_files_path,
+        systests_jenkinsapi_tests_path,
         "jenkins.war",
     )
 
