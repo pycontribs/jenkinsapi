@@ -354,10 +354,8 @@
 <span class="sd">    Launch jenkins</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">JENKINS_WEEKLY_WAR_URL</span> <span class="o">=</span> <span class="s2">&quot;http://get.jenkins.io/war/latest/jenkins.war&quot;</span>
-    <span class="n">JENKINS_LTS_WAR_URL</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;https://get.jenkins.io/war-stable/latest/jenkins.war&quot;</span>
-    <span class="p">)</span>
+    <span class="n">JENKINS_WEEKLY_WAR_URL</span> <span class="o">=</span> <span class="s2">&quot;https://get.jenkins.io/war&quot;</span>
+    <span class="n">JENKINS_LTS_WAR_URL</span> <span class="o">=</span> <span class="s2">&quot;https://get.jenkins.io/war-stable&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -398,7 +396,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_process</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_urls</span> <span class="o">=</span> <span class="n">plugin_urls</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JENKINS_VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;stable&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;stable&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JENKINS_VERSION&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;stable&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">JENKINS_WAR_URL</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">JENKINS_LTS_WAR_URL</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">JENKINS_WAR_URL</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">JENKINS_WEEKLY_WAR_URL</span>
