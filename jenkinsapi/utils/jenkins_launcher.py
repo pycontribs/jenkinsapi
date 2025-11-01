@@ -303,7 +303,6 @@ if __name__ == "__main__":
         systests_jenkinsapi_tests_path, "localinstance_files"
     )
     jl = JenkinsLancher(
-        jenkinsapi_tests_path,
         localinstance_files_path,
         systests_jenkinsapi_tests_path,
         "jenkins.war",
