@@ -603,20 +603,10 @@
 
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
 
-    <span class="n">utils_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>  <span class="c1"># jenkinsapi/utils</span>
-    <span class="n">jenkinsapi_tests_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">utils_dir</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;jenkinsapi_tests&quot;</span>
-    <span class="p">)</span>
-    <span class="n">systests_jenkinsapi_tests_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">jenkinsapi_tests_path</span><span class="p">,</span> <span class="s2">&quot;systests&quot;</span>
-    <span class="p">)</span>
-    <span class="n">localinstance_files_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">systests_jenkinsapi_tests_path</span><span class="p">,</span> <span class="s2">&quot;localinstance_files&quot;</span>
-    <span class="p">)</span>
     <span class="n">jl</span> <span class="o">=</span> <span class="n">JenkinsLancher</span><span class="p">(</span>
-        <span class="n">jenkinsapi_tests_path</span><span class="p">,</span>
-        <span class="n">localinstance_files_path</span><span class="p">,</span>
-        <span class="n">systests_jenkinsapi_tests_path</span><span class="p">,</span>
+        <span class="s2">&quot;/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests&quot;</span>
+        <span class="s2">&quot;/systests/localinstance_files&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests/systests&quot;</span><span class="p">,</span>
         <span class="s2">&quot;jenkins.war&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
