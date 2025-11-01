@@ -4,9 +4,6 @@ Jenkinsapi
 .. image:: https://badge.fury.io/py/jenkinsapi.png
     :target: http://badge.fury.io/py/jenkinsapi
 
-.. image:: https://codecov.io/gh/pycontribs/jenkinsapi/branch/master/graph/badge.svg
-        :target: https://codecov.io/gh/pycontribs/jenkinsapi
-
 Installation
 ------------
 
