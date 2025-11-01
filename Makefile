@@ -1,4 +1,7 @@
-.PHONY: test lint tox coverage dist
+.PHONY: test lint tox coverage dist clean
+
+clean:
+	rm -rf jenkinsapi_tests/systests/localinstance_files
 
 test:
 	uv run pytest -sv jenkinsapi_tests
