@@ -568,7 +568,7 @@ wheels = [
 
 [[package]]
 name = "jenkinsapi"
-version = "0.3.15"
+version = "0.3.17"
 source = { editable = "." }
 dependencies = [
     { name = "pytz" },
