@@ -6,26 +6,23 @@
 # import unittest2 as unittest
 # except ImportError:
 # import unittest
-import pytest
 from testfixtures import compare
 from time import sleep
 
 from jenkinsapi_tests.test_utils.random_strings import random_string
-from jenkinsapi.utils.crumb_requester import CrumbRequester
 from jenkinsapi_tests.systests.job_configs import (
     SCM_GIT_JOB,
-    JOB_WITH_ARTIFACTS,
     PIPELINE_SCM_JOB,
     MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY,
     MULTIBRANCH_GIT_SCM_JOB,
     MULTIBRANCH_GITHUB_SCM_JOB,
 )
-from jenkinsapi.custom_exceptions import NotConfiguredSCM, NotSupportSCM
+from jenkinsapi.custom_exceptions import NotSupportSCM
 
 
 def wait_for_job_setup(jenkins, job_name):
-    for i in range(5):
-        for url, name in list(jenkins.get_jobs_info()):
+    for _ in range(5):
+        for _url, name in list(jenkins.get_jobs_info()):
             if job_name in name:
                 return True
             else:
