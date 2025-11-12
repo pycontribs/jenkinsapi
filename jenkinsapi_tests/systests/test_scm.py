@@ -8,8 +8,6 @@ from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi_tests.systests.job_configs import (
     SCM_GIT_JOB,
     MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY,
-    MULTIBRANCH_GIT_SCM_JOB,
-    MULTIBRANCH_GITHUB_SCM_JOB,
 )
 
 
