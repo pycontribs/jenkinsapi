@@ -32,45 +32,43 @@ def wait_for_job_setup(jenkins, job_name):
                 sleep(10)
 
 
-def test_get_scm_type(jenkins_admin_admin):
+def test_get_scm_type(jenkins):
     job_name = "git_%s" % random_string()
-    job = jenkins_admin_admin.create_job(job_name, SCM_GIT_JOB)
-    wait_for_job_setup(jenkins_admin_admin, job_name)
+    job = jenkins.create_job(job_name, SCM_GIT_JOB)
+    wait_for_job_setup(jenkins, job_name)
     compare(job.get_scm_type(), "git")
-    jenkins_admin_admin.delete_job(job_name)
+    jenkins.delete_job(job_name)
 
 
 def test_get_scm_type_pipeline_scm_multibranch_BranchJobProperty(
-    jenkins_admin_admin,
+    jenkins,
 ):
     job_name = "git_%s" % random_string()
-    job = jenkins_admin_admin.create_job(
-        job_name, MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY
-    )
-    wait_for_job_setup(jenkins_admin_admin, job_name)
+    job = jenkins.create_job(job_name, MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY)
+    wait_for_job_setup(jenkins, job_name)
     job.invoke(block=True, delay=20)
     compare(job.get_scm_type(), "git")
 
 
 def test_get_scm_type_pipeline_scm_multibranch_BranchSource(
-    jenkins_admin_admin,
+    jenkins,
 ):
     job_name = "git_%s" % random_string()
-    job = jenkins_admin_admin.create_multibranch_pipeline_job(
+    job = jenkins.create_multibranch_pipeline_job(
         job_name, MULTIBRANCH_GIT_SCM_JOB
     )
-    wait_for_job_setup(jenkins_admin_admin, job_name)
+    wait_for_job_setup(jenkins, job_name)
     job.invoke(block=True, delay=20)
     compare(job[0].get_scm_type(), "git")
 
 
 def test_get_scm_type_pipeline_github_multibranch_BranchSource(
-    jenkins_admin_admin,
+    jenkins,
 ):
     job_name = "git_%s" % random_string()
-    job = jenkins_admin_admin.create_multibranch_pipeline_job(
+    job = jenkins.create_multibranch_pipeline_job(
         job_name, MULTIBRANCH_GITHUB_SCM_JOB
     )
-    wait_for_job_setup(jenkins_admin_admin, job_name)
+    wait_for_job_setup(jenkins, job_name)
     job.invoke(block=True, delay=20)
     compare(job.get_scm_type(), "github")
