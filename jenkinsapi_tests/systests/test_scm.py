@@ -6,27 +6,62 @@
 # import unittest2 as unittest
 # except ImportError:
 # import unittest
-# from jenkinsapi_tests.systests.base import BaseSystemTest
-# from jenkinsapi_tests.test_utils.random_strings import random_string
-# from jenkinsapi_tests.systests.job_configs import SCM_GIT_JOB
+import pytest
+from testfixtures import compare
 
-# # Maybe have a base class for all SCM test activites?
-# class TestSCMGit(BaseSystemTest):
-#     # Maybe it makes sense to move plugin dependencies outside the code.
-#     # Have a config to dependencies mapping from the launcher can use
-#     # to install plugins.
-#     def test_get_revision(self):
-#         job_name = 'git_%s' % random_string()
-#         job = self.jenkins.create_job(job_name, SCM_GIT_JOB)
-#         ii = job.invoke()
-#         ii.block(until='completed')
-#         self.assertFalse(ii.is_running())
-#         b = ii.get_build()
-#         try:
-#             self.assertIsInstance(b.get_revision(), basestring)
-#         except NameError:
-#             # Python3
-#             self.assertIsInstance(b.get_revision(), str)
+from jenkinsapi_tests.test_utils.random_strings import random_string
+from jenkinsapi.utils.crumb_requester import CrumbRequester
+from jenkinsapi_tests.systests.job_configs import (
+    SCM_GIT_JOB,
+    JOB_WITH_ARTIFACTS,
+    PIPELINE_SCM_JOB,
+    MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY,
+    MULTIBRANCH_GIT_SCM_JOB,
+    MULTIBRANCH_GITHUB_SCM_JOB,
+)
+from jenkinsapi.custom_exceptions import NotConfiguredSCM, NotSupportSCM
 
-# if __name__ == '__main__':
-#     unittest.main()
+
+def test_get_scm_type(jenkins_admin_admin):
+    job_name = "git_%s" % random_string()
+    job = jenkins_admin_admin.create_job(job_name, SCM_GIT_JOB)
+    compare(job.get_scm_type(), "git")
+    jenkins_admin_admin.delete_job(job_name)
+
+
+def test_get_scm_type_pipeline_scm_multibranch_BranchJobProperty(
+    jenkins_admin_admin,
+):
+    job_name = "git_%s" % random_string()
+    jenkins_admin_admin.requester = CrumbRequester(
+        baseurl=jenkins_admin_admin.baseurl,
+        username=jenkins_admin_admin.username,
+        password=jenkins_admin_admin.password,
+    )
+    job = jenkins_admin_admin.create_job(
+        job_name, MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY
+    )
+    job.invoke(block=True, delay=20)
+    compare(job.get_scm_type(), "git")
+
+
+def test_get_scm_type_pipeline_scm_multibranch_BranchSource(
+    jenkins_admin_admin,
+):
+    job_name = "git_%s" % random_string()
+    job = jenkins_admin_admin.create_multibranch_pipeline_job(
+        job_name, MULTIBRANCH_GIT_SCM_JOB
+    )
+    job.invoke(block=True, delay=20)
+    compare(job[0].get_scm_type(), "git")
+
+
+def test_get_scm_type_pipeline_github_multibranch_BranchSource(
+    jenkins_admin_admin,
+):
+    job_name = "git_%s" % random_string()
+    job = jenkins_admin_admin.create_multibranch_pipeline_job(
+        job_name, MULTIBRANCH_GITHUB_SCM_JOB
+    )
+    job.invoke(block=True, delay=20)
+    compare(job.get_scm_type(), "github")

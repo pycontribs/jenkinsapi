@@ -362,25 +362,37 @@ PIPELINE_SCM_JOB = """
 
 MULTIBRANCH_GIT_SCM_JOB = """
 <?xml version='1.0' encoding='UTF-8'?>
-<project>
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@821.vc3b_4ea_780798">
 <actions/>
 <description/>
 <properties/>
+<folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.1259.v45c101731c76">
+<owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+</folderViews>
 <healthMetrics/>
 <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.1259.v45c101731c76">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
 </icon>
+<orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.1073.va_7888eb_dd514">
+<pruneDeadBranches>true</pruneDeadBranches>
+<daysToKeep>-1</daysToKeep>
+<numToKeep>-1</numToKeep>
+<abortBuilds>false</abortBuilds>
+</orphanedItemStrategy>
 <triggers/>
 <disabled>false</disabled>
 <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.1259.v45c101731c76">
 <data>
 <jenkins.branch.BranchSource>
 <source class="jenkins.plugins.git.GitSCMSource" plugin="git@5.8.0">
-<id>5f017fe1-482f-4465-b8ee-c846e733bd8e</id>
-<remote>https://github.com/pycontribs/jenkinsapi.git</remote>
+<id>e0a4ce06-e537-4893-9ba4-2dd4f18d7a44</id>
+<remote>https://github.com/pycontribs/jenkinsapi</remote>
 <credentialsId/>
 <traits>
 <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+<jenkins.scm.impl.trait.RegexSCMHeadFilterTrait plugin="scm-api@712.v8846fdd68c88">
+<regex>(master.*)</regex>
+</jenkins.scm.impl.trait.RegexSCMHeadFilterTrait>
 </traits>
 </source>
 <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
@@ -392,9 +404,9 @@ MULTIBRANCH_GIT_SCM_JOB = """
 </sources>
 <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-<scriptPath>Jenkinsfile</scriptPath>
+<scriptPath>uv.lock</scriptPath>
 </factory>
-</project>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
 """.strip()
 
 MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY = """
@@ -431,7 +443,7 @@ MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY = """
 </org.jenkinsci.plugins.workflow.multibranch.BranchJobProperty>
 </properties>
 <definition class="org.jenkinsci.plugins.workflow.multibranch.SCMBinder" plugin="workflow-multibranch@821.vc3b_4ea_780798">
-<scriptPath>Jenkinsfile</scriptPath>
+<scriptPath>uv.lock</scriptPath>
 </definition>
 <triggers/>
 <disabled>false</disabled>
@@ -440,21 +452,30 @@ MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY = """
 
 MULTIBRANCH_GITHUB_SCM_JOB = """
 <?xml version='1.0' encoding='UTF-8'?>
-<project>
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@821.vc3b_4ea_780798">
 <actions/>
 <description/>
 <properties/>
+<folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.1259.v45c101731c76">
+<owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+</folderViews>
 <healthMetrics/>
 <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.1259.v45c101731c76">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
 </icon>
+<orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.1073.va_7888eb_dd514">
+<pruneDeadBranches>true</pruneDeadBranches>
+<daysToKeep>-1</daysToKeep>
+<numToKeep>-1</numToKeep>
+<abortBuilds>false</abortBuilds>
+</orphanedItemStrategy>
 <triggers/>
 <disabled>false</disabled>
 <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.1259.v45c101731c76">
 <data>
 <jenkins.branch.BranchSource>
 <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@1917.v9ee8a_39b_3d0d">
-<id>4381bdc9-38b0-401d-8c6a-3ba53b45efb5</id>
+<id>e82f0840-83c9-44b3-a903-3825f776da38</id>
 <apiUri>https://api.github.com</apiUri>
 <repoOwner>pycontribs</repoOwner>
 <repository>jenkinsapi</repository>
@@ -481,7 +502,7 @@ MULTIBRANCH_GITHUB_SCM_JOB = """
 </sources>
 <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-<scriptPath>Jenkinsfile</scriptPath>
+<scriptPath>uv.lock</scriptPath>
 </factory>
-</project>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
 """

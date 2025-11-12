@@ -584,6 +584,8 @@ dev = [
     { name = "pytest-mock" },
     { name = "requests-kerberos" },
     { name = "ruff" },
+    { name = "testfixtures", version = "8.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "testfixtures", version = "10.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "tox", version = "4.30.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "tox", version = "4.32.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
@@ -613,6 +615,7 @@ dev = [
     { name = "pytest-mock", specifier = ">=3.14.0" },
     { name = "requests-kerberos", specifier = ">=0.15.0" },
     { name = "ruff", specifier = ">=0.9.6" },
+    { name = "testfixtures", specifier = ">=8.3.0" },
     { name = "tox", specifier = ">=2.3.1" },
 ]
 docs = [
@@ -1308,6 +1311,32 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ee/b5/0036e9a301fde1fb7a2012f8061873bf628bf103994a3dcf89e3061d0017/sspilib-0.4.0-cp39-cp39-win32.whl", hash = "sha256:6994b65622cd5439ebb9a54f00d332a4a9946b961c573036e6a62bb4d2d46145", size = 483840, upload-time = "2025-09-01T00:26:17.306Z" },
     { url = "https://files.pythonhosted.org/packages/96/b0/05eeb0d1fbf8af813982f8ad8f4bb8ed7e2276365e9dc067464fc77de9d9/sspilib-0.4.0-cp39-cp39-win_amd64.whl", hash = "sha256:6b09a575095d1b69c27421ff676399ce39d27ca3e8b97e7a06335b27f3210650", size = 571968, upload-time = "2025-09-01T00:26:18.571Z" },
     { url = "https://files.pythonhosted.org/packages/6e/9a/8c11707040d13c53a2bc1dab54cb8c172e1bb00e34e9f92f64a6a41302e6/sspilib-0.4.0-cp39-cp39-win_arm64.whl", hash = "sha256:d45eff48922c23eb63d39a7f0a51167c5284ec348e0663f1377c983bcb9eb94d", size = 495125, upload-time = "2025-09-01T00:26:19.86Z" },
+]
+
+[[package]]
+name = "testfixtures"
+version = "8.3.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version == '3.10.*'",
+    "python_full_version < '3.10'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/25/d7e9d05f87e2ab84657a0dfb1f24fc295d542ac2eb221531d976ea4aa1ff/testfixtures-8.3.0.tar.gz", hash = "sha256:d4c0b84af2f267610f908009b50d6f983a4e58ade22c67bab6787b5a402d59c0", size = 137420, upload-time = "2024-06-07T18:12:27.484Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1a/4e/699671ba484b94bda0959b281ff59b24f728263befd13e060fa038ce3bc8/testfixtures-8.3.0-py3-none-any.whl", hash = "sha256:3d1e0e0005c4d6ac2a2ab27916704c6471047f0d2f78f2e54adf20abdacc7b10", size = 105085, upload-time = "2024-06-07T18:12:23.298Z" },
+]
+
+[[package]]
+name = "testfixtures"
+version = "10.0.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.12'",
+    "python_full_version == '3.11.*'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4d/53/d7439458a89dc5be4780b23af09432a8347c798ea52ba0b53fd158f86653/testfixtures-10.0.0.tar.gz", hash = "sha256:2b9829bf7f42f0ca8600250762e6725575da59af18d9a7f82aae2c97b14f0f66", size = 147464, upload-time = "2025-10-29T08:42:20.733Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/15/30/70da9c7cd9931f2299ab2a353cf082427ba5dbea5f34db57e6a9ef89c8a5/testfixtures-10.0.0-py3-none-any.whl", hash = "sha256:c54ed5c4cd93ad271a6add94a575a5843964ea3aaf590f4c3cb4df16a261b15f", size = 111285, upload-time = "2025-10-29T08:42:19.647Z" },
 ]
 
 [[package]]
