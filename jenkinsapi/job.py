@@ -50,8 +50,14 @@ class Job(JenkinsBase, MutableJenkinsThing):
         self._scm_prefix = ""
         self._scm_map = {
             "hudson.scm.SubversionSCM": "svn",
+            "jenkins.scm.impl.subversion.SubversionSCMSource": "svn",
             "hudson.plugins.git.GitSCM": "git",
+            "jenkins.plugins.git.GitSCMSource": "git",
             "hudson.plugins.mercurial.MercurialSCM": "hg",
+            "org.jenkinsci.plugins.github_branch_source.GitHubSCMSource": "github",
+            "com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource": "bitbucket",
+            "io.jenkins.plugins.gitlabbranchsource.GitLabSCMSource": "gitlab",
+            "org.jenkinsci.plugins.gitea.GiteaSCMSource": "gitea",
             "hudson.scm.NullSCM": "NullSCM",
         }
         self._scmurlmap = {
@@ -528,17 +534,38 @@ class Job(JenkinsBase, MutableJenkinsThing):
     def load_config(self):
         self._config = self.get_config()
 
+    def _get_scm_from_branch_job_property(self, element_tree):
+        """Check element_tree for BranchJobProperty"""
+        scm_element = None
+        log.debug("Check BranchJobProperty for scm type")
+        multibranch_scm_prefix = "properties/org.jenkinsci.plugins.\
+                workflow.multibranch.BranchJobProperty/branch/"
+        multibranch_path = multibranch_scm_prefix + "scm"
+        scm_element = element_tree.find(multibranch_path)
+        return scm_element
+
+    def _get_scm_from_branch_source(self, element_tree):
+        """Check for scm type from BranchSource"""
+        source_class = None
+        log.debug("Check BranchSource for scm type")
+        branch_source_path = ".//sources//data//jenkins.branch.BranchSource"
+        scm_element = element_tree.find(branch_source_path)
+        if not scm_element:
+            scm_element = element_tree.find(".//sources/..")
+
+        if scm_element:
+            source_class = scm_element.find(".//source")
+
+        return source_class
+
     def get_scm_type(self):
         element_tree = self._get_config_element_tree()
-        scm_element = element_tree.find("scm")
+        scm_element = element_tree.find(".//scm")
         if not scm_element:
-            multibranch_scm_prefix = "properties/org.jenkinsci.plugins.\
-                    workflow.multibranch.BranchJobProperty/branch/"
-            multibranch_path = multibranch_scm_prefix + "scm"
-            scm_element = element_tree.find(multibranch_path)
-            if scm_element:
-                # multibranch pipeline.
-                self._scm_prefix = multibranch_scm_prefix
+            scm_element = self._get_scm_from_branch_job_property(element_tree)
+        if not scm_element:
+            scm_element = self._get_scm_from_branch_source(element_tree)
+
         scm_class = scm_element.get("class") if scm_element else None
         scm = self._scm_map.get(scm_class)
         if not scm:
