@@ -366,19 +366,10 @@ MULTIBRANCH_GIT_SCM_JOB = """
 <actions/>
 <description/>
 <properties/>
-<folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.1259.v45c101731c76">
-<owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-</folderViews>
 <healthMetrics/>
 <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.1259.v45c101731c76">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
 </icon>
-<orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.1073.va_7888eb_dd514">
-<pruneDeadBranches>true</pruneDeadBranches>
-<daysToKeep>-1</daysToKeep>
-<numToKeep>-1</numToKeep>
-<abortBuilds>false</abortBuilds>
-</orphanedItemStrategy>
 <triggers/>
 <disabled>false</disabled>
 <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.1259.v45c101731c76">
@@ -453,19 +444,10 @@ MULTIBRANCH_GITHUB_SCM_JOB = """
 <actions/>
 <description/>
 <properties/>
-<folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.1259.v45c101731c76">
-<owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-</folderViews>
 <healthMetrics/>
 <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.1259.v45c101731c76">
 <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
 </icon>
-<orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.1073.va_7888eb_dd514">
-<pruneDeadBranches>true</pruneDeadBranches>
-<daysToKeep>-1</daysToKeep>
-<numToKeep>-1</numToKeep>
-<abortBuilds>false</abortBuilds>
-</orphanedItemStrategy>
 <triggers/>
 <disabled>false</disabled>
 <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.1259.v45c101731c76">
