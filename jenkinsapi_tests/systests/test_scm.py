@@ -1,23 +1,16 @@
 # '''
 # System tests for `jenkinsapi.jenkins` module.
 # '''
-# To run unittests on python 2.6 please use unittest2 library
-# try:
-# import unittest2 as unittest
-# except ImportError:
-# import unittest
 from testfixtures import compare
 from time import sleep
 
 from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi_tests.systests.job_configs import (
     SCM_GIT_JOB,
-    PIPELINE_SCM_JOB,
     MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY,
     MULTIBRANCH_GIT_SCM_JOB,
     MULTIBRANCH_GITHUB_SCM_JOB,
 )
-from jenkinsapi.custom_exceptions import NotSupportSCM
 
 
 def wait_for_job_setup(jenkins, job_name):
