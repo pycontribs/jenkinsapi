@@ -15,6 +15,18 @@ ADMIN_PASSWORD = "admin"
 
 # Extra plugins required by the systests
 PLUGIN_DEPENDENCIES = [
+    "https://updates.jenkins.io/latest/cloudbees-folder.hpi",
+    "https://updates.jenkins.io/latest/branch-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-job.hpi",
+    "https://updates.jenkins.io/latest/workflow-cps.hpi",
+    "https://updates.jenkins.io/latest/workflow-multibranch.hpi",
+    "https://updates.jenkins.io/latest/okhttp-api.hpi",
+    "https://updates.jenkins.io/latest/github-api.hpi",
+    "https://updates.jenkins.io/latest/json-path-api.hpi",
+    "https://updates.jenkins.io/latest/token-macro.hpi",
+    "https://updates.jenkins.io/latest/github.hpi",
+    "https://updates.jenkins.io/latest/jjwt-api.hpi",
+    "https://updates.jenkins.io/latest/github-branch-source.hpi",
     "https://updates.jenkins.io/latest/apache-httpcomponents-client-4-api.hpi",
     "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
     "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",

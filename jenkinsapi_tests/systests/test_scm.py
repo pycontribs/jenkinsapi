@@ -1,32 +1,73 @@
 # '''
 # System tests for `jenkinsapi.jenkins` module.
 # '''
-# To run unittests on python 2.6 please use unittest2 library
-# try:
-# import unittest2 as unittest
-# except ImportError:
-# import unittest
-# from jenkinsapi_tests.systests.base import BaseSystemTest
-# from jenkinsapi_tests.test_utils.random_strings import random_string
-# from jenkinsapi_tests.systests.job_configs import SCM_GIT_JOB
+from testfixtures import compare
+from time import sleep
 
-# # Maybe have a base class for all SCM test activites?
-# class TestSCMGit(BaseSystemTest):
-#     # Maybe it makes sense to move plugin dependencies outside the code.
-#     # Have a config to dependencies mapping from the launcher can use
-#     # to install plugins.
-#     def test_get_revision(self):
-#         job_name = 'git_%s' % random_string()
-#         job = self.jenkins.create_job(job_name, SCM_GIT_JOB)
-#         ii = job.invoke()
-#         ii.block(until='completed')
-#         self.assertFalse(ii.is_running())
-#         b = ii.get_build()
-#         try:
-#             self.assertIsInstance(b.get_revision(), basestring)
-#         except NameError:
-#             # Python3
-#             self.assertIsInstance(b.get_revision(), str)
+from jenkinsapi_tests.test_utils.random_strings import random_string
+from jenkinsapi_tests.systests.job_configs import (
+    SCM_GIT_JOB,
+    MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY,
+    MULTIBRANCH_GIT_SCM_JOB,
+    MULTIBRANCH_GITHUB_SCM_JOB,
+)
 
-# if __name__ == '__main__':
-#     unittest.main()
+
+def wait_for_job_setup(jenkins, job_name):
+    for _ in range(5):
+        for _url, name in list(jenkins.get_jobs_info()):
+            if job_name in name:
+                return True
+            else:
+                sleep(10)
+
+
+def test_get_scm_type(jenkins):
+    job_name = "git_%s" % random_string()
+    job = jenkins.create_job(job_name, SCM_GIT_JOB)
+    queueItem = job.invoke()
+    queueItem.block_until_complete()
+
+    wait_for_job_setup(jenkins, job_name)
+    compare(job.get_scm_type(), "git")
+    jenkins.delete_job(job_name)
+
+
+def test_get_scm_type_pipeline_scm_multibranch_BranchJobProperty(
+    jenkins,
+):
+    job_name = "git_%s" % random_string()
+    job = jenkins.create_job(job_name, MULTIBRANCH_GIT_BRANCH_JOB_PROPERTY)
+    queueItem = job.invoke()
+    queueItem.block_until_complete()
+    wait_for_job_setup(jenkins, job_name)
+    compare(job.get_scm_type(), "git")
+
+
+## Disabling for now, running into permissions errors
+def test_get_scm_type_pipeline_scm_multibranch_BranchSource(
+    jenkins,
+):
+    job_name = "git_%s" % random_string()
+    job = jenkins.create_multibranch_pipeline_job(
+        job_name, MULTIBRANCH_GIT_SCM_JOB
+    )
+    queueItem = job.invoke()
+    queueItem.block_until_complete()
+    wait_for_job_setup(jenkins, job_name)
+    job.invoke(block=True, delay=20)
+    compare(job[0].get_scm_type(), "git")
+
+
+def test_get_scm_type_pipeline_github_multibranch_BranchSource(
+    jenkins,
+):
+    job_name = "git_%s" % random_string()
+    job = jenkins.create_multibranch_pipeline_job(
+        job_name, MULTIBRANCH_GITHUB_SCM_JOB
+    )
+    queueItem = job.invoke()
+    queueItem.block_until_complete()
+    wait_for_job_setup(jenkins, job_name)
+    job.invoke(block=True, delay=20)
+    compare(job.get_scm_type(), "github")
