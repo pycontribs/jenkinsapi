@@ -168,27 +168,32 @@ BUILD_DATA_PIPELINE = {
     "artifacts": [],
     "building": False,
     "builtOn": "localhost",
-    "changeSets": {
-        "items": [
-            {
-                "affectedPaths": ["content/rcm/v00-rcm-xccdf.xml"],
-                "author": {
-                    "absoluteUrl": "http://jenkins_url/user/username79",
-                    "fullName": "username",
-                },
-                "commitId": "3097",
-                "timestamp": 1414398423091,
-                "date": "2014-10-27T08:27:03.091288Z",
-                "msg": "commit message",
-                "paths": [
-                    {"editType": "edit", "file": "/some/path/of/changed_file"}
-                ],
-                "revision": 3097,
-                "user": "username",
-            }
-        ],
-        "kind": None,
-    },
+    "changeSets": [
+        {
+            "items": [
+                {
+                    "affectedPaths": ["content/rcm/v00-rcm-xccdf.xml"],
+                    "author": {
+                        "absoluteUrl": "http://jenkins_url/user/username79",
+                        "fullName": "username",
+                    },
+                    "commitId": "3097",
+                    "timestamp": 1414398423091,
+                    "date": "2014-10-27T08:27:03.091288Z",
+                    "msg": "commit message",
+                    "paths": [
+                        {
+                            "editType": "edit",
+                            "file": "/some/path/of/changed_file",
+                        }
+                    ],
+                    "revision": 3097,
+                    "user": "username",
+                }
+            ],
+            "kind": None,
+        }
+    ],
     "culprits": [],
     "description": "Best build ever!",
     "duration": 5782,
