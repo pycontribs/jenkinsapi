@@ -388,9 +388,13 @@ class Build(JenkinsBase):
         Return a bool, true if the build was good.
         If the build is still running, return False.
         """
-        return (not self.is_running()) and self._data[
-            "result"
-        ] == STATUS_SUCCESS
+        # return (not self.is_running()) and self._data[
+        #     "result"
+        # ] == STATUS_SUCCESS
+        if self.is_running():
+            return False
+        self._data = self._poll()
+        return self._data["result"] == STATUS_SUCCESS
 
     def block_until_complete(self, delay: int = 15) -> None:
         count: int = 0
