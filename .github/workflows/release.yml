@@ -19,6 +19,10 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Install dependencies
+        run: |
+          sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
       - name: Set pyproject.toml version from release tag
         run: |
           uv version "${GITHUB_REF##*/}"
