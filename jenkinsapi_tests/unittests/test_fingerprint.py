@@ -59,7 +59,6 @@ def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
         allow_redirects=True,  # pylint: disable=unused-argument
         stream=False,
     ):  # pylint: disable=unused-argument
-
         return FakeResponse()
 
     monkeypatch.setattr(Requester, "get_url", fake_get_url)
@@ -89,7 +88,6 @@ def test_invalid_for_401(jenkins, dummy_md5, monkeypatch):
         allow_redirects=True,  # pylint: disable=unused-argument
         stream=False,
     ):  # pylint: disable=unused-argument
-
         return FakeResponse()
 
     monkeypatch.setattr(Requester, "get_url", fake_get_url)

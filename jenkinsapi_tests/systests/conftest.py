@@ -1,6 +1,8 @@
 import os
 import logging
 import pytest
+import time
+import requests
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
@@ -13,59 +15,59 @@ ADMIN_PASSWORD = "admin"
 
 # Extra plugins required by the systests
 PLUGIN_DEPENDENCIES = [
-    "http://updates.jenkins.io/latest/"
-    "apache-httpcomponents-client-4-api.hpi",
-    "http://updates.jenkins.io/latest/jsch.hpi",
-    "http://updates.jenkins.io/latest/gson-api.hpi",
-    "http://updates.jenkins.io/latest/trilead-api.hpi",
-    "http://updates.jenkins.io/latest/workflow-api.hpi",
-    "http://updates.jenkins.io/latest/display-url-api.hpi",
-    "http://updates.jenkins.io/latest/workflow-step-api.hpi",
-    "http://updates.jenkins.io/latest/workflow-scm-step.hpi",
-    "http://updates.jenkins.io/latest/junit.hpi",
-    "http://updates.jenkins.io/latest/script-security.hpi",
-    "http://updates.jenkins.io/latest/matrix-project.hpi",
-    "http://updates.jenkins.io/latest/credentials.hpi",
-    "http://updates.jenkins.io/latest/variant.hpi",
-    "http://updates.jenkins.io/latest/ssh-credentials.hpi",
-    "http://updates.jenkins.io/latest/asm-api.hpi",
-    "http://updates.jenkins.io/latest/scm-api.hpi",
-    "http://updates.jenkins.io/latest/mailer.hpi",
-    "http://updates.jenkins.io/latest/git.hpi",
-    "http://updates.jenkins.io/latest/git-client.hpi",
-    "http://updates.jenkins.io/latest/jakarta-mail-api.hpi",
-    "https://updates.jenkins.io/latest/nested-view.hpi",
+    "https://updates.jenkins.io/latest/apache-httpcomponents-client-4-api.hpi",
+    "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
+    "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
+    "https://updates.jenkins.io/latest/jsch.hpi",
+    "https://updates.jenkins.io/latest/gson-api.hpi",
+    "https://updates.jenkins.io/latest/trilead-api.hpi",
+    "https://updates.jenkins.io/latest/bouncycastle-api.hpi",
     "https://updates.jenkins.io/latest/ssh-slaves.hpi",
+    "https://updates.jenkins.io/latest/instance-identity.hpi",
+    "https://updates.jenkins.io/latest/bootstrap5-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-api.hpi",
+    "https://updates.jenkins.io/latest/display-url-api.hpi",
+    "https://updates.jenkins.io/latest/eddsa-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-step-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-scm-step.hpi",
+    "https://updates.jenkins.io/latest/antisamy-markup-formatter.hpi",
+    "https://updates.jenkins.io/latest/prism-api.hpi",
+    "https://updates.jenkins.io/latest/junit.hpi",
+    "https://updates.jenkins.io/latest/script-security.hpi",
+    "https://updates.jenkins.io/latest/matrix-project.hpi",
+    "https://updates.jenkins.io/latest/credentials.hpi",
+    "https://updates.jenkins.io/latest/variant.hpi",
+    "https://updates.jenkins.io/latest/ssh-credentials.hpi",
+    "https://updates.jenkins.io/latest/asm-api.hpi",
+    "https://updates.jenkins.io/latest/scm-api.hpi",
+    "https://updates.jenkins.io/latest/git.hpi",
+    "https://updates.jenkins.io/latest/git-client.hpi",
+    "https://updates.jenkins.io/latest/jakarta-mail-api.hpi",
+    "https://updates.jenkins.io/latest/nested-view.hpi",
     "https://updates.jenkins.io/latest/structs.hpi",
-    "http://updates.jenkins.io/latest/plain-credentials.hpi",
-    "http://updates.jenkins.io/latest/envinject.hpi",
-    "http://updates.jenkins.io/latest/envinject-api.hpi",
-    "http://updates.jenkins.io/latest/jdk-tool.hpi",
-    "http://updates.jenkins.io/latest/credentials-binding.hpi",
-    "http://updates.jenkins.io/latest/jakarta-activation-api.hpi",
-    "http://updates.jenkins.io/latest/caffeine-api.hpi",
-    "http://updates.jenkins.io/latest/script-security.hpi",
-    "http://updates.jenkins.io/latest/checks-api.hpi",
-    "http://updates.jenkins.io/latest/json-api.hpi",
-    "http://updates.jenkins.io/latest/jackson2-api.hpi",
-    "http://updates.jenkins.io/latest/bootstrap5-api.hpi",
-    "http://updates.jenkins.io/latest/echarts-api.hpi",
-    "http://updates.jenkins.io/latest/ionicons-api.hpi",
-    "http://updates.jenkins.io/latest/plugin-util-api.hpi",
-    "http://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
-    "http://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
-    "http://updates.jenkins.io/latest/font-awesome-api.hpi",
-    "http://updates.jenkins.io/latest/popper2-api.hpi",
-    "http://updates.jenkins.io/latest/commons-text-api.hpi",
-    "http://updates.jenkins.io/latest/commons-lang3-api.hpi",
-    "http://updates.jenkins.io/latest/plugin-util-api.hpi",
-    "http://updates.jenkins.io/latest/snakeyaml-api.hpi",
-    "http://updates.jenkins.io/latest/workflow-support.hpi",
-    "http://updates.jenkins.io/latest/jquery3-api.hpi",
-    "http://updates.jenkins.io/latest/checks-api.hpi",
-    "http://updates.jenkins.io/latest/javax-activation-api.hpi",
-    "http://updates.jenkins.io/latest/jaxb.hpi",
-    "http://updates.jenkins.io/latest/instance-identity.hpi",
+    "https://updates.jenkins.io/latest/plain-credentials.hpi",
+    "https://updates.jenkins.io/latest/envinject.hpi",
+    "https://updates.jenkins.io/latest/envinject-api.hpi",
+    "https://updates.jenkins.io/latest/jdk-tool.hpi",
+    "https://updates.jenkins.io/latest/credentials-binding.hpi",
+    "https://updates.jenkins.io/latest/jakarta-activation-api.hpi",
+    "https://updates.jenkins.io/latest/caffeine-api.hpi",
+    "https://updates.jenkins.io/latest/checks-api.hpi",
+    "https://updates.jenkins.io/latest/json-api.hpi",
+    "https://updates.jenkins.io/latest/jakarta-xml-bind-api.hpi",
+    "https://updates.jenkins.io/latest/jackson2-api.hpi",
+    "https://updates.jenkins.io/latest/echarts-api.hpi",
+    "https://updates.jenkins.io/latest/ionicons-api.hpi",
+    "https://updates.jenkins.io/latest/plugin-util-api.hpi",
+    "https://updates.jenkins.io/latest/font-awesome-api.hpi",
+    "https://updates.jenkins.io/latest/commons-text-api.hpi",
+    "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
+    "https://updates.jenkins.io/latest/snakeyaml-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-support.hpi",
+    "https://updates.jenkins.io/latest/jquery3-api.hpi",
+    "https://updates.jenkins.io/latest/javax-activation-api.hpi",
+    "https://updates.jenkins.io/latest/jaxb.hpi",
+    "https://updates.jenkins.io/latest/mailer.hpi",
 ]
 
 
@@ -104,9 +106,7 @@ instance.setSecurityRealm(hudsonRealm)
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
-    """.format(
-        ADMIN_USER, ADMIN_PASSWORD
-    )
+    """.format(ADMIN_USER, ADMIN_PASSWORD)
 
     url = launched_jenkins.jenkins_url
     jenkins_instance = Jenkins(url)
@@ -152,11 +152,26 @@ def launched_jenkins():
     launcher.stop()
 
 
+def ensure_jenkins_up(url, timeout=30):
+    timeout = 30
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            resp = requests.get(url)
+            if resp.status_code == 200:
+                return
+        except Exception as err:
+            print("Exception connecting to jenkins", err)
+        time.sleep(2)
+    pytest.exit("Jenkins didnt become available to call")
+
+
 @pytest.fixture(scope="function")
 def jenkins(launched_jenkins):
     url = launched_jenkins.jenkins_url
 
     jenkins_instance = Jenkins(url, timeout=30)
+    ensure_jenkins_up(url, timeout=30)
 
     _delete_all_jobs(jenkins_instance)
     _delete_all_views(jenkins_instance)
@@ -179,9 +194,7 @@ def lazy_jenkins(launched_jenkins):
 
 
 @pytest.fixture(scope="function")
-def jenkins_admin_admin(
-    launched_jenkins, jenkins
-):  # pylint: disable=unused-argument
+def jenkins_admin_admin(launched_jenkins, jenkins):  # pylint: disable=unused-argument
     # Using "jenkins" fixture makes sure that jobs/views/credentials are
     # cleaned before security is enabled.
     url = launched_jenkins.jenkins_url

@@ -269,6 +269,27 @@ class Node(JenkinsBase):
                     % (data["offline"], data["temporarilyOffline"])
                 )
 
+    def launch(self) -> None:
+        """
+        Tries to launch a connection with the slave if it is currently
+        disconnected. Because launching a connection with the slave does not
+        mean it is online (a slave can be launched, but set offline), this
+        function does not check if the launch was successful.
+        """
+        if not self._data["launchSupported"]:
+            raise AssertionError("The node does not support manually launch.")
+
+        if not self._data["manualLaunchAllowed"]:
+            raise AssertionError(
+                "It is not allowed to manually launch this node."
+            )
+
+        url = self.baseurl + "/launchSlaveAgent"
+        html_result = self.jenkins.requester.post_and_confirm_status(
+            url, data={}
+        )
+        log.debug(html_result)
+
     def toggle_temporarily_offline(
         self, message="requested from jenkinsapi"
     ) -> None:
@@ -358,7 +379,7 @@ class Node(JenkinsBase):
         if self.name == "Built-In Node":
             raise JenkinsAPIException("Built-In node does not have config.xml")
 
-        self.jenkins.requester.post_and_confirm_status(
+        self.jenkins.requester.post_xml_and_confirm_status(
             "%(baseurl)s/config.xml" % self.__dict__, data=config_xml
         )
 
@@ -368,6 +389,55 @@ class Node(JenkinsBase):
         separated by the ' ' character.
         """
         return self.get_config_element("label")
+
+    def add_labels(self, labels: str | list, dryRun: bool = False) -> None:
+        """Adds new label(s) to a node"""
+        if isinstance(labels, str):
+            labels = labels.split()
+        current_labels = self.get_labels() or ""
+        log.info("Current Node Labels: %s", current_labels)
+        current_labels_set = set(current_labels.split())
+        updated_labels_set = current_labels_set.union(labels)
+        updated_labels = " ".join(sorted(updated_labels_set))
+        log.info("Updated Node Labels: %s", updated_labels)
+        if not dryRun:
+            self.set_config_element("label", updated_labels)
+            self.poll()
+
+    def modify_labels(
+        self, new_labels: str | list[str], dryRun: bool = False
+    ) -> None:
+        """
+        Replaces the current node labels with new label(s).
+
+        :param new_labels: A string of space-separated labels or a list of labels to set.
+        """
+        if isinstance(new_labels, list):
+            new_labels = " ".join(new_labels)
+        log.info("Setting node labels to: %s", new_labels)
+        if not dryRun:
+            self.set_config_element("label", new_labels)
+            self.poll()
+
+    def delete_labels(
+        self, labels_to_remove: str | list[str], dryRun: bool = False
+    ) -> None:
+        """
+        Removes label(s) from the node.
+
+        :param labels_to_remove: A string of space-separated labels or a list of labels to remove.
+        """
+        if isinstance(labels_to_remove, str):
+            labels_to_remove = labels_to_remove.split()
+        log.info("Removing labels %s from Node", labels_to_remove)
+        current_labels = self.get_labels() or ""
+        current_labels_set = set(current_labels.split())
+        updated_labels_set = current_labels_set.difference(labels_to_remove)
+        updated_labels = " ".join(sorted(updated_labels_set))
+        log.info("Updated Node Labels: %s", updated_labels)
+        if not dryRun:
+            self.set_config_element("label", updated_labels)
+            self.poll()
 
     def get_num_executors(self) -> str:
         try:

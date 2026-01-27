@@ -2,7 +2,6 @@
 Search for job artifacts using regexp
 """
 
-from __future__ import print_function
 import re
 from jenkinsapi.api import search_artifact_by_regexp
 

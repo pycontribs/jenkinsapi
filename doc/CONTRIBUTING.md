@@ -1,12 +1,20 @@
-Rules for Contributors
-======================
+Contributing
+============
 
 The JenkinsAPI project welcomes contributions via GitHub. Please bear in mind the following guidelines when preparing your pull-request.
+
+Pre-commit
+----------
+Ensure pre-commit has been setup prior to comitting
+
+Build the Docs
+--------------
+From within doc: make && python -m http.server --directory html
 
 Python compatibility
 --------------------
 
-The project currently targets Python 3.8+. Last version compatible with Python 2.7 is tagged as Py2.
+The project currently targets Python 3.9+.
 
 Code formatting
 ---------------

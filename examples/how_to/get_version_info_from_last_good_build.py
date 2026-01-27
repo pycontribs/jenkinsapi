@@ -2,7 +2,6 @@
 Extract version information from the latest build.
 """
 
-from __future__ import print_function
 from jenkinsapi.jenkins import Jenkins
 
 

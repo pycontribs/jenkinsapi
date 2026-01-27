@@ -1,20 +1,34 @@
-jenkinsapi
+Jenkinsapi
 ==========
 
 .. image:: https://badge.fury.io/py/jenkinsapi.png
     :target: http://badge.fury.io/py/jenkinsapi
 
-.. image:: https://codecov.io/gh/pycontribs/jenkinsapi/branch/master/graph/badge.svg
-        :target: https://codecov.io/gh/pycontribs/jenkinsapi
+Installation
+------------
+
+.. code-block:: bash
+
+    pip install jenkinsapi
+
+Important Links
+---------------
+* `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
+* `Source Code <https://github.com/pycontribs/jenkinsapi>`_
+* `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
+* `Releases <https://pypi.org/project/jenkinsapi/#history>`_
+
 
 About this library
 -------------------
 
-Jenkins is the market leading continuous integration system, originally created by Kohsuke Kawaguchi.
+Jenkins is the market leading continuous integration system.
 
 Jenkins (and its predecessor Hudson) are useful projects for automating common development tasks (e.g. unit-testing, production batches) - but they are somewhat Java-centric.
-| Jenkinsapi makes scripting Jenkins tasks a breeze by wrapping the REST api into familiar python objects.
-| Here is a list of some of the most commonly used functionality
+
+Jenkinsapi makes scripting Jenkins tasks a breeze by wrapping the REST api into familiar python objects.
+
+Here is a list of some of the most commonly used functionality
 
 * Add, remove, and query Jenkins jobs
 * Control pipeline execution
@@ -32,89 +46,46 @@ Jenkins (and its predecessor Hudson) are useful projects for automating common d
 * Authentication support for username and password
 * Manage jenkins and plugin installation
 
-Full library capabilities are outlined in the `Documentation <http://jenkinsapi.readthedocs.io/en/latest/index.html>`_
+Full library capabilities are outlined in the `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
+
+Get details of jobs running on Jenkins server
+---------------------------------------------
+
+.. code-block:: python
+
+    """Get job details of each job that is running on the Jenkins instance"""
+    def get_job_details():
+        # Refer Example #1 for definition of function 'get_server_instance'
+        server = get_server_instance()
+        for job_name, job_instance in server.get_jobs():
+            print 'Job Name:%s' % (job_instance.name)
+            print 'Job Description:%s' % (job_instance.get_description())
+            print 'Is Job running:%s' % (job_instance.is_running())
+            print 'Is Job enabled:%s' % (job_instance.is_enabled())
+
+Disable/Enable a Jenkins Job
+----------------------------
+
+.. code-block:: python
+
+    def disable_job():
+        """Disable a Jenkins job"""
+        # Refer Example #1 for definition of function 'get_server_instance'
+        server = get_server_instance()
+        job_name = 'nightly-build-job'
+        if (server.has_job(job_name)):
+            job_instance = server.get_job(job_name)
+            job_instance.disable()
+            print 'Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled())
+
+Use the call ``job_instance.enable()`` to enable a Jenkins Job.
 
 
 Known issues
 ------------
 * Job deletion operations fail unless Cross-Site scripting protection is disabled.
-| For other issues, please refer to the `support URL <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 
-Important Links
----------------
-* `Support and bug-reports <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
-* `Source Code <https://github.com/pycontribs/jenkinsapi>`_
-* `Documentation <https://jenkinsapi.readthedocs.org/en/latest/>`_
-* `Releases <http://pypi.python.org/pypi/jenkinsapi>`_
-
-Installation
--------------
-
-Egg-files for this project are hosted on PyPi. Most Python users should be able to use pip or setuptools to automatically install this project.
-
-Using Pip or Setuptools
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Most users can do the following:
-
-.. code-block:: bash
-
-	pip install jenkinsapi
-
-Or:
-
-.. code-block:: bash
-
-	easy_install jenkinsapi
-
-Both of these techniques can be combined with virtualenv to create an application-specific installation.
-
-Using your operating-system's package manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ubuntu users can now use apt to install this package:
-
-.. code-block:: bash
-
-    apt-get install python-jenkinsapi
-
-Beware that this technique will get a somewhat older version of Jenkinsapi.
-
-Example
--------
-
-JenkinsAPI is intended to map the objects in Jenkins (e.g. Builds, Views, Jobs) into easily managed Python objects:
-
-.. code-block:: python
-
-	from jenkinsapi.jenkins import Jenkins
-	J = Jenkins('http://localhost:8080')
-	print(J.version) # 1.542
-	print(J.keys()) # foo, test_jenkinsapi
-	print(J.get('test_jenkinsapi')) # <jenkinsapi.job.Job test_jenkinsapi>
-	print(J.get('test_jenkinsapi').get_last_good_build()) # <jenkinsapi.build.Build test_jenkinsapi #77>
-
-More examples available on `Github <https://github.com/pycontribs/jenkinsapi/tree/master/examples>`_
-
-Testing
--------
-
-If you have installed the test dependencies on your system already, you can run
-the testsuite with the following command:
-
-.. code-block:: bash
-
-    uv python sync
-    uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
-
-Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
-missing test dependencies:
-
-.. code-block:: bash
-
-    uv venv
-    uv python install
-    uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+For other issues, please refer to the `support URL <https://github.com/pycontribs/jenkinsapi/issues?direction=desc&sort=comments&state=open>`_
 
 Development
 -----------
@@ -139,7 +110,7 @@ Python versions
 
 The project has been tested against Python versions:
 
-* 3.8 - 3.13
+* 3.9 - 3.13
 
 Jenkins versions
 ----------------
@@ -165,4 +136,4 @@ Project Contributors
 
 Please do not contact these contributors directly for support questions! Use the GitHub tracker instead.
 
-.. _Java: https://www.oracle.com/java/technologies/downloads/#java17
+.. _Java: https://www.oracle.com/java/technologies/downloads/#java21

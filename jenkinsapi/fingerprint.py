@@ -26,7 +26,7 @@ class Fingerprint(JenkinsBase):
     def __init__(self, baseurl: str, id_: str, jenkins_obj: "Jenkins") -> None:
         self.jenkins_obj: "Jenkins" = jenkins_obj
         assert self.RE_MD5.search(id_), (
-            "%s does not look like " "a valid id" % id_
+            "%s does not look like a valid id" % id_
         )
         url: str = f"{baseurl}/fingerprint/{id_}/"
 
