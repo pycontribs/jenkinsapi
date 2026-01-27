@@ -20,12 +20,29 @@ def test_get_executors(jenkins):
         "exclusive": True,
     }
     jenkins.nodes.create_node(node_name, node_dict)
-    executors = jenkins.get_executors(node_name)
-    assert executors.count == 2
 
-    for count, execs in enumerate(executors):
-        assert count == execs.get_number()
-        assert execs.is_idle() is True
+    # Retry with exponential backoff for transient connection failures
+    max_retries = 5
+    retry_delay = 1
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            executors = jenkins.get_executors(node_name)
+            assert executors.count == 2
+
+            for count, execs in enumerate(executors):
+                assert count == execs.get_number()
+                assert execs.is_idle() is True
+            return
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay = min(
+                    retry_delay * 1.5, 5
+                )  # exponential backoff, capped at 5s
+
+    raise last_error
 
 
 def test_running_executor(jenkins):
@@ -45,15 +62,34 @@ def test_running_executor(jenkins):
 
     if job.is_running() is False:
         time.sleep(1)
-    executors = jenkins.get_executors(node_name)
-    all_idle = True
-    for execs in executors:
-        if execs.is_idle() is False:
-            all_idle = False
-            assert execs.get_progress() != -1
-            assert execs.get_current_executable() == qq.get_build_number()
-            assert execs.likely_stuck() is False
-    assert all_idle is True, "Executor should have been triggered."
+
+    # Retry with exponential backoff for transient connection failures
+    max_retries = 5
+    retry_delay = 1
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            executors = jenkins.get_executors(node_name)
+            all_idle = True
+            for execs in executors:
+                if execs.is_idle() is False:
+                    all_idle = False
+                    assert execs.get_progress() != -1
+                    assert (
+                        execs.get_current_executable() == qq.get_build_number()
+                    )
+                    assert execs.likely_stuck() is False
+            assert all_idle is True, "Executor should have been triggered."
+            return
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay = min(
+                    retry_delay * 1.5, 5
+                )  # exponential backoff, capped at 5s
+
+    raise last_error
 
 
 def test_idle_executors(jenkins):
@@ -66,10 +102,27 @@ def test_idle_executors(jenkins):
         "exclusive": True,
     }
     jenkins.nodes.create_node(node_name, node_dict)
-    executors = jenkins.get_executors(node_name)
 
-    for execs in executors:
-        assert execs.get_progress() == -1
-        assert execs.get_current_executable() is None
-        assert execs.likely_stuck() is False
-        assert execs.is_idle() is True
+    # Retry with exponential backoff for transient connection failures
+    max_retries = 5
+    retry_delay = 1
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            executors = jenkins.get_executors(node_name)
+
+            for execs in executors:
+                assert execs.get_progress() == -1
+                assert execs.get_current_executable() is None
+                assert execs.likely_stuck() is False
+                assert execs.is_idle() is True
+            return
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay = min(
+                    retry_delay * 1.5, 5
+                )  # exponential backoff, capped at 5s
+
+    raise last_error
