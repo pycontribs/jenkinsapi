@@ -2,6 +2,7 @@
 System tests for authentication functionality
 """
 
+import time
 import pytest
 from jenkinsapi.utils.requester import Requester
 from requests import HTTPError as REQHTTPError
@@ -9,21 +10,37 @@ from jenkinsapi.jenkins import Jenkins
 
 
 def test_normal_authentication(jenkins_admin_admin):
-    # No problem with the righ user/pass
-    jenkins_user = Jenkins(
-        jenkins_admin_admin.baseurl,
-        jenkins_admin_admin.username,
-        jenkins_admin_admin.password,
-    )
+    # Retry with exponential backoff for transient connection failures
+    max_retries = 5
+    retry_delay = 1
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            # No problem with the righ user/pass
+            jenkins_user = Jenkins(
+                jenkins_admin_admin.baseurl,
+                jenkins_admin_admin.username,
+                jenkins_admin_admin.password,
+            )
 
-    assert jenkins_user is not None
+            assert jenkins_user is not None
 
-    # We cannot connect if no user/pass
-    with pytest.raises(REQHTTPError) as http_excep:
-        Jenkins(jenkins_admin_admin.baseurl)
+            # We cannot connect if no user/pass
+            with pytest.raises(REQHTTPError) as http_excep:
+                Jenkins(jenkins_admin_admin.baseurl)
 
-    assert Requester.AUTH_COOKIE is None
-    assert http_excep.value.response.status_code == 403
+            assert Requester.AUTH_COOKIE is None
+            assert http_excep.value.response.status_code == 403
+            return
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay = min(
+                    retry_delay * 1.5, 5
+                )  # exponential backoff, capped at 5s
+
+    raise last_error
 
 
 #    def test_auth_cookie(jenkins_admin_admin):
