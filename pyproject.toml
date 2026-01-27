@@ -66,17 +66,11 @@ upload-dir = "doc/build/html"
 [tool.distutils.bdist_wheel]
 universal = 1
 
-[tool.pycodestyle]
-exclude = ".tox,doc/source/conf.py,build,.venv,.eggs"
-max-line-length = "99"
-
 [dependency-groups]
 dev = [
     "pytest-mock>=3.14.0",
     "pytest>=8.3.4",
     "pytest-cov>=4.0.0",
-    "pycodestyle>=2.3.1",
-    "tox>=2.3.1",
     "mock>=5.1.0",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
