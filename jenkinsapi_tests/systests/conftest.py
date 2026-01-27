@@ -186,8 +186,6 @@ def jenkins(launched_jenkins):
                     f"Cleanup attempt {attempt + 1} failed, retrying: {e}"
                 )
                 time.sleep(2)
-            else:
-                raise
 
     return jenkins_instance
 
