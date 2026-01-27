@@ -15,7 +15,7 @@ repos:
       - id: check-yaml
         files: .*\.(yaml|yml)$
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.4 # Use latest Ruff version
+    rev: v0.14.14 # Use latest Ruff version
     hooks:
       - id: ruff-check
         args: [ --fix ]
