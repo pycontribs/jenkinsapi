@@ -25,8 +25,6 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException, PostRequired
 # requests_log.setLevel(logging.DEBUG)
 # requests_log.propagate = True
 
-requests.adapters.DEFAULT_RETRIES = 5
-
 
 class Requester(object):
     """
