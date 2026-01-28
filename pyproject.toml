@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jenkinsapi"
-version = "0.3.17"
+version = "0.3.19"
 authors = [
     {name = "Salim Fadhley", email = "salimfadhley@gmail.com"},
     {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
