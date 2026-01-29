@@ -339,3 +339,27 @@ JOB_WITH_ENV_VARS = """\
   </buildWrappers>
 </project>
 """.strip()
+
+PIPELINE_SCM_CONF_TEST_PARAMS = {
+    "scm_class": "hudson.plugins.git.GitSCM",
+    "git_url": "https://example.com/sairk/pipeline-test.git",
+}
+
+PIPELINE_SCM_JOB = f"""<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+    <scm class="{PIPELINE_SCM_CONF_TEST_PARAMS["scm_class"]}">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>{PIPELINE_SCM_CONF_TEST_PARAMS["git_url"]}</url>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>main</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+    </scm>
+  </definition>
+</flow-definition>"""
