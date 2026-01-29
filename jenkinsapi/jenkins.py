@@ -22,6 +22,7 @@ from jenkinsapi.credentials import CredentialsById
 from jenkinsapi.executors import Executors
 from jenkinsapi.jobs import Jobs
 from jenkinsapi.job import Job
+from jenkinsapi.lockable_resources import LockableResources
 from jenkinsapi.view import View
 from jenkinsapi.label import Label
 from jenkinsapi.node import Node
@@ -779,3 +780,6 @@ class Jenkins(JenkinsBase):
         opener = build_opener(SmartRedirectHandler())
         res = opener.open(request)
         Requester.AUTH_COOKIE = res.cookie
+
+    def get_lockable_resources(self) -> LockableResources:
+        return LockableResources(self)
