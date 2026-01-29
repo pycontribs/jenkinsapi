@@ -1,10 +1,10 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "jenkinsapi"
-version = "0.3.15"
+version = "0.3.19"
 authors = [
     {name = "Salim Fadhley", email = "salimfadhley@gmail.com"},
     {name = "Aleksey Maksimov", email = "ctpeko3a@gmail.com"},
@@ -33,6 +33,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
 ]
@@ -44,7 +45,9 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["jenkinsapi", "jenkinsapi_utils", "jenkinsapi_tests"]
-include-package-data = false
+
+[tool.uv.build-backend.data]
+jenkinsapi_tests = "jenkinsapi_tests"
 
 [tool.pbr]
 warnerrors = "True"
@@ -64,21 +67,12 @@ upload-dir = "doc/build/html"
 [tool.distutils.bdist_wheel]
 universal = 1
 
-[tool.pycodestyle]
-exclude = ".tox,doc/source/conf.py,build,.venv,.eggs"
-max-line-length = "99"
-
 [dependency-groups]
 dev = [
     "pytest-mock>=3.14.0",
     "pytest>=8.3.4",
     "pytest-cov>=4.0.0",
-    "pycodestyle>=2.3.1",
-    "astroid>=1.4.8",
-    "pylint>=1.7.1",
-    "tox>=2.3.1",
     "mock>=5.1.0",
-    "codecov>=2.1.13",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
 ]

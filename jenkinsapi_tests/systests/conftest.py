@@ -1,6 +1,8 @@
 import os
 import logging
 import pytest
+import time
+import requests
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
@@ -28,6 +30,8 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/eddsa-api.hpi",
     "https://updates.jenkins.io/latest/workflow-step-api.hpi",
     "https://updates.jenkins.io/latest/workflow-scm-step.hpi",
+    "https://updates.jenkins.io/latest/antisamy-markup-formatter.hpi",
+    "https://updates.jenkins.io/latest/prism-api.hpi",
     "https://updates.jenkins.io/latest/junit.hpi",
     "https://updates.jenkins.io/latest/script-security.hpi",
     "https://updates.jenkins.io/latest/matrix-project.hpi",
@@ -48,9 +52,9 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/credentials-binding.hpi",
     "https://updates.jenkins.io/latest/jakarta-activation-api.hpi",
     "https://updates.jenkins.io/latest/caffeine-api.hpi",
-    "https://updates.jenkins.io/latest/script-security.hpi",
     "https://updates.jenkins.io/latest/checks-api.hpi",
     "https://updates.jenkins.io/latest/json-api.hpi",
+    "https://updates.jenkins.io/latest/jakarta-xml-bind-api.hpi",
     "https://updates.jenkins.io/latest/jackson2-api.hpi",
     "https://updates.jenkins.io/latest/echarts-api.hpi",
     "https://updates.jenkins.io/latest/ionicons-api.hpi",
@@ -58,14 +62,11 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/font-awesome-api.hpi",
     "https://updates.jenkins.io/latest/commons-text-api.hpi",
     "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
-    "https://updates.jenkins.io/latest/plugin-util-api.hpi",
     "https://updates.jenkins.io/latest/snakeyaml-api.hpi",
     "https://updates.jenkins.io/latest/workflow-support.hpi",
     "https://updates.jenkins.io/latest/jquery3-api.hpi",
-    "https://updates.jenkins.io/latest/checks-api.hpi",
     "https://updates.jenkins.io/latest/javax-activation-api.hpi",
     "https://updates.jenkins.io/latest/jaxb.hpi",
-    "https://updates.jenkins.io/latest/instance-identity.hpi",
     "https://updates.jenkins.io/latest/mailer.hpi",
     "https://updates.jenkins.io/latest/data-tables-api.hpi",
     "https://updates.jenkins.io/latest/lockable-resources.hpi",
@@ -153,15 +154,40 @@ def launched_jenkins():
     launcher.stop()
 
 
+def ensure_jenkins_up(url, timeout=60):
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            resp = requests.get(url, timeout=5)
+            if resp.status_code == 200:
+                return
+        except Exception as err:
+            print("Exception connecting to jenkins", err)
+        time.sleep(2)
+    pytest.exit("Jenkins didnt become available to call")
+
+
 @pytest.fixture(scope="function")
 def jenkins(launched_jenkins):
     url = launched_jenkins.jenkins_url
 
-    jenkins_instance = Jenkins(url, timeout=30)
+    jenkins_instance = Jenkins(url, timeout=60)
+    ensure_jenkins_up(url, timeout=60)
 
-    _delete_all_jobs(jenkins_instance)
-    _delete_all_views(jenkins_instance)
-    _delete_all_credentials(jenkins_instance)
+    # Retry cleanup operations to handle transient connection issues
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            _delete_all_jobs(jenkins_instance)
+            _delete_all_views(jenkins_instance)
+            _delete_all_credentials(jenkins_instance)
+            break
+        except Exception as e:
+            if attempt < max_retries - 1:
+                log.warning(
+                    f"Cleanup attempt {attempt + 1} failed, retrying: {e}"
+                )
+                time.sleep(2)
 
     return jenkins_instance
 

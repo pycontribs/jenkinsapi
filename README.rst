@@ -4,9 +4,6 @@ Jenkinsapi
 .. image:: https://badge.fury.io/py/jenkinsapi.png
     :target: http://badge.fury.io/py/jenkinsapi
 
-.. image:: https://codecov.io/gh/pycontribs/jenkinsapi/branch/master/graph/badge.svg
-        :target: https://codecov.io/gh/pycontribs/jenkinsapi
-
 Installation
 ------------
 
@@ -113,7 +110,7 @@ Python versions
 
 The project has been tested against Python versions:
 
-* 3.9 - 3.13
+* 3.9 - 3.14
 
 Jenkins versions
 ----------------
