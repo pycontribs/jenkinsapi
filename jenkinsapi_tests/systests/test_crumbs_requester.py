@@ -90,22 +90,38 @@ def crumbed_jenkins(jenkins):
 
 
 def test_invoke_job_with_file(crumbed_jenkins):
-    file_data = random_string()
-    param_file = io.BytesIO(file_data.encode("utf-8"))
+    # Retry with exponential backoff for transient connection failures
+    max_retries = 5
+    retry_delay = 1
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            file_data = random_string()
+            param_file = io.BytesIO(file_data.encode("utf-8"))
 
-    job_name = "create1_%s" % random_string()
-    job = crumbed_jenkins.create_job(job_name, JOB_WITH_FILE)
+            job_name = "create1_%s" % random_string()
+            job = crumbed_jenkins.create_job(job_name, JOB_WITH_FILE)
 
-    assert job.has_params()
-    assert len(job.get_params_list())
+            assert job.has_params()
+            assert len(job.get_params_list())
 
-    job.invoke(block=True, files={"file.txt": param_file})
+            job.invoke(block=True, files={"file.txt": param_file})
 
-    build = job.get_last_build()
-    while build.is_running():
-        time.sleep(0.25)
+            build = job.get_last_build()
+            while build.is_running():
+                time.sleep(0.25)
 
-    artifacts = build.get_artifact_dict()
-    assert isinstance(artifacts, dict) is True
-    art_file = artifacts["file.txt"]
-    assert art_file.get_data().decode("utf-8").strip() == file_data
+            artifacts = build.get_artifact_dict()
+            assert isinstance(artifacts, dict) is True
+            art_file = artifacts["file.txt"]
+            assert art_file.get_data().decode("utf-8").strip() == file_data
+            return
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+                retry_delay = min(
+                    retry_delay * 1.5, 5
+                )  # exponential backoff, capped at 5s
+
+    raise last_error
