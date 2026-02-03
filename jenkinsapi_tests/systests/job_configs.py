@@ -140,7 +140,7 @@ JOB_WITH_ARTIFACTS = """
   <builders>
     <hudson.tasks.Shell>
       <command>ping -c 10 127.0.0.1 > out.txt
-(gzip -c &lt; out.txt &gt; out.gz) || (cp out.txt out.gz)</command>
+gzip &lt; out.txt &gt; out.gz</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>

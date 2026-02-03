@@ -25,6 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@61cb8a9741eeb8a550a1b8544337180c0fc8476b # v7.2.0
+        with:
+          python-version: '3.13'
+
+      - name: Install python
+        run: uv python install
+
       - name: Log in to GitHub Container Registry
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
@@ -54,25 +62,13 @@ jobs:
             sleep 5
           done
 
-      - name: Run pytest against test image
-        run: |
-          # Install uv and dependencies
-          pip install --upgrade uv
-          sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
 
-          # Set Docker image as test target
-          export JENKINSAPI_DOCKER_IMAGE="jenkinsapi-jenkins:test"
-
-          # Calculate number of workers (1/3 of available CPUs)
-          NUM_WORKERS=$(( $(nproc) / 3 ))
-          [ $NUM_WORKERS -lt 1 ] && NUM_WORKERS=1
-
-          # Run tests in parallel
-          uv run pytest -n $NUM_WORKERS -sv --cov=jenkinsapi --cov-report=term-missing jenkinsapi_tests || {
-            echo "Tests failed against new image"
-            docker logs jenkins-test
-            exit 1
-          }
+      - name: Run tests against test image
+        run: make coverage-parallel
+        env:
+          JENKINSAPI_DOCKER_IMAGE: jenkinsapi-jenkins:test
 
       - name: Cleanup test container
         if: always()
