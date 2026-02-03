@@ -17,8 +17,6 @@ RUN apt-get update && \
 COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
 RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
 
-USER jenkins
-
 # Copy plugins.txt
 COPY plugins.txt /tmp/plugins.txt
 
