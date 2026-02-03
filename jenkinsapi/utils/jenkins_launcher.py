@@ -324,7 +324,7 @@ class JenkinsLancher:
         while True:
             try:
                 # Use a shorter request timeout for health checks
-                jenkins = Jenkins(self.jenkins_url, timeout=5)
+                Jenkins(self.jenkins_url, timeout=5)
                 log.info(
                     "Jenkins is finally ready for use after %d attempts.",
                     attempt,

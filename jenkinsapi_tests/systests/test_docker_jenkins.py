@@ -7,7 +7,6 @@ They will be skipped if Docker is not available.
 import os
 import subprocess
 import pytest
-from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
 
@@ -104,15 +103,6 @@ class TestJenkinsLauncherDockerMode:
 
     def test_launcher_detects_docker_mode(self, tmpdir):
         """Test that launcher properly detects Docker availability."""
-        systests_dir = tmpdir
-        local_orig_dir = tmpdir.mkdir("localinstance_files")
-
-        launcher = JenkinsLancher(
-            str(local_orig_dir),
-            str(systests_dir),
-            "jenkins.war",
-        )
-
         # Verify Docker detection works
         assert JenkinsLancher._has_docker() is True
 
@@ -273,8 +263,6 @@ class TestDockerWorkflowConfiguration:
 
     def test_workflow_publishes_to_ghcr(self):
         """Test that workflow publishes to GitHub Container Registry."""
-        import yaml
-
         workflow_path = os.path.join(
             os.path.dirname(__file__),
             "..",

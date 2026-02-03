@@ -9,8 +9,8 @@ set +e
 # Function to handle signals
 handle_signal() {
     echo "Received signal, shutting down Jenkins gracefully..."
-    kill -TERM $JENKINS_PID 2>/dev/null || true
-    wait $JENKINS_PID 2>/dev/null || true
+    kill -TERM "$JENKINS_PID" 2>/dev/null || true
+    wait "$JENKINS_PID" 2>/dev/null || true
     exit 0
 }
 
