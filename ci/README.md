@@ -1,6 +1,7 @@
 # Docker-based Jenkins CI Infrastructure
 
-This directory contains Docker configuration for building and running Jenkins instances for testing the jenkinsapi library.
+This directory contains Docker configuration for building and running Jenkins
+instances for testing the jenkinsapi library.
 
 ## Quick Start: Local Development
 
@@ -18,7 +19,8 @@ cd ci/
 docker-compose up -d
 ```
 
-Jenkins will be available at `http://localhost:8080` once it's ready. The health check will monitor its status.
+Jenkins will be available at `http://localhost:8080` once it's ready. The
+health check will monitor its status.
 
 ```bash
 # View logs
@@ -44,7 +46,7 @@ JENKINS_DOCKER_IMAGE=jenkinsapi-jenkins:local pytest -sv jenkinsapi_tests/systes
 
 - `JENKINS_DOCKER_IMAGE`: Docker image to use (e.g., `jenkinsapi-jenkins:local`)
 - `SKIP_DOCKER`: Set to `1` to skip Docker and use the war file instead
-- `JENKINS_URL`: Set to use an existing Jenkins instance instead of starting a new one
+- `JENKINS_URL`: Set to use an existing Jenkins instance
 
 ## Testing with War File Fallback
 
@@ -80,7 +82,7 @@ The project includes automated plugin management via GitHub Actions:
 
 Plugins are **version-pinned** in `ci/plugins.txt`:
 
-```
+```text
 git:5.9.0
 junit:1396.v095840ed8491
 credentials:1480.v2246fd131e83
@@ -159,7 +161,8 @@ git push
 
 ## GitHub Container Registry
 
-The Jenkins image is automatically built and published to GitHub Container Registry (GHCR) on:
+The Jenkins image is automatically built and published to GitHub Container
+Registry (GHCR) on:
 
 - Daily schedule (2 AM UTC)
 - Manual trigger via workflow dispatch
@@ -189,7 +192,8 @@ The workflow publishes multiple tags for flexibility:
 
 ## Files
 
-- **Dockerfile** - Single-stage build with pre-installed plugins, version pinning, and health checks
+- **Dockerfile** - Single-stage build with pre-installed plugins and
+  version pinning
 - **plugins.txt** - Version-pinned list of 47 essential Jenkins plugins
 - **docker-compose.yml** - Local development configuration
 - **jenkins-entrypoint.sh** - Custom startup script for Jenkins lifecycle management
@@ -198,7 +202,8 @@ The workflow publishes multiple tags for flexibility:
 
 ### Jenkins takes a long time to start
 
-Jenkins initialization may take 30-60 seconds on first run. The health check is configured with appropriate timeouts. Check logs:
+Jenkins initialization may take 30-60 seconds on first run. The health
+check is configured with appropriate timeouts. Check logs:
 
 ```bash
 docker-compose logs jenkins

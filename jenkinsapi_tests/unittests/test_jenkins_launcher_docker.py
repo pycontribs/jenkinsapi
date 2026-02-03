@@ -107,9 +107,7 @@ class TestJenkinsLauncherDockerStartup:
         )
         launcher.jenkins_home = self.temp_dir
 
-        with mock.patch.object(
-            launcher, "block_until_jenkins_ready"
-        ) as mock_wait:
+        with mock.patch.object(launcher, "block_until_jenkins_ready"):
             # Skip image checking and set custom image
             with mock.patch.dict(
                 os.environ,
