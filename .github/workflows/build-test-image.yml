@@ -1,0 +1,38 @@
+name: Build and Publish Python Test Image
+
+on:
+  schedule:
+    # Build weekly on Sunday at 1 AM UTC (before main builds)
+    - cron: '0 1 * * 0'
+  workflow_dispatch:  # Allow manual trigger
+  push:
+    branches:
+      - master
+    paths:
+      - 'pyproject.toml'
+      - 'ci/Dockerfile.test'
+      - '.github/workflows/build-test-image.yml'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Log in to GitHub Container Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build test image
+        run: make docker-build-test
+
+      - name: Push test image to registry
+        run: make docker-publish-test
+        env:
+          DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/jenkinsapi-test:latest

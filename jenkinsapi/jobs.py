@@ -15,7 +15,7 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException, UnknownJob
 log = logging.getLogger(__name__)
 
 
-class Jobs(object):
+class Jobs:
     """
     This class provides a container-like API which gives
     access to all jobs defined on the Jenkins server. It behaves

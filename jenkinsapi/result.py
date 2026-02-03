@@ -3,7 +3,7 @@ Module for jenkinsapi Result
 """
 
 
-class Result(object):
+class Result:
     """
     Result class
     """

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-import mock
+from unittest import mock
 import json
 from . import configs
 from jenkinsapi.job import Job

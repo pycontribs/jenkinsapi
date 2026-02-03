@@ -3,12 +3,12 @@ Module for jenkinsapi Credential class
 """
 
 import logging
-import xml.etree.cElementTree as ET
+import xml.etree.ElementTree as ET
 
 log = logging.getLogger(__name__)
 
 
-class Credential(object):
+class Credential:
     """
     Base abstract class for credentials
 
@@ -44,10 +44,12 @@ class Credential(object):
         return self.description
 
     def get_attributes(self):
-        pass
+        raise NotImplementedError("Subclasses must implement get_attributes()")
 
     def get_attributes_xml(self):
-        pass
+        raise NotImplementedError(
+            "Subclasses must implement get_attributes_xml()"
+        )
 
     def _get_attributes_xml(self, data):
         root = ET.Element(self.jenkins_class)
