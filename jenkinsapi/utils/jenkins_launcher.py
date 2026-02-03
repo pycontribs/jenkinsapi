@@ -116,6 +116,12 @@ class JenkinsLancher:
             if pull_result.returncode == 0:
                 log.info("Successfully pulled image: %s", docker_image)
                 return
+            else:
+                log.warning(
+                    "Failed to pull image %s: %s",
+                    docker_image,
+                    pull_result.stderr,
+                )
         except subprocess.TimeoutExpired:
             log.warning("Timeout pulling Docker image, will attempt to build")
         except subprocess.CalledProcessError as e:
@@ -207,7 +213,7 @@ class JenkinsLancher:
             "run",
             "-d",
             "-p",
-            f"127.0.0.1:{self.http_port}:8080",
+            f"0.0.0.0:{self.http_port}:8080",
             "-v",
             f"{self.jenkins_home}:/var/jenkins_home",
             "-e",
