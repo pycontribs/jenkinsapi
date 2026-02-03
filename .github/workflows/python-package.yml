@@ -21,8 +21,6 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/pycontribs/jenkinsapi-test:latest
 
     steps:
       - name: Checkout
