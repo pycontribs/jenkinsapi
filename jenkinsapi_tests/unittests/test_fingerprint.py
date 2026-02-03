@@ -39,7 +39,7 @@ def test_object_creation(jenkins, dummy_md5, monkeypatch):
 
 
 def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
-    class FakeResponse(object):
+    class FakeResponse:
         status_code = 404
         text = "{}"
 
@@ -68,7 +68,7 @@ def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
 
 
 def test_invalid_for_401(jenkins, dummy_md5, monkeypatch):
-    class FakeResponse(object):
+    class FakeResponse:
         status_code = 401
         text = "{}"
 

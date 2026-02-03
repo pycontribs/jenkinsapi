@@ -331,7 +331,7 @@ def test_post_and_confirm_status_some_data(monkeypatch):
 
 
 def test_post_and_confirm_status_bad_result(monkeypatch):
-    class FakeResponse(object):
+    class FakeResponse:
         def __init__(self, *args, **kwargs):  # pylint: disable=unused-argument
             self.status_code = 500
             self.url = "http://dummy"
@@ -368,7 +368,7 @@ def test_get_and_confirm_status(monkeypatch):
 
 
 def test_get_and_confirm_status_bad_result(monkeypatch):
-    class FakeResponse(object):
+    class FakeResponse:
         def __init__(self, *args, **kwargs):  # pylint: disable=unused-argument
             self.status_code = 500
             self.url = "http://dummy"

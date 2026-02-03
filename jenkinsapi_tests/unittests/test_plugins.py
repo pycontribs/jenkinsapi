@@ -3,16 +3,8 @@ jenkinsapi_tests.test_plugins
 """
 
 from unittest import mock
-
-# To run unittests on python 2.6 please use unittest2 library
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-try:
-    from StringIO import StringIO  # python2
-except ImportError:
-    from io import BytesIO as StringIO  # python3
+import unittest
+from io import BytesIO as StringIO
 import zipfile
 
 from jenkinsapi.jenkins import Requester
