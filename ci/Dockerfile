@@ -8,8 +8,7 @@ USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         curl \
-        iputils-ping \
-        gzip && \
+        iputils-ping && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -21,9 +20,6 @@ COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
 RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
 
 USER jenkins
-
-# Use custom entrypoint that handles permission fixes and restarts
-ENTRYPOINT ["/usr/local/bin/jenkins-entrypoint.sh"]
 
 # Copy plugins.txt
 COPY plugins.txt /tmp/plugins.txt
@@ -56,8 +52,7 @@ EXPOSE 8080
 # Expose Jenkins agent port
 EXPOSE 50000
 
-# Use dumb-init as the init process (PID 1) to properly handle Jenkins restarts
-# dumb-init manages the jenkins-entrypoint.sh process which in turn runs jenkins.sh
-# This ensures the container stays running when Jenkins restarts internally
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+# Use tini as the init process (PID 1) to properly handle signals
+# tini is included in the jenkins base image
+ENTRYPOINT ["/bin/tini", "--"]
 CMD ["/usr/local/bin/jenkins-entrypoint.sh"]
