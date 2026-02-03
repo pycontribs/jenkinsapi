@@ -53,5 +53,6 @@ EXPOSE 50000
 
 # Use tini as the init process (PID 1) to properly handle signals
 # tini is included in the jenkins base image
-ENTRYPOINT ["/bin/tini", "--"]
 CMD ["/usr/local/bin/jenkins-entrypoint.sh"]
+
+ENTRYPOINT ["/bin/tini", "--"]
