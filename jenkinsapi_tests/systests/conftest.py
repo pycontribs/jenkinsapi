@@ -9,28 +9,6 @@ from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 log = logging.getLogger(__name__)
 
 
-def pytest_configure(config):
-    """Configure pytest with custom markers for systests."""
-    config.addinivalue_line(
-        "markers",
-        "docker_jenkins: mark test as using Docker-based Jenkins",
-    )
-    config.addinivalue_line(
-        "markers",
-        "war_jenkins: mark test as using war file-based Jenkins",
-    )
-    config.addinivalue_line(
-        "markers",
-        "jenkins_integration: mark test as full Jenkins integration test",
-    )
-    config.addinivalue_line(
-        "markers",
-        "executor_any: mark test to run on any available executor (default)",
-    )
-    # Store whether systests are being collected
-    config._systests_collected = False
-
-
 def pytest_collection_finish(session):
     """Check if systests are being collected after test collection is complete."""
     session._systests_collected = False

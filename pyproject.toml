@@ -108,5 +108,6 @@ markers = [
     "jenkins_integration: mark test as full Jenkins integration test",
     "docker_jenkins: mark test as using Docker-based Jenkins",
     "war_jenkins: mark test as using war file-based Jenkins",
+    "executor_any: mark test to run on any available executor (default)",
     "requires_docker: mark test as requiring Docker availability",
 ]
