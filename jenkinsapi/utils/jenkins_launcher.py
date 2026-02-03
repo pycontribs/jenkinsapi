@@ -233,6 +233,10 @@ class JenkinsLancher:
         except subprocess.TimeoutExpired:
             raise FailedToStart("Docker run command timed out")
 
+        # Wait a moment for the container to fully initialize and bind ports
+        log.info("Waiting for container to initialize...")
+        time.sleep(5)
+
         # Wait for Jenkins to be ready
         self.block_until_jenkins_ready(timeout)
 
@@ -327,15 +331,54 @@ class JenkinsLancher:
                 )
                 return
             except Exception as e:
+                if attempt % 6 == 0:  # Log container status every 30 seconds
+                    self._log_container_status()
                 log.info(
                     "Attempt %d: Jenkins is not yet ready (%s)",
                     attempt,
                     type(e).__name__,
                 )
             if datetime.datetime.now() > timeout_time:
+                # Log final container status before raising timeout
+                self._log_container_status()
                 raise TimeOut("Took too long for Jenkins to become ready...")
             time.sleep(5)
             attempt += 1
+
+    def _log_container_status(self):
+        """Log Docker container status and recent logs for debugging."""
+        if not self.docker_container_id:
+            return
+
+        try:
+            # Check if container is still running
+            result = subprocess.run(
+                [
+                    "docker",
+                    "ps",
+                    "-a",
+                    "--filter",
+                    f"id={self.docker_container_id}",
+                    "--format",
+                    "{{.State}}",
+                ],
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
+            state = result.stdout.strip()
+            log.warning("Container state: %s", state)
+
+            # Get container logs
+            log_result = subprocess.run(
+                ["docker", "logs", "--tail", "50", self.docker_container_id],
+                capture_output=True,
+                text=True,
+                timeout=5,
+            )
+            log.warning("Recent container logs:\n%s", log_result.stdout)
+        except Exception as e:
+            log.warning("Failed to get container status: %s", e)
 
     def start(self, timeout=180):
         if self.start_new_instance:
