@@ -52,7 +52,8 @@ class JenkinsLancher:
                 sock.bind(("127.0.0.1", 0))
                 self.http_port = sock.getsockname()[1]
                 sock.close()
-            self.jenkins_url = "http://localhost:%s" % self.http_port
+            # Use 127.0.0.1 explicitly instead of localhost to avoid DNS issues
+            self.jenkins_url = "http://127.0.0.1:%s" % self.http_port
             self.start_new_instance = True
 
         self.local_orig_dir = local_orig_dir
