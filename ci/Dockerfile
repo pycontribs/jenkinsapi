@@ -14,10 +14,6 @@ RUN apt-get update && \
 COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
 RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
 
-# Ensure JENKINS_HOME directory has proper permissions for mounted volumes
-# This allows the jenkins user to read/write even when mounted from host
-RUN chmod 777 /var/jenkins_home
-
 USER jenkins
 
 # Copy plugins.txt

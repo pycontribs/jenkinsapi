@@ -6,6 +6,14 @@
 # Don't exit on error - we want to handle restarts
 set +e
 
+# Ensure JENKINS_HOME has proper permissions for the jenkins user
+# This is especially important for mounted volumes from the host
+if [ -d /var/jenkins_home ]; then
+    chmod 777 /var/jenkins_home
+    # Also fix permissions on subdirectories if they exist
+    find /var/jenkins_home -type d -exec chmod 777 {} \; 2>/dev/null || true
+fi
+
 # Function to handle signals
 handle_signal() {
     echo "Received signal, shutting down Jenkins gracefully..."
