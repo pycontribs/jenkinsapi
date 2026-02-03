@@ -92,7 +92,7 @@ Development
 
 ### Quick Start
 
-1. Create and activate a virtual environment
+1. Ensure astral uv and Docker are both installed on your local environment
 
 .. code-block:: bash
 
