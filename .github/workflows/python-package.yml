@@ -40,7 +40,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
 
       - name: Lint with ruff
-        run: uv run ruff check jenkinsapi/ --output-format full
+        run: make lint
 
   build:
     runs-on: ubuntu-latest
@@ -106,7 +106,4 @@ jobs:
         continue-on-error: true
 
       - name: Test with pytest (parallel)
-        run: >-
-          uv run pytest -sv -n $(python3 -c "import os; print(max(1,
-          os.cpu_count() // 3))") --cov=jenkinsapi --cov-report=term-missing
-          --cov-report=xml jenkinsapi_tests
+        run: make test
