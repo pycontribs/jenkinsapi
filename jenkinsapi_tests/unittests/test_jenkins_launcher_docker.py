@@ -78,9 +78,7 @@ class TestJenkinsLauncherDockerStartup:
         launcher.jenkins_home = self.temp_dir
 
         # Mock the block_until_jenkins_ready to avoid waiting
-        with mock.patch.object(
-            launcher, "block_until_jenkins_ready"
-        ) as mock_wait:
+        with mock.patch.object(launcher, "block_until_jenkins_ready"):
             # Skip image checking to avoid additional subprocess.run calls
             with mock.patch.dict(os.environ, {"SKIP_IMAGE_CHECK": "1"}):
                 launcher._start_docker_jenkins(timeout=10)

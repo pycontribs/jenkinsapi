@@ -4,13 +4,20 @@
 import json
 import re
 import sys
+import tempfile
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 def fetch_update_center():
     """Fetch Jenkins Update Center data."""
     url = "https://updates.jenkins.io/current/update-center.json"
+    # Validate URL scheme for security
+    parsed_url = urlparse(url)
+    if parsed_url.scheme not in ("http", "https"):
+        raise ValueError(f"Unsupported URL scheme: {parsed_url.scheme}")
+
     req = urllib.request.Request(url)
     req.add_header("User-Agent", "jenkinsapi-update-checker")
 
@@ -70,12 +77,15 @@ def find_updates(current_plugins, available):
 
 def save_updates(updates):
     """Save updates to temporary file for next step."""
-    Path("/tmp").mkdir(exist_ok=True)
-    with open("/tmp/updates.json", "w") as f:
+    temp_dir = tempfile.gettempdir()
+    updates_file = Path(temp_dir) / "updates.json"
+    updates_found_file = Path(temp_dir) / "updates_found.txt"
+
+    with open(updates_file, "w") as f:
         json.dump(updates, f, indent=2)
 
     updates_found = "true" if updates else "false"
-    with open("/tmp/updates_found.txt", "w") as f:
+    with open(updates_found_file, "w") as f:
         f.write(updates_found)
 
     return updates_found == "true"

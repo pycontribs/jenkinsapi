@@ -3,6 +3,7 @@
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 
@@ -26,7 +27,8 @@ def read_plugins_file():
 
 def load_updates():
     """Load updates from check script."""
-    updates_file = Path("/tmp/updates.json")
+    temp_dir = tempfile.gettempdir()
+    updates_file = Path(temp_dir) / "updates.json"
     if not updates_file.exists():
         print("Error: No updates found. Run check script first.")
         sys.exit(1)
@@ -70,7 +72,7 @@ def save_plugins_file(plugins_file, updated_lines):
 
 def main():
     """Main function."""
-    plugins_file, plugins_lines, current_plugins = read_plugins_file()
+    plugins_file, plugins_lines, _ = read_plugins_file()
     updates = load_updates()
 
     if not updates:
