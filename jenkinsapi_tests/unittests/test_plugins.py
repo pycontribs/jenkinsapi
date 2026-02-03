@@ -2,7 +2,7 @@
 jenkinsapi_tests.test_plugins
 """
 
-import mock
+from unittest import mock
 
 # To run unittests on python 2.6 please use unittest2 library
 try:
@@ -190,8 +190,10 @@ class TestPlugins(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.J.install_plugin("test")
 
+    @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
-    def test_delete_plugin_bad_input(self, _post):
+    def test_delete_plugin_bad_input(self, _post, _poll_plugins):
+        _poll_plugins.return_value = self.DATA
         with self.assertRaises(ValueError):
             self.J.delete_plugin("test@latest")
 
@@ -227,7 +229,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -253,7 +255,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Plugins, "plugin_version_already_installed")
     @mock.patch.object(
-        Plugins, "restart_required", new_callable=mock.mock.PropertyMock
+        Plugins, "restart_required", new_callable=mock.PropertyMock
     )
     @mock.patch.object(Plugins, "_wait_until_plugin_installed")
     @mock.patch.object(Requester, "post_xml_and_confirm_status")
@@ -317,7 +319,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_required_after_plugin_installation(
         self, status, _poll_plugins
@@ -344,7 +346,7 @@ class TestPlugins(unittest.TestCase):
     @mock.patch.object(
         Plugins,
         "update_center_install_status",
-        new_callable=mock.mock.PropertyMock,
+        new_callable=mock.PropertyMock,
     )
     def test_restart_not_required_after_plugin_installation(
         self, status, _poll_plugins

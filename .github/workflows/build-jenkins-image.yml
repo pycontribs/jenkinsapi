@@ -1,0 +1,87 @@
+name: Build and Publish Jenkins Docker Image
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC to pick up plugin updates
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual trigger
+  push:
+    branches:
+      - master
+    paths:
+      - 'ci/Dockerfile'
+      - 'ci/plugins.txt'
+      - '.github/workflows/build-jenkins-image.yml'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Log in to GitHub Container Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker image (test)
+        run: make docker-build
+        env:
+          DOCKER_IMAGE: jenkinsapi-jenkins:test
+
+      - name: Test image health check
+        run: |
+          # Start the container in the background
+          docker run -d --name jenkins-test -p 8080:8080 jenkinsapi-jenkins:test
+
+          # Wait for Jenkins to be ready
+          echo "Waiting for Jenkins to be healthy..."
+          for i in {1..60}; do
+            if docker exec jenkins-test wget --no-verbose --tries=1 --spider http://localhost:8080/api/json 2>/dev/null; then
+              echo "✓ Jenkins health check passed"
+              break
+            fi
+            if [ $i -eq 60 ]; then
+              echo "✗ Jenkins failed to start"
+              docker logs jenkins-test
+              exit 1
+            fi
+            sleep 5
+          done
+
+      - name: Run pytest against test image
+        run: |
+          # Install uv and dependencies
+          pip install --upgrade uv
+          sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
+
+          # Set Docker image as test target
+          export JENKINSAPI_DOCKER_IMAGE="jenkinsapi-jenkins:test"
+
+          # Calculate number of workers (1/3 of available CPUs)
+          NUM_WORKERS=$(( $(nproc) / 3 ))
+          [ $NUM_WORKERS -lt 1 ] && NUM_WORKERS=1
+
+          # Run tests in parallel
+          uv run pytest -n $NUM_WORKERS -sv --cov=jenkinsapi --cov-report=term-missing jenkinsapi_tests || {
+            echo "Tests failed against new image"
+            docker logs jenkins-test
+            exit 1
+          }
+
+      - name: Cleanup test container
+        if: always()
+        run: docker rm -f jenkins-test || true
+
+      - name: Build and publish Docker image
+        run: make docker-publish
+        env:
+          DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/jenkinsapi-jenkins:latest
+
+      - name: Image digest
+        run: echo "Image digest:" || true

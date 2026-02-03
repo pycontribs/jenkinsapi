@@ -90,20 +90,149 @@ For other issues, please refer to the `support URL <https://github.com/pycontrib
 Development
 -----------
 
-* Make sure that you have Java_ installed. Jenkins will be automatically
-  downloaded and started during tests.
-* Create virtual environment for development
-* Install package in development mode
+### Quick Start
+
+1. Create and activate a virtual environment
 
 .. code-block:: bash
 
     uv sync
 
-* Make your changes, write tests and check your code
+2. Run tests
+
+**Single-threaded:**
 
 .. code-block:: bash
 
-    uv run pytest -sv
+    make test
+
+**Parallel (Recommended - uses 1/3 of CPU cores):**
+
+.. code-block:: bash
+
+    make test-parallel
+
+**With coverage reporting:**
+
+.. code-block:: bash
+
+    make coverage-parallel
+
+**Show calculated worker count:**
+
+.. code-block:: bash
+
+    make show-workers
+
+### Using Docker for Testing (Recommended)
+
+Jenkins can be started in Docker for testing, which is significantly faster than downloading and installing Jenkins.
+
+**Requirements:**
+- Docker installed and running
+
+**Local Testing with Docker:**
+
+.. code-block:: bash
+
+    # Build the Docker image locally
+    cd ci/
+    docker build -t jenkinsapi-jenkins:local .
+
+    # Run tests with Docker
+    JENKINS_DOCKER_IMAGE=jenkinsapi-jenkins:local pytest -sv jenkinsapi_tests/systests/
+
+**Using Pre-built Image from GitHub Container Registry:**
+
+.. code-block:: bash
+
+    # Tests will automatically pull the image if available
+    pytest -sv jenkinsapi_tests/systests/
+
+**Using War File (Fallback):**
+
+If Docker is not available or you want to use the traditional approach:
+
+.. code-block:: bash
+
+    # Make sure Java is installed first
+    SKIP_DOCKER=1 pytest -sv jenkinsapi_tests/systests/
+
+For more detailed Docker setup and development instructions, see `ci/README.md <ci/README.md>`_
+
+### Make Targets
+
+The project uses a Makefile for common operations:
+
+**Testing:**
+
+.. code-block:: bash
+
+    make test              # Run tests single-threaded
+    make test-parallel     # Run tests with 1/3 CPU workers (recommended)
+    make coverage-parallel # Run tests with coverage and parallel workers
+    make show-workers      # Display calculated worker count
+
+**Docker:**
+
+.. code-block:: bash
+
+    make docker-build      # Build Docker image locally
+    make docker-publish    # Build and publish Docker image
+
+**Plugin Management:**
+
+.. code-block:: bash
+
+    make update-plugins    # Check for and apply Jenkins plugin updates
+
+**Other:**
+
+.. code-block:: bash
+
+    make lint              # Run code linting
+    make dist              # Build distribution package
+    make clean             # Clean temporary files
+
+### Parallel Test Execution
+
+Tests are optimized to run in parallel using pytest-xdist. The number of workers is dynamically calculated as **1/3 of available CPU cores** (minimum 1).
+
+**Benefits:**
+- Faster test execution (typically 60-70% faster on multi-core systems)
+- Automatic scaling based on available hardware
+- Conservative resource usage to prevent system overload
+
+**Accessing executor information in tests:**
+
+.. code-block:: python
+
+    def test_example(jenkins, executor_id):
+        """Test that knows which executor it's running on."""
+        print(f"Running on executor: {executor_id}")
+        # executor_id will be 'gw0', 'gw1', etc. with -n flag, or 'local' single-threaded
+        assert jenkins is not None
+
+### Automatic Plugin Updates
+
+The project includes automated Jenkins plugin management:
+
+1. **Daily Plugin Update Checks** (``.github/workflows/update-jenkins-plugins.yml``)
+   - Runs daily and checks for available plugin updates
+   - Creates pull requests with updated versions
+   - Updates ci/plugins.txt with new plugin versions
+
+2. **Daily Docker Image Builds** (``.github/workflows/build-jenkins-image.yml``)
+   - Runs daily at 2 AM UTC
+   - Builds Docker image with current plugins
+   - Runs full test suite before publishing (prevents broken images)
+   - Publishes to GitHub Container Registry (ghcr.io)
+
+3. **Plugin Optimization**
+   - Removed UI-only plugins: bootstrap5-api, echarts-api, font-awesome-api, ionicons-api, prism-api, antisamy-markup-formatter
+   - Image size reduced by ~11% (6 plugins removed)
+   - 47 essential plugins pinned to specific versions
+   - Uses jenkins-plugin-cli with --latest=false to respect version pins
 
 Python versions
 ---------------
@@ -135,5 +264,3 @@ Project Contributors
 * Clinton Steiner (clintonsteiner@gmail.com)
 
 Please do not contact these contributors directly for support questions! Use the GitHub tracker instead.
-
-.. _Java: https://www.oracle.com/java/technologies/downloads/#java21

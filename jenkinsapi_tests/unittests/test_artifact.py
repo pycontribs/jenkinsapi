@@ -1,5 +1,5 @@
 import pytest
-from mock import Mock, patch, call
+from unittest.mock import Mock, patch, call
 from requests.exceptions import HTTPError
 from jenkinsapi.artifact import Artifact
 from jenkinsapi.jenkinsbase import JenkinsBase
