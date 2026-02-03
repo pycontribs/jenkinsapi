@@ -6,11 +6,12 @@
 # Don't exit on error - we want to handle restarts
 set +e
 
-# Ensure JENKINS_HOME has proper permissions for the jenkins user
-# This is especially important for mounted volumes from the host
+# Fix permissions on JENKINS_HOME before Jenkins starts
+# This is critical for mounted volumes from the host
 if [ -d /var/jenkins_home ]; then
-    chown -R jenkins:jenkins /var/jenkins_home
-    chmod 755 /var/jenkins_home
+    echo "Fixing JENKINS_HOME permissions..."
+    chmod 777 /var/jenkins_home 2>/dev/null || true
+    chown jenkins:jenkins /var/jenkins_home 2>/dev/null || true
 fi
 
 # Function to handle signals
@@ -29,8 +30,8 @@ trap handle_signal SIGTERM SIGINT
 # Run Jenkins and keep restarting it if it crashes
 while true; do
     echo "Starting Jenkins..."
-    # Run Jenkins as jenkins user
-    su-exec jenkins /usr/local/bin/jenkins.sh "$@" &
+    # Run Jenkins as jenkins user using gosu (available in jenkins base image)
+    gosu jenkins /usr/local/bin/jenkins.sh "$@" &
     JENKINS_PID=$!
 
     # Wait for Jenkins to exit
