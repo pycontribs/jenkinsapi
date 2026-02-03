@@ -63,7 +63,7 @@ jobs:
           done
 
       - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
+        run: sudo apt-get install -y libkrb5-dev gcc
 
       - name: Run tests against test image
         run: make coverage-parallel
