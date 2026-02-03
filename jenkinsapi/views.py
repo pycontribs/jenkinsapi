@@ -10,7 +10,7 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException
 log = logging.getLogger(__name__)
 
 
-class Views(object):
+class Views:
     """
     An abstraction on a Jenkins object's views
     """

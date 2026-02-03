@@ -20,7 +20,7 @@ class TimeOut(Exception):
     pass
 
 
-class JenkinsLancher(object):
+class JenkinsLancher:
     """
     Launch jenkins
     """

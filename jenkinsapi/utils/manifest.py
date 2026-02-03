@@ -18,7 +18,7 @@ class InvalidJarError(Exception):
     pass
 
 
-class Manifest(object):
+class Manifest:
     """
     The parsed manifest from a jar file.
     Attributes:

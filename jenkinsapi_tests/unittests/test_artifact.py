@@ -1,15 +1,11 @@
 import pytest
+import unittest
 from unittest.mock import Mock, patch, call
 from requests.exceptions import HTTPError
 from jenkinsapi.artifact import Artifact
 from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.fingerprint import Fingerprint
 from jenkinsapi.custom_exceptions import ArtifactBroken
-
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
 
 
 @pytest.fixture()
@@ -69,7 +65,7 @@ def test_verify_download_valid_negative(artifact, monkeypatch):
 
     monkeypatch.setattr(Artifact, "_md5sum", fake_md5)
 
-    class FakeResponse(object):
+    class FakeResponse:
         status_code = 404
         text = "{}"
 
@@ -98,7 +94,7 @@ def test_verify_dl_valid_negative_strict(artifact, monkeypatch):
 
     monkeypatch.setattr(Artifact, "_md5sum", fake_md5)
 
-    class FakeResponse(object):
+    class FakeResponse:
         status_code = 404
         text = "{}"
 
