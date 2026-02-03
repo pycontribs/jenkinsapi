@@ -175,16 +175,29 @@ def cleanup_docker(request):
 
 
 def ensure_jenkins_up(url, timeout=60):
+    """Wait for Jenkins to be ready with exponential backoff.
+
+    Checks frequently at first, then increases delay to reduce load.
+    """
     start = time.time()
+    attempt = 0
     while time.time() - start < timeout:
         try:
             resp = requests.get(url, timeout=5)
             if resp.status_code == 200:
+                log.info(
+                    "Jenkins is ready after %.1f seconds", time.time() - start
+                )
                 return
         except Exception as err:
-            print("Exception connecting to jenkins", err)
-        time.sleep(2)
-    pytest.exit("Jenkins didnt become available to call")
+            log.debug("Jenkins not ready yet: %s", err)
+
+        # Exponential backoff: 0.5s, 0.5s, 1s, 1s, 2s, 2s, etc.
+        sleep_time = min(0.5 if attempt < 2 else 1 if attempt < 4 else 2, 2)
+        time.sleep(sleep_time)
+        attempt += 1
+
+    pytest.exit("Jenkins didn't become available to call")
 
 
 @pytest.fixture(scope="function")

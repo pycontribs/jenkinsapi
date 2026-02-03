@@ -24,11 +24,21 @@ COPY plugins.txt /tmp/plugins.txt
 # Use --latest=false to respect version pins in plugins.txt
 RUN jenkins-plugin-cli --plugin-file /tmp/plugins.txt --verbose --latest=false
 
-# Set Jenkins configuration to skip setup wizard and disable UDP multicast
-ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dhudson.DNSMultiCast.disabled=true"
+# Set Jenkins configuration for faster startup and optimal performance
+# Skip wizard, disable multicast, skip update center checks, enable parallel startup
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
+  -Dhudson.DNSMultiCast.disabled=true \
+  -Dhudson.model.UpdateCenter.never=true \
+  -Djenkins.InitReactorRunner.concurrency=4 \
+  -XX:+TieredCompilation \
+  -XX:TieredStopAtLevel=4 \
+  -XX:+UseG1GC \
+  -Xms512m \
+  -Xmx1024m"
 
 # Health check to verify Jenkins is ready
-HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+# Reduced interval for faster detection of ready state
+HEALTHCHECK --interval=5s --timeout=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/json || exit 1
 
 # Expose Jenkins port
