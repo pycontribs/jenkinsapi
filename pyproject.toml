@@ -78,6 +78,7 @@ dev = [
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
     "pyyaml>=6.0.2",
+    "docker>=7.0.0",
 ]
 docs = [
     "docutils>=0.20.1",

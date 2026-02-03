@@ -4,7 +4,9 @@ import shutil
 import logging
 import datetime
 import tempfile
-import subprocess
+
+import docker
+from docker.errors import DockerException, ImageNotFound, APIError
 
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.custom_exceptions import JenkinsAPIException
@@ -76,27 +78,19 @@ class JenkinsLancher:
     def _has_docker():
         """Check if Docker is available on the system."""
         try:
-            subprocess.run(
-                ["docker", "--version"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                timeout=5,
-            )
+            client = docker.from_env()
+            client.ping()
             return True
-        except (FileNotFoundError, subprocess.TimeoutExpired):
+        except (DockerException, Exception):
             return False
 
     @staticmethod
     def _check_docker_health():
         """Check if Docker daemon is healthy."""
         try:
-            result = subprocess.run(
-                ["docker", "ps"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                timeout=10,
-            )
-            return result.returncode == 0
+            client = docker.from_env()
+            client.ping()
+            return True
         except Exception as e:
             log.warning("Docker health check failed: %s", e)
             return False
@@ -104,18 +98,14 @@ class JenkinsLancher:
     def _ensure_docker_image(self, docker_image):
         """Ensure Docker image exists locally, pulling or building if necessary."""
         log.info("Checking for Docker image: %s", docker_image)
+        client = docker.from_env()
 
         # Check if image exists locally
         try:
-            result = subprocess.run(
-                ["docker", "inspect", docker_image],
-                capture_output=True,
-                timeout=10,
-            )
-            if result.returncode == 0:
-                log.info("Docker image found locally: %s", docker_image)
-                return
-        except (subprocess.TimeoutExpired, subprocess.CalledProcessError):
+            client.images.get(docker_image)
+            log.info("Docker image found locally: %s", docker_image)
+            return
+        except ImageNotFound:
             log.warning("Docker image not found locally")
         except Exception as e:
             log.warning("Error checking for image: %s", e)
@@ -125,24 +115,16 @@ class JenkinsLancher:
             "Image not found locally, attempting to pull: %s", docker_image
         )
         try:
-            pull_result = subprocess.run(
-                ["docker", "pull", docker_image],
-                capture_output=True,
-                text=True,
-                timeout=300,
+            client.images.pull(docker_image)
+            log.info("Successfully pulled image: %s", docker_image)
+            return
+        except APIError as e:
+            log.warning(
+                "Failed to pull image %s: %s",
+                docker_image,
+                str(e),
             )
-            if pull_result.returncode == 0:
-                log.info("Successfully pulled image: %s", docker_image)
-                return
-            else:
-                log.warning(
-                    "Failed to pull image %s: %s",
-                    docker_image,
-                    pull_result.stderr,
-                )
-        except subprocess.TimeoutExpired:
-            log.warning("Timeout pulling Docker image, will attempt to build")
-        except subprocess.CalledProcessError as e:
+        except DockerException as e:
             log.warning("Failed to pull image: %s", e)
         except Exception as e:
             log.warning("Failed to pull image: %s", e)
@@ -158,29 +140,12 @@ class JenkinsLancher:
                 )
 
             log.info("Building Docker image from: %s", ci_dir)
-            build_result = subprocess.run(
-                [
-                    "docker",
-                    "build",
-                    "-t",
-                    docker_image,
-                    ci_dir,
-                ],
-                capture_output=True,
-                text=True,
-                timeout=600,
-            )
-            if build_result.returncode == 0:
-                log.info("Successfully built Docker image: %s", docker_image)
-                return
-            else:
-                log.error("Docker build failed: %s", build_result.stderr)
-                raise FailedToStart(
-                    f"Failed to build Docker image: {build_result.stderr}"
-                )
-        except subprocess.TimeoutExpired:
-            raise FailedToStart("Docker build command timed out")
-        except subprocess.CalledProcessError as e:
+            client.images.build(path=ci_dir, tag=docker_image)
+            log.info("Successfully built Docker image: %s", docker_image)
+            return
+        except DockerException as e:
+            raise FailedToStart(f"Docker build failed: {e}")
+        except Exception as e:
             raise FailedToStart(f"Docker build failed: {e}")
 
     def _find_ci_directory(self):
@@ -232,23 +197,12 @@ class JenkinsLancher:
             "-Xms512m "
             "-Xmx1024m"
         )
-        docker_run_cmd = [
-            "docker",
-            "run",
-            "-d",
-            "-p",
-            f"0.0.0.0:{self.http_port}:8080",
-            "-v",
-            f"{self.jenkins_home}:/var/jenkins_home",
-            "-e",
-            f"JAVA_OPTS={java_opts}",
-            docker_image,
-        ]
 
         # Retry docker run with exponential backoff (OCI errors are transient)
         max_retries = 3
         retry_delay = 5
         last_error = None
+        client = docker.from_env()
 
         for attempt in range(max_retries):
             try:
@@ -257,30 +211,48 @@ class JenkinsLancher:
                     attempt + 1,
                     max_retries,
                 )
-                log.info("%s", " ".join(docker_run_cmd))
-                result = subprocess.run(
-                    docker_run_cmd,
-                    capture_output=True,
-                    text=True,
-                    timeout=30,
-                    check=True,
+                log.info(
+                    "docker run -d -p 0.0.0.0:%s:8080 -v %s:/var/jenkins_home "
+                    "-e JAVA_OPTS='...' %s",
+                    self.http_port,
+                    self.jenkins_home,
+                    docker_image,
                 )
-                self.docker_container_id = result.stdout.strip()
+                container = client.containers.run(
+                    docker_image,
+                    detach=True,
+                    ports={"8080/tcp": ("0.0.0.0", self.http_port)},
+                    volumes={
+                        self.jenkins_home: {
+                            "bind": "/var/jenkins_home",
+                            "mode": "rw",
+                        }
+                    },
+                    environment={"JAVA_OPTS": java_opts},
+                )
+                self.docker_container_id = container.id
                 log.info(
                     "Jenkins container started with ID: %s",
                     self.docker_container_id,
                 )
                 break
-            except subprocess.CalledProcessError as e:
-                last_error = e.stderr
-                log.error("Attempt %d failed: %s", attempt + 1, e.stderr)
+            except APIError as e:
+                last_error = str(e)
+                log.error("Attempt %d failed: %s", attempt + 1, str(e))
                 if attempt < max_retries - 1:
                     log.info("Retrying in %d seconds...", retry_delay)
                     time.sleep(retry_delay)
                     retry_delay *= 2
-            except subprocess.TimeoutExpired:
-                last_error = "Docker run command timed out"
-                log.error("Attempt %d: Timeout", attempt + 1)
+            except DockerException as e:
+                last_error = str(e)
+                log.error("Attempt %d failed: %s", attempt + 1, str(e))
+                if attempt < max_retries - 1:
+                    log.info("Retrying in %d seconds...", retry_delay)
+                    time.sleep(retry_delay)
+                    retry_delay *= 2
+            except Exception as e:
+                last_error = str(e)
+                log.error("Attempt %d failed: %s", attempt + 1, str(e))
                 if attempt < max_retries - 1:
                     time.sleep(retry_delay)
                     retry_delay *= 2
@@ -302,56 +274,39 @@ class JenkinsLancher:
         if self.docker_container_id:
             log.info("Stopping Docker container: %s", self.docker_container_id)
             try:
-                subprocess.run(
-                    ["docker", "stop", self.docker_container_id],
-                    timeout=10,
-                    check=False,
-                )
-                subprocess.run(
-                    ["docker", "rm", self.docker_container_id],
-                    timeout=10,
-                    check=False,
-                )
+                client = docker.from_env()
+                container = client.containers.get(self.docker_container_id)
+                container.stop(timeout=10)
+                container.remove()
                 log.info("Docker container stopped and removed.")
-            except subprocess.TimeoutExpired:
-                log.warning("Timeout stopping Docker container")
+            except Exception as e:
+                log.warning("Error stopping Docker container: %s", e)
             self.docker_container_id = None
 
     @staticmethod
     def cleanup_docker_images():
         """Clean up Jenkins Docker containers and images left from testing."""
         try:
-            # Stop and remove Jenkins containers
+            client = docker.from_env()
             log.info("Cleaning up Jenkins Docker containers...")
-            subprocess.run(
-                [
-                    "docker",
-                    "ps",
-                    "-a",
-                    "-q",
-                    "--filter",
-                    "ancestor=ghcr.io/pycontribs/jenkinsapi-jenkins",
-                ],
-                timeout=10,
-                check=False,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.DEVNULL,
+
+            # Find and remove containers based on jenkinsapi image
+            containers = client.containers.list(
+                all=True,
+                filters={"ancestor": "ghcr.io/pycontribs/jenkinsapi-jenkins"},
             )
-            # Remove stopped containers only
-            subprocess.run(
-                [
-                    "docker",
-                    "container",
-                    "prune",
-                    "-f",
-                    "--filter",
-                    "label!=keepme",
-                ],
-                timeout=30,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                check=False,
-            )
+            for container in containers:
+                try:
+                    container.stop(timeout=5)
+                    container.remove()
+                    log.info("Removed container: %s", container.id[:12])
+                except Exception as e:
+                    log.warning(
+                        "Failed to remove container %s: %s",
+                        container.id[:12],
+                        e,
+                    )
+
             log.info("Jenkins Docker containers cleaned up.")
         except Exception as e:
             log.warning("Failed to cleanup Docker containers: %s", e)
@@ -408,32 +363,16 @@ class JenkinsLancher:
             return
 
         try:
-            # Check if container is still running
-            result = subprocess.run(
-                [
-                    "docker",
-                    "ps",
-                    "-a",
-                    "--filter",
-                    f"id={self.docker_container_id}",
-                    "--format",
-                    "{{.State}}",
-                ],
-                capture_output=True,
-                text=True,
-                timeout=5,
-            )
-            state = result.stdout.strip()
-            log.warning("Container state: %s", state)
+            client = docker.from_env()
+            container = client.containers.get(self.docker_container_id)
 
-            # Get container logs
-            log_result = subprocess.run(
-                ["docker", "logs", "--tail", "50", self.docker_container_id],
-                capture_output=True,
-                text=True,
-                timeout=5,
-            )
-            log.warning("Recent container logs:\n%s", log_result.stdout)
+            # Log container state
+            container.reload()
+            log.warning("Container state: %s", container.status)
+
+            # Get and log recent container logs
+            logs = container.logs(tail=50, decode=True)
+            log.warning("Recent container logs:\n%s", logs)
         except Exception as e:
             log.warning("Failed to get container status: %s", e)
 
