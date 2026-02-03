@@ -6,7 +6,7 @@ FROM jenkins/jenkins:lts-jdk25
 # Using system level apt-get with explicit cache handling
 USER root
 RUN apt-get update && \
-    apt-get install -y iputils-ping gzip dumb-init && \
+    apt-get install -y --no-install-recommends iputils-ping gzip dumb-init && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

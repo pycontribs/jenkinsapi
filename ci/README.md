@@ -62,12 +62,14 @@ SKIP_DOCKER=1 pytest -sv jenkinsapi_tests/systests/
 The project includes automated plugin management via GitHub Actions:
 
 **Update Workflow** (`.github/workflows/update-jenkins-plugins.yml`)
+
 - Runs daily to check for available plugin updates
 - Queries Jenkins Update Center for new versions
 - Creates pull requests when updates are available
 - Updates `ci/plugins.txt` with version-pinned plugins
 
 **Build Workflow** (`.github/workflows/build-jenkins-image.yml`)
+
 - Runs daily at 2 AM UTC
 - Builds Docker image with current plugins
 - Runs full test suite against the new image (prevents broken releases)
@@ -85,6 +87,7 @@ credentials:1480.v2246fd131e83
 ```
 
 **Benefits:**
+
 - Reproducible builds
 - Predictable plugin behavior
 - Can detect breaking changes via test failures
@@ -95,6 +98,7 @@ credentials:1480.v2246fd131e83
 ### Plugin Optimization
 
 UI-only plugins have been removed to reduce image size:
+
 - `bootstrap5-api` - Bootstrap UI framework
 - `echarts-api` - Chart visualization
 - `font-awesome-api` - Icon library
@@ -103,6 +107,7 @@ UI-only plugins have been removed to reduce image size:
 - `antisamy-markup-formatter` - HTML sanitization
 
 **Results:**
+
 - Image size reduced by ~11% (removed 6 plugins)
 - Faster plugin installation and image builds
 - 47 essential plugins remain for testing
@@ -127,6 +132,7 @@ make update-plugins
 ```
 
 This will:
+
 1. Query Jenkins Update Center for latest versions
 2. Compare with pinned versions in `ci/plugins.txt`
 3. Show available updates
@@ -154,6 +160,7 @@ git push
 ## GitHub Container Registry
 
 The Jenkins image is automatically built and published to GitHub Container Registry (GHCR) on:
+
 - Daily schedule (2 AM UTC)
 - Manual trigger via workflow dispatch
 - When ci/Dockerfile or ci/plugins.txt changes
@@ -211,6 +218,7 @@ Then access Jenkins at `http://localhost:8081`
 ### Image build fails
 
 Ensure you have:
+
 - Docker installed and running
 - At least 4GB available disk space
 - Network connectivity to download plugins
@@ -220,6 +228,7 @@ Ensure you have:
 ### Structure
 
 The Dockerfile:
+
 1. Uses `jenkins/jenkins:lts-jdk21` as base
 2. Installs system utilities (iputils-ping, gzip, dumb-init)
 3. Copies version-pinned plugins.txt
@@ -245,6 +254,7 @@ The Dockerfile:
 ## Next Steps
 
 See the main README.rst for:
+
 - Running the full test suite
 - How the docker launcher integrates with CI
 - Performance comparisons with war file approach
