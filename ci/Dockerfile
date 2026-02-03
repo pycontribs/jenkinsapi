@@ -55,4 +55,6 @@ EXPOSE 50000
 # tini is included in the jenkins base image
 CMD ["/usr/local/bin/jenkins-entrypoint.sh"]
 
+USER root
+
 ENTRYPOINT ["/bin/tini", "--"]
