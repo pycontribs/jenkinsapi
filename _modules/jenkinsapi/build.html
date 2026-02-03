@@ -963,6 +963,27 @@
 <a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.is_kept_forever">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_kept_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="s2">&quot;keepLog&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Build.get_stages">
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_stages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_stages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get pipeline stages from a Pipeline build.</span>
+
+<span class="sd">        Returns an empty list for non-pipeline builds.</span>
+<span class="sd">        Returns a list of stage dictionaries, each containing:</span>
+<span class="sd">        - id: Unique stage identifier</span>
+<span class="sd">        - name: Stage name</span>
+<span class="sd">        - status: Stage status (SUCCESS, FAILED, etc.)</span>
+<span class="sd">        - startTimeMillis: Stage start time</span>
+<span class="sd">        - durationMillis: Stage duration in milliseconds</span>
+<span class="sd">        - stageFlowNodes: List of steps within the stage</span>
+
+<span class="sd">        :return: List of stage dictionaries, or empty list if not a pipeline build</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">tree</span><span class="o">=</span><span class="s2">&quot;stages&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stages&quot;</span><span class="p">,</span> <span class="p">[])</span></div>
 </div>
 
 </pre></div>
