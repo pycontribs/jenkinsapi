@@ -61,6 +61,9 @@ class JenkinsLancher:
         if "JENKINS_HOME" not in os.environ:
             self.jenkins_home = tempfile.mkdtemp(prefix="jenkins-home-")
             os.environ["JENKINS_HOME"] = self.jenkins_home
+            # Make directory world-writable so Docker container can write to it
+            # This is critical for mounted volumes where jenkins user may have different UID
+            os.chmod(self.jenkins_home, 0o777)
         else:
             self.jenkins_home = os.environ["JENKINS_HOME"]
 
