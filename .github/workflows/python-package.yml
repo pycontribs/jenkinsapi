@@ -1,14 +1,15 @@
+---
 name: CI_TEST
 
-on:
+"on":
   push:
-    branches: [ "master" ]
+    branches: ["master"]
     paths:
       - '**.py'
       - '**.yml'
   pull_request:
-    branches: [ "master" ]
-  workflow_dispatch: # allow manual run
+    branches: ["master"]
+  workflow_dispatch:  # allow manual run
 
 permissions:
   contents: read
@@ -20,30 +21,28 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.13"]
+    container:
+      image: ghcr.io/pycontribs/jenkinsapi-test:latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout
+        # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        # v7.3.0
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install python
-      run: uv python install
+      - name: Install python
+        run: uv python install
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
 
-    - name: Lint with ruff
-      run: |
-        uv run ruff check jenkinsapi/ --output-format full
+      - name: Lint with ruff
+        run: uv run ruff check jenkinsapi/ --output-format full
 
   build:
     runs-on: ubuntu-latest
@@ -53,48 +52,63 @@ jobs:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
-    - name: Harden Runner
-      uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
-      with:
-        egress-policy: audit
-        allowed-endpoints: >
-          azure.archive.ubuntu.com:80
-          esm.ubuntu.com:443
-          files.pythonhosted.org:443
-          ftp-chi.osuosl.org:443
-          ftp-nyc.osuosl.org:443
-          get.jenkins.io:443
-          github.com:443
-          api.github.com:443
-          int.api.stepsecurity.io:443
-          mirror.xmission.com:443
-          motd.ubuntu.com:443
-          packages.microsoft.com:443
-          ppa.launchpadcontent.net:443
-          pypi.org:443
-          updates.jenkins-ci.org:80
-          updates.jenkins.io:443
-          mirrors.updates.jenkins.io:443
-          updates.jenkins.io:80
+      - name: Checkout
+        # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - name: Harden Runner
+        uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
+        with:
+          egress-policy: audit
+          allowed-endpoints: >
+            azure.archive.ubuntu.com:80
+            esm.ubuntu.com:443
+            files.pythonhosted.org:443
+            ftp-chi.osuosl.org:443
+            ftp-nyc.osuosl.org:443
+            get.jenkins.io:443
+            github.com:443
+            api.github.com:443
+            int.api.stepsecurity.io:443
+            mirror.xmission.com:443
+            motd.ubuntu.com:443
+            packages.microsoft.com:443
+            ppa.launchpadcontent.net:443
+            pypi.org:443
+            updates.jenkins-ci.org:80
+            updates.jenkins.io:443
+            mirrors.updates.jenkins.io:443
+            updates.jenkins.io:80
 
-    - name: Checkout
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Install uv
+        # v7.3.0
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Cache uv installation
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml') }}
 
-    - name: Install python
-      run: uv python install
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libkrb5-dev gcc
 
-    - name: Pull Jenkins Docker image
-      run: docker pull ghcr.io/pycontribs/jenkinsapi-jenkins:latest || true
-      continue-on-error: true
+      - name: Install dependencies
+        run: >-
+          uv pip install -e ".[dev]" &&
+          uv pip install pytest-xdist pytest-cov pytest-mock pytest-timeout
+          pyyaml
 
-    - name: Test with pytest (parallel)
-      run: make coverage-parallel
+      - name: Pull Jenkins Docker image
+        run: docker pull ghcr.io/pycontribs/jenkinsapi-jenkins:latest || true
+        continue-on-error: true
+
+      - name: Test with pytest (parallel)
+        run: >-
+          uv run pytest -sv -n $(python3 -c "import os; print(max(1,
+          os.cpu_count() // 3))") --cov=jenkinsapi --cov-report=term-missing
+          --cov-report=xml jenkinsapi_tests

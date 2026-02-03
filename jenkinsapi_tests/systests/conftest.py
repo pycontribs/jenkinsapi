@@ -174,11 +174,16 @@ def cleanup_docker(request):
     JenkinsLancher.cleanup_docker_images()
 
 
-def ensure_jenkins_up(url, timeout=60):
+def ensure_jenkins_up(url, timeout=None):
     """Wait for Jenkins to be ready with exponential backoff.
 
     Checks frequently at first, then increases delay to reduce load.
     """
+    # Default timeout is 180 seconds, but can be overridden
+    # GitHub Actions runners may be slower, so we use a generous timeout
+    if timeout is None:
+        timeout = 180
+
     start = time.time()
     attempt = 0
     while time.time() - start < timeout:
@@ -205,7 +210,7 @@ def jenkins(launched_jenkins):
     url = launched_jenkins.jenkins_url
 
     jenkins_instance = Jenkins(url, timeout=60)
-    ensure_jenkins_up(url, timeout=60)
+    ensure_jenkins_up(url)
 
     # Retry cleanup operations to handle transient connection issues
     max_retries = 3
