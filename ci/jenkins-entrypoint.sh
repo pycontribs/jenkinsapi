@@ -30,8 +30,7 @@ trap handle_signal SIGTERM SIGINT
 # Run Jenkins and keep restarting it if it crashes
 while true; do
     echo "Starting Jenkins..."
-    # Run Jenkins as jenkins user using gosu (available in jenkins base image)
-    gosu jenkins /usr/local/bin/jenkins.sh "$@" &
+    /usr/local/bin/jenkins.sh "$@" &
     JENKINS_PID=$!
 
     # Wait for Jenkins to exit

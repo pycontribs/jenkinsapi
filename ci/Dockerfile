@@ -13,17 +13,16 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy and setup custom entrypoint script
-COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
-RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
-
 # Ensure JENKINS_HOME directory exists with world-writable permissions
 # This is critical for mounted volumes from the host that may have different ownership
 RUN mkdir -p /var/jenkins_home && \
     chmod 777 /var/jenkins_home
 
-# Note: We do NOT set USER jenkins here because the entrypoint needs to run as root
-# to fix mounted volume permissions. The entrypoint will switch to jenkins user.
+# Copy and setup custom entrypoint wrapper script
+COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
+RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
+
+USER jenkins
 
 # Copy plugins.txt
 COPY plugins.txt /tmp/plugins.txt
