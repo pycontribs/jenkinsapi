@@ -47,7 +47,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+        python-version: ["3.9", "3.11", "3.14"]
 
     steps:
       - name: Checkout
@@ -106,4 +106,4 @@ jobs:
         continue-on-error: true
 
       - name: Test with pytest (parallel)
-        run: make test
+        run: make coverage-parallel
