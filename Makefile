@@ -1,6 +1,7 @@
-.PHONY: test test-parallel lint coverage coverage-parallel dist clean docker-build docker-publish docker show-workers update-plugins
+.PHONY: test test-parallel lint coverage coverage-parallel dist clean docker-build docker-publish docker show-workers update-plugins docker-build-test docker-publish-test
 
 DOCKER_IMAGE := ghcr.io/pycontribs/jenkinsapi-jenkins:latest
+DOCKER_TEST_IMAGE := ghcr.io/pycontribs/jenkinsapi-test:latest
 
 # Calculate number of pytest workers as 1/3 of available CPUs (minimum 1)
 NUM_WORKERS := $(shell python3 -c "import os; print(max(1, os.cpu_count() // 3))")
@@ -35,6 +36,12 @@ docker-publish: docker-build
 	docker push $(DOCKER_IMAGE)
 
 docker: docker-publish
+
+docker-build-test:
+	docker build -t $(DOCKER_TEST_IMAGE) -f ci/Dockerfile.test .
+
+docker-publish-test: docker-build-test
+	docker push $(DOCKER_TEST_IMAGE)
 
 show-workers:
 	@echo "Pytest will use $(NUM_WORKERS) parallel workers (1/3 of $(shell python3 -c 'import os; print(os.cpu_count())') CPUs)"

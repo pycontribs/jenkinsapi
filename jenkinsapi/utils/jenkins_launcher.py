@@ -187,7 +187,18 @@ class JenkinsLancher:
         # Wait a bit to ensure port is fully released from previous container
         time.sleep(2)
 
-        # Run Docker container
+        # Run Docker container with performance optimizations
+        java_opts = (
+            "-Djenkins.install.runSetupWizard=false "
+            "-Dhudson.DNSMultiCast.disabled=true "
+            "-Dhudson.model.UpdateCenter.never=true "
+            "-Djenkins.InitReactorRunner.concurrency=4 "
+            "-XX:+TieredCompilation "
+            "-XX:TieredStopAtLevel=4 "
+            "-XX:+UseG1GC "
+            "-Xms512m "
+            "-Xmx1024m"
+        )
         docker_run_cmd = [
             "docker",
             "run",
@@ -197,7 +208,7 @@ class JenkinsLancher:
             "-v",
             f"{self.jenkins_home}:/var/jenkins_home",
             "-e",
-            "JAVA_OPTS=-Djenkins.install.runSetupWizard=false -Dhudson.DNSMultiCast.disabled=true",
+            f"JAVA_OPTS={java_opts}",
             docker_image,
         ]
 
