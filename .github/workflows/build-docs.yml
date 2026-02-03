@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+          sudo apt-get install libkrb5-dev gcc
 
       - name: Build HTML
         run: make
