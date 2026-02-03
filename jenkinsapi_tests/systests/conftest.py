@@ -169,9 +169,9 @@ def launched_jenkins(request, jenkins_launcher_mode):
 @pytest.fixture(scope="session", autouse=True)
 def cleanup_docker(request):
     """Cleanup Docker containers and images after all tests complete."""
-    yield
-    log.info("Running Docker cleanup after test session...")
+    log.info("Running Docker cleanup before test session...")
     JenkinsLancher.cleanup_docker_images()
+    yield
 
 
 def ensure_jenkins_up(url, timeout=None):
