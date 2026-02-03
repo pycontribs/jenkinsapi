@@ -6,11 +6,17 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 def fetch_update_center():
     """Fetch Jenkins Update Center data."""
     url = "https://updates.jenkins.io/current/update-center.json"
+    # Validate URL scheme for security
+    parsed_url = urlparse(url)
+    if parsed_url.scheme not in ("http", "https"):
+        raise ValueError(f"Unsupported URL scheme: {parsed_url.scheme}")
+
     req = urllib.request.Request(url)
     req.add_header("User-Agent", "jenkinsapi-update-checker")
 
