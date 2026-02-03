@@ -9,16 +9,17 @@ set +e
 # Ensure JENKINS_HOME has proper permissions for the jenkins user
 # This is especially important for mounted volumes from the host
 if [ -d /var/jenkins_home ]; then
-    chmod 777 /var/jenkins_home
-    # Also fix permissions on subdirectories if they exist
-    find /var/jenkins_home -type d -exec chmod 777 {} \; 2>/dev/null || true
+    chown -R jenkins:jenkins /var/jenkins_home
+    chmod 755 /var/jenkins_home
 fi
 
 # Function to handle signals
 handle_signal() {
     echo "Received signal, shutting down Jenkins gracefully..."
-    kill -TERM "$JENKINS_PID" 2>/dev/null || true
-    wait "$JENKINS_PID" 2>/dev/null || true
+    if [ -n "$JENKINS_PID" ]; then
+        kill -TERM "$JENKINS_PID" 2>/dev/null || true
+        wait "$JENKINS_PID" 2>/dev/null || true
+    fi
     exit 0
 }
 
@@ -28,7 +29,8 @@ trap handle_signal SIGTERM SIGINT
 # Run Jenkins and keep restarting it if it crashes
 while true; do
     echo "Starting Jenkins..."
-    /usr/local/bin/jenkins.sh "$@" &
+    # Run Jenkins as jenkins user
+    su-exec jenkins /usr/local/bin/jenkins.sh "$@" &
     JENKINS_PID=$!
 
     # Wait for Jenkins to exit
