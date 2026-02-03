@@ -1,4 +1,4 @@
-import mock
+from unittest import mock
 
 # To run unittests on python 2.6 please use unittest2 library
 try:

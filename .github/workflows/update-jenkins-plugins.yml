@@ -1,0 +1,184 @@
+name: Update Jenkins Plugins
+
+on:
+  schedule:
+    # Check for plugin updates daily at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-plugins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9adb9ea46f8c37753d4c6c94d45be4a1 # v5.0.2
+        with:
+          python-version: '3.12'
+
+      - name: Check for plugin updates
+        id: check-updates
+        run: |
+          python3 << 'PYTHON_EOF'
+          import urllib.request
+          import json
+          import re
+          from pathlib import Path
+
+          # Read current plugins.txt
+          plugins_file = Path('ci/plugins.txt')
+          current_plugins = {}
+
+          with open(plugins_file, 'r') as f:
+              for line in f:
+                  line = line.strip()
+                  if line and not line.startswith('#'):
+                      if ':' in line:
+                          plugin_id, version = line.split(':', 1)
+                          current_plugins[plugin_id] = version
+                      else:
+                          current_plugins[line] = None
+
+          print(f"Checking {len(current_plugins)} plugins for updates...")
+
+          # Fetch Jenkins Update Center
+          url = 'https://updates.jenkins.io/current/update-center.json'
+          req = urllib.request.Request(url)
+          req.add_header('User-Agent', 'jenkinsapi-update-checker')
+
+          with urllib.request.urlopen(req, timeout=30) as response:
+              content = response.read().decode('utf-8')
+              # Remove "updateCenter.post(" prefix and trailing ")" or ");"
+              json_content = re.sub(r'^[^{]*\{', '{', content, count=1)
+              json_content = re.sub(r'\}[^}]*$', '}', json_content)
+
+              data = json.loads(json_content)
+
+          # Extract available versions
+          available = {}
+          if 'plugins' in data:
+              for plugin_id, plugin_info in data['plugins'].items():
+                  if 'version' in plugin_info:
+                      available[plugin_id] = plugin_info['version']
+
+          # Find updates
+          updates = {}
+          for plugin_id, current_version in current_plugins.items():
+              if plugin_id in available:
+                  available_version = available[plugin_id]
+                  if current_version and current_version != available_version:
+                      updates[plugin_id] = {
+                          'current': current_version,
+                          'available': available_version
+                      }
+
+          if updates:
+              print(f"\nFound {len(updates)} plugin updates:")
+              for plugin_id, versions in sorted(updates.items()):
+                  print(f"  {plugin_id}: {versions['current']} → {versions['available']}")
+
+              # Write updates to file for next step
+              with open('/tmp/updates.json', 'w') as f:
+                  json.dump(updates, f, indent=2)
+
+              print(f"\n::set-output name=updates-found::true")
+              with open('/tmp/updates_found.txt', 'w') as f:
+                  f.write('true')
+          else:
+              print("\nNo plugin updates available")
+              print(f"::set-output name=updates-found::false")
+              with open('/tmp/updates_found.txt', 'w') as f:
+                  f.write('false')
+          PYTHON_EOF
+
+      - name: Load updates
+        if: hashFiles('/tmp/updates_found.txt') != ''
+        run: |
+          if [ -f /tmp/updates_found.txt ]; then
+            echo "UPDATES_FOUND=$(cat /tmp/updates_found.txt)" >> $GITHUB_ENV
+          fi
+
+      - name: Apply plugin updates
+        if: env.UPDATES_FOUND == 'true'
+        run: |
+          python3 << 'PYTHON_EOF'
+          import json
+          from pathlib import Path
+
+          # Read current plugins
+          plugins_file = Path('ci/plugins.txt')
+          plugins_lines = []
+          current_plugins = {}
+
+          with open(plugins_file, 'r') as f:
+              for line in f:
+                  line = line.rstrip('\n')
+                  if line and not line.startswith('#'):
+                      if ':' in line:
+                          plugin_id, version = line.split(':', 1)
+                          current_plugins[plugin_id] = version
+                  plugins_lines.append(line)
+
+          # Load updates
+          with open('/tmp/updates.json', 'r') as f:
+              updates = json.load(f)
+
+          # Apply updates
+          updated_lines = []
+          for line in plugins_lines:
+              if line and not line.startswith('#'):
+                  if ':' in line:
+                      plugin_id, _ = line.split(':', 1)
+                      if plugin_id in updates:
+                          updated_lines.append(f"{plugin_id}:{updates[plugin_id]['available']}")
+                      else:
+                          updated_lines.append(line)
+                  else:
+                      # Handle unpinned plugins
+                      if line in updates:
+                          updated_lines.append(f"{line}:{updates[line]['available']}")
+                      else:
+                          updated_lines.append(line)
+              else:
+                  updated_lines.append(line)
+
+          # Write updated plugins.txt
+          with open(plugins_file, 'w') as f:
+              f.write('\n'.join(updated_lines))
+
+          print(f"Updated {len(updates)} plugins in ci/plugins.txt")
+          PYTHON_EOF
+
+      - name: Check if changes exist
+        id: changes
+        run: |
+          if git diff --quiet ci/plugins.txt; then
+            echo "has-changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has-changes=true" >> $GITHUB_OUTPUT
+            echo "Changes in ci/plugins.txt:"
+            git diff ci/plugins.txt | head -50
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has-changes == 'true'
+        uses: peter-evans/create-pull-request@c8d5f21f3e46f7f2b8e1b1e3d1e1e1e1e1e1e1e # v5.0.2
+        with:
+          commit-message: 'chore: update Jenkins plugins'
+          title: 'chore: update Jenkins plugins'
+          body: |
+            This PR updates Jenkins plugins to their latest available versions.
+
+            Please review the plugin versions and ensure compatibility with the codebase.
+
+            The build will automatically test the new image configuration before merging.
+          branch: update-jenkins-plugins
+          delete-branch: true
+          labels: 'dependencies'

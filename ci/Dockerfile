@@ -1,0 +1,44 @@
+# Single stage build for Jenkins with pre-installed plugins
+# Use a recent LTS Jenkins version with JDK 21
+FROM jenkins/jenkins:lts-jdk25
+
+# Install additional system utilities needed for tests
+# Using system level apt-get with explicit cache handling
+USER root
+RUN apt-get update && \
+    apt-get install -y iputils-ping gzip dumb-init && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy and setup custom entrypoint script
+COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
+RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
+
+USER jenkins
+
+# Copy plugins.txt
+COPY plugins.txt /tmp/plugins.txt
+
+# Install plugins using jenkins-plugin-cli
+# This handles plugin dependencies automatically
+# Use --latest=false to respect version pins in plugins.txt
+RUN jenkins-plugin-cli --plugin-file /tmp/plugins.txt --verbose --latest=false
+
+# Set Jenkins configuration to skip setup wizard and disable UDP multicast
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dhudson.DNSMultiCast.disabled=true"
+
+# Health check to verify Jenkins is ready
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/json || exit 1
+
+# Expose Jenkins port
+EXPOSE 8080
+
+# Expose Jenkins agent port
+EXPOSE 50000
+
+# Use dumb-init as the init process (PID 1) to properly handle Jenkins restarts
+# dumb-init manages the jenkins-entrypoint.sh process which in turn runs jenkins.sh
+# This ensures the container stays running when Jenkins restarts internally
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+CMD ["/usr/local/bin/jenkins-entrypoint.sh"]

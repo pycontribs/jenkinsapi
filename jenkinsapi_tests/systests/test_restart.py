@@ -13,10 +13,10 @@ from requests import HTTPError, ConnectionError
 log = logging.getLogger(__name__)
 
 
-def wait_for_restart(jenkins):
+def wait_for_restart(jenkins, timeout=450):
     wait = 15
     count = 0
-    max_count = 30
+    max_count = int(timeout / wait)
     success = False
     msg = (
         "Jenkins has not restarted yet! (This is try %s of %s, "
@@ -24,7 +24,7 @@ def wait_for_restart(jenkins):
         "Sleeping %s seconds and trying again..."
     )
 
-    while count < max_count or not success:
+    while count < max_count and not success:
         time.sleep(wait)
         try:
             jenkins.poll()

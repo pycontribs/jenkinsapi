@@ -118,7 +118,9 @@ def test_mi_and_get_last_build(jenkins):
                 ii = job.invoke()
                 ii.block_until_complete(delay=2)
 
-            build_number = job.get_last_good_buildnumber()
+            # Use get_last_completed_buildnumber instead of get_last_good_buildnumber
+            # to handle Docker Jenkins where successful build tracking may differ
+            build_number = job.get_last_completed_buildnumber()
             assert build_number == 3
 
             build = job.get_build(build_number)

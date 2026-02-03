@@ -1,5 +1,5 @@
 import pytest
-import mock
+from unittest import mock
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.executors import Executors
 from jenkinsapi.executor import Executor

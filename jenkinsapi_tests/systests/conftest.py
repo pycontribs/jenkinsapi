@@ -7,68 +7,80 @@ from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
 log = logging.getLogger(__name__)
+
+
+def pytest_configure(config):
+    """Configure pytest with custom markers for systests."""
+    config.addinivalue_line(
+        "markers",
+        "docker_jenkins: mark test as using Docker-based Jenkins",
+    )
+    config.addinivalue_line(
+        "markers",
+        "war_jenkins: mark test as using war file-based Jenkins",
+    )
+    config.addinivalue_line(
+        "markers",
+        "jenkins_integration: mark test as full Jenkins integration test",
+    )
+    config.addinivalue_line(
+        "markers",
+        "executor_any: mark test to run on any available executor (default)",
+    )
+    # Store whether systests are being collected
+    config._systests_collected = False
+
+
+def pytest_collection_finish(session):
+    """Check if systests are being collected after test collection is complete."""
+    session._systests_collected = False
+    for item in session.items:
+        if "systests" in str(item.fspath):
+            session._systests_collected = True
+            log.info("Systests detected - will start Jenkins")
+            break
+    if not session._systests_collected:
+        log.info("No systests detected - skipping Jenkins startup")
+
+
 state = {}
 
 # User/password for authentication testcases
 ADMIN_USER = "admin"
 ADMIN_PASSWORD = "admin"
 
-# Extra plugins required by the systests
-PLUGIN_DEPENDENCIES = [
-    "https://updates.jenkins.io/latest/apache-httpcomponents-client-4-api.hpi",
-    "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
-    "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
-    "https://updates.jenkins.io/latest/jsch.hpi",
-    "https://updates.jenkins.io/latest/gson-api.hpi",
-    "https://updates.jenkins.io/latest/trilead-api.hpi",
-    "https://updates.jenkins.io/latest/bouncycastle-api.hpi",
-    "https://updates.jenkins.io/latest/ssh-slaves.hpi",
-    "https://updates.jenkins.io/latest/instance-identity.hpi",
-    "https://updates.jenkins.io/latest/bootstrap5-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-api.hpi",
-    "https://updates.jenkins.io/latest/display-url-api.hpi",
-    "https://updates.jenkins.io/latest/eddsa-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-step-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-scm-step.hpi",
-    "https://updates.jenkins.io/latest/antisamy-markup-formatter.hpi",
-    "https://updates.jenkins.io/latest/prism-api.hpi",
-    "https://updates.jenkins.io/latest/junit.hpi",
-    "https://updates.jenkins.io/latest/script-security.hpi",
-    "https://updates.jenkins.io/latest/matrix-project.hpi",
-    "https://updates.jenkins.io/latest/credentials.hpi",
-    "https://updates.jenkins.io/latest/variant.hpi",
-    "https://updates.jenkins.io/latest/ssh-credentials.hpi",
-    "https://updates.jenkins.io/latest/asm-api.hpi",
-    "https://updates.jenkins.io/latest/scm-api.hpi",
-    "https://updates.jenkins.io/latest/git.hpi",
-    "https://updates.jenkins.io/latest/git-client.hpi",
-    "https://updates.jenkins.io/latest/jakarta-mail-api.hpi",
-    "https://updates.jenkins.io/latest/nested-view.hpi",
-    "https://updates.jenkins.io/latest/structs.hpi",
-    "https://updates.jenkins.io/latest/plain-credentials.hpi",
-    "https://updates.jenkins.io/latest/envinject.hpi",
-    "https://updates.jenkins.io/latest/envinject-api.hpi",
-    "https://updates.jenkins.io/latest/jdk-tool.hpi",
-    "https://updates.jenkins.io/latest/credentials-binding.hpi",
-    "https://updates.jenkins.io/latest/jakarta-activation-api.hpi",
-    "https://updates.jenkins.io/latest/caffeine-api.hpi",
-    "https://updates.jenkins.io/latest/checks-api.hpi",
-    "https://updates.jenkins.io/latest/json-api.hpi",
-    "https://updates.jenkins.io/latest/jakarta-xml-bind-api.hpi",
-    "https://updates.jenkins.io/latest/jackson2-api.hpi",
-    "https://updates.jenkins.io/latest/echarts-api.hpi",
-    "https://updates.jenkins.io/latest/ionicons-api.hpi",
-    "https://updates.jenkins.io/latest/plugin-util-api.hpi",
-    "https://updates.jenkins.io/latest/font-awesome-api.hpi",
-    "https://updates.jenkins.io/latest/commons-text-api.hpi",
-    "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
-    "https://updates.jenkins.io/latest/snakeyaml-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-support.hpi",
-    "https://updates.jenkins.io/latest/jquery3-api.hpi",
-    "https://updates.jenkins.io/latest/javax-activation-api.hpi",
-    "https://updates.jenkins.io/latest/jaxb.hpi",
-    "https://updates.jenkins.io/latest/mailer.hpi",
-]
+# Note: Plugins are now pre-installed in the Docker image
+# See ci/plugins.txt for the list of included plugins
+
+
+@pytest.fixture(scope="session")
+def jenkins_launcher_mode():
+    """Determine which Jenkins launcher mode will be used.
+
+    Returns:
+        dict: Information about the launcher mode
+    """
+    skip_docker = os.getenv("SKIP_DOCKER", "").lower() in ("1", "true")
+    has_jenkins_url = "JENKINS_URL" in os.environ
+    has_docker = JenkinsLancher._has_docker()
+
+    if has_jenkins_url:
+        mode = "external"
+    elif skip_docker or not has_docker:
+        mode = "war"
+    else:
+        mode = "docker"
+
+    return {
+        "mode": mode,
+        "docker_available": has_docker,
+        "skip_docker": skip_docker,
+        "external_url": os.getenv("JENKINS_URL"),
+        "docker_image": os.getenv(
+            "JENKINS_DOCKER_IMAGE",
+            "ghcr.io/pycontribs/jenkinsapi-jenkins:latest",
+        ),
+    }
 
 
 def _delete_all_jobs(jenkins):
@@ -131,25 +143,57 @@ instance.save()
 
 
 @pytest.fixture(scope="session")
-def launched_jenkins():
+def launched_jenkins(request, jenkins_launcher_mode):
+    """Launch Jenkins instance for systests only."""
+    # Skip if no systests are being collected
+    if not getattr(request.session, "_systests_collected", False):
+        pytest.skip("No systests to run")
+
     systests_dir, _ = os.path.split(__file__)
     local_orig_dir = os.path.join(systests_dir, "localinstance_files")
     if not os.path.exists(local_orig_dir):
         os.mkdir(local_orig_dir)
-    war_name = "jenkins.war"
     launcher = JenkinsLancher(
         local_orig_dir,
         systests_dir,
-        war_name,
-        PLUGIN_DEPENDENCIES,
         jenkins_url=os.getenv("JENKINS_URL", None),
     )
+
+    # Log which method will be used for starting Jenkins
+    mode = jenkins_launcher_mode["mode"]
+    if mode == "external":
+        log.info(
+            "Using external Jenkins instance: %s",
+            jenkins_launcher_mode["external_url"],
+        )
+    elif mode == "docker":
+        log.info(
+            "Starting Jenkins with Docker image: %s",
+            jenkins_launcher_mode["docker_image"],
+        )
+    else:
+        log.info(
+            "Starting Jenkins with war file (Docker not available or disabled)"
+        )
+
     launcher.start()
+
+    # Store mode info on launcher for test access
+    launcher.test_mode = mode
+    launcher.test_config = jenkins_launcher_mode
 
     yield launcher
 
-    log.info("All tests finished")
+    log.info("All tests finished (mode: %s)", mode)
     launcher.stop()
+
+
+@pytest.fixture(scope="session", autouse=True)
+def cleanup_docker(request):
+    """Cleanup Docker containers and images after all tests complete."""
+    yield
+    log.info("Running Docker cleanup after test session...")
+    JenkinsLancher.cleanup_docker_images()
 
 
 def ensure_jenkins_up(url, timeout=60):
@@ -216,3 +260,23 @@ def jenkins_admin_admin(launched_jenkins, jenkins):  # pylint: disable=unused-ar
 
     jenkins_admin_instance.requester.__class__.AUTH_COOKIE = None
     _disable_security(launched_jenkins)
+
+
+@pytest.fixture(scope="function")
+def executor_id(request):
+    """Provide the executor ID for the current test.
+
+    When running with pytest-xdist, this returns the worker ID (e.g., 'gw0', 'gw1').
+    When running single-threaded, this returns 'local'.
+
+    Tests can use this fixture to identify which executor/worker they're running on,
+    allowing for dynamic executor assignment and load balancing.
+    """
+    # Check if running with pytest-xdist
+    if hasattr(request.config, "workerinput"):
+        worker_id = request.config.workerinput["workerid"]
+    else:
+        worker_id = "local"
+
+    log.debug(f"Test '{request.node.name}' running on executor: {worker_id}")
+    return worker_id
