@@ -3,7 +3,6 @@
 FROM jenkins/jenkins:lts-jdk25
 
 # Install additional system utilities needed for tests and healthchecks
-# Using system level apt-get with explicit cache handling
 USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
