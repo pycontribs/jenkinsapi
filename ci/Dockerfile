@@ -2,27 +2,28 @@
 # Use a recent LTS Jenkins version with JDK 21
 FROM jenkins/jenkins:lts-jdk25
 
-# Install additional system utilities needed for tests
+# Install additional system utilities needed for tests and healthchecks
 # Using system level apt-get with explicit cache handling
 USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        curl \
         iputils-ping \
-        gzip \
-        dumb-init && \
+        gzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Ensure JENKINS_HOME directory exists with world-writable permissions
-# This is critical for mounted volumes from the host that may have different ownership
-RUN mkdir -p /var/jenkins_home && \
-    chmod 777 /var/jenkins_home
+# Ensure JENKINS_HOME directory exists with proper permissions for mounted volumes
+RUN mkdir -p /var/jenkins_home && chmod 777 /var/jenkins_home
 
 # Copy and setup custom entrypoint wrapper script
 COPY jenkins-entrypoint.sh /usr/local/bin/jenkins-entrypoint.sh
 RUN chmod +x /usr/local/bin/jenkins-entrypoint.sh
 
 USER jenkins
+
+# Use custom entrypoint that handles permission fixes and restarts
+ENTRYPOINT ["/usr/local/bin/jenkins-entrypoint.sh"]
 
 # Copy plugins.txt
 COPY plugins.txt /tmp/plugins.txt
@@ -45,9 +46,9 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false \
   -Xmx1024m"
 
 # Health check to verify Jenkins is ready
-# Reduced interval for faster detection of ready state
-HEALTHCHECK --interval=5s --timeout=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/json || exit 1
+# Use curl instead of wget, 127.0.0.1 explicitly, longer startup time
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
+  CMD curl -f http://127.0.0.1:8080/api/json || exit 1
 
 # Expose Jenkins port
 EXPOSE 8080
