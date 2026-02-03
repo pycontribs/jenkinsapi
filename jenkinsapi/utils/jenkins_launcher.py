@@ -84,6 +84,21 @@ class JenkinsLancher:
         except (FileNotFoundError, subprocess.TimeoutExpired):
             return False
 
+    @staticmethod
+    def _check_docker_health():
+        """Check if Docker daemon is healthy."""
+        try:
+            result = subprocess.run(
+                ["docker", "ps"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=10,
+            )
+            return result.returncode == 0
+        except Exception as e:
+            log.warning("Docker health check failed: %s", e)
+            return False
+
     def _ensure_docker_image(self, docker_image):
         """Ensure Docker image exists locally, pulling or building if necessary."""
         log.info("Checking for Docker image: %s", docker_image)
@@ -190,6 +205,12 @@ class JenkinsLancher:
 
         log.info("Starting Jenkins with Docker image: %s", docker_image)
 
+        # Check Docker daemon health
+        if not self._check_docker_health():
+            log.warning(
+                "Docker daemon may not be healthy, attempting anyway..."
+            )
+
         # Ensure the Docker image is available (skip if SKIP_IMAGE_CHECK is set)
         if not os.environ.get("SKIP_IMAGE_CHECK"):
             self._ensure_docker_image(docker_image)
@@ -222,26 +243,50 @@ class JenkinsLancher:
             docker_image,
         ]
 
-        try:
-            log.info("About to start Jenkins Docker container...")
-            log.info("%s", " ".join(docker_run_cmd))
-            result = subprocess.run(
-                docker_run_cmd,
-                capture_output=True,
-                text=True,
-                timeout=30,
-                check=True,
+        # Retry docker run with exponential backoff (OCI errors are transient)
+        max_retries = 3
+        retry_delay = 5
+        last_error = None
+
+        for attempt in range(max_retries):
+            try:
+                log.info(
+                    "Attempt %d/%d: Starting Jenkins Docker container...",
+                    attempt + 1,
+                    max_retries,
+                )
+                log.info("%s", " ".join(docker_run_cmd))
+                result = subprocess.run(
+                    docker_run_cmd,
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                    check=True,
+                )
+                self.docker_container_id = result.stdout.strip()
+                log.info(
+                    "Jenkins container started with ID: %s",
+                    self.docker_container_id,
+                )
+                break
+            except subprocess.CalledProcessError as e:
+                last_error = e.stderr
+                log.error("Attempt %d failed: %s", attempt + 1, e.stderr)
+                if attempt < max_retries - 1:
+                    log.info("Retrying in %d seconds...", retry_delay)
+                    time.sleep(retry_delay)
+                    retry_delay *= 2
+            except subprocess.TimeoutExpired:
+                last_error = "Docker run command timed out"
+                log.error("Attempt %d: Timeout", attempt + 1)
+                if attempt < max_retries - 1:
+                    time.sleep(retry_delay)
+                    retry_delay *= 2
+        else:
+            # All retries failed
+            raise FailedToStart(
+                f"Docker run failed after {max_retries} attempts: {last_error}"
             )
-            self.docker_container_id = result.stdout.strip()
-            log.info(
-                "Jenkins container started with ID: %s",
-                self.docker_container_id,
-            )
-        except subprocess.CalledProcessError as e:
-            log.error("Failed to start Docker container: %s", e.stderr)
-            raise FailedToStart(f"Docker run failed: {e.stderr}")
-        except subprocess.TimeoutExpired:
-            raise FailedToStart("Docker run command timed out")
 
         # Wait a moment for the container to fully initialize and bind ports
         log.info("Waiting for container to initialize...")
