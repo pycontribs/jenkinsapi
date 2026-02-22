@@ -92,7 +92,11 @@ class Jobs(object):
             name = self._normalize_job_name(job_data["name"])
             if name != normalized_name:
                 name = normalized_name
-            return Job(job_data["url"], name, self.jenkins)
+            return Job(
+                Job.strip_trailing_slash(job_data["url"]),
+                name,
+                self.jenkins,
+            )
         else:
             raise UnknownJob(normalized_name)
 
@@ -141,7 +145,11 @@ class Jobs(object):
         if not self._data:
             self._data = self.poll().get("jobs", [])
         for row in self._data:
-            yield Job(row["url"], row["name"], self.jenkins)
+            yield Job(
+                Job.strip_trailing_slash(row["url"]),
+                row["name"],
+                self.jenkins,
+            )
 
     def keys(self) -> list[str]:
         """
