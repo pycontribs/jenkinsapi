@@ -68,8 +68,22 @@ class Queue(JenkinsBase):
             raise UnknownQueueItem(item_id)
 
     def _get_queue_items_for_job(self, job_name: str) -> Iterator["QueueItem"]:
+        def normalize(name: str) -> str:
+            name = (name or "").strip().strip("/")
+            if not name:
+                return name
+            if name.startswith("job/"):
+                name = name[4:]
+            if "/job/" in name:
+                return name.replace("/job/", "/").lstrip("/")
+            return name
+
+        normalized_name = normalize(job_name)
         for item in self._data["items"]:
-            if "name" in item["task"] and item["task"]["name"] == job_name:
+            if (
+                "name" in item["task"]
+                and normalize(item["task"]["name"]) == normalized_name
+            ):
                 yield QueueItem(
                     self.get_queue_item_url(item), jenkins_obj=self.jenkins
                 )

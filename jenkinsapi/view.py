@@ -38,14 +38,15 @@ class View(JenkinsBase):
 
     def __getitem__(self, job_name) -> Job:
         assert isinstance(job_name, str)
-        api_url = self.python_api_url(self.get_job_url(job_name))
-        return Job(api_url, job_name, self.jenkins_obj)
+        normalized_name = self._normalize_job_name(job_name)
+        api_url = self.python_api_url(self.get_job_url(normalized_name))
+        return Job(api_url, normalized_name, self.jenkins_obj)
 
     def __contains__(self, job_name: str) -> bool:
         """
         True if view_name is the name of a defined view
         """
-        return job_name in self.keys()
+        return self._normalize_job_name(job_name) in self.keys()
 
     def delete(self) -> None:
         """
@@ -80,14 +81,15 @@ class View(JenkinsBase):
         return dict(self._get_jobs())
 
     def get_job_url(self, str_job_name: str) -> str:
-        if str_job_name in self:
-            return self.get_job_dict()[str_job_name]
+        normalized_name = self._normalize_job_name(str_job_name)
+        if normalized_name in self:
+            return self.get_job_dict()[normalized_name]
         else:
             # noinspection PyUnboundLocalVariable
             views_jobs = ", ".join(self.get_job_dict().keys())
             raise NotFound(
                 "Job %s is not known, available jobs"
-                " in view are: %s" % (str_job_name, views_jobs)
+                " in view are: %s" % (normalized_name, views_jobs)
             )
 
     def get_jenkins_obj(self) -> "Jenkins":
@@ -102,6 +104,7 @@ class View(JenkinsBase):
         :return: True if job has been added, False if job already exists or
          job not known to Jenkins
         """
+        job_name = self._normalize_job_name(job_name)
         if not job:
             if job_name in self.get_job_dict():
                 log.warning(
@@ -147,6 +150,7 @@ class View(JenkinsBase):
         :return: True if job has been removed,
             False if job not assigned to this view
         """
+        job_name = self._normalize_job_name(job_name)
         if job_name not in self:
             return False
 
@@ -162,6 +166,17 @@ class View(JenkinsBase):
             % (job_name, self.name)
         )
         return True
+
+    @staticmethod
+    def _normalize_job_name(job_name: str) -> str:
+        name = (job_name or "").strip().strip("/")
+        if not name:
+            return name
+        if name.startswith("job/"):
+            name = name[4:]
+        if "/job/" in name:
+            return name.replace("/job/", "/").lstrip("/")
+        return name
 
     def _get_nested_views(self) -> Iterator[Tuple[str, str]]:
         for viewdict in self._data.get("views", []):
