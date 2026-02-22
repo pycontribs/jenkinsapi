@@ -48,8 +48,19 @@ def test_create_job_at_root(jenkins):
 
 
 def test_normalizes_job_name_for_contains_and_getitem():
+    class DummyResponse:
+        status_code = 200
+        text = "{}"
+
+    class DummyRequester:
+        @staticmethod
+        def get_url(*args, **kwargs):  # pylint: disable=unused-argument
+            return DummyResponse()
+
     class DummyJenkins:
         baseurl = "http://localhost:8080/"
+        requester = DummyRequester()
+        lazy = True
 
     jobs = Jobs(DummyJenkins())
     jobs._data = [

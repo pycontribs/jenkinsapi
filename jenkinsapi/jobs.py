@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import Iterator
 import logging
 import time
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 from jenkinsapi.job import Job
 from jenkinsapi.custom_exceptions import JenkinsAPIException, UnknownJob
@@ -84,16 +84,15 @@ class Jobs(object):
     def __getitem__(self, job_name: str) -> "Job":
         normalized_name = self._normalize_job_name(job_name)
         if normalized_name in self:
-            job_data = [
+            job_data = next(
                 job_row
                 for job_row in self._data
-                if job_row["name"] == normalized_name
-                or Job.get_full_name_from_url_and_baseurl(
-                    job_row["url"], self.jenkins.baseurl
-                )
-                == normalized_name
-            ][0]
-            return Job(job_data["url"], job_data["name"], self.jenkins)
+                if self._job_row_matches_name(job_row, normalized_name)
+            )
+            name = self._normalize_job_name(job_data["name"])
+            if name != normalized_name:
+                name = normalized_name
+            return Job(job_data["url"], name, self.jenkins)
         else:
             raise UnknownJob(normalized_name)
 
@@ -111,7 +110,13 @@ class Jobs(object):
         """
         True if job_name exists in Jenkins
         """
-        return self._normalize_job_name(job_name) in self.keys()
+        normalized_name = self._normalize_job_name(job_name)
+        if not self._data:
+            self._data = self.poll().get("jobs", [])
+        return any(
+            self._job_row_matches_name(job_row, normalized_name)
+            for job_row in self._data
+        )
 
     def iterkeys(self) -> Iterator[str]:
         """
@@ -120,14 +125,14 @@ class Jobs(object):
         if not self._data:
             self._data = self.poll().get("jobs", [])
         for row in self._data:
-            if row["name"] != Job.get_full_name_from_url_and_baseurl(
-                row["url"], self.jenkins.baseurl
-            ):
-                yield Job.get_full_name_from_url_and_baseurl(
-                    row["url"], self.jenkins.baseurl
-                )
+            row_name = self._normalize_job_name(row["name"])
+            full_name = self._get_full_name_from_row(row)
+            if "/" in full_name:
+                yield full_name
+            elif row_name:
+                yield row_name
             else:
-                yield row["name"]
+                yield full_name
 
     def itervalues(self) -> Iterator["Job"]:
         """
@@ -170,7 +175,7 @@ class Jobs(object):
         # Reset to get it refreshed from Jenkins
         self._data = []
 
-        return self[full_name]
+        return Job(self._build_job_url(full_name), full_name, self.jenkins)
 
     def create_multibranch_pipeline(
         self, job_name: str, config: str, block: bool = True, delay: int = 60
@@ -271,6 +276,30 @@ class Jobs(object):
         if not parts:
             return full_name, [], ""
         return full_name, parts[:-1], parts[-1]
+
+    def _get_full_name_from_row(self, row: dict) -> str:
+        url = row.get("url", "")
+        path = url.replace(self.jenkins.baseurl, "").strip("/")
+        if path:
+            tokens = path.split("/")
+            parts = []
+            idx = 0
+            while idx < len(tokens):
+                if tokens[idx] == "job" and idx + 1 < len(tokens):
+                    parts.append(unquote(tokens[idx + 1]))
+                    idx += 2
+                else:
+                    idx += 1
+            if parts:
+                return "/".join(parts)
+        return self._normalize_job_name(
+            Job.get_full_name_from_url_and_baseurl(url, self.jenkins.baseurl)
+        )
+
+    def _job_row_matches_name(self, row: dict, normalized_name: str) -> bool:
+        if self._normalize_job_name(row.get("name", "")) == normalized_name:
+            return True
+        return self._get_full_name_from_row(row) == normalized_name
 
     def _get_create_url(self, folder_parts: list[str]) -> str:
         if not folder_parts:

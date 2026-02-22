@@ -240,9 +240,8 @@ class Requester(object):
         self._log_request("GET", final_url, params, headers, None, None)
         start = time.time()
         response = self.session.get(final_url, **requestKwargs)
-        self._log_response(
-            "GET", final_url, response.status_code, time.time() - start
-        )
+        status_code = getattr(response, "status_code", "unknown")
+        self._log_response("GET", final_url, status_code, time.time() - start)
         return response
 
     def post_url(
@@ -267,9 +266,8 @@ class Requester(object):
         self._log_request("POST", final_url, params, headers, data, files)
         start = time.time()
         response = self.session.post(final_url, **requestKwargs)
-        self._log_response(
-            "POST", final_url, response.status_code, time.time() - start
-        )
+        status_code = getattr(response, "status_code", "unknown")
+        self._log_response("POST", final_url, status_code, time.time() - start)
         return response
 
     def post_xml_and_confirm_status(
