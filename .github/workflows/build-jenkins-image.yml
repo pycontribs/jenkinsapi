@@ -1,6 +1,7 @@
+---
 name: Build and Publish Jenkins Docker Image
 
-on:
+"on":
   schedule:
     # Run daily at 2 AM UTC to pick up plugin updates
     - cron: '0 2 * * *'
@@ -23,10 +24,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Install uv
-        uses: astral-sh/setup-uv@61cb8a9741eeb8a550a1b8544337180c0fc8476b # v7.2.0
+        # v7.2.0
+        uses: astral-sh/setup-uv@61cb8a9741eeb8a550a1b8544337180c0fc8476b
         with:
           python-version: '3.13'
 
@@ -34,8 +37,9 @@ jobs:
         run: uv python install
 
       - name: Log in to GitHub Container Registry
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: >-
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u
+          ${{ github.actor }} --password-stdin
 
       - name: Build Docker image (test)
         run: make docker-build
@@ -50,7 +54,8 @@ jobs:
           # Wait for Jenkins to be ready
           echo "Waiting for Jenkins to be healthy..."
           for i in {1..60}; do
-            if docker exec jenkins-test wget --no-verbose --tries=1 --spider http://localhost:8080/api/json 2>/dev/null; then
+            if docker exec jenkins-test wget --no-verbose --tries=1 --spider \
+              http://localhost:8080/api/json 2>/dev/null; then
               echo "✓ Jenkins health check passed"
               break
             fi
@@ -77,7 +82,8 @@ jobs:
       - name: Build and publish Docker image
         run: make docker-publish
         env:
-          DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/jenkinsapi-jenkins:latest
+          DOCKER_IMAGE: >-
+            ghcr.io/${{ github.repository_owner }}/jenkinsapi-jenkins:latest
 
       - name: Image digest
         run: echo "Image digest:" || true

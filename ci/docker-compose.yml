@@ -1,3 +1,4 @@
+---
 version: '3.8'
 
 services:
@@ -12,7 +13,9 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
     environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false -Dhudson.DNSMultiCast.disabled=true
+      JAVA_OPTS: >-
+        -Djenkins.install.runSetupWizard=false
+        -Dhudson.DNSMultiCast.disabled=true
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/json"]
       interval: 10s

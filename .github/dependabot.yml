@@ -1,3 +1,4 @@
+---
 # To get started with Dependabot version updates, you'll need to specify which
 # package ecosystems to update and where the package manifests are located.
 # Please see the documentation for all configuration options:
@@ -11,8 +12,8 @@ updates:
       interval: "weekly"
     cooldown:
       default-days: 7
-  - package-ecosystem: "github-actions" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "github-actions"  # See documentation for possible values
+    directory: "/"  # Location of package manifests
     schedule:
       interval: "weekly"
     cooldown:

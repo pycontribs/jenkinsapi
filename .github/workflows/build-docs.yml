@@ -1,6 +1,7 @@
+---
 name: Sphinx build
 
-on:  # yamllint disable-line rule:truthy
+"on":
   push:
     branches:
       - master
@@ -17,10 +18,12 @@ jobs:
       id-token: write
       pages: write
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Install uv
-        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+        # v7.3.0
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b
         with:
           python-version: "3.10"
 
@@ -33,14 +36,16 @@ jobs:
         working-directory: ./doc
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        # v6.0.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: html-docs
           path: ./doc/html/
 
       - name: Deploy Master Docs to GitHub Pages
         if: ${{ github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+        # v4.0.0
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e  # yamllint disable-line rule:line-length
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./doc/html
