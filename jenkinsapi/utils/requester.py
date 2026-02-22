@@ -2,10 +2,13 @@
 Module for jenkinsapi requester (which is a wrapper around python-requests)
 """
 
+import logging
+import time
 import requests
 import urllib.parse as urlparse
 
 from jenkinsapi.custom_exceptions import JenkinsAPIException, PostRequired
+from jenkinsapi.utils.logging import configure_logging
 
 # import logging
 
@@ -91,6 +94,18 @@ class Requester(object):
             )
             self.session.mount("http://", retry_adapter)
             self.session.mount("https://", retry_adapter)
+        configure_logging()
+        self._log = logging.getLogger(__name__)
+        self._sensitive_keys = {
+            "password",
+            "token",
+            "secret",
+            "apikey",
+            "api_key",
+            "authorization",
+            "auth",
+            "crumb",
+        }
 
     def get_request_dict(
         self, params=None, data=None, files=None, headers=None, **kwargs
@@ -131,6 +146,65 @@ class Requester(object):
 
         return requestKwargs
 
+    def _redact_dict(self, value):
+        if not isinstance(value, dict):
+            return value
+        redacted = {}
+        for key, item in value.items():
+            key_lower = str(key).lower()
+            if any(
+                sensitive in key_lower for sensitive in self._sensitive_keys
+            ):
+                redacted[key] = "***"
+            else:
+                redacted[key] = item
+        return redacted
+
+    def _redact_url(self, url):
+        parts = urlparse.urlsplit(url)
+        if parts.username or parts.password:
+            username = parts.username or ""
+            hostname = parts.hostname or ""
+            netloc = "{}:***@{}".format(username, hostname)
+            if parts.port:
+                netloc = "{}:{}".format(netloc, parts.port)
+            return urlparse.urlunsplit(
+                [parts.scheme, netloc, parts.path, parts.query, parts.fragment]
+            )
+        return url
+
+    def _log_request(self, method, url, params, headers, data, files):
+        if not self._log.isEnabledFor(logging.DEBUG):
+            return
+        safe_params = self._redact_dict(params)
+        safe_headers = self._redact_dict(headers)
+        data_len = None
+        if data is not None:
+            try:
+                data_len = len(data)
+            except TypeError:
+                data_len = None
+        self._log.debug(
+            "HTTP %s %s params=%s headers=%s data_len=%s files=%s",
+            method,
+            self._redact_url(url),
+            safe_params,
+            safe_headers,
+            data_len,
+            bool(files),
+        )
+
+    def _log_response(self, method, url, status_code, elapsed):
+        if not self._log.isEnabledFor(logging.DEBUG):
+            return
+        self._log.debug(
+            "HTTP %s %s -> %s (%.3fs)",
+            method,
+            self._redact_url(url),
+            status_code,
+            elapsed,
+        )
+
     def _update_url_scheme(self, url):
         """
         Updates scheme of given url to the one used in Jenkins baseurl.
@@ -162,7 +236,14 @@ class Requester(object):
             allow_redirects=allow_redirects,
             stream=stream,
         )
-        return self.session.get(self._update_url_scheme(url), **requestKwargs)
+        final_url = self._update_url_scheme(url)
+        self._log_request("GET", final_url, params, headers, None, None)
+        start = time.time()
+        response = self.session.get(final_url, **requestKwargs)
+        self._log_response(
+            "GET", final_url, response.status_code, time.time() - start
+        )
+        return response
 
     def post_url(
         self,
@@ -182,7 +263,14 @@ class Requester(object):
             allow_redirects=allow_redirects,
             **kwargs,
         )
-        return self.session.post(self._update_url_scheme(url), **requestKwargs)
+        final_url = self._update_url_scheme(url)
+        self._log_request("POST", final_url, params, headers, data, files)
+        start = time.time()
+        response = self.session.post(final_url, **requestKwargs)
+        self._log_response(
+            "POST", final_url, response.status_code, time.time() - start
+        )
+        return response
 
     def post_xml_and_confirm_status(
         self, url, params=None, data=None, valid=None
