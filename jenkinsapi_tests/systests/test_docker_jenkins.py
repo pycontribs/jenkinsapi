@@ -6,7 +6,8 @@ They will be skipped if Docker is not available.
 
 import os
 import pytest
-from docker import DockerException, from_env
+from docker import from_env
+from docker.errors import DockerException
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
 

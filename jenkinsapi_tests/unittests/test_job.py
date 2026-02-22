@@ -319,6 +319,7 @@ def test_get_build_by_params(jenkins, monkeypatch, mocker):
     monkeypatch.setattr(Job, "get_first_buildnumber", lambda x: 1)
     monkeypatch.setattr(Job, "get_last_buildnumber", lambda x: 3)
     monkeypatch.setattr(Job, "get_build", fake_get_build)
+    monkeypatch.setattr(Job, "poll", lambda self, tree=None: None)
     mocker.spy(Build, "get_params")
     mocker.spy(Job, "get_build")
 
@@ -348,6 +349,7 @@ def test_get_build_by_params_not_found(jenkins, monkeypatch, mocker):
     monkeypatch.setattr(Job, "get_first_buildnumber", lambda x: 1)
     monkeypatch.setattr(Job, "get_last_buildnumber", lambda x: 3)
     monkeypatch.setattr(Job, "get_build", fake_get_build)
+    monkeypatch.setattr(Job, "poll", lambda self, tree=None: None)
     mocker.spy(Build, "get_params")
     mocker.spy(Job, "get_build")
 

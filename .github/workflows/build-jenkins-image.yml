@@ -68,7 +68,7 @@ jobs:
       - name: Run tests against test image
         run: make coverage-parallel
         env:
-          JENKINSAPI_DOCKER_IMAGE: jenkinsapi-jenkins:test
+          JENKINS_DOCKER_IMAGE: jenkinsapi-jenkins:test
 
       - name: Cleanup test container
         if: always()
