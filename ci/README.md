@@ -1,4 +1,4 @@
-# Docker-based Jenkins CI Infrastructure
+Docker-based Jenkins CI Infrastructure
 
 This directory contains Docker configuration for building and running Jenkins
 instances for testing the jenkinsapi library.

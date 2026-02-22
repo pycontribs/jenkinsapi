@@ -212,7 +212,7 @@ class JenkinsLancher:
                     max_retries,
                 )
                 log.info(
-                    "docker run -d -p 0.0.0.0:%s:8080 -v %s:/var/jenkins_home "
+                    "docker run -d -p 127.0.0.1:%s:8080 -v %s:/var/jenkins_home "
                     "-e JAVA_OPTS='...' %s",
                     self.http_port,
                     self.jenkins_home,
@@ -221,7 +221,7 @@ class JenkinsLancher:
                 container = client.containers.run(
                     docker_image,
                     detach=True,
-                    ports={"8080/tcp": ("0.0.0.0", self.http_port)},
+                    ports={"8080/tcp": ("127.0.0.1", self.http_port)},
                     volumes={
                         self.jenkins_home: {
                             "bind": "/var/jenkins_home",

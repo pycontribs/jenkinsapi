@@ -5,8 +5,8 @@ They will be skipped if Docker is not available.
 """
 
 import os
-import subprocess
 import pytest
+from docker import DockerException, from_env
 from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 
 
@@ -28,17 +28,12 @@ class TestDockerJenkinsLauncher:
 
     def test_docker_can_pull_image_info(self):
         """Test that Docker can fetch basic image info."""
-        # Just verify docker works by running a simple command
+        # Just verify docker works by making a lightweight daemon call.
         try:
-            result = subprocess.run(
-                ["docker", "ps", "--format", "table"],
-                capture_output=True,
-                text=True,
-                timeout=10,
-            )
-            assert result.returncode == 0
-        except (FileNotFoundError, subprocess.TimeoutExpired):
-            pytest.skip("Docker command failed")
+            client = from_env()
+            assert client.ping() is True
+        except DockerException:
+            pytest.skip("Docker daemon call failed")
 
 
 @pytest.mark.skipif(

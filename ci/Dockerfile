@@ -5,9 +5,11 @@ FROM jenkins/jenkins:lts-jdk25
 # Install additional system utilities needed for tests and healthchecks
 USER root
 RUN apt-get update && \
+    curl_version="$(apt-cache madison curl | awk 'NR==1 {print $3}')" && \
+    iputils_ping_version="$(apt-cache madison iputils-ping | awk 'NR==1 {print $3}')" && \
     apt-get install -y --no-install-recommends \
-        curl \
-        iputils-ping && \
+        "curl=${curl_version}" \
+        "iputils-ping=${iputils_ping_version}" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -55,6 +57,6 @@ EXPOSE 50000
 # tini is included in the jenkins base image
 CMD ["/usr/local/bin/jenkins-entrypoint.sh"]
 
-USER root
+USER jenkins
 
 ENTRYPOINT ["/bin/tini", "--"]

@@ -8,20 +8,31 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
+ALLOWED_URL_SCHEMES = {"http", "https"}
+
+
+def _validate_url_scheme(url):
+    """Allow only HTTP(S) URLs."""
+    parsed = urlparse(url)
+    if parsed.scheme not in ALLOWED_URL_SCHEMES:
+        raise ValueError(f"Unsupported URL scheme: {parsed.scheme}")
+
 
 def fetch_update_center():
     """Fetch Jenkins Update Center data."""
     url = "https://updates.jenkins.io/current/update-center.json"
-    # Validate URL scheme for security
-    parsed_url = urlparse(url)
-    if parsed_url.scheme not in ("http", "https"):
-        raise ValueError(f"Unsupported URL scheme: {parsed_url.scheme}")
+    _validate_url_scheme(url)
 
     req = urllib.request.Request(url)
     req.add_header("User-Agent", "jenkinsapi-update-checker")
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPHandler(),
+        urllib.request.HTTPSHandler(),
+    )
 
     try:
-        with urllib.request.urlopen(req, timeout=30) as response:
+        with opener.open(req, timeout=30) as response:
+            _validate_url_scheme(response.geturl())
             content = response.read().decode("utf-8")
             # Remove JSON wrapper
             json_content = re.sub(r"^[^{]*\{", "{", content, count=1)
