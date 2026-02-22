@@ -93,12 +93,6 @@ jobs:
       - name: Install system dependencies
         run: sudo apt-get install -y libkrb5-dev gcc
 
-      - name: Install dependencies
-        run: >-
-          uv pip install -e ".[dev]" &&
-          uv pip install pytest-xdist pytest-cov pytest-mock pytest-timeout
-          pyyaml
-
       - name: Pull Jenkins Docker image
         run: docker pull ghcr.io/pycontribs/jenkinsapi-jenkins:latest || true
         continue-on-error: true
