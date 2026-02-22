@@ -70,11 +70,15 @@ universal = 1
 [dependency-groups]
 dev = [
     "pytest-mock>=3.14.0",
+    "pytest-timeout>=2.4.0",
     "pytest>=8.3.4",
     "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.5.0",
     "mock>=5.1.0",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+    "pyyaml>=6.0.2",
+    "docker>=7.0.0",
 ]
 docs = [
     "docutils>=0.20.1",
@@ -88,5 +92,23 @@ docs = [
 line-length = 79
 
 [tool.ruff.lint]
-select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8’s default rules
+select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8's default rules
 ignore = ["F821"] #, "W503", "W504"
+
+[tool.pytest]
+testpaths = ["jenkinsapi_tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+timeout = "300"
+timeout_method = "thread"
+markers = [
+    "unit: mark test as pure unit test (no Jenkins required)",
+    "docker: mark test as using Docker-based Jenkins",
+    "war: mark test as using war file-based Jenkins",
+    "jenkins_integration: mark test as full Jenkins integration test",
+    "docker_jenkins: mark test as using Docker-based Jenkins",
+    "war_jenkins: mark test as using war file-based Jenkins",
+    "executor_any: mark test to run on any available executor (default)",
+    "requires_docker: mark test as requiring Docker availability",
+]

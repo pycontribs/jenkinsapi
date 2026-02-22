@@ -82,7 +82,7 @@ def test_stored_passwords(jenkins):
 
 
 def test_reload(monkeypatch):
-    class FakeResponse(object):
+    class FakeResponse:
         status_code = 200
         text = "{}"
 
@@ -255,7 +255,7 @@ def test_get_jenkins_obj(mocker, monkeypatch):
 
 
 def test_get_version(monkeypatch):
-    class MockResponse(object):
+    class MockResponse:
         def __init__(self):
             self.headers = {}
             self.headers["X-Jenkins"] = "1.542"
@@ -277,7 +277,7 @@ def test_get_version(monkeypatch):
 
 
 def test_get_version_nonexistent(mocker):
-    class MockResponse(object):
+    class MockResponse:
         status_code = 200
         headers = {}
         text = "{}"
@@ -294,7 +294,7 @@ def test_get_version_nonexistent(mocker):
 
 
 def test_get_master_data(mocker):
-    class MockResponse(object):
+    class MockResponse:
         status_code = 200
         headers = {}
         text = "{}"

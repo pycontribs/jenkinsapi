@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import Union
 
 
-class Plugin(object):
+class Plugin:
     """
     Plugin class
     """

@@ -1,27 +1,30 @@
+---
 name: Release
 
-on:
+"on":
   release:
     types: [published]
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Install uv
-        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+        # v7.3.0
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b
         with:
           python-version: "3.13"
 
       - name: Install dependencies
         run: |
-          sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+          sudo apt-get install libkrb5-dev gcc
 
       - name: Set pyproject.toml version from release tag
         run: |
@@ -34,7 +37,8 @@ jobs:
         run: uv build
 
       - name: Upload artifact
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        # v6.0.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
           name: package
           path: dist/
@@ -42,17 +46,19 @@ jobs:
           if-no-files-found: error
 
   pypi:
-    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    # only publish to PyPI on tag pushes
+    if: startsWith(github.ref, 'refs/tags/')
     needs: [build]
     runs-on: ubuntu-latest
     permissions:
       id-token: write
     environment:
-        name: gha
-        url: https://pypi.org/project/jenkinsapi/
+      name: gha
+      url: https://pypi.org/project/jenkinsapi/
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        # v7.0.0
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
           name: package
           path: dist
@@ -61,7 +67,8 @@ jobs:
         run: tree
 
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
+        # v1.13.0
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # yamllint disable-line rule:line-length
 
   asset:
     needs: [build]
@@ -70,7 +77,8 @@ jobs:
       contents: write
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        # v7.0.0
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
         with:
           name: package
           path: dist
@@ -79,7 +87,7 @@ jobs:
         run: tree
 
       - name: Add release asset
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b  # yamllint disable-line rule:line-length
         with:
           tag_name: ${{ github.event.release.tag_name }}
           fail_on_unmatched_files: true

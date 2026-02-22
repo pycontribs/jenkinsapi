@@ -18,5 +18,5 @@ repos:
     rev: v0.15.1 # Use latest Ruff version
     hooks:
       - id: ruff-check
-        args: [ --fix ]
+        args: [--fix]
       - id: ruff-format

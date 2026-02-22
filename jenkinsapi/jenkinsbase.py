@@ -14,7 +14,7 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException
 logger = logging.getLogger(__name__)
 
 
-class JenkinsBase(object):
+class JenkinsBase:
     """
     This appears to be the base object that all other jenkins objects are
     inherited from

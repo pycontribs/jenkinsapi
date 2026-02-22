@@ -11,7 +11,7 @@ from jenkinsapi import jenkins
 log = logging.getLogger(__name__)
 
 
-class JenkinsInvoke(object):
+class JenkinsInvoke:
     """
     JenkinsInvoke object implements class to call from command line
     """

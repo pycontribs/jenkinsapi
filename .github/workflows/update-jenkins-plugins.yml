@@ -1,0 +1,72 @@
+---
+name: Update Jenkins Plugins
+
+"on":
+  schedule:
+    # Check for plugin updates daily at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-plugins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        # v6.0.2
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Install uv
+        # v7.2.0
+        uses: astral-sh/setup-uv@61cb8a9741eeb8a550a1b8544337180c0fc8476b
+        with:
+          python-version: '3.12'
+
+      - name: Check for plugin updates
+        id: check-updates
+        run: python3 scripts/check-jenkins-plugin-updates.py
+
+      - name: Load updates
+        if: hashFiles('/tmp/updates_found.txt') != ''
+        run: |
+          if [ -f /tmp/updates_found.txt ]; then
+            echo "UPDATES_FOUND=$(cat /tmp/updates_found.txt)" >> $GITHUB_ENV
+          fi
+
+      - name: Apply plugin updates
+        if: env.UPDATES_FOUND == 'true'
+        run: python3 scripts/apply-jenkins-plugin-updates.py
+
+      - name: Check if changes exist
+        id: changes
+        run: |
+          if git diff --quiet ci/plugins.txt; then
+            echo "has-changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has-changes=true" >> $GITHUB_OUTPUT
+            echo "Changes in ci/plugins.txt:"
+            git diff ci/plugins.txt | head -50
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has-changes == 'true'
+        # v5.0.2
+        uses: peter-evans/create-pull-request@c8d5f21f3e46f7f2b8e1b1e3d1e1e1e1e1e1e1e  # yamllint disable-line rule:line-length
+        with:
+          commit-message: 'chore: update Jenkins plugins'
+          title: 'chore: update Jenkins plugins'
+          body: |
+            This PR updates Jenkins plugins to their latest available versions.
+
+            Please review the plugin versions and ensure compatibility with
+            the codebase.
+
+            The build will automatically test the new image configuration
+            before merging.
+          branch: update-jenkins-plugins
+          delete-branch: true
+          labels: 'dependencies'

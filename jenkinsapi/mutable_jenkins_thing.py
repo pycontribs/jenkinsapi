@@ -3,7 +3,7 @@ Module for MutableJenkinsThing
 """
 
 
-class MutableJenkinsThing(object):
+class MutableJenkinsThing:
     """
     A mixin for certain mutable objects which can be renamed and deleted.
     """
