@@ -223,6 +223,24 @@ BUILD_DATA_PIPELINE = {
         {"number": 1, "url": "http//localhost:8080/job/foo/SHARD_NUM=1/1/"},
         {"number": 2, "url": "http//localhost:8080/job/foo/SHARD_NUM=1/2/"},
     ],
+    "stages": [
+        {
+            "id": "stage-id-1",
+            "name": "Build",
+            "status": "SUCCESS",
+            "startTimeMillis": 1370042140000,
+            "durationMillis": 5000,
+            "stageFlowNodes": [],
+        },
+        {
+            "id": "stage-id-2",
+            "name": "Test",
+            "status": "SUCCESS",
+            "startTimeMillis": 1370042145000,
+            "durationMillis": 3000,
+            "stageFlowNodes": [],
+        },
+    ],
 }
 
 

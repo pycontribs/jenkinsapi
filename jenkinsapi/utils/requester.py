@@ -25,8 +25,6 @@ from jenkinsapi.custom_exceptions import JenkinsAPIException, PostRequired
 # requests_log.setLevel(logging.DEBUG)
 # requests_log.propagate = True
 
-requests.adapters.DEFAULT_RETRIES = 5
-
 
 class Requester(object):
     """
@@ -49,6 +47,7 @@ class Requester(object):
         cert = None
         baseurl = None
         timeout = 10
+        max_retries = 3
 
         if len(args) == 1:
             (username,) = args
@@ -85,7 +84,7 @@ class Requester(object):
         self.cert = kwargs.get("cert", cert)
         self.timeout = kwargs.get("timeout", timeout)
         self.session = requests.Session()
-        self.max_retries = kwargs.get("max_retries")
+        self.max_retries = kwargs.get("max_retries", max_retries)
         if self.max_retries is not None:
             retry_adapter = requests.adapters.HTTPAdapter(
                 max_retries=self.max_retries
@@ -101,15 +100,15 @@ class Requester(object):
             requestKwargs["auth"] = (self.username, self.password)
 
         if params:
-            assert isinstance(
-                params, dict
-            ), "Params must be a dict, got %s" % repr(params)
+            assert isinstance(params, dict), (
+                f"Params must be a dict, got {repr(params)}"
+            )
             requestKwargs["params"] = params
 
         if headers:
-            assert isinstance(
-                headers, dict
-            ), "headers must be a dict, got %s" % repr(headers)
+            assert isinstance(headers, dict), (
+                f"headers must be a dict, got {repr(headers)}"
+            )
             requestKwargs["headers"] = headers
 
         if self.AUTH_COOKIE:

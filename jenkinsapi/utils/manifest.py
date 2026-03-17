@@ -19,7 +19,8 @@ class InvalidJarError(Exception):
 
 
 class Manifest(object):
-    """The parsed manifest from a jar file.
+    """
+    The parsed manifest from a jar file.
     Attributes:
       main_section: a dict representing the main (first)
         section of the manifest.
@@ -38,13 +39,16 @@ class Manifest(object):
 
 
 def read_manifest(jar_file_name):
-    """Read and parse the manifest out of the given jar.
+    """
+    Read and parse the manifest out of the given jar.
     Args:
-      jar_file_name: the name of the jar from which the manifest is to be read.
+        jar_file_name: the name of the jar from which the manifest is to be read.
+
     Returns:
-      A parsed Manifest object, or None if the jar has no manifest.
+        A parsed Manifest object, or None if the jar has no manifest.
+
     Raises:
-      IOError: if the jar does not exist or cannot be read.
+        IOError: if the jar does not exist or cannot be read.
     """
     with zipfile.ZipFile(jar_file_name) as jar:
         try:
@@ -55,7 +59,8 @@ def read_manifest(jar_file_name):
 
 
 def _parse_manifest(manifest_string):
-    """Parse a Manifest object out of the given string.
+    """
+    Parse a Manifest object out of the given string.
     Args:
       manifest_string: a str or unicode that is the manifest contents.
     Returns:

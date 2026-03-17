@@ -93,7 +93,6 @@ def test_reload(monkeypatch):
         allow_redirects=True,  # pylint: disable=unused-argument
         stream=False,
     ):  # pylint: disable=unused-argument
-
         return FakeResponse()
 
     monkeypatch.setattr(Requester, "get_url", fake_get_url)

@@ -9,16 +9,10 @@ or simply
 Serving on localhost:8000
 
 You can use this to test GET and POST methods.
-
-In order to run this example you will need the six compatibility library
-install it with pip before running this script:
-
-```
-pip install six
-```
 """
 
-from six.moves import SimpleHTTPServer, socketserver
+import http.server as SimpleHTTPServer
+import socketserver
 import logging
 import cgi
 

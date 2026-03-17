@@ -264,7 +264,7 @@ def test_build_env_vars_wo_injected_env_vars_plugin(monkeypatch, build):
     assert "404" == str(excinfo.value)
     assert len(record) == 1
     expected = UserWarning(
-        "Make sure the Environment Injector " "plugin is installed."
+        "Make sure the Environment Injector plugin is installed."
     )
     assert str(record[0].message) == str(expected)
 
@@ -328,3 +328,30 @@ def test_build_get_master_job_name(build) -> None:
 
 def test_build_get_master_build_number(build) -> None:
     assert build.get_master_build_number() == 1
+
+
+def test_get_stages_pipeline(build_pipeline) -> None:
+    stages = build_pipeline.get_stages()
+    assert isinstance(stages, list)
+    assert len(stages) == 2
+    assert stages[0]["name"] == "Build"
+    assert stages[0]["status"] == "SUCCESS"
+    assert stages[0]["id"] == "stage-id-1"
+    assert stages[0]["durationMillis"] == 5000
+    assert stages[1]["name"] == "Test"
+    assert stages[1]["status"] == "SUCCESS"
+    assert stages[1]["id"] == "stage-id-2"
+    assert stages[1]["durationMillis"] == 3000
+
+
+def test_get_stages_non_pipeline(build) -> None:
+    stages = build.get_stages()
+    assert isinstance(stages, list)
+    assert stages == []
+
+
+def test_get_stages_missing_data(build) -> None:
+    build._data = {}
+    stages = build.get_stages()
+    assert isinstance(stages, list)
+    assert stages == []

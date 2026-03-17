@@ -2,7 +2,6 @@
 How to delete slaves/nodes
 """
 
-from __future__ import print_function
 import logging
 from jenkinsapi.jenkins import Jenkins
 

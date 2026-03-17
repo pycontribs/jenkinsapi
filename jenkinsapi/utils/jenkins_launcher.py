@@ -48,7 +48,7 @@ class StreamThread(threading.Thread):
         log.info("Starting %s", self.name)
 
         while True:
-            if self._stop.isSet():
+            if self._stop.is_set():
                 break
             line = self.stream.readline()
             if line:
@@ -65,10 +65,8 @@ class JenkinsLancher(object):
     Launch jenkins
     """
 
-    JENKINS_WEEKLY_WAR_URL = "http://updates.jenkins.io/latest/jenkins.war"
-    JENKINS_LTS_WAR_URL = (
-        "https://updates.jenkins.io/stable/latest/jenkins.war"
-    )
+    JENKINS_WEEKLY_WAR_URL = "https://get.jenkins.io/war"
+    JENKINS_LTS_WAR_URL = "https://get.jenkins.io/war-stable"
 
     def __init__(
         self,
@@ -86,7 +84,7 @@ class JenkinsLancher(object):
             import socket
 
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.bind(("", 0))
+            sock.bind(("127.0.0.1", 0))
             sock.listen(1)
             port = sock.getsockname()[1]
             sock.close()
@@ -109,7 +107,7 @@ class JenkinsLancher(object):
         self.jenkins_process = None
         self.queue = queue.Queue()
         self.plugin_urls = plugin_urls or []
-        if os.environ.get("JENKINS_VERSION", "stable") == "stable":
+        if os.environ.get("JENKINS_VERSION", "") == "stable":
             self.JENKINS_WAR_URL = self.JENKINS_LTS_WAR_URL
         else:
             self.JENKINS_WAR_URL = self.JENKINS_WEEKLY_WAR_URL
@@ -294,10 +292,19 @@ if __name__ == "__main__":
 
     log.info("Hello!")
 
+    utils_dir = os.path.dirname(os.path.abspath(__file__))  # jenkinsapi/utils
+    jenkinsapi_tests_path = os.path.join(
+        utils_dir, "..", "..", "jenkinsapi_tests"
+    )
+    systests_jenkinsapi_tests_path = os.path.join(
+        jenkinsapi_tests_path, "systests"
+    )
+    localinstance_files_path = os.path.join(
+        systests_jenkinsapi_tests_path, "localinstance_files"
+    )
     jl = JenkinsLancher(
-        "/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests"
-        "/systests/localinstance_files",
-        "/home/aleksey/src/jenkinsapi_lechat/jenkinsapi_tests/systests",
+        localinstance_files_path,
+        systests_jenkinsapi_tests_path,
         "jenkins.war",
     )
 
