@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  jenkins:
+    # Use pre-built image from GHCR (faster, no build needed):
+    # image: ghcr.io/pycontribs/jenkinsapi:latest
+    #
+    # Or build locally:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jenkinsapi-test
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      - JENKINS_HOME=/var/jenkins_home
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:

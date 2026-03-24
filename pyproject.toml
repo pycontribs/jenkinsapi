@@ -72,9 +72,11 @@ dev = [
     "pytest-mock>=3.14.0",
     "pytest>=8.3.4",
     "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.5.0",
     "mock>=5.1.0",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+    "docker>=6.0.0",
 ]
 docs = [
     "docutils>=0.20.1",
@@ -90,3 +92,8 @@ line-length = 79
 [tool.ruff.lint]
 select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8’s default rules
 ignore = ["F821"] #, "W503", "W504"
+
+[tool.pytest.ini_options]
+markers = [
+    "docker: marks tests as requiring Docker (deselect with ‘-m \"not docker\"’)",
+]

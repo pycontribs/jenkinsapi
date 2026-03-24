@@ -3,9 +3,6 @@ name: CI_TEST
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - '**.py'
-      - '**.yml'
   pull_request:
     branches: [ "master" ]
   workflow_dispatch: # allow manual run
@@ -118,4 +115,4 @@ jobs:
 
     - name: Test with pytest
       run: |
-        uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+        uv run pytest -sv -m "not docker" --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests

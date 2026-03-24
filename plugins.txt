@@ -1,0 +1,45 @@
+# Jenkins plugins for system testing
+# Format: plugin-name:version (or just plugin-name for latest)
+
+# Core plugins
+credentials:latest
+plain-credentials:latest
+ssh-credentials:latest
+
+# SCM plugins
+git:latest
+git-client:latest
+scm-api:latest
+
+# Build plugins
+matrix-project:latest
+junit:latest
+
+# Workflow/Pipeline plugins
+workflow-api:latest
+workflow-step-api:latest
+workflow-scm-step:latest
+workflow-support:latest
+
+# API and display plugins
+display-url-api:latest
+plugin-util-api:latest
+
+# Security and auth
+script-security:latest
+
+# Other required plugins
+instance-identity:latest
+variant:latest
+structs:latest
+asm-api:latest
+jackson2-api:latest
+jdk-tool:latest
+mailer:latest
+jsch:latest
+trilead-api:latest
+commons-text-api:latest
+commons-lang3-api:latest
+json-api:latest
+bouncycastle-api:latest
+snakeyaml-api:latest

@@ -1,7 +1,7 @@
 import mock
 import pytest
 
-from jenkinsapi.queue import Queue
+from jenkinsapi.queue import Queue, QueueItem
 
 
 @pytest.fixture
@@ -19,7 +19,11 @@ def queue(monkeypatch):
             ]
         }
 
+    def fake_queue_item_poll(self, tree=None):  # pylint: disable=unused-argument
+        return {}
+
     monkeypatch.setattr(Queue, "_poll", fake_poll)
+    monkeypatch.setattr(QueueItem, "_poll", fake_queue_item_poll)
     return Queue("http://localhost:8080/queue", mock.MagicMock())
 
 

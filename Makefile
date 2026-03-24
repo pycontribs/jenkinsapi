@@ -1,10 +1,10 @@
-.PHONY: test lint coverage dist clean
+.PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all
 
 clean:
 	rm -rf jenkinsapi_tests/systests/localinstance_files
 
 test:
-	uv run pytest -sv jenkinsapi_tests
+	uv run pytest -sv jenkinsapi_tests/unittests/ -m "not docker"
 
 lint:
 	uv run pylint jenkinsapi/*.py
@@ -15,4 +15,51 @@ dist:
 	uv build
 
 coverage:
-	uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+	uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests/unittests/ -m "not docker"
+
+# Docker image configuration
+DOCKER_IMAGE ?= jenkinsapi-systest:latest
+DOCKER_PORT ?= 8080
+CONTAINER_NAME ?= jenkinsapi-systest
+
+# Build the Docker image
+docker-build:
+	@echo "Building Docker image $(DOCKER_IMAGE)..."
+	docker build -t $(DOCKER_IMAGE) .
+	@echo "Docker image built successfully"
+
+# Run Jenkins Docker container
+docker-run: docker-build
+	@echo "Starting Jenkins container on port $(DOCKER_PORT)..."
+	docker run \
+		--name $(CONTAINER_NAME) \
+		-d \
+		-p $(DOCKER_PORT):8080 \
+		$(DOCKER_IMAGE)
+	@echo "Jenkins running at http://localhost:$(DOCKER_PORT)"
+
+# Stop and remove the container
+docker-clean:
+	docker stop $(CONTAINER_NAME) 2>/dev/null || true
+	docker rm $(CONTAINER_NAME) 2>/dev/null || true
+
+# View Jenkins logs
+docker-logs:
+	docker logs -f $(CONTAINER_NAME)
+
+# Number of workers for systests — default to 1/3 of available CPUs
+# Override with: make test-systests NUM_WORKERS=2
+NUM_WORKERS ?= $(shell python3 -c "import os; print(max(1, os.cpu_count() // 2))")
+
+# Run system tests in parallel (uses all CPUs by default)
+test-systests:
+	uv run pytest jenkinsapi_tests/systests/ -n $(NUM_WORKERS) -v
+
+# Run Docker integration unit tests
+test-docker:
+	uv run pytest jenkinsapi_tests/unittests/test_docker_jenkins.py -m docker -v
+
+# Run all tests (unit + system)
+test-all:
+	uv run pytest jenkinsapi_tests/unittests/ -m "not docker" -n auto -q
+	uv run pytest jenkinsapi_tests/systests/ -n $(NUM_WORKERS) -v
