@@ -339,3 +339,37 @@ JOB_WITH_ENV_VARS = """\
   </buildWrappers>
 </project>
 """.strip()
+
+PIPELINE_SCM_JOB = """<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+    <scriptPath>Jenkinsfile</scriptPath>
+    <scm class="hudson.plugins.git.GitSCM">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs>
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/salimfadhley/jenkinsapi.git</url>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches>
+        <hudson.plugins.git.BranchSpec>
+          <name>**</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="list"/>
+      <extensions/>
+    </scm>
+  </definition>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+</flow-definition>""".strip()
+
+PIPELINE_SCM_CONFIG = {
+    "scm_class": "hudson.plugins.git.GitSCM",
+    "git_url": "https://github.com/salimfadhley/jenkinsapi.git",
+}

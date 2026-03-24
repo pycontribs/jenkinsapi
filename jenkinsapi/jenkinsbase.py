@@ -4,7 +4,6 @@ Module for JenkinsBase class
 
 from __future__ import annotations
 
-import ast
 import json
 import pprint
 import logging
