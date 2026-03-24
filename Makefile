@@ -47,9 +47,9 @@ docker-clean:
 docker-logs:
 	docker logs -f $(CONTAINER_NAME)
 
-# Number of workers for systests — default to 1/3 of available CPUs
-# Override with: make test-systests NUM_WORKERS=2
-NUM_WORKERS ?= $(shell python3 -c "import os; print(max(1, os.cpu_count() // 2))")
+# min 2 workers (GitHub Actions ubuntu-latest = 2 cores), scales to 1 per 3 CPUs above that
+# Override with: make test-systests NUM_WORKERS=4
+NUM_WORKERS ?= $(shell python3 -c "import os; print(max(2, os.cpu_count() // 3))")
 
 # Run system tests in parallel (uses all CPUs by default)
 test-systests:
