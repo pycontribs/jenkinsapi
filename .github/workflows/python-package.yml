@@ -76,6 +76,7 @@ jobs:
           updates.jenkins.io:443
           mirrors.updates.jenkins.io:443
           updates.jenkins.io:80
+          objects.githubusercontent.com:443
 
     - name: Checkout
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -97,6 +98,23 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
+    - name: Set 12-hour cache rotation key
+      run: echo "CACHE_ROTATION=$(($(date +%s) / (12 * 3600)))" >> $GITHUB_ENV
+
+    - name: Cache Jenkins WAR file
+      uses: actions/cache@v4
+      with:
+        path: jenkinsapi_tests/systests/localinstance_files/jenkins.war
+        key: jenkins-war-${{ env.CACHE_ROTATION }}
+
+    - name: Cache Jenkins plugins and plugin manager
+      uses: actions/cache@v4
+      with:
+        path: |
+          jenkinsapi_tests/systests/localinstance_files/plugins/
+          jenkinsapi_tests/systests/localinstance_files/jenkins-plugin-manager.jar
+        key: jenkins-plugins-${{ env.CACHE_ROTATION }}-${{ hashFiles('jenkinsapi_tests/systests/plugins.txt') }}
 
     - name: Test with pytest
       run: |
