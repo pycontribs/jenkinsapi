@@ -474,10 +474,12 @@ data.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.get_buildnumber_for_revision">
 <span class="sig-name descname"><span class="pre">get_buildnumber_for_revision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">revision</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.get_buildnumber_for_revision"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.get_buildnumber_for_revision" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Get buildnumbers for a given revision.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>revision</strong> – subversion revision to look for, int</p></li>
+<li><p><strong>revision</strong> – revision to look for. For SVN, this is an int.
+For Git, this is a SHA1 string.</p></li>
 <li><p><strong>refresh</strong> – boolean, whether or not to refresh the
 revision -&gt; buildnumber map</p></li>
 </ul>

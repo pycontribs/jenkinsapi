@@ -668,9 +668,9 @@
         <span class="k">if</span> <span class="s2">&quot;builds&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NoBuildData</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">buildnumber</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build_ids</span><span class="p">():</span>
-            <span class="n">revs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">)</span><span class="o">.</span><span class="n">get_revision</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">buildnumber</span>
-            <span class="p">)</span>
+            <span class="n">rev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">)</span><span class="o">.</span><span class="n">get_revision</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">rev</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">revs</span><span class="p">[</span><span class="n">rev</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buildnumber</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">revs</span></div>
 
 
@@ -755,8 +755,10 @@
 <a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.get_buildnumber_for_revision">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_buildnumber_for_revision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get buildnumbers for a given revision.</span>
 
-<span class="sd">        :param revision: subversion revision to look for, int</span>
+<span class="sd">        :param revision: revision to look for. For SVN, this is an int.</span>
+<span class="sd">            For Git, this is a SHA1 string.</span>
 <span class="sd">        :param refresh: boolean, whether or not to refresh the</span>
 <span class="sd">            revision -&gt; buildnumber map</span>
 <span class="sd">        :return: list of buildnumbers, [int]</span>
