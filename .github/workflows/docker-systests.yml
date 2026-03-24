@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -47,8 +48,24 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
-    - name: Build Docker image
-      run: docker build -t jenkinsapi-systest:latest .
+    - name: Log in to GHCR
+      uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7556 # v3.3.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Pull or build Docker image
+      run: |
+        HASH=$(sha256sum Dockerfile plugins.txt | sha256sum | cut -c1-8)
+        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
+        if docker pull "$IMAGE" 2>/dev/null; then
+          echo "Cache hit: $IMAGE"
+          docker tag "$IMAGE" jenkinsapi-systest:latest
+        else
+          echo "Cache miss — building locally"
+          docker build -t jenkinsapi-systest:latest .
+        fi
 
     - name: Run system tests
       run: |
