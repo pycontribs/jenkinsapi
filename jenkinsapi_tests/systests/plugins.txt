@@ -10,3 +10,4 @@ credentials-binding
 script-security
 junit
 mailer
+nested-view
