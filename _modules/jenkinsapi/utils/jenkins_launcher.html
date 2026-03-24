@@ -347,6 +347,10 @@
 
     <span class="n">JENKINS_WEEKLY_WAR_URL</span> <span class="o">=</span> <span class="s2">&quot;https://get.jenkins.io/war&quot;</span>
     <span class="n">JENKINS_LTS_WAR_URL</span> <span class="o">=</span> <span class="s2">&quot;https://get.jenkins.io/war-stable&quot;</span>
+    <span class="n">PLUGIN_MANAGER_URL</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;https://api.github.com/repos/jenkinsci/plugin-installation-manager-tool&quot;</span>
+        <span class="s2">&quot;/releases/latest&quot;</span>
+    <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -354,6 +358,7 @@
         <span class="n">systests_dir</span><span class="p">,</span>
         <span class="n">war_name</span><span class="p">,</span>
         <span class="n">plugin_urls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugins_txt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">jenkins_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="k">if</span> <span class="n">jenkins_url</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -377,6 +382,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">local_orig_dir</span> <span class="o">=</span> <span class="n">local_orig_dir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">systests_dir</span> <span class="o">=</span> <span class="n">systests_dir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">war_filename</span> <span class="o">=</span> <span class="n">war_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins_txt</span> <span class="o">=</span> <span class="n">plugins_txt</span>
 
         <span class="k">if</span> <span class="s2">&quot;JENKINS_HOME&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_home</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;jenkins-home-&quot;</span><span class="p">)</span>
@@ -428,6 +434,59 @@
                 <span class="n">tarball</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">jenkins_home</span><span class="p">)</span></div>
 
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_find_jenkins_plugin_cli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the jenkins-plugin-cli command if installed, else None.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">&quot;jenkins-plugin-cli&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_plugin_manager_jar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download jenkins-plugin-manager JAR if not cached; return its path.&quot;&quot;&quot;</span>
+        <span class="c1"># Check for an already-cached JAR (any version)</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">_glob</span>
+
+        <span class="n">cached</span> <span class="o">=</span> <span class="n">_glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_orig_dir</span><span class="p">,</span> <span class="s2">&quot;jenkins-plugin-manager*.jar&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;jenkins-plugin-manager JAR already present: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cached</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">cached</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Fetching latest jenkins-plugin-manager release info from GitHub&quot;</span>
+        <span class="p">)</span>
+        <span class="n">sess</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">HTTPAdapter</span><span class="p">(</span>
+            <span class="n">max_retries</span><span class="o">=</span><span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">allowed_methods</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+        <span class="n">api_resp</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PLUGIN_MANAGER_URL</span><span class="p">)</span>
+        <span class="n">api_resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">assets</span> <span class="o">=</span> <span class="n">api_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;assets&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">jar_asset</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">a</span>
+                <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">assets</span>
+                <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jar&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;sha256&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">jar_asset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not find JAR asset in latest jenkins-plugin-manager release&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">jar_url</span> <span class="o">=</span> <span class="n">jar_asset</span><span class="p">[</span><span class="s2">&quot;browser_download_url&quot;</span><span class="p">]</span>
+        <span class="n">jar_name</span> <span class="o">=</span> <span class="n">jar_asset</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+        <span class="n">jar_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_orig_dir</span><span class="p">,</span> <span class="n">jar_name</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downloading </span><span class="si">%s</span><span class="s2"> from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">jar_name</span><span class="p">,</span> <span class="n">jar_url</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jar_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">jar_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">jar_path</span>
+
 <div class="viewcode-block" id="JenkinsLancher.install_plugins">
 <a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">install_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -437,9 +496,44 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">plugin_dest_dir</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">plugin_dest_dir</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_urls</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">install_plugin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">plugin_dest_dir</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins_txt</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_install_plugins_via_manager</span><span class="p">(</span><span class="n">plugin_dest_dir</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_urls</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">install_plugin</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">plugin_dest_dir</span><span class="p">)</span></div>
 
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_install_plugins_via_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_dest_dir</span><span class="p">):</span>
+        <span class="n">plugin_cache_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">local_orig_dir</span><span class="p">,</span> <span class="s2">&quot;plugins&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">plugin_cache_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">plugin_cache_dir</span><span class="p">)</span>
+
+        <span class="n">cli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_jenkins_plugin_cli</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">cli</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using installed jenkins-plugin-cli: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cli</span><span class="p">)</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">cli</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">jar_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_plugin_manager_jar</span><span class="p">()</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;java&quot;</span><span class="p">,</span> <span class="s2">&quot;-jar&quot;</span><span class="p">,</span> <span class="n">jar_path</span><span class="p">]</span>
+
+        <span class="n">cmd</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="s2">&quot;--war&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">war_path</span><span class="p">,</span>
+            <span class="s2">&quot;--plugin-file&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plugins_txt</span><span class="p">,</span>
+            <span class="s2">&quot;--plugin-download-directory&quot;</span><span class="p">,</span>
+            <span class="n">plugin_cache_dir</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Installing plugins: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd</span><span class="p">))</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+        <span class="c1"># Copy downloaded plugins to jenkins_home/plugins</span>
+        <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">plugin_cache_dir</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">fname</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.jpi&quot;</span><span class="p">,</span> <span class="s2">&quot;.hpi&quot;</span><span class="p">)):</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">plugin_cache_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">),</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">plugin_dest_dir</span><span class="p">,</span> <span class="n">fname</span><span class="p">),</span>
+                <span class="p">)</span>
 
 <div class="viewcode-block" id="JenkinsLancher.install_plugin">
 <a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin">[docs]</a>
