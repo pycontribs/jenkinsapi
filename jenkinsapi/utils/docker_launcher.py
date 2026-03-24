@@ -21,7 +21,7 @@ class DockerLauncher:
         image_name: str = "jenkinsapi-test:latest",
         container_name: str = "jenkinsapi-systest",
         port: int = 8080,
-        dockerfile_path: str = "Dockerfile",
+        dockerfile_path: str = "docker/Dockerfile",
         jenkins_url: Optional[str] = None,
     ):
         """

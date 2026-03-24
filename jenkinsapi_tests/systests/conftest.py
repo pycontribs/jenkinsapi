@@ -119,7 +119,7 @@ def docker_image(worker_id):
     repo_root = os.path.dirname(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     )
-    dockerfile_path = os.path.join(repo_root, "Dockerfile")
+    dockerfile_path = os.path.join(repo_root, "docker", "Dockerfile")
 
     client = docker_lib.from_env()
     image_name = "jenkinsapi-systest:latest"
@@ -180,7 +180,7 @@ def container_pool(docker_image, worker_id):
     repo_root = os.path.dirname(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     )
-    dockerfile_path = os.path.join(repo_root, "Dockerfile")
+    dockerfile_path = os.path.join(repo_root, "docker", "Dockerfile")
 
     # docker_image fixture now returns the unique image name
     image_name = docker_image
