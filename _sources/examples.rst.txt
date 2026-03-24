@@ -34,6 +34,9 @@ Add new command to "Shell" build step
     new_job = J.create_job(jobname, EMPTY_JOB_CONFIG)
     new_conf = new_job.get_config()
 
+    # Create in a folder (Folders plugin)
+    folder_job = J.create_job("folder1/folder2/job-name", EMPTY_JOB_CONFIG)
+
     root = et.fromstring(new_conf.strip())
 
     builders = root.find("builders")
@@ -67,6 +70,15 @@ Create and delete jobs from XML file
     # also can use
     # del jenkins[job_name]
     jenkins.delete_job(job_name)
+
+Logging
+-------
+
+.. code-block:: python
+
+    from jenkinsapi.utils.logging import configure_logging
+
+    configure_logging("DEBUG")
 
 Start parameterized build
 -------------------------

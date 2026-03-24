@@ -300,14 +300,15 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Job</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">python_api_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_job_url</span><span class="p">(</span><span class="n">job_name</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">Job</span><span class="p">(</span><span class="n">api_url</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="p">)</span>
+        <span class="n">normalized_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_job_name</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">python_api_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_job_url</span><span class="p">(</span><span class="n">normalized_name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">Job</span><span class="p">(</span><span class="n">api_url</span><span class="p">,</span> <span class="n">normalized_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        True if view_name is the name of a defined view</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">job_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_job_name</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
 <div class="viewcode-block" id="View.delete">
 <a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.delete">[docs]</a>
@@ -362,14 +363,15 @@
 <div class="viewcode-block" id="View.get_job_url">
 <a class="viewcode-back" href="../../submodules/views.html#jenkinsapi.view.View.get_job_url">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_job_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">str_job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">str_job_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()[</span><span class="n">str_job_name</span><span class="p">]</span>
+        <span class="n">normalized_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_job_name</span><span class="p">(</span><span class="n">str_job_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">normalized_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()[</span><span class="n">normalized_name</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># noinspection PyUnboundLocalVariable</span>
             <span class="n">views_jobs</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span>
                 <span class="s2">&quot;Job </span><span class="si">%s</span><span class="s2"> is not known, available jobs&quot;</span>
-                <span class="s2">&quot; in view are: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">str_job_name</span><span class="p">,</span> <span class="n">views_jobs</span><span class="p">)</span>
+                <span class="s2">&quot; in view are: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">normalized_name</span><span class="p">,</span> <span class="n">views_jobs</span><span class="p">)</span>
             <span class="p">)</span></div>
 
 
@@ -390,6 +392,7 @@
 <span class="sd">        :return: True if job has been added, False if job already exists or</span>
 <span class="sd">         job not known to Jenkins</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">job_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_job_name</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">job</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">job_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_job_dict</span><span class="p">():</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
@@ -438,6 +441,7 @@
 <span class="sd">        :return: True if job has been removed,</span>
 <span class="sd">            False if job not assigned to this view</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">job_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_normalize_job_name</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">job_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
@@ -454,6 +458,17 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_normalize_job_name</span><span class="p">(</span><span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">job_name</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;job/&quot;</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="s2">&quot;/job/&quot;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/job/&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_nested_views</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
         <span class="k">for</span> <span class="n">viewdict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;views&quot;</span><span class="p">,</span> <span class="p">[]):</span>

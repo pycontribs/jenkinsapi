@@ -296,6 +296,9 @@
 <span class="n">new_job</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">jobname</span><span class="p">,</span> <span class="n">EMPTY_JOB_CONFIG</span><span class="p">)</span>
 <span class="n">new_conf</span> <span class="o">=</span> <span class="n">new_job</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
 
+<span class="c1"># Create in a folder (Folders plugin)</span>
+<span class="n">folder_job</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="s2">&quot;folder1/folder2/job-name&quot;</span><span class="p">,</span> <span class="n">EMPTY_JOB_CONFIG</span><span class="p">)</span>
+
 <span class="n">root</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">new_conf</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 
 <span class="n">builders</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;builders&quot;</span><span class="p">)</span>
@@ -328,6 +331,14 @@
 <span class="c1"># also can use</span>
 <span class="c1"># del jenkins[job_name]</span>
 <span class="n">jenkins</span><span class="o">.</span><span class="n">delete_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logging</span>
+
+<span class="n">configure_logging</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -818,6 +829,7 @@
 <li><a class="reference internal" href="#">How to use JenkinsAPI</a><ul>
 <li><a class="reference internal" href="#add-new-command-to-shell-build-step">Add new command to “Shell” build step</a></li>
 <li><a class="reference internal" href="#create-and-delete-jobs-from-xml-file">Create and delete jobs from XML file</a></li>
+<li><a class="reference internal" href="#logging">Logging</a></li>
 <li><a class="reference internal" href="#start-parameterized-build">Start parameterized build</a></li>
 <li><a class="reference internal" href="#create-credentials">Create credentials</a></li>
 <li><a class="reference internal" href="#create-slaves-nodes">Create slaves/nodes</a></li>

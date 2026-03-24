@@ -49,6 +49,14 @@ requester module
    :undoc-members:
    :show-inheritance:
 
+logging module
+-----------------------------
+
+.. automodule:: jenkinsapi.utils.logging
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 simple\_post\_logger module
 --------------------------------------------
 

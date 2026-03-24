@@ -262,10 +262,13 @@
 <span class="sd">Module for jenkinsapi requester (which is a wrapper around python-requests)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">urlparse</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.custom_exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">JenkinsAPIException</span><span class="p">,</span> <span class="n">PostRequired</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logging</span>
 
 <span class="c1"># import logging</span>
 
@@ -353,6 +356,18 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="n">retry_adapter</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">retry_adapter</span><span class="p">)</span>
+        <span class="n">configure_logging</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sensitive_keys</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;token&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;secret&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;apikey&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;api_key&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;authorization&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;auth&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;crumb&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
 
 <div class="viewcode-block" id="Requester.get_request_dict">
 <a class="viewcode-back" href="../../../submodules/utils.html#jenkinsapi.utils.requester.Requester.get_request_dict">[docs]</a>
@@ -396,6 +411,65 @@
         <span class="k">return</span> <span class="n">requestKwargs</span></div>
 
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">_redact_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="n">redacted</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">key_lower</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+                <span class="n">sensitive</span> <span class="ow">in</span> <span class="n">key_lower</span> <span class="k">for</span> <span class="n">sensitive</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sensitive_keys</span>
+            <span class="p">):</span>
+                <span class="n">redacted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;***&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">redacted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">return</span> <span class="n">redacted</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_redact_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlsplit</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parts</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="n">parts</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">parts</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">hostname</span> <span class="o">=</span> <span class="n">parts</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">netloc</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:***@</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">hostname</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">parts</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
+                <span class="n">netloc</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">netloc</span><span class="p">,</span> <span class="n">parts</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">urlparse</span><span class="o">.</span><span class="n">urlunsplit</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">parts</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">parts</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">parts</span><span class="o">.</span><span class="n">query</span><span class="p">,</span> <span class="n">parts</span><span class="o">.</span><span class="n">fragment</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">url</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="n">safe_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_redact_dict</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">safe_headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_redact_dict</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">data_len</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="n">data_len</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;HTTP </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> params=</span><span class="si">%s</span><span class="s2"> headers=</span><span class="si">%s</span><span class="s2"> data_len=</span><span class="si">%s</span><span class="s2"> files=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">method</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_redact_url</span><span class="p">(</span><span class="n">url</span><span class="p">),</span>
+            <span class="n">safe_params</span><span class="p">,</span>
+            <span class="n">safe_headers</span><span class="p">,</span>
+            <span class="n">data_len</span><span class="p">,</span>
+            <span class="nb">bool</span><span class="p">(</span><span class="n">files</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_log_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;HTTP </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> -&gt; </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%.3f</span><span class="s2">s)&quot;</span><span class="p">,</span>
+            <span class="n">method</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_redact_url</span><span class="p">(</span><span class="n">url</span><span class="p">),</span>
+            <span class="n">status_code</span><span class="p">,</span>
+            <span class="n">elapsed</span><span class="p">,</span>
+        <span class="p">)</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_update_url_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates scheme of given url to the one used in Jenkins baseurl.</span>
@@ -429,7 +503,13 @@
             <span class="n">allow_redirects</span><span class="o">=</span><span class="n">allow_redirects</span><span class="p">,</span>
             <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_url_scheme</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> <span class="o">**</span><span class="n">requestKwargs</span><span class="p">)</span></div>
+        <span class="n">final_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_url_scheme</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">final_url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">final_url</span><span class="p">,</span> <span class="o">**</span><span class="n">requestKwargs</span><span class="p">)</span>
+        <span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;status_code&quot;</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_response</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">final_url</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 
 
 <div class="viewcode-block" id="Requester.post_url">
@@ -452,7 +532,13 @@
             <span class="n">allow_redirects</span><span class="o">=</span><span class="n">allow_redirects</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_url_scheme</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> <span class="o">**</span><span class="n">requestKwargs</span><span class="p">)</span></div>
+        <span class="n">final_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_url_scheme</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">final_url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">final_url</span><span class="p">,</span> <span class="o">**</span><span class="n">requestKwargs</span><span class="p">)</span>
+        <span class="n">status_code</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;status_code&quot;</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_response</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">final_url</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 
 
 <div class="viewcode-block" id="Requester.post_xml_and_confirm_status">

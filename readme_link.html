@@ -274,6 +274,19 @@
 </pre></div>
 </div>
 </section>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading">¶</a></h2>
+<p>JenkinsAPI emits request/response debug logs when enabled.
+You can opt in with the environment variable or by calling the helper:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">JENKINSAPI_LOG_LEVEL</span><span class="o">=</span>DEBUG
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logging</span>
+
+<span class="n">configure_logging</span><span class="p">(</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="important-links">
 <h2>Important Links<a class="headerlink" href="#important-links" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -351,6 +364,14 @@
 </pre></div>
 </div>
 <p>Use the call <code class="docutils literal notranslate"><span class="pre">job_instance.enable()</span></code> to enable a Jenkins Job.</p>
+</section>
+<section id="creating-jobs-in-folders">
+<h2>Creating jobs in folders<a class="headerlink" href="#creating-jobs-in-folders" title="Link to this heading">¶</a></h2>
+<p>When using the Folders plugin, you can pass folder paths directly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="s2">&quot;folder1/folder2/job-name&quot;</span><span class="p">,</span> <span class="n">config_xml</span><span class="p">)</span>
+<span class="n">jenkins</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="s2">&quot;/job/folder1/job/folder2/job-name&quot;</span><span class="p">,</span> <span class="n">config_xml</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="known-issues">
 <h2>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h2>
@@ -466,10 +487,12 @@ downloaded and started during tests.</p></li>
             <ul>
 <li><a class="reference internal" href="#">Jenkinsapi</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#logging">Logging</a></li>
 <li><a class="reference internal" href="#important-links">Important Links</a></li>
 <li><a class="reference internal" href="#about-this-library">About this library</a></li>
 <li><a class="reference internal" href="#get-details-of-jobs-running-on-jenkins-server">Get details of jobs running on Jenkins server</a></li>
 <li><a class="reference internal" href="#disable-enable-a-jenkins-job">Disable/Enable a Jenkins Job</a></li>
+<li><a class="reference internal" href="#creating-jobs-in-folders">Creating jobs in folders</a></li>
 <li><a class="reference internal" href="#known-issues">Known issues</a></li>
 <li><a class="reference internal" href="#development">Development</a></li>
 <li><a class="reference internal" href="#python-versions">Python versions</a></li>

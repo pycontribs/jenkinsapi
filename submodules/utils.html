@@ -510,6 +510,18 @@ way to access Jenkins.</p>
 </dd></dl>
 
 </section>
+<section id="module-jenkinsapi.utils.logging">
+<span id="logging-module"></span><h2>logging module<a class="headerlink" href="#module-jenkinsapi.utils.logging" title="Link to this heading">¶</a></h2>
+<p>Helpers for configuring JenkinsAPI logging without clobbering user settings.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="jenkinsapi.utils.logging.configure_logging">
+<span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.logging.</span></span><span class="sig-name descname"><span class="pre">configure_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/logging.html#configure_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.logging.configure_logging" title="Link to this definition">¶</a></dt>
+<dd><p>Configure JenkinsAPI logging if the user hasn’t already.</p>
+<p>If level is None, the environment variable JENKINSAPI_LOG_LEVEL is used.
+Returns True when logging was configured.</p>
+</dd></dl>
+
+</section>
 <section id="module-jenkinsapi.utils.simple_post_logger">
 <span id="simple-post-logger-module"></span><h2>simple_post_logger module<a class="headerlink" href="#module-jenkinsapi.utils.simple_post_logger" title="Link to this heading">¶</a></h2>
 <dl class="py class">
@@ -652,6 +664,10 @@ way to access Jenkins.</p>
 <li><a class="reference internal" href="#jenkinsapi.utils.requester.Requester.post_xml_and_confirm_status"><code class="docutils literal notranslate"><span class="pre">Requester.post_xml_and_confirm_status()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-jenkinsapi.utils.logging">logging module</a><ul>
+<li><a class="reference internal" href="#jenkinsapi.utils.logging.configure_logging"><code class="docutils literal notranslate"><span class="pre">configure_logging()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-jenkinsapi.utils.simple_post_logger">simple_post_logger module</a><ul>
