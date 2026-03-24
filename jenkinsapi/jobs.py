@@ -8,6 +8,7 @@ from __future__ import annotations
 from typing import Iterator
 import logging
 import time
+from urllib.parse import quote, unquote
 
 from jenkinsapi.job import Job
 from jenkinsapi.custom_exceptions import JenkinsAPIException, UnknownJob
@@ -47,24 +48,25 @@ class Jobs(object):
         :param str job_name: name of a existing job
         :raises JenkinsAPIException:  When job is not deleted
         """
-        if job_name in self:
+        normalized_name = self._normalize_job_name(job_name)
+        if normalized_name in self:
             try:
-                delete_job_url = self[job_name].get_delete_url()
+                delete_job_url = self[normalized_name].get_delete_url()
                 self.jenkins.requester.post_and_confirm_status(
                     delete_job_url, data="some random bytes..."
                 )
 
-                self._del_data(job_name)
+                self._del_data(normalized_name)
             except JenkinsAPIException:
                 # Sometimes jenkins throws NPE when removing job
                 # It removes job ok, but it is good to be sure
                 # so we re-try if job was not deleted
-                if job_name in self:
-                    delete_job_url = self[job_name].get_delete_url()
+                if normalized_name in self:
+                    delete_job_url = self[normalized_name].get_delete_url()
                     self.jenkins.requester.post_and_confirm_status(
                         delete_job_url, data="some random bytes..."
                     )
-                    self._del_data(job_name)
+                    self._del_data(normalized_name)
 
     def __setitem__(self, key: str, value: str) -> "Job":
         """
@@ -80,19 +82,23 @@ class Jobs(object):
         return self.create(key, value)
 
     def __getitem__(self, job_name: str) -> "Job":
-        if job_name in self:
-            job_data = [
+        normalized_name = self._normalize_job_name(job_name)
+        if normalized_name in self:
+            job_data = next(
                 job_row
                 for job_row in self._data
-                if job_row["name"] == job_name
-                or Job.get_full_name_from_url_and_baseurl(
-                    job_row["url"], self.jenkins.baseurl
-                )
-                == job_name
-            ][0]
-            return Job(job_data["url"], job_data["name"], self.jenkins)
+                if self._job_row_matches_name(job_row, normalized_name)
+            )
+            name = self._normalize_job_name(job_data["name"])
+            if name != normalized_name:
+                name = normalized_name
+            return Job(
+                Job.strip_trailing_slash(job_data["url"]),
+                name,
+                self.jenkins,
+            )
         else:
-            raise UnknownJob(job_name)
+            raise UnknownJob(normalized_name)
 
     def iteritems(self) -> Iterator[str, "Job"]:
         """
@@ -108,7 +114,13 @@ class Jobs(object):
         """
         True if job_name exists in Jenkins
         """
-        return job_name in self.keys()
+        normalized_name = self._normalize_job_name(job_name)
+        if not self._data:
+            self._data = self.poll().get("jobs", [])
+        return any(
+            self._job_row_matches_name(job_row, normalized_name)
+            for job_row in self._data
+        )
 
     def iterkeys(self) -> Iterator[str]:
         """
@@ -117,14 +129,14 @@ class Jobs(object):
         if not self._data:
             self._data = self.poll().get("jobs", [])
         for row in self._data:
-            if row["name"] != Job.get_full_name_from_url_and_baseurl(
-                row["url"], self.jenkins.baseurl
-            ):
-                yield Job.get_full_name_from_url_and_baseurl(
-                    row["url"], self.jenkins.baseurl
-                )
+            row_name = self._normalize_job_name(row["name"])
+            full_name = self._get_full_name_from_row(row)
+            if "/" in full_name:
+                yield full_name
+            elif row_name:
+                yield row_name
             else:
-                yield row["name"]
+                yield full_name
 
     def itervalues(self) -> Iterator["Job"]:
         """
@@ -133,7 +145,11 @@ class Jobs(object):
         if not self._data:
             self._data = self.poll().get("jobs", [])
         for row in self._data:
-            yield Job(row["url"], row["name"], self.jenkins)
+            yield Job(
+                Job.strip_trailing_slash(row["url"]),
+                row["name"],
+                self.jenkins,
+            )
 
     def keys(self) -> list[str]:
         """
@@ -149,23 +165,25 @@ class Jobs(object):
         :param str config: XML configuration of new job
         :returns Job: new Job object
         """
-        if job_name in self:
-            return self[job_name]
+        full_name, folder_parts, job_leaf = self._split_job_name(job_name)
+        if full_name in self:
+            return self[full_name]
 
         if not config:
             raise JenkinsAPIException("Job XML config cannot be empty")
 
-        params = {"name": job_name}
+        create_url = self._get_create_url(folder_parts)
+        params = {"name": job_leaf}
         if isinstance(config, bytes):
             config = config.decode("utf-8")
 
         self.jenkins.requester.post_xml_and_confirm_status(
-            self.jenkins.get_create_url(), data=config, params=params
+            create_url, data=config, params=params
         )
         # Reset to get it refreshed from Jenkins
         self._data = []
 
-        return self[job_name]
+        return Job(self._build_job_url(full_name), full_name, self.jenkins)
 
     def create_multibranch_pipeline(
         self, job_name: str, config: str, block: bool = True, delay: int = 60
@@ -182,19 +200,20 @@ class Jobs(object):
         if not config:
             raise JenkinsAPIException("Job XML config cannot be empty")
 
-        params = {"name": job_name}
+        full_name, folder_parts, job_leaf = self._split_job_name(job_name)
+        params = {"name": job_leaf}
         if isinstance(config, bytes):
             config = config.decode("utf-8")
 
         self.jenkins.requester.post_xml_and_confirm_status(
-            self.jenkins.get_create_url(), data=config, params=params
+            self._get_create_url(folder_parts), data=config, params=params
         )
         # Reset to get it refreshed from Jenkins
         self._data = []
 
         # Launch a first scan / indexing to discover the branches...
         self.jenkins.requester.post_and_confirm_status(
-            "{}/job/{}/build".format(self.jenkins.baseurl, job_name),
+            "{}/build".format(self._build_job_url(full_name)),
             data="",
             valid=[200, 302],  # expect 302 without redirects
             allow_redirects=False,
@@ -207,8 +226,8 @@ class Jobs(object):
         scan_finished = False
         while not scan_finished and block and time.time() < start_time + delay:
             indexing_console_text = self.jenkins.requester.get_url(
-                "{}/job/{}/indexing/consoleText".format(
-                    self.jenkins.baseurl, job_name
+                "{}/indexing/consoleText".format(
+                    self._build_job_url(full_name)
                 )
             )
             if (
@@ -222,7 +241,7 @@ class Jobs(object):
         # now search for all jobs created; those who start with job_name + '/'
         jobs = []
         for name in self.jenkins.get_jobs_list():
-            if name.startswith(job_name + "/"):
+            if name.startswith(full_name + "/"):
                 jobs.append(self[name])
 
         return jobs
@@ -234,15 +253,74 @@ class Jobs(object):
         :param new_job_name: Name of new job
         :returns Job: new Job object
         """
-        params = {"name": new_job_name, "mode": "copy", "from": job_name}
+        full_source_name = self._normalize_job_name(job_name)
+        full_target_name, folder_parts, job_leaf = self._split_job_name(
+            new_job_name
+        )
+        params = {"name": job_leaf, "mode": "copy", "from": full_source_name}
 
         self.jenkins.requester.post_and_confirm_status(
-            self.jenkins.get_create_url(), params=params, data=""
+            self._get_create_url(folder_parts), params=params, data=""
         )
 
         self._data = []
 
-        return self[new_job_name]
+        return self[full_target_name]
+
+    @staticmethod
+    def _normalize_job_name(job_name: str) -> str:
+        name = (job_name or "").strip().strip("/")
+        if not name:
+            return name
+        if name.startswith("job/"):
+            name = name[4:]
+        if "/job/" in name:
+            name = name.replace("/job/", "/").lstrip("/")
+        return name
+
+    def _split_job_name(self, job_name: str) -> tuple[str, list[str], str]:
+        full_name = self._normalize_job_name(job_name)
+        parts = [part for part in full_name.split("/") if part]
+        if not parts:
+            return full_name, [], ""
+        return full_name, parts[:-1], parts[-1]
+
+    def _get_full_name_from_row(self, row: dict) -> str:
+        url = row.get("url", "")
+        path = url.replace(self.jenkins.baseurl, "").strip("/")
+        if path:
+            tokens = path.split("/")
+            parts = []
+            idx = 0
+            while idx < len(tokens):
+                if tokens[idx] == "job" and idx + 1 < len(tokens):
+                    parts.append(unquote(tokens[idx + 1]))
+                    idx += 2
+                else:
+                    idx += 1
+            if parts:
+                return "/".join(parts)
+        return self._normalize_job_name(
+            Job.get_full_name_from_url_and_baseurl(url, self.jenkins.baseurl)
+        )
+
+    def _job_row_matches_name(self, row: dict, normalized_name: str) -> bool:
+        if self._normalize_job_name(row.get("name", "")) == normalized_name:
+            return True
+        return self._get_full_name_from_row(row) == normalized_name
+
+    def _get_create_url(self, folder_parts: list[str]) -> str:
+        if not folder_parts:
+            return self.jenkins.get_create_url()
+        folder_path = "/job/".join(quote(part) for part in folder_parts)
+        return "{}/job/{}/createItem".format(self.jenkins.baseurl, folder_path)
+
+    def _build_job_url(self, full_name: str) -> str:
+        parts = [part for part in full_name.split("/") if part]
+        if not parts:
+            return self.jenkins.baseurl
+        job_path = "/job/".join(quote(part) for part in parts)
+        return "{}/job/{}".format(self.jenkins.baseurl, job_path)
 
     def rename(self, job_name: str, new_job_name: str) -> "Job":
         """

@@ -573,3 +573,21 @@ class Build(JenkinsBase):
 
     def is_kept_forever(self) -> bool:
         return self._data["keepLog"]
+
+    def get_stages(self) -> List[Dict[str, Any]]:
+        """
+        Get pipeline stages from a Pipeline build.
+
+        Returns an empty list for non-pipeline builds.
+        Returns a list of stage dictionaries, each containing:
+        - id: Unique stage identifier
+        - name: Stage name
+        - status: Stage status (SUCCESS, FAILED, etc.)
+        - startTimeMillis: Stage start time
+        - durationMillis: Stage duration in milliseconds
+        - stageFlowNodes: List of steps within the stage
+
+        :return: List of stage dictionaries, or empty list if not a pipeline build
+        """
+        data = self.poll(tree="stages")
+        return data.get("stages", [])

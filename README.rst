@@ -11,6 +11,22 @@ Installation
 
     pip install jenkinsapi
 
+Logging
+-------
+
+JenkinsAPI emits request/response debug logs when enabled.
+You can opt in with the environment variable or by calling the helper:
+
+.. code-block:: bash
+
+    export JENKINSAPI_LOG_LEVEL=DEBUG
+
+.. code-block:: python
+
+    from jenkinsapi.utils.logging import configure_logging
+
+    configure_logging("INFO")
+
 Important Links
 ---------------
 * `Documentation <http://pycontribs.github.io/jenkinsapi/>`__
@@ -79,6 +95,16 @@ Disable/Enable a Jenkins Job
             print 'Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled())
 
 Use the call ``job_instance.enable()`` to enable a Jenkins Job.
+
+Creating jobs in folders
+------------------------
+
+When using the Folders plugin, you can pass folder paths directly:
+
+.. code-block:: python
+
+    jenkins.create_job("folder1/folder2/job-name", config_xml)
+    jenkins.create_job("/job/folder1/job/folder2/job-name", config_xml)
 
 
 Known issues
