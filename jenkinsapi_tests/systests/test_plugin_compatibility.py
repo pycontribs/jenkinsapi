@@ -7,7 +7,8 @@ This ensures Jenkins and all plugins are compatible and functional.
 def test_jenkins_loads_with_all_plugins(jenkins):
     """Test that Jenkins starts successfully with all required plugins."""
     # If we got here, Jenkins started successfully with all plugins
-    assert jenkins is not None
+    if jenkins is None:
+        raise RuntimeError("Jenkins instance is None")
     jenkins.poll()
 
 
@@ -18,10 +19,12 @@ def test_matrix_project_plugin_available(jenkins):
 
     job_name = "matrix_plugin_test_%s" % random_string()
     job = jenkins.create_job(job_name, MATRIX_JOB)
-    assert job is not None
-    assert "matrix" in str(type(job)).lower() or hasattr(
-        job, "get_matrix_runs"
-    )
+    if job is None:
+        raise RuntimeError("Failed to create job")
+    if not (
+        "matrix" in str(type(job)).lower() or hasattr(job, "get_matrix_runs")
+    ):
+        raise RuntimeError("Job does not have matrix plugin features")
 
 
 def test_envinject_plugin_available(jenkins):
@@ -31,9 +34,13 @@ def test_envinject_plugin_available(jenkins):
 
     job_name = "envinject_plugin_test_%s" % random_string()
     job = jenkins.create_job(job_name, JOB_WITH_ENV_VARS)
-    assert job is not None
+    if job is None:
+        raise RuntimeError("Failed to create job")
     # The job should be created successfully with envinject wrapper
-    assert "ping" in job.get_config()
+    if "ping" not in job.get_config():
+        raise RuntimeError(
+            "Job config does not contain expected 'ping' content"
+        )
 
 
 def test_git_plugin_available(jenkins):
@@ -41,4 +48,5 @@ def test_git_plugin_available(jenkins):
     # This is a passive test - if the git plugin is missing, other tests will fail
     # We just verify Jenkins is functional
     jenkins.poll()
-    assert jenkins.version is not None
+    if jenkins.version is None:
+        raise RuntimeError("Jenkins version is None")
