@@ -154,6 +154,11 @@ class TestView:
 
         assert url == "http://halob:8080/job/foo/"
 
+    def test_get_job_url_uses_job_name(self, view):
+        url = view.get_job_url("foo")
+
+        assert url == "http://halob:8080/job/foo/"
+
     def test_raises_not_found_when_get_job_url_is_invalid(self, view):
         with pytest.raises(NotFound):
             view.get_job_url("bar")
