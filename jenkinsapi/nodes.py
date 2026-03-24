@@ -40,6 +40,16 @@ class Nodes(JenkinsBase):
     def get_jenkins_obj(self) -> "Jenkins":
         return self.jenkins
 
+    def _poll(self, tree=None):
+        """
+        Poll Jenkins for the list of nodes.
+        Uses tree=computer[displayName] to optimize performance on large instances
+        by limiting the response size, avoiding timeouts (issue #855).
+        """
+        if not tree:
+            tree = "computer[displayName]"
+        return super()._poll(tree=tree)
+
     def __str__(self) -> str:
         return "Nodes @ %s" % self.baseurl
 
