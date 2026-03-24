@@ -895,15 +895,34 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">get_scm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
         <span class="n">scm_element</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;scm&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">scm_element</span><span class="p">:</span>
-            <span class="n">multibranch_scm_prefix</span> <span class="o">=</span> <span class="s2">&quot;properties/org.jenkinsci.plugins.</span><span class="se">\</span>
-<span class="s2">                    workflow.multibranch.BranchJobProperty/branch/&quot;</span>
-            <span class="n">multibranch_path</span> <span class="o">=</span> <span class="n">multibranch_scm_prefix</span> <span class="o">+</span> <span class="s2">&quot;scm&quot;</span>
-            <span class="n">scm_element</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">multibranch_path</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">scm_element</span><span class="p">:</span>
-                <span class="c1"># multibranch pipeline.</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">=</span> <span class="n">multibranch_scm_prefix</span>
-        <span class="n">scm_class</span> <span class="o">=</span> <span class="n">scm_element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">scm_element</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="c1"># Search alternative locations for SCM if not at root level</span>
+        <span class="k">if</span> <span class="n">scm_element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">scm_alt_locations</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;prefix&quot;</span><span class="p">:</span> <span class="p">(</span>
+                        <span class="s2">&quot;properties/org.jenkinsci.plugins.&quot;</span>
+                        <span class="s2">&quot;workflow.multibranch.BranchJobProperty/branch/&quot;</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="p">(</span>
+                        <span class="s2">&quot;properties/org.jenkinsci.plugins.&quot;</span>
+                        <span class="s2">&quot;workflow.multibranch.BranchJobProperty/branch/scm&quot;</span>
+                    <span class="p">),</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;definition/&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;definition/scm&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">alt_location</span> <span class="ow">in</span> <span class="n">scm_alt_locations</span><span class="p">:</span>
+                <span class="n">scm_element</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">alt_location</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">scm_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_scm_prefix</span> <span class="o">=</span> <span class="n">alt_location</span><span class="p">[</span><span class="s2">&quot;prefix&quot;</span><span class="p">]</span>
+                    <span class="k">break</span>
+        <span class="n">scm_class</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">scm_element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">scm_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
         <span class="n">scm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scm_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scm_class</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">scm</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NotSupportSCM</span><span class="p">(</span>
