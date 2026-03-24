@@ -1,7 +1,7 @@
 .PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all
 
 clean:
-	rm -rf jenkinsapi_tests/systests/localinstance_files
+	rm -rf dist/ build/ *.egg-info
 
 test:
 	uv run pytest -sv jenkinsapi_tests/unittests/ -m "not docker"
