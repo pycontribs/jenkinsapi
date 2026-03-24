@@ -29,6 +29,7 @@ concurrency:
 jobs:
   systests:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
     - name: Checkout
@@ -53,4 +54,4 @@ jobs:
       run: |
         NUM_WORKERS=$(python3 -c "import os; print(max(1, os.cpu_count() // 3))")
         echo "Running systests with $NUM_WORKERS workers ($(nproc) CPUs available)"
-        uv run pytest jenkinsapi_tests/systests/ -n $NUM_WORKERS -v
+        uv run pytest jenkinsapi_tests/systests/ -n $NUM_WORKERS --timeout=120 -v

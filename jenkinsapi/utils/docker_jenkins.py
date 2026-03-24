@@ -129,7 +129,14 @@ class DockerJenkins:
                 f"Image not found: {self.image_name}. "
                 "Please build it first with build_image()"
             )
-        except docker.errors.ContainerError as e:
+        except (docker.errors.ContainerError, docker.errors.APIError) as e:
+            msg = str(e).lower()
+            if "port" in msg and (
+                "already allocated" in msg or "address already in use" in msg
+            ):
+                raise DockerJenkinsError(
+                    f"Port conflict on port {self.port}: {e}"
+                )
             raise DockerJenkinsError(f"Failed to start container: {e}")
 
         # Wait for Jenkins to be ready

@@ -1,4 +1,6 @@
+import atexit
 import os
+import signal
 import sys
 import logging
 import pytest
@@ -7,6 +9,7 @@ import queue
 import requests
 from pathlib import Path
 from jenkinsapi.jenkins import Jenkins
+from jenkinsapi.utils.docker_jenkins import DockerJenkinsError
 from jenkinsapi.utils.docker_launcher import DockerLauncher
 
 # Import helpers for dynamic port allocation
@@ -29,6 +32,18 @@ CONTAINER_LAUNCHERS = {}  # Maps (worker_id, container_num) -> launcher
 # User/password for authentication testcases
 ADMIN_USER = "admin"
 ADMIN_PASSWORD = "admin"
+
+
+def _emergency_cleanup():
+    for launcher in CONTAINER_LAUNCHERS.values():
+        try:
+            launcher.stop()
+        except Exception:
+            pass
+
+
+atexit.register(_emergency_cleanup)
+signal.signal(signal.SIGTERM, lambda *_: (_emergency_cleanup(), sys.exit(1)))
 
 
 def _delete_all_jobs(jenkins):
@@ -194,15 +209,24 @@ def container_pool(docker_image, worker_id):
                 f"using image {image_name}"
             )
 
-            launcher = DockerLauncher(
-                image_name=image_name,
-                container_name=container_name,
-                port=port,
-                dockerfile_path=dockerfile_path,
-                jenkins_url=os.getenv("JENKINS_URL", None),
-            )
-
-            launcher.start(timeout=300)
+            for attempt in range(5):
+                try:
+                    launcher = DockerLauncher(
+                        image_name=image_name,
+                        container_name=container_name,
+                        port=port,
+                        dockerfile_path=dockerfile_path,
+                        jenkins_url=os.getenv("JENKINS_URL", None),
+                    )
+                    launcher.start(timeout=300)
+                    break
+                except DockerJenkinsError as e:
+                    if attempt == 4 or "Port conflict" not in str(e):
+                        raise
+                    port = find_free_port(start_port=port + 1)
+                    log.warning(
+                        f"[{display_name}] Port conflict, retrying on port {port}: {e}"
+                    )
 
             # Ensure Jenkins is fully ready before marking container as ready
             log.info(
