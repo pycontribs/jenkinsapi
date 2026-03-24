@@ -261,6 +261,7 @@
           <h1>Source code for jenkinsapi.lockable_resources</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TYPE_CHECKING</span><span class="p">,</span>
     <span class="n">Dict</span><span class="p">,</span>
@@ -480,10 +481,19 @@
         <span class="n">req</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make a resource-specific request via HTTP POST&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make a resource-specific request via HTTP POST</span>
+
+<span class="sd">        NOTE: The lockable-resources plugin endpoints (reserve/unreserve) require</span>
+<span class="sd">        the resource name as a URL query parameter (?resource=name), NOT as POST</span>
+<span class="sd">        body data. The plugin also requires an authenticated (non-anonymous) user;</span>
+<span class="sd">        anonymous requests are silently ignored even when security is &quot;disabled&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Resource name must be a URL query parameter; POST body is empty.</span>
+        <span class="c1"># Using data= (POST body) causes the action to be silently ignored.</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">baseurl</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;/lockable-resources/</span><span class="si">{</span><span class="n">req</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
+            <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">name</span><span class="p">),</span>
+            <span class="n">data</span><span class="o">=</span><span class="p">{},</span>
             <span class="n">valid</span><span class="o">=</span><span class="p">[</span>
                 <span class="mi">200</span><span class="p">,</span>
                 <span class="n">HTTP_STATUS_CODE_LOCKED</span><span class="p">,</span>
@@ -494,8 +504,27 @@
                 <span class="sa">f</span><span class="s2">&quot;Resource </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is busy or reserved by another user.&quot;</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">poll_after_post</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+            <span class="c1"># Jenkins commits state changes asynchronously; poll until the</span>
+            <span class="c1"># API reflects the new state rather than using a fixed sleep.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_poll_until_consistent</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_poll_until_consistent</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Poll repeatedly until two consecutive polls return the same data.</span>
+
+<span class="sd">        This waits for Jenkins to fully commit a state change before returning,</span>
+<span class="sd">        without relying on an arbitrary fixed sleep duration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+        <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">retries</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">==</span> <span class="n">prev</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">interval</span><span class="p">)</span>
 
 <div class="viewcode-block" id="LockableResources.reserve">
 <a class="viewcode-back" href="../../submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reserve">[docs]</a>
