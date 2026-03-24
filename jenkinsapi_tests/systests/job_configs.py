@@ -328,7 +328,7 @@ JOB_WITH_ENV_VARS = """\
   <builders/>
   <publishers/>
   <buildWrappers>
-    <EnvInjectBuildWrapper plugin="envinject@1.93.1">
+    <EnvInjectBuildWrapper plugin="envinject">
       <info>
         <groovyScriptContent>
           return [\'key1\': \'value1\', \'key2\': \'value2\']
