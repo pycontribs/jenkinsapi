@@ -52,6 +52,11 @@ PLUGIN_DEPENDENCIES = [
     "https://updates.jenkins.io/latest/asm-api.hpi",
     "https://updates.jenkins.io/latest/structs.hpi",
     "https://updates.jenkins.io/latest/checks-api.hpi",
+    "https://updates.jenkins.io/latest/ionicons-api.hpi",
+    # Workflow/Pipeline support
+    "https://updates.jenkins.io/latest/workflow-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-step-api.hpi",
+    "https://updates.jenkins.io/latest/workflow-support.hpi",
     # Jenkins infrastructure
     "https://updates.jenkins.io/latest/instance-identity.hpi",
     "https://updates.jenkins.io/latest/display-url-api.hpi",
