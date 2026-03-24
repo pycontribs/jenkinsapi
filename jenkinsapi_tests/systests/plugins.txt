@@ -11,3 +11,5 @@ script-security
 junit
 mailer
 nested-view
+lockable-resources
+data-tables-api
