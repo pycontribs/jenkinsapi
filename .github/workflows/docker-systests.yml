@@ -4,15 +4,15 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'Dockerfile'
-      - 'jenkinsapi_tests/systests/plugins.txt'
+      - 'docker/Dockerfile'
+      - 'docker/plugins.txt'
       - 'jenkinsapi/**'
       - 'jenkinsapi_tests/systests/**'
   pull_request:
     branches: [ "master" ]
     paths:
-      - 'Dockerfile'
-      - 'jenkinsapi_tests/systests/plugins.txt'
+      - 'docker/Dockerfile'
+      - 'docker/plugins.txt'
       - 'jenkinsapi/**'
       - 'jenkinsapi_tests/systests/**'
   schedule:
@@ -49,7 +49,7 @@ jobs:
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
     - name: Log in to GHCR
-      uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7556 # v3.3.0
+      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -57,14 +57,14 @@ jobs:
 
     - name: Pull or build Docker image
       run: |
-        HASH=$(sha256sum Dockerfile plugins.txt | sha256sum | cut -c1-8)
+        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
         IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
         if docker pull "$IMAGE" 2>/dev/null; then
           echo "Cache hit: $IMAGE"
           docker tag "$IMAGE" jenkinsapi-systest:latest
         else
           echo "Cache miss — building locally"
-          docker build -t jenkinsapi-systest:latest .
+          docker build -t jenkinsapi-systest:latest docker/
         fi
 
     - name: Run system tests

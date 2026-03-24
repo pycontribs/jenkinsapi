@@ -2,10 +2,6 @@ version: '3.8'
 
 services:
   jenkins:
-    # Use pre-built image from GHCR (faster, no build needed):
-    # image: ghcr.io/pycontribs/jenkinsapi:latest
-    #
-    # Or build locally:
     build:
       context: .
       dockerfile: Dockerfile
