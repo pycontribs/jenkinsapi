@@ -94,13 +94,9 @@ HTTP_STATUS_CODE_LOCKED = 423
 class ResourceLockedError(JenkinsAPIException):
     """Raised when a resource is locked and cannot be reserved"""
 
-    pass
-
 
 class ResourceReservationTimeoutError(JenkinsAPIException, TimeoutError):
     """Raised when resource reservation times out"""
-
-    pass
 
 
 DEFAULT_WAIT_SLEEP_PERIOD = 5
