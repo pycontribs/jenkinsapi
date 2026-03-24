@@ -150,8 +150,6 @@ class JenkinsLancher(object):
 
     def _find_jenkins_plugin_cli(self):
         """Return the jenkins-plugin-cli command if installed, else None."""
-        import shutil
-
         return shutil.which("jenkins-plugin-cli")
 
     def _get_plugin_manager_jar(self):
@@ -238,7 +236,7 @@ class JenkinsLancher(object):
             plugin_cache_dir,
         ]
         log.info("Installing plugins: %s", " ".join(cmd))
-        subprocess.check_call(cmd)
+        subprocess.check_output(cmd)
 
         # Copy downloaded plugins to jenkins_home/plugins
         for fname in os.listdir(plugin_cache_dir):
