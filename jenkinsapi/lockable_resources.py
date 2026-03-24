@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import logging
+import time
 from typing import (
     TYPE_CHECKING,
     Dict,
@@ -178,10 +179,19 @@ class LockableResources(JenkinsBase, Mapping[str, LockableResource]):
         req: str,
         name: str,
     ) -> Response:
-        """Make a resource-specific request via HTTP POST"""
+        """Make a resource-specific request via HTTP POST
+
+        NOTE: The lockable-resources plugin endpoints (reserve/unreserve) require
+        the resource name as a URL query parameter (?resource=name), NOT as POST
+        body data. The plugin also requires an authenticated (non-anonymous) user;
+        anonymous requests are silently ignored even when security is "disabled".
+        """
+        # Resource name must be a URL query parameter; POST body is empty.
+        # Using data= (POST body) causes the action to be silently ignored.
         response = self.jenkins.requester.post_and_confirm_status(
             self.jenkins.baseurl + f"/lockable-resources/{req}",
-            data=dict(resource=name),
+            params=dict(resource=name),
+            data={},
             valid=[
                 200,
                 HTTP_STATUS_CODE_LOCKED,
@@ -192,8 +202,27 @@ class LockableResources(JenkinsBase, Mapping[str, LockableResource]):
                 f"Resource {name} is busy or reserved by another user."
             )
         if self.poll_after_post:
-            self.poll()
+            # Jenkins commits state changes asynchronously; poll until the
+            # API reflects the new state rather than using a fixed sleep.
+            self._poll_until_consistent()
         return response
+
+    def _poll_until_consistent(
+        self, retries: int = 10, interval: float = 0.2
+    ) -> None:
+        """Poll repeatedly until two consecutive polls return the same data.
+
+        This waits for Jenkins to fully commit a state change before returning,
+        without relying on an arbitrary fixed sleep duration.
+        """
+        self.poll()
+        prev = self._data
+        for _ in range(retries):
+            self.poll()
+            if self._data == prev:
+                return
+            prev = self._data
+            time.sleep(interval)
 
     def reserve(self, name: str) -> None:
         self._make_resource_request("reserve", name)
