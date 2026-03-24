@@ -130,3 +130,56 @@ def test_clock_difference(node):
     monitor = DATA["monitorData"]["hudson.node_monitors.ClockMonitor"]
     expected_value = monitor["diff"]
     assert node.get_clock_difference() == expected_value
+
+
+def test_get_monitor_data_swap_space(node):
+    """Test get_monitor_data helper retrieves SwapSpaceMonitor data"""
+    result = node.get_monitor_data(
+        "SwapSpaceMonitor", "availablePhysicalMemory"
+    )
+    expected = DATA["monitorData"]["hudson.node_monitors.SwapSpaceMonitor"][
+        "availablePhysicalMemory"
+    ]
+    assert result == expected
+
+
+def test_get_monitor_data_disk_space(node):
+    """Test get_monitor_data helper retrieves DiskSpaceMonitor data"""
+    result = node.get_monitor_data("DiskSpaceMonitor", "path")
+    expected = DATA["monitorData"]["hudson.node_monitors.DiskSpaceMonitor"][
+        "path"
+    ]
+    assert result == expected
+
+
+def test_get_monitor_data_response_time(node):
+    """Test get_monitor_data helper retrieves ResponseTimeMonitor data"""
+    result = node.get_monitor_data("ResponseTimeMonitor", "average")
+    expected = DATA["monitorData"]["hudson.node_monitors.ResponseTimeMonitor"][
+        "average"
+    ]
+    assert result == expected
+
+
+def test_get_monitor_data_clock(node):
+    """Test get_monitor_data helper retrieves ClockMonitor data"""
+    result = node.get_monitor_data("ClockMonitor", "diff")
+    expected = DATA["monitorData"]["hudson.node_monitors.ClockMonitor"]["diff"]
+    assert result == expected
+
+
+def test_get_monitor_data_with_poll_false(node):
+    """Test get_monitor_data with poll_monitor=False uses cached data"""
+    result = node.get_monitor_data(
+        "TemporarySpaceMonitor", "path", poll_monitor=False
+    )
+    expected = DATA["monitorData"][
+        "hudson.node_monitors.TemporarySpaceMonitor"
+    ]["path"]
+    assert result == expected
+
+
+def test_get_monitor_data_nonexistent_monitor(node):
+    """Test get_monitor_data raises AssertionError for non-existent monitor"""
+    with pytest.raises(AssertionError):
+        node.get_monitor_data("NonExistentMonitor", "some_key")
