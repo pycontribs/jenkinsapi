@@ -361,9 +361,9 @@ class Job(JenkinsBase, MutableJenkinsThing):
         if "builds" not in self._data:
             raise NoBuildData(repr(self))
         for buildnumber in self.get_build_ids():
-            revs[self.get_build(buildnumber).get_revision()].append(
-                buildnumber
-            )
+            rev = self.get_build(buildnumber).get_revision()
+            if rev is not None:
+                revs[rev].append(buildnumber)
         return revs
 
     def get_build_ids(self):
@@ -421,8 +421,10 @@ class Job(JenkinsBase, MutableJenkinsThing):
 
     def get_buildnumber_for_revision(self, revision, refresh=False):
         """
+        Get buildnumbers for a given revision.
 
-        :param revision: subversion revision to look for, int
+        :param revision: revision to look for. For SVN, this is an int.
+            For Git, this is a SHA1 string.
         :param refresh: boolean, whether or not to refresh the
             revision -> buildnumber map
         :return: list of buildnumbers, [int]
