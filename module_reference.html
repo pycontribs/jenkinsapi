@@ -212,6 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules/jenkinsbase.html">Jenkinsbase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/jobs.html">Jobs and job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html">Lockable Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/nodes.html">Nodes and node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/plugins.html">Plugins and Plugin</a></li>
@@ -496,6 +497,7 @@
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs_info"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_info()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs_list"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_list()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_label"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_lockable_resources"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_lockable_resources()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_master_data"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_master_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_node"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_node()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_node_url"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_node_url()</span></code></a></li>
@@ -634,6 +636,84 @@
 <li class="toctree-l3"><a class="reference internal" href="submodules/label.html#jenkinsapi.label.Label.get_tied_job_names"><code class="docutils literal notranslate"><span class="pre">Label.get_tied_job_names()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/label.html#jenkinsapi.label.Label.get_tied_jobs"><code class="docutils literal notranslate"><span class="pre">Label.get_tied_jobs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/label.html#jenkinsapi.label.Label.is_online"><code class="docutils literal notranslate"><span class="pre">Label.is_online()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submodules/lockable_resources.html">Lockable Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.HTTP_STATUS_CODE_LOCKED"><code class="docutils literal notranslate"><span class="pre">HTTP_STATUS_CODE_LOCKED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource"><code class="docutils literal notranslate"><span class="pre">LockableResource</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.data"><code class="docutils literal notranslate"><span class="pre">LockableResource.data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.is_free"><code class="docutils literal notranslate"><span class="pre">LockableResource.is_free()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.is_reserved"><code class="docutils literal notranslate"><span class="pre">LockableResource.is_reserved()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.reserve"><code class="docutils literal notranslate"><span class="pre">LockableResource.reserve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.unreserve"><code class="docutils literal notranslate"><span class="pre">LockableResource.unreserve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.buildName"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.buildName</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.description"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.ephemeral"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.ephemeral</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.free"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.free</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.labels"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.labelsAsList"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.labelsAsList</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.lockCause"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.lockCause</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.locked"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.name"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.note"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.note</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.properties"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reserved"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.reserved</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedBy"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.reservedBy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.reservedByEmail</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.reservedTimestamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.stolen"><code class="docutils literal notranslate"><span class="pre">LockableResourceDict.stolen</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict"><code class="docutils literal notranslate"><span class="pre">LockableResourcePropertyDict</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict.name"><code class="docutils literal notranslate"><span class="pre">LockableResourcePropertyDict.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict.value"><code class="docutils literal notranslate"><span class="pre">LockableResourcePropertyDict.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources"><code class="docutils literal notranslate"><span class="pre">LockableResources</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.data_dict"><code class="docutils literal notranslate"><span class="pre">LockableResources.data_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.data_list"><code class="docutils literal notranslate"><span class="pre">LockableResources.data_list</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.get_jenkins_obj"><code class="docutils literal notranslate"><span class="pre">LockableResources.get_jenkins_obj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.is_free"><code class="docutils literal notranslate"><span class="pre">LockableResources.is_free()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.is_reserved"><code class="docutils literal notranslate"><span class="pre">LockableResources.is_reserved()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.jenkins"><code class="docutils literal notranslate"><span class="pre">LockableResources.jenkins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.poll"><code class="docutils literal notranslate"><span class="pre">LockableResources.poll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.poll_after_post"><code class="docutils literal notranslate"><span class="pre">LockableResources.poll_after_post</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_label"><code class="docutils literal notranslate"><span class="pre">LockableResources.reservation_by_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_name"><code class="docutils literal notranslate"><span class="pre">LockableResources.reservation_by_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_name_list"><code class="docutils literal notranslate"><span class="pre">LockableResources.reservation_by_name_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reserve"><code class="docutils literal notranslate"><span class="pre">LockableResources.reserve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.try_reserve"><code class="docutils literal notranslate"><span class="pre">LockableResources.try_reserve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.unreserve"><code class="docutils literal notranslate"><span class="pre">LockableResources.unreserve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.wait_reserve"><code class="docutils literal notranslate"><span class="pre">LockableResources.wait_reserve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation"><code class="docutils literal notranslate"><span class="pre">LockedResourceReservation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.is_active"><code class="docutils literal notranslate"><span class="pre">LockedResourceReservation.is_active()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.locked_resource_name"><code class="docutils literal notranslate"><span class="pre">LockedResourceReservation.locked_resource_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.retry"><code class="docutils literal notranslate"><span class="pre">LockedResourceReservation.retry</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLabelSelector"><code class="docutils literal notranslate"><span class="pre">ResourceLabelSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLabelSelector.select"><code class="docutils literal notranslate"><span class="pre">ResourceLabelSelector.select()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLockedError"><code class="docutils literal notranslate"><span class="pre">ResourceLockedError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameListSelector"><code class="docutils literal notranslate"><span class="pre">ResourceNameListSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameListSelector.select"><code class="docutils literal notranslate"><span class="pre">ResourceNameListSelector.select()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameSelector"><code class="docutils literal notranslate"><span class="pre">ResourceNameSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameSelector.select"><code class="docutils literal notranslate"><span class="pre">ResourceNameSelector.select()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceReservationTimeoutError"><code class="docutils literal notranslate"><span class="pre">ResourceReservationTimeoutError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceSelector"><code class="docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceSelector.select"><code class="docutils literal notranslate"><span class="pre">ResourceSelector.select()</span></code></a></li>
 </ul>
 </li>
 </ul>

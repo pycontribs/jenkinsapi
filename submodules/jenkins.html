@@ -212,6 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="jenkinsbase.html">Jenkinsbase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs and job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lockable_resources.html">Lockable Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mutable_jenkins.html">Mutable_jenkins_thing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodes.html">Nodes and node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plugins.html">Plugins and Plugin</a></li>
@@ -499,6 +500,11 @@ delete dependencies.
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.get_label">
 <span class="sig-name descname"><span class="pre">get_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="label.html#jenkinsapi.label.Label" title="jenkinsapi.label.Label"><span class="pre">Label</span></a></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.get_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.get_label" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.get_lockable_resources">
+<span class="sig-name descname"><span class="pre">get_lockable_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="lockable_resources.html#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.get_lockable_resources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.get_lockable_resources" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -813,6 +819,7 @@ print(result) # will print “Hello world!”</p>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs_info"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_info()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs_list"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_list()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_label"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_label()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_lockable_resources"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_lockable_resources()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_master_data"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_master_data()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_node"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_node()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_node_url"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_node_url()</span></code></a></li>

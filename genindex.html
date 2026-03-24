@@ -210,6 +210,7 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules/jenkinsbase.html">Jenkinsbase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/jobs.html">Jobs and job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/lockable_resources.html">Lockable Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/nodes.html">Nodes and node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/plugins.html">Plugins and Plugin</a></li>
@@ -323,6 +324,8 @@
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.build_job">build_job() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.buildName">buildName (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -393,6 +396,12 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/views.html#jenkinsapi.views.Views.DASHBOARD_VIEW">DASHBOARD_VIEW (jenkinsapi.views.Views attribute)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.data">data (jenkinsapi.lockable_resources.LockableResource property)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.data_dict">data_dict (jenkinsapi.lockable_resources.LockableResources property)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.data_list">data_list (jenkinsapi.lockable_resources.LockableResources property)</a>
+</li>
         <li><a href="submodules/views.html#jenkinsapi.view.View.delete">delete() (jenkinsapi.view.View method)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.delete_build">delete_build() (jenkinsapi.job.Job method)</a>
@@ -403,10 +412,10 @@
 </li>
         <li><a href="submodules/queue.html#jenkinsapi.queue.Queue.delete_item_by_id">delete_item_by_id() (jenkinsapi.queue.Queue method)</a>
 </li>
-        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_job">delete_job() (jenkinsapi.jenkins.Jenkins method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_job">delete_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.delete_labels">delete_labels() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_node">delete_node() (jenkinsapi.jenkins.Jenkins method)</a>
@@ -416,6 +425,8 @@
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugins">delete_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_view_by_url">delete_view_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.description">description (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.disable">disable() (jenkinsapi.job.Job method)</a>
 </li>
@@ -433,6 +444,8 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.enable">enable() (jenkinsapi.job.Job method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.ephemeral">ephemeral (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/executors.html#jenkinsapi.executor.Executor">Executor (class in jenkinsapi.executor)</a>
@@ -449,11 +462,13 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.FailedNoResults">FailedNoResults</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.FailedToStart">FailedToStart</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/fingerprint.html#jenkinsapi.fingerprint.Fingerprint">Fingerprint (class in jenkinsapi.fingerprint)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.free">free (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -636,6 +651,8 @@
 </li>
           <li><a href="submodules/label.html#jenkinsapi.label.Label.get_jenkins_obj">(jenkinsapi.label.Label method)</a>
 </li>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.get_jenkins_obj">(jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
           <li><a href="submodules/nodes.html#jenkinsapi.node.Node.get_jenkins_obj">(jenkinsapi.node.Node method)</a>
 </li>
           <li><a href="submodules/nodes.html#jenkinsapi.nodes.Nodes.get_jenkins_obj">(jenkinsapi.nodes.Nodes method)</a>
@@ -704,6 +721,8 @@
         <li><a href="submodules/api.html#jenkinsapi.api.get_latest_complete_build">get_latest_complete_build() (in module jenkinsapi.api)</a>
 </li>
         <li><a href="submodules/api.html#jenkinsapi.api.get_latest_test_results">get_latest_test_results() (in module jenkinsapi.api)</a>
+</li>
+        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_lockable_resources">get_lockable_resources() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.get_master_build">get_master_build() (jenkinsapi.build.Build method)</a>
 </li>
@@ -865,6 +884,8 @@
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.has_resultset">has_resultset() (jenkinsapi.build.Build method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.HTTP_STATUS_CODE_LOCKED">HTTP_STATUS_CODE_LOCKED (in module jenkinsapi.lockable_resources)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -895,8 +916,16 @@
 </li>
         <li><a href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.invokejob">invokejob() (jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.is_active">is_active() (jenkinsapi.lockable_resources.LockedResourceReservation method)</a>
+</li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.is_enabled">is_enabled() (jenkinsapi.job.Job method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.is_free">is_free() (jenkinsapi.lockable_resources.LockableResource method)</a>
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.is_free">(jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        </ul></li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.is_good">is_good() (jenkinsapi.build.Build method)</a>
 </li>
         <li><a href="submodules/executors.html#jenkinsapi.executor.Executor.is_idle">is_idle() (jenkinsapi.executor.Executor method)</a>
@@ -927,6 +956,14 @@
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.is_quieting_down">is_quieting_down (jenkinsapi.jenkins.Jenkins property)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.is_reserved">is_reserved() (jenkinsapi.lockable_resources.LockableResource method)</a>
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.is_reserved">(jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.is_running">is_running() (jenkinsapi.build.Build method)</a>
 
         <ul>
@@ -935,8 +972,6 @@
           <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.is_running">(jenkinsapi.queue.QueueItem method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.is_temporarily_offline">is_temporarily_offline() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.items">items() (jenkinsapi.jenkins.Jenkins method)</a>
@@ -1002,6 +1037,8 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins">Jenkins (class in jenkinsapi.jenkins)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.jenkins">jenkins (jenkinsapi.lockable_resources.LockableResources attribute)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL">JENKINS_LTS_WAR_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
 </li>
@@ -1120,6 +1157,13 @@
 </li>
         </ul></li>
         <li>
+    jenkinsapi.lockable_resources
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#module-jenkinsapi.lockable_resources">module</a>
+</li>
+        </ul></li>
+        <li>
     jenkinsapi.mutable_jenkins_thing
 
         <ul>
@@ -1133,6 +1177,8 @@
           <li><a href="submodules/nodes.html#module-jenkinsapi.node">module</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     jenkinsapi.nodes
 
@@ -1140,8 +1186,6 @@
           <li><a href="submodules/nodes.html#module-jenkinsapi.nodes">module</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li>
     jenkinsapi.plugin
 
@@ -1312,12 +1356,14 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/label.html#jenkinsapi.label.Label">Label (class in jenkinsapi.label)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.labels">labels (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.labelsAsList">labelsAsList (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.launch">launch() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/executors.html#jenkinsapi.executor.Executor.likely_stuck">likely_stuck() (jenkinsapi.executor.Executor method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/views.html#jenkinsapi.views.Views.LIST_VIEW">LIST_VIEW (jenkinsapi.views.Views attribute)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.load_config">load_config() (jenkinsapi.job.Job method)</a>
@@ -1326,6 +1372,24 @@
           <li><a href="submodules/nodes.html#jenkinsapi.node.Node.load_config">(jenkinsapi.node.Node method)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource">LockableResource (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict">LockableResourceDict (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict">LockableResourcePropertyDict (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources">LockableResources (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.lockCause">lockCause (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.locked">locked (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.locked_resource_name">locked_resource_name (jenkinsapi.lockable_resources.LockedResourceReservation property)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation">LockedResourceReservation (class in jenkinsapi.lockable_resources)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -1388,6 +1452,8 @@
 </li>
           <li><a href="submodules/label.html#module-jenkinsapi.label">jenkinsapi.label</a>
 </li>
+          <li><a href="submodules/lockable_resources.html#module-jenkinsapi.lockable_resources">jenkinsapi.lockable_resources</a>
+</li>
           <li><a href="submodules/mutable_jenkins.html#module-jenkinsapi.mutable_jenkins_thing">jenkinsapi.mutable_jenkins_thing</a>
 </li>
           <li><a href="submodules/nodes.html#module-jenkinsapi.node">jenkinsapi.node</a>
@@ -1444,6 +1510,10 @@
         <li><a href="submodules/build.html#jenkinsapi.build.Build.name">name (jenkinsapi.build.Build property)</a>
 
         <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.name">(jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict.name">(jenkinsapi.lockable_resources.LockableResourcePropertyDict attribute)</a>
+</li>
           <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.name">(jenkinsapi.queue.QueueItem property)</a>
 </li>
           <li><a href="submodules/results.html#jenkinsapi.result_set.ResultSet.name">(jenkinsapi.result_set.ResultSet property)</a>
@@ -1468,6 +1538,8 @@
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotBuiltYet">NotBuiltYet</a>
 </li>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotConfiguredSCM">NotConfiguredSCM</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.note">note (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.NotFound">NotFound</a>
 </li>
@@ -1514,11 +1586,15 @@
 </li>
           <li><a href="submodules/jobs.html#jenkinsapi.jobs.Jobs.poll">(jenkinsapi.jobs.Jobs method)</a>
 </li>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.poll">(jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
           <li><a href="submodules/views.html#jenkinsapi.views.Views.poll">(jenkinsapi.views.Views method)</a>
 </li>
         </ul></li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.poll_after_post">poll_after_post (jenkinsapi.lockable_resources.LockableResources attribute)</a>
+</li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.requester.Requester.post_and_confirm_status">post_and_confirm_status() (jenkinsapi.utils.requester.Requester method)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.crumb_requester.CrumbRequester.post_url">post_url() (jenkinsapi.utils.crumb_requester.CrumbRequester method)</a>
@@ -1534,6 +1610,8 @@
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.pprint">pprint() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
 </li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.process_job_folder">process_job_folder() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.properties">properties (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.python_api_url">python_api_url() (jenkinsapi.jenkinsbase.JenkinsBase class method)</a>
 </li>
@@ -1575,15 +1653,49 @@
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.requester.Requester">Requester (class in jenkinsapi.utils.requester)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_label">reservation_by_label() (jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_name">reservation_by_name() (jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reservation_by_name_list">reservation_by_name_list() (jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.reserve">reserve() (jenkinsapi.lockable_resources.LockableResource method)</a>
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.reserve">(jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+        </ul></li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reserved">reserved (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedBy">reservedBy (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail">reservedByEmail (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp">reservedTimestamp (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
+</li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.resolve_job_folders">resolve_job_folders() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLabelSelector">ResourceLabelSelector (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLockedError">ResourceLockedError</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameListSelector">ResourceNameListSelector (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameSelector">ResourceNameSelector (class in jenkinsapi.lockable_resources)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceReservationTimeoutError">ResourceReservationTimeoutError</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceSelector">ResourceSelector (class in jenkinsapi.lockable_resources)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.restart_required">restart_required (jenkinsapi.plugins.Plugins property)</a>
 </li>
         <li><a href="submodules/results.html#jenkinsapi.result.Result">Result (class in jenkinsapi.result)</a>
 </li>
         <li><a href="submodules/results.html#jenkinsapi.result_set.ResultSet">ResultSet (class in jenkinsapi.result_set)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.retry">retry (jenkinsapi.lockable_resources.LockedResourceReservation attribute)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.run">run() (jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
 </li>
@@ -1611,23 +1723,35 @@
 </li>
         <li><a href="submodules/credentials.html#jenkinsapi.credential.SecretTextCredential">SecretTextCredential (class in jenkinsapi.credential)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLabelSelector.select">select() (jenkinsapi.lockable_resources.ResourceLabelSelector method)</a>
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameListSelector.select">(jenkinsapi.lockable_resources.ResourceNameListSelector method)</a>
+</li>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceNameSelector.select">(jenkinsapi.lockable_resources.ResourceNameSelector method)</a>
+</li>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceSelector.select">(jenkinsapi.lockable_resources.ResourceSelector method)</a>
+</li>
+        </ul></li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler">ServerHandler (class in jenkinsapi.utils.simple_post_logger)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_offline">set_offline() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_online">set_online() (jenkinsapi.node.Node method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.shutdown">shutdown() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/credentials.html#jenkinsapi.credential.SSHKeyCredential">SSHKeyCredential (class in jenkinsapi.credential)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start">start() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.stolen">stolen (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.stop">stop() (jenkinsapi.build.Build method)</a>
 
@@ -1661,13 +1785,15 @@
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugin.Plugin.to_plugin">to_plugin() (jenkinsapi.plugin.Plugin method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.toggle_keep">toggle_keep() (jenkinsapi.build.Build method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.toggle_keep_build">toggle_keep_build() (jenkinsapi.job.Job method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.toggle_temporarily_offline">toggle_temporarily_offline() (jenkinsapi.node.Node method)</a>
+</li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.try_reserve">try_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -1687,12 +1813,18 @@
 </li>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownView">UnknownView</a>
 </li>
-        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_dict">update_center_dict (jenkinsapi.plugins.Plugins property)</a>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResource.unreserve">unreserve() (jenkinsapi.lockable_resources.LockableResource method)</a>
+
+        <ul>
+          <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.unreserve">(jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
-        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_install_status">update_center_install_status (jenkinsapi.plugins.Plugins property)</a>
+        </ul></li>
+        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_dict">update_center_dict (jenkinsapi.plugins.Plugins property)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_install_status">update_center_install_status (jenkinsapi.plugins.Plugins property)</a>
+</li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.update_config">update_config() (jenkinsapi.job.Job method)</a>
 
         <ul>
@@ -1731,6 +1863,8 @@
 </li>
         <li><a href="submodules/fingerprint.html#jenkinsapi.fingerprint.Fingerprint.validate_for_build">validate_for_build() (jenkinsapi.fingerprint.Fingerprint method)</a>
 </li>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourcePropertyDict.value">value (jenkinsapi.lockable_resources.LockableResourcePropertyDict attribute)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.nodes.Nodes.values">values() (jenkinsapi.nodes.Nodes method)</a>
 
         <ul>
@@ -1762,6 +1896,10 @@
 <section id="W" class="genindex-section">
   <h2>W</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.wait_reserve">wait_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
+    </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.why">why (jenkinsapi.queue.QueueItem property)</a>
 </li>

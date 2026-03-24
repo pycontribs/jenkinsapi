@@ -211,6 +211,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/jenkinsbase.html">Jenkinsbase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/jobs.html">Jobs and job</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/label.html">Label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../submodules/lockable_resources.html">Lockable Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/mutable_jenkins.html">Mutable_jenkins_thing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/nodes.html">Nodes and node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../submodules/plugins.html">Plugins and Plugin</a></li>
@@ -282,6 +283,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.executors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Executors</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jobs</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jobs</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.job</span><span class="w"> </span><span class="kn">import</span> <span class="n">Job</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.lockable_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">LockableResources</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">View</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.label</span><span class="w"> </span><span class="kn">import</span> <span class="n">Label</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
@@ -1202,6 +1204,12 @@
         <span class="n">opener</span> <span class="o">=</span> <span class="n">build_opener</span><span class="p">(</span><span class="n">SmartRedirectHandler</span><span class="p">())</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="n">Requester</span><span class="o">.</span><span class="n">AUTH_COOKIE</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">cookie</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.get_lockable_resources">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_lockable_resources">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_lockable_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LockableResources</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">LockableResources</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
