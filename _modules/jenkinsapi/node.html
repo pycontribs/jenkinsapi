@@ -842,84 +842,80 @@
         <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="n">full_monitor_name</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="Node.get_available_physical_memory">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_available_physical_memory">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_available_physical_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># Monitor field mappings with metadata</span>
+    <span class="n">_MONITOR_FIELDS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;available_physical_memory&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;availablePhysicalMemory&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the node&#39;s available physical memory in bytes.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;available_swap_space&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;availableSwapSpace&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the node&#39;s available swap space in bytes.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;total_physical_memory&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;totalPhysicalMemory&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the node&#39;s total physical memory in bytes.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;total_swap_space&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;totalSwapSpace&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the node&#39;s total swap space in bytes.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;workspace_path&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;DiskSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;path&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the local path to the node&#39;s Jenkins workspace directory.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;workspace_size&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;DiskSpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the size in bytes of the node&#39;s Jenkins workspace directory.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;temp_path&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;TemporarySpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;path&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the local path to the node&#39;s temp directory.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;temp_size&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;TemporarySpaceMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;size&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the size in bytes of the node&#39;s temp directory.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;ResponseTimeMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;average&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;Returns the node&#39;s average response time.&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;clock_difference&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;ClockMonitor&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;diff&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;Returns the difference between the node&#39;s clock and &quot;</span>
+                <span class="s2">&quot;the master Jenkins clock. Used to detect out of sync clocks.&quot;</span>
+            <span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="Node.get_monitor_data">
+<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_monitor_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_monitor_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">monitor_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">poll_monitor</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the node&#39;s available physical memory in bytes.</span>
+<span class="sd">        Returns a specific data item from a node monitor.</span>
+
+<span class="sd">        :param monitor_name: Name of the monitor (e.g., &quot;SwapSpaceMonitor&quot;)</span>
+<span class="sd">        :param item: The key to retrieve from the monitor data</span>
+<span class="sd">        :param poll_monitor: Whether to poll for fresh data (default: True)</span>
+<span class="sd">        :return: The requested monitor data item</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;availablePhysicalMemory&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_available_swap_space">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_available_swap_space">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_available_swap_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the node&#39;s available swap space in bytes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;availableSwapSpace&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_total_physical_memory">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_total_physical_memory">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_total_physical_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the node&#39;s total physical memory in bytes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;totalPhysicalMemory&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_total_swap_space">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_total_swap_space">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_total_swap_space</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the node&#39;s total swap space in bytes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;SwapSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;totalSwapSpace&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_workspace_path">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_workspace_path">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_workspace_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the local path to the node&#39;s Jenkins workspace directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;DiskSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_workspace_size">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_workspace_size">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_workspace_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the size in bytes of the node&#39;s Jenkins workspace directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;DiskSpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_temp_path">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_temp_path">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_temp_path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the local path to the node&#39;s temp directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;TemporarySpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_temp_size">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_temp_size">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_temp_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the size in bytes of the node&#39;s temp directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;TemporarySpaceMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span></div>
+        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span>
+            <span class="n">monitor_name</span><span class="p">,</span> <span class="n">poll_monitor</span><span class="o">=</span><span class="n">poll_monitor</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="n">item</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Node.get_architecture">
@@ -955,30 +951,28 @@
                     <span class="n">timeout</span> <span class="o">/</span> <span class="mi">60</span>
                 <span class="p">)</span>
             <span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="Node.get_response_time">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_response_time">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_response_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the node&#39;s average response time.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;ResponseTimeMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;average&quot;</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="Node.get_clock_difference">
-<a class="viewcode-back" href="../../submodules/nodes.html#jenkinsapi.node.Node.get_clock_difference">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_clock_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the difference between the node&#39;s clock and</span>
-<span class="sd">        the master Jenkins clock.</span>
-<span class="sd">        Used to detect out of sync clocks.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">monitor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor</span><span class="p">(</span><span class="s2">&quot;ClockMonitor&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">monitor_data</span><span class="p">[</span><span class="s2">&quot;diff&quot;</span><span class="p">]</span></div>
 </div>
 
+
+
+<span class="c1"># Dynamically generate monitor data retrieval methods from _MONITOR_FIELDS</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_make_monitor_method</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">monitor_name</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory function to create monitor data retrieval methods.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitor_data</span><span class="p">(</span><span class="n">monitor_name</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+
+    <span class="n">method</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">method_name</span>
+    <span class="n">method</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">doc</span>
+    <span class="k">return</span> <span class="n">method</span>
+
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">Node</span><span class="o">.</span><span class="n">_MONITOR_FIELDS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">method_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;get_</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">_make_monitor_method</span><span class="p">(</span>
+        <span class="n">method_name</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;monitor&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;field&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;doc&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">method_name</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
 </pre></div>
         </article>
       </div>
