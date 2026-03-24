@@ -1,14 +1,6 @@
 ---
 exclude-paths:
   - docs
+  - jenkinsapi_tests
 exclude-patterns:
   - (^|/)migrations(/|$)
-
-# Exclude bandit S101 (assert in test code) from all test files
-exclude-issues:
-  - pattern: S101
-    paths:
-      - "**/test_*.py"
-      - "**/*_test.py"
-      - "**/tests.py"
-      - "**/conftest.py"
