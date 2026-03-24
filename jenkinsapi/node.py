@@ -507,61 +507,78 @@ class Node(JenkinsBase):
 
         return monitor_data[full_monitor_name]
 
-    def get_available_physical_memory(self) -> int:
-        """
-        Returns the node's available physical memory in bytes.
-        """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
-        return monitor_data["availablePhysicalMemory"]
+    # Monitor field mappings with metadata
+    _MONITOR_FIELDS = {
+        "available_physical_memory": {
+            "monitor": "SwapSpaceMonitor",
+            "field": "availablePhysicalMemory",
+            "doc": "Returns the node's available physical memory in bytes.",
+        },
+        "available_swap_space": {
+            "monitor": "SwapSpaceMonitor",
+            "field": "availableSwapSpace",
+            "doc": "Returns the node's available swap space in bytes.",
+        },
+        "total_physical_memory": {
+            "monitor": "SwapSpaceMonitor",
+            "field": "totalPhysicalMemory",
+            "doc": "Returns the node's total physical memory in bytes.",
+        },
+        "total_swap_space": {
+            "monitor": "SwapSpaceMonitor",
+            "field": "totalSwapSpace",
+            "doc": "Returns the node's total swap space in bytes.",
+        },
+        "workspace_path": {
+            "monitor": "DiskSpaceMonitor",
+            "field": "path",
+            "doc": "Returns the local path to the node's Jenkins workspace directory.",
+        },
+        "workspace_size": {
+            "monitor": "DiskSpaceMonitor",
+            "field": "size",
+            "doc": "Returns the size in bytes of the node's Jenkins workspace directory.",
+        },
+        "temp_path": {
+            "monitor": "TemporarySpaceMonitor",
+            "field": "path",
+            "doc": "Returns the local path to the node's temp directory.",
+        },
+        "temp_size": {
+            "monitor": "TemporarySpaceMonitor",
+            "field": "size",
+            "doc": "Returns the size in bytes of the node's temp directory.",
+        },
+        "response_time": {
+            "monitor": "ResponseTimeMonitor",
+            "field": "average",
+            "doc": "Returns the node's average response time.",
+        },
+        "clock_difference": {
+            "monitor": "ClockMonitor",
+            "field": "diff",
+            "doc": (
+                "Returns the difference between the node's clock and "
+                "the master Jenkins clock. Used to detect out of sync clocks."
+            ),
+        },
+    }
 
-    def get_available_swap_space(self) -> int:
+    def get_monitor_data(
+        self, monitor_name: str, item: str, poll_monitor: bool = True
+    ):
         """
-        Returns the node's available swap space in bytes.
-        """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
-        return monitor_data["availableSwapSpace"]
+        Returns a specific data item from a node monitor.
 
-    def get_total_physical_memory(self) -> int:
+        :param monitor_name: Name of the monitor (e.g., "SwapSpaceMonitor")
+        :param item: The key to retrieve from the monitor data
+        :param poll_monitor: Whether to poll for fresh data (default: True)
+        :return: The requested monitor data item
         """
-        Returns the node's total physical memory in bytes.
-        """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
-        return monitor_data["totalPhysicalMemory"]
-
-    def get_total_swap_space(self) -> int:
-        """
-        Returns the node's total swap space in bytes.
-        """
-        monitor_data = self.get_monitor("SwapSpaceMonitor")
-        return monitor_data["totalSwapSpace"]
-
-    def get_workspace_path(self) -> str:
-        """
-        Returns the local path to the node's Jenkins workspace directory.
-        """
-        monitor_data = self.get_monitor("DiskSpaceMonitor")
-        return monitor_data["path"]
-
-    def get_workspace_size(self) -> int:
-        """
-        Returns the size in bytes of the node's Jenkins workspace directory.
-        """
-        monitor_data = self.get_monitor("DiskSpaceMonitor")
-        return monitor_data["size"]
-
-    def get_temp_path(self) -> str:
-        """
-        Returns the local path to the node's temp directory.
-        """
-        monitor_data = self.get_monitor("TemporarySpaceMonitor")
-        return monitor_data["path"]
-
-    def get_temp_size(self) -> int:
-        """
-        Returns the size in bytes of the node's temp directory.
-        """
-        monitor_data = self.get_monitor("TemporarySpaceMonitor")
-        return monitor_data["size"]
+        monitor_data = self.get_monitor(
+            monitor_name, poll_monitor=poll_monitor
+        )
+        return monitor_data[item]
 
     def get_architecture(self) -> str:
         """
@@ -592,18 +609,22 @@ class Node(JenkinsBase):
                 )
             )
 
-    def get_response_time(self) -> int:
-        """
-        Returns the node's average response time.
-        """
-        monitor_data = self.get_monitor("ResponseTimeMonitor")
-        return monitor_data["average"]
 
-    def get_clock_difference(self) -> int:
-        """
-        Returns the difference between the node's clock and
-        the master Jenkins clock.
-        Used to detect out of sync clocks.
-        """
-        monitor_data = self.get_monitor("ClockMonitor")
-        return monitor_data["diff"]
+# Dynamically generate monitor data retrieval methods from _MONITOR_FIELDS
+def _make_monitor_method(method_name, monitor_name, field_name, doc):
+    """Factory function to create monitor data retrieval methods."""
+
+    def method(self):
+        return self.get_monitor_data(monitor_name, field_name)
+
+    method.__name__ = method_name
+    method.__doc__ = doc
+    return method
+
+
+for key, config in Node._MONITOR_FIELDS.items():
+    method_name = f"get_{key}"
+    method = _make_monitor_method(
+        method_name, config["monitor"], config["field"], config["doc"]
+    )
+    setattr(Node, method_name, method)
