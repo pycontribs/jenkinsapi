@@ -13,63 +13,6 @@ state = {}
 ADMIN_USER = "admin"
 ADMIN_PASSWORD = "admin"
 
-# Extra plugins required by the systests
-PLUGIN_DEPENDENCIES = [
-    "https://updates.jenkins.io/latest/apache-httpcomponents-client-4-api.hpi",
-    "https://updates.jenkins.io/latest/mina-sshd-api-common.hpi",
-    "https://updates.jenkins.io/latest/mina-sshd-api-core.hpi",
-    "https://updates.jenkins.io/latest/jsch.hpi",
-    "https://updates.jenkins.io/latest/gson-api.hpi",
-    "https://updates.jenkins.io/latest/trilead-api.hpi",
-    "https://updates.jenkins.io/latest/bouncycastle-api.hpi",
-    "https://updates.jenkins.io/latest/ssh-slaves.hpi",
-    "https://updates.jenkins.io/latest/instance-identity.hpi",
-    "https://updates.jenkins.io/latest/bootstrap5-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-api.hpi",
-    "https://updates.jenkins.io/latest/display-url-api.hpi",
-    "https://updates.jenkins.io/latest/eddsa-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-step-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-scm-step.hpi",
-    "https://updates.jenkins.io/latest/antisamy-markup-formatter.hpi",
-    "https://updates.jenkins.io/latest/prism-api.hpi",
-    "https://updates.jenkins.io/latest/junit.hpi",
-    "https://updates.jenkins.io/latest/script-security.hpi",
-    "https://updates.jenkins.io/latest/matrix-project.hpi",
-    "https://updates.jenkins.io/latest/credentials.hpi",
-    "https://updates.jenkins.io/latest/variant.hpi",
-    "https://updates.jenkins.io/latest/ssh-credentials.hpi",
-    "https://updates.jenkins.io/latest/asm-api.hpi",
-    "https://updates.jenkins.io/latest/scm-api.hpi",
-    "https://updates.jenkins.io/latest/git.hpi",
-    "https://updates.jenkins.io/latest/git-client.hpi",
-    "https://updates.jenkins.io/latest/jakarta-mail-api.hpi",
-    "https://updates.jenkins.io/latest/nested-view.hpi",
-    "https://updates.jenkins.io/latest/structs.hpi",
-    "https://updates.jenkins.io/latest/plain-credentials.hpi",
-    "https://updates.jenkins.io/latest/envinject.hpi",
-    "https://updates.jenkins.io/latest/envinject-api.hpi",
-    "https://updates.jenkins.io/latest/jdk-tool.hpi",
-    "https://updates.jenkins.io/latest/credentials-binding.hpi",
-    "https://updates.jenkins.io/latest/jakarta-activation-api.hpi",
-    "https://updates.jenkins.io/latest/caffeine-api.hpi",
-    "https://updates.jenkins.io/latest/checks-api.hpi",
-    "https://updates.jenkins.io/latest/json-api.hpi",
-    "https://updates.jenkins.io/latest/jakarta-xml-bind-api.hpi",
-    "https://updates.jenkins.io/latest/jackson2-api.hpi",
-    "https://updates.jenkins.io/latest/echarts-api.hpi",
-    "https://updates.jenkins.io/latest/ionicons-api.hpi",
-    "https://updates.jenkins.io/latest/plugin-util-api.hpi",
-    "https://updates.jenkins.io/latest/font-awesome-api.hpi",
-    "https://updates.jenkins.io/latest/commons-text-api.hpi",
-    "https://updates.jenkins.io/latest/commons-lang3-api.hpi",
-    "https://updates.jenkins.io/latest/snakeyaml-api.hpi",
-    "https://updates.jenkins.io/latest/workflow-support.hpi",
-    "https://updates.jenkins.io/latest/jquery3-api.hpi",
-    "https://updates.jenkins.io/latest/javax-activation-api.hpi",
-    "https://updates.jenkins.io/latest/jaxb.hpi",
-    "https://updates.jenkins.io/latest/mailer.hpi",
-]
-
 
 def _delete_all_jobs(jenkins):
     jenkins.poll()
@@ -137,11 +80,12 @@ def launched_jenkins():
     if not os.path.exists(local_orig_dir):
         os.mkdir(local_orig_dir)
     war_name = "jenkins.war"
+    plugins_txt = os.path.join(systests_dir, "plugins.txt")
     launcher = JenkinsLancher(
         local_orig_dir,
         systests_dir,
         war_name,
-        PLUGIN_DEPENDENCIES,
+        plugins_txt=plugins_txt,
         jenkins_url=os.getenv("JENKINS_URL", None),
     )
     launcher.start()
