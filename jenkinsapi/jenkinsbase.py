@@ -4,7 +4,7 @@ Module for JenkinsBase class
 
 from __future__ import annotations
 
-import ast
+import json
 import pprint
 import logging
 from urllib.parse import quote
@@ -90,7 +90,20 @@ class JenkinsBase(object):
             )
             response.raise_for_status()
         try:
-            return ast.literal_eval(response.text)
+            return json.loads(response.text)
+        except json.JSONDecodeError:
+            # Fallback: Some Jenkins API endpoints return Python literal syntax
+            # (True, False, None) instead of JSON (true, false, null)
+            try:
+                converted = (
+                    response.text.replace("True", "true")
+                    .replace("False", "false")
+                    .replace("None", "null")
+                )
+                return json.loads(converted)
+            except Exception:
+                logger.exception("Inappropriate content found at %s", url)
+                raise JenkinsAPIException("Cannot parse %s" % response.content)
         except Exception:
             logger.exception("Inappropriate content found at %s", url)
             raise JenkinsAPIException("Cannot parse %s" % response.content)

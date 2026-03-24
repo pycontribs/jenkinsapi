@@ -41,11 +41,18 @@ def test_pipeline_job_scm_prefix_set(jenkins):
 
 def test_pipeline_job_with_null_scm_raises_error(jenkins):
     """Pipeline job with NullSCM should raise NotConfiguredSCM."""
-    pipeline_no_scm = """<?xml version='1.1' encoding='UTF-8'?>
+    pipeline_no_scm = """<?xml version='1.0' encoding='UTF-8'?>
 <flow-definition>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+    <scriptPath>Jenkinsfile</scriptPath>
     <scm class="hudson.scm.NullSCM"/>
   </definition>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
 </flow-definition>"""
 
     job_name = random_string()
@@ -57,11 +64,18 @@ def test_pipeline_job_with_null_scm_raises_error(jenkins):
 
 def test_pipeline_job_with_unsupported_scm_raises_error(jenkins):
     """Pipeline job with unsupported SCM class should raise NotSupportSCM."""
-    pipeline_unsupported_scm = """<?xml version='1.1' encoding='UTF-8'?>
+    pipeline_unsupported_scm = """<?xml version='1.0' encoding='UTF-8'?>
 <flow-definition>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition">
+    <scriptPath>Jenkinsfile</scriptPath>
     <scm class="com.example.UnsupportedSCM"/>
   </definition>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
 </flow-definition>"""
 
     job_name = random_string()

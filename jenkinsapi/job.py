@@ -556,7 +556,9 @@ class Job(JenkinsBase, MutableJenkinsThing):
                 if scm_element is not None:
                     self._scm_prefix = alt_location["prefix"]
                     break
-        scm_class = scm_element.get("class") if scm_element else None
+        scm_class = (
+            scm_element.get("class") if scm_element is not None else None
+        )
         scm = self._scm_map.get(scm_class)
         if not scm:
             raise NotSupportSCM(
