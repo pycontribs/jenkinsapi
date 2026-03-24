@@ -1,0 +1,12 @@
+matrix-project
+envinject
+git
+credentials
+ssh-credentials
+plain-credentials
+ssh-slaves
+jdk-tool
+credentials-binding
+script-security
+junit
+mailer

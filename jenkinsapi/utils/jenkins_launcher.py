@@ -67,6 +67,10 @@ class JenkinsLancher(object):
 
     JENKINS_WEEKLY_WAR_URL = "https://get.jenkins.io/war"
     JENKINS_LTS_WAR_URL = "https://get.jenkins.io/war-stable"
+    PLUGIN_MANAGER_URL = (
+        "https://api.github.com/repos/jenkinsci/plugin-installation-manager-tool"
+        "/releases/latest"
+    )
 
     def __init__(
         self,
@@ -74,6 +78,7 @@ class JenkinsLancher(object):
         systests_dir,
         war_name,
         plugin_urls=None,
+        plugins_txt=None,
         jenkins_url=None,
     ):
         if jenkins_url is not None:
@@ -97,6 +102,7 @@ class JenkinsLancher(object):
         self.local_orig_dir = local_orig_dir
         self.systests_dir = systests_dir
         self.war_filename = war_name
+        self.plugins_txt = plugins_txt
 
         if "JENKINS_HOME" not in os.environ:
             self.jenkins_home = tempfile.mkdtemp(prefix="jenkins-home-")
@@ -142,6 +148,61 @@ class JenkinsLancher(object):
             with tarfile.open(fileobj=f, mode="r:gz") as tarball:
                 tarball.extractall(path=self.jenkins_home)
 
+    def _find_jenkins_plugin_cli(self):
+        """Return the jenkins-plugin-cli command if installed, else None."""
+        import shutil
+
+        return shutil.which("jenkins-plugin-cli")
+
+    def _get_plugin_manager_jar(self):
+        """Download jenkins-plugin-manager JAR if not cached; return its path."""
+        # Check for an already-cached JAR (any version)
+        import glob as _glob
+
+        cached = _glob.glob(
+            os.path.join(self.local_orig_dir, "jenkins-plugin-manager*.jar")
+        )
+        if cached:
+            log.info(
+                "jenkins-plugin-manager JAR already present: %s", cached[0]
+            )
+            return cached[0]
+
+        log.info(
+            "Fetching latest jenkins-plugin-manager release info from GitHub"
+        )
+        sess = requests.Session()
+        adapter = HTTPAdapter(
+            max_retries=Retry(total=5, backoff_factor=1, allowed_methods=None)
+        )
+        sess.mount("https://", adapter)
+        api_resp = sess.get(self.PLUGIN_MANAGER_URL)
+        api_resp.raise_for_status()
+        assets = api_resp.json().get("assets", [])
+        jar_asset = next(
+            (
+                a
+                for a in assets
+                if a["name"].endswith(".jar") and "sha256" not in a["name"]
+            ),
+            None,
+        )
+        if jar_asset is None:
+            raise RuntimeError(
+                "Could not find JAR asset in latest jenkins-plugin-manager release"
+            )
+
+        jar_url = jar_asset["browser_download_url"]
+        jar_name = jar_asset["name"]
+        jar_path = os.path.join(self.local_orig_dir, jar_name)
+        log.info("Downloading %s from %s", jar_name, jar_url)
+        with sess.get(jar_url, stream=True) as resp:
+            resp.raise_for_status()
+            with open(jar_path, "wb") as f:
+                for chunk in resp.iter_content(chunk_size=8192):
+                    f.write(chunk)
+        return jar_path
+
     def install_plugins(self):
         plugin_dest_dir = os.path.join(self.jenkins_home, "plugins")
         log.info("Plugins will be installed in '%s'", plugin_dest_dir)
@@ -149,8 +210,43 @@ class JenkinsLancher(object):
         if not os.path.exists(plugin_dest_dir):
             os.mkdir(plugin_dest_dir)
 
-        for url in self.plugin_urls:
-            self.install_plugin(url, plugin_dest_dir)
+        if self.plugins_txt:
+            self._install_plugins_via_manager(plugin_dest_dir)
+        else:
+            for url in self.plugin_urls:
+                self.install_plugin(url, plugin_dest_dir)
+
+    def _install_plugins_via_manager(self, plugin_dest_dir):
+        plugin_cache_dir = os.path.join(self.local_orig_dir, "plugins")
+        if not os.path.exists(plugin_cache_dir):
+            os.mkdir(plugin_cache_dir)
+
+        cli = self._find_jenkins_plugin_cli()
+        if cli:
+            log.info("Using installed jenkins-plugin-cli: %s", cli)
+            cmd = [cli]
+        else:
+            jar_path = self._get_plugin_manager_jar()
+            cmd = ["java", "-jar", jar_path]
+
+        cmd += [
+            "--war",
+            self.war_path,
+            "--plugin-file",
+            self.plugins_txt,
+            "--plugin-download-directory",
+            plugin_cache_dir,
+        ]
+        log.info("Installing plugins: %s", " ".join(cmd))
+        subprocess.check_call(cmd)
+
+        # Copy downloaded plugins to jenkins_home/plugins
+        for fname in os.listdir(plugin_cache_dir):
+            if fname.endswith((".jpi", ".hpi")):
+                shutil.copy(
+                    os.path.join(plugin_cache_dir, fname),
+                    os.path.join(plugin_dest_dir, fname),
+                )
 
     def install_plugin(self, hpi_url, plugin_dest_dir):
         sess = requests.Session()

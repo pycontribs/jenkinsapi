@@ -19,9 +19,7 @@ def test_matrix_project_plugin_available(jenkins):
     job_name = "matrix_plugin_test_%s" % random_string()
     job = jenkins.create_job(job_name, MATRIX_JOB)
     assert job is not None
-    assert "matrix" in str(type(job)).lower() or hasattr(
-        job, "get_matrix_runs"
-    )
+    assert "matrix-project" in job.get_config()
 
 
 def test_envinject_plugin_available(jenkins):
@@ -33,7 +31,7 @@ def test_envinject_plugin_available(jenkins):
     job = jenkins.create_job(job_name, JOB_WITH_ENV_VARS)
     assert job is not None
     # The job should be created successfully with envinject wrapper
-    assert "ping" in job.get_config()
+    assert "EnvInjectBuildWrapper" in job.get_config()
 
 
 def test_git_plugin_available(jenkins):
