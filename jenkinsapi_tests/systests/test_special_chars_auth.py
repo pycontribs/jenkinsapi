@@ -15,6 +15,8 @@ from jenkinsapi.jenkins import Jenkins
 SPECIAL_CHAR_PASSWORD = "zzzzzz6@Y74(K.xxxxxxx"
 SPECIAL_CHAR_USER = "specialuser"
 
+pytestmark = pytest.mark.docker
+
 
 def _create_user_with_special_chars(jenkins_admin_admin):
     """Create a user with special character password using Groovy."""

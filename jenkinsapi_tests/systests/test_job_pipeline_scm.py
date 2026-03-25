@@ -16,6 +16,8 @@ from jenkinsapi_tests.systests.job_configs import (
 )
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
+pytestmark = pytest.mark.docker
+
 
 def test_pipeline_job_with_git_scm(jenkins):
     """Pipeline job SCM type and URL can be extracted (issue #891)."""

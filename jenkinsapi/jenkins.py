@@ -467,7 +467,14 @@ class Jenkins(JenkinsBase):
         @param force_restart: Boolean, force Jenkins to restart,
             ignoring plugin preferences
         """
-        if isinstance(plugin, Plugin):
+        if isinstance(plugin, str):
+            if "@" in plugin:
+                raise ValueError(
+                    "Plugin name must not include a version. "
+                    'Use the short name only, e.g. "plugin-name" not "%s"'
+                    % plugin
+                )
+        elif isinstance(plugin, Plugin):
             plugin = plugin.shortName
         del self.plugins[plugin]
         if force_restart or (restart and self.plugins.restart_required):

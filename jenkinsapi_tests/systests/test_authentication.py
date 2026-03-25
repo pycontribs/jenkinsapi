@@ -8,6 +8,8 @@ from jenkinsapi.utils.requester import Requester
 from requests import HTTPError as REQHTTPError
 from jenkinsapi.jenkins import Jenkins
 
+pytestmark = pytest.mark.docker
+
 
 def test_normal_authentication(jenkins_admin_admin):
     # Retry with exponential backoff for transient connection failures

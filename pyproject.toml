@@ -72,15 +72,18 @@ dev = [
     "pytest-mock>=3.14.0",
     "pytest>=8.3.4",
     "pytest-cov>=4.0.0",
+    "pytest-timeout>=2.3.0",
+    "pytest-xdist>=3.5.0",
     "mock>=5.1.0",
     "requests-kerberos>=0.15.0",
     "ruff>=0.9.6",
+    "docker>=6.0.0",
 ]
 docs = [
     "docutils>=0.20.1",
     "furo>=2024.8.6",
     "myst-parser>=3.0.1",
-    "pygments>=2.19.1",
+    "pygments>=2.19.1,<=2.19.2",
     "sphinx>=7.1.2",
 ]
 
@@ -90,3 +93,11 @@ line-length = 79
 [tool.ruff.lint]
 select = ["E9", "F63", "F7", "F82"]  # Equivalent to flake8’s default rules
 ignore = ["F821"] #, "W503", "W504"
+
+[tool.pytest.ini_options]
+timeout = 120
+timeout_method = "thread"
+markers = [
+    "docker: marks tests as requiring Docker (deselect with ‘-m \"not docker\"’)",
+    "generate_new_api_token: marks tests for Jenkins API token generation",
+]

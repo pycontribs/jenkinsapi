@@ -4,9 +4,12 @@ System tests for setting jenkins in quietDown mode
 
 import time
 import logging
+import pytest
 
 
 log = logging.getLogger(__name__)
+
+pytestmark = pytest.mark.docker
 
 
 def test_quiet_down_and_cancel_quiet_down(jenkins):

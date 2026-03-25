@@ -1,0 +1,74 @@
+name: Docker System Tests
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'docker/Dockerfile'
+      - 'docker/plugins.txt'
+      - 'jenkinsapi/**'
+      - 'jenkinsapi_tests/systests/**'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'docker/Dockerfile'
+      - 'docker/plugins.txt'
+      - 'jenkinsapi/**'
+      - 'jenkinsapi_tests/systests/**'
+  schedule:
+    - cron: '0 4 * * *'  # Daily at 4am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  systests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+      with:
+        python-version: "3.13"
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
+    - name: Log in to GHCR
+      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Pull or build Docker image
+      run: |
+        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
+        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
+        if docker pull "$IMAGE" 2>/dev/null; then
+          echo "Cache hit: $IMAGE"
+          docker tag "$IMAGE" jenkinsapi-systest:latest
+        else
+          echo "Cache miss — building locally"
+          docker build -t jenkinsapi-systest:latest docker/
+        fi
+
+    - name: Run system tests
+      run: |
+        NUM_WORKERS=auto
+        echo "Running systests with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
+        uv run pytest jenkinsapi_tests/systests/ -n $NUM_WORKERS --timeout=120 -v

@@ -9,31 +9,34 @@ from jenkinsapi.lockable_resources import (
     ResourceLockedError,
     ResourceReservationTimeoutError,
 )
-from jenkinsapi.utils.jenkins_launcher import JenkinsLancher
 from jenkinsapi.utils.retry import SimpleRetryConfig
+
+pytestmark = pytest.mark.docker
 
 GROOVY_SCRIPT_INIT_TEST_RESOURCES = """
 import org.jenkins.plugins.lockableresources.*
 
 def manager = LockableResourcesManager.get()
 
+// Reset to a clean slate before adding test resources
+manager.resources.clear()
+
 def resource = new LockableResource("locktest")
-resource.setLabels(["locktest"])
+resource.setLabels("locktest")
 manager.resources.add(resource)
 
 def resource2 = new LockableResource("locktest2")
-resource2.setLabels(["locktest"])
+resource2.setLabels("locktest")
 manager.resources.add(resource2)
 
 manager.save()
 """
 
 
-@pytest.fixture(scope="module")
-def jenkins_test_lock_init(launched_jenkins: JenkinsLancher) -> None:
+@pytest.fixture(scope="function")
+def jenkins_test_lock_init(jenkins_admin_admin) -> None:
     """Fixture to create two lockable resources for testing."""
-    jenkins = Jenkins(launched_jenkins.jenkins_url, timeout=30)
-    jenkins.run_groovy_script(GROOVY_SCRIPT_INIT_TEST_RESOURCES)
+    jenkins_admin_admin.run_groovy_script(GROOVY_SCRIPT_INIT_TEST_RESOURCES)
 
 
 @pytest.fixture
@@ -51,6 +54,11 @@ def test_lock_label() -> str:
     return "locktest"
 
 
+# IMPORTANT: These fixtures use jenkins_admin_admin (not plain jenkins) because the
+# lockable-resources plugin requires an authenticated non-anonymous user to perform
+# reserve/unreserve actions. Requests from an anonymous user are silently accepted
+# (HTTP 200) but the state change never takes effect. Security is enabled/disabled
+# around each test by the jenkins_admin_admin fixture.
 @pytest.fixture(scope="function")
 def lockable_resources(
     jenkins_admin_admin: Jenkins,

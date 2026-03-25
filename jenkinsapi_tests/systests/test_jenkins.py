@@ -11,6 +11,8 @@ from jenkinsapi_tests.systests.job_configs import EMPTY_JOB
 from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi.custom_exceptions import UnknownJob
 
+pytestmark = pytest.mark.docker
+
 
 def job_present(jenkins, name):
     jenkins.poll()

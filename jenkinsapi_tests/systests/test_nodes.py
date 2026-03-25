@@ -10,6 +10,8 @@ from jenkinsapi_tests.test_utils.random_strings import random_string
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 TOOL_KEY = "hudson.tasks.Maven$MavenInstallation$DescriptorImpl@Maven 3.0.5"
 
 

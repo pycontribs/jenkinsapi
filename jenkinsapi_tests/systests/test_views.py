@@ -4,6 +4,7 @@ System tests for `jenkinsapi.jenkins` module.
 
 import logging
 import time
+import pytest
 from jenkinsapi.view import View
 from jenkinsapi.views import Views
 from jenkinsapi.job import Job
@@ -13,6 +14,8 @@ from jenkinsapi_tests.systests.view_configs import VIEW_WITH_FILTER_AND_REGEX
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
 log = logging.getLogger(__name__)
+
+pytestmark = pytest.mark.docker
 
 
 def create_job(jenkins, job_name="whatever"):
