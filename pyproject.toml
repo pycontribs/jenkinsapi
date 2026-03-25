@@ -80,7 +80,7 @@ docs = [
     "docutils>=0.20.1",
     "furo>=2024.8.6",
     "myst-parser>=3.0.1",
-    "pygments>=2.19.1",
+    "pygments>=2.19.2",
     "sphinx>=7.1.2",
 ]
 
