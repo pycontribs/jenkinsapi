@@ -84,8 +84,9 @@ jobs:
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
     - name: Test with make
+      shell: bash
       run: |
-        make test NUM_WORKERS=auto
+        make test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
 
   build-windows:
     runs-on: windows-latest
@@ -109,10 +110,10 @@ jobs:
     - name: Test with make
       shell: bash
       run: |
-        make test NUM_WORKERS=auto
+        make test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
 
   build-macos:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     strategy:
       fail-fast: false
       matrix:
@@ -135,6 +136,10 @@ jobs:
         brew install krb5
         echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
 
+    - name: Set up Docker
+      uses: docker/setup-docker-action@1a6edb0ba9ac496f6850236981f15d8f9a82254d # v5.0.0
+
     - name: Test with make
+      shell: bash
       run: |
-        make test NUM_WORKERS=auto
+        make test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
