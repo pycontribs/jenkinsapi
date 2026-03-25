@@ -1,8 +1,6 @@
 name: Docker System Tests
 
 on:
-  push:
-  pull_request:
   schedule:
     - cron: '0 4 * * *'  # Daily at 4am UTC
   workflow_dispatch:
