@@ -12,6 +12,8 @@ from requests import HTTPError, ConnectionError
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 def wait_for_restart(jenkins):
     wait = 15

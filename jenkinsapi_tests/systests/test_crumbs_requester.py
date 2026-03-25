@@ -13,6 +13,8 @@ from jenkinsapi_tests.systests.job_configs import JOB_WITH_FILE
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 DEFAULT_JENKINS_PORT = 8080
 
 ENABLE_CRUMBS_CONFIG = {

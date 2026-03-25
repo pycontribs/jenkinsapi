@@ -4,10 +4,13 @@ System tests for `jenkinsapi.jenkins` module.
 
 import time
 import logging
+import pytest
 from jenkinsapi_tests.systests.job_configs import LONG_RUNNING_JOB
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
 log = logging.getLogger(__name__)
+
+pytestmark = pytest.mark.docker
 
 
 def test_get_executors(jenkins):

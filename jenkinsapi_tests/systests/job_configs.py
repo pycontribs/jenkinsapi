@@ -60,7 +60,7 @@ SHORTISH_JOB = """
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>ping -c 5 127.0.0.1</command>
+      <command>python3 -c "print('ok')"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
@@ -139,8 +139,8 @@ JOB_WITH_ARTIFACTS = """
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>ping -c 10 127.0.0.1 > out.txt
-gzip &lt; out.txt &gt; out.gz</command>
+      <command>printf 'PING localhost (127.0.0.1): 56 data bytes\n64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.050 ms' > out.txt
+cat out.txt | gzip > out.gz</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -182,7 +182,7 @@ MATRIX_JOB = """
   </axes>
   <builders>
     <hudson.tasks.Shell>
-      <command>ping -c 10 127.0.0.1</command>
+      <command>python3 -c "print('ok')"</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
@@ -252,7 +252,7 @@ JOB_WITH_PARAMETERS = """
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>ping -c 1 127.0.0.1 | tee out.txt
+      <command>python3 -c "print('ok')" > out.txt
 echo $A &gt; a.txt
 echo $B &gt; b.txt</command>
     </hudson.tasks.Shell>

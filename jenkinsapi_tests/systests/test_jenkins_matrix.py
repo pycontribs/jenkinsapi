@@ -4,8 +4,11 @@ System tests for `jenkinsapi.jenkins` module.
 
 import re
 import time
+import pytest
 from jenkinsapi_tests.systests.job_configs import MATRIX_JOB
 from jenkinsapi_tests.test_utils.random_strings import random_string
+
+pytestmark = pytest.mark.docker
 
 
 def test_invoke_matrix_job(jenkins):

@@ -11,6 +11,8 @@ from jenkinsapi.lockable_resources import (
 )
 from jenkinsapi.utils.retry import SimpleRetryConfig
 
+pytestmark = pytest.mark.docker
+
 GROOVY_SCRIPT_INIT_TEST_RESOURCES = """
 import org.jenkins.plugins.lockableresources.*
 

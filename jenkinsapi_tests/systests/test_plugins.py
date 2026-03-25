@@ -9,6 +9,8 @@ from jenkinsapi.plugin import Plugin
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 def test_plugin_data(jenkins):
     # It takes time to get plugins json from remote

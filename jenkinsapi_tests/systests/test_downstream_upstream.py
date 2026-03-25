@@ -9,6 +9,8 @@ from jenkinsapi.custom_exceptions import NoBuildData
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 JOB_CONFIGS = {
     "A": """<?xml version='1.0' encoding='UTF-8'?>
 <project>

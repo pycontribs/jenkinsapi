@@ -316,6 +316,7 @@ def test_get_build_by_params(jenkins, monkeypatch, mocker):
         build_call_count[0] += 1
         return fake_builds[number - 1]
 
+    monkeypatch.setattr(Job, "_poll", lambda self, tree=None: {})
     monkeypatch.setattr(Job, "get_first_buildnumber", lambda x: 1)
     monkeypatch.setattr(Job, "get_last_buildnumber", lambda x: 3)
     monkeypatch.setattr(Job, "get_build", fake_get_build)
@@ -345,6 +346,7 @@ def test_get_build_by_params_not_found(jenkins, monkeypatch, mocker):
         build_call_count[0] += 1
         return fake_builds[number - 1]
 
+    monkeypatch.setattr(Job, "_poll", lambda self, tree=None: {})
     monkeypatch.setattr(Job, "get_first_buildnumber", lambda x: 1)
     monkeypatch.setattr(Job, "get_last_buildnumber", lambda x: 3)
     monkeypatch.setattr(Job, "get_build", fake_get_build)
