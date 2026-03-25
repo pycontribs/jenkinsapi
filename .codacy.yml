@@ -1,6 +1,0 @@
----
-exclude-paths:
-  - docs
-  - jenkinsapi_tests
-exclude-patterns:
-  - (^|/)migrations(/|$)
