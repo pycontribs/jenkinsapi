@@ -25,7 +25,7 @@ CONTAINER_NAME ?= jenkinsapi-systest
 # Build the Docker image
 docker-build:
 	@echo "Building Docker image $(DOCKER_IMAGE)..."
-	docker build -t $(DOCKER_IMAGE) .
+	docker build -t $(DOCKER_IMAGE) docker/
 	@echo "Docker image built successfully"
 
 # Run Jenkins Docker container
@@ -47,9 +47,9 @@ docker-clean:
 docker-logs:
 	docker logs -f $(CONTAINER_NAME)
 
-# min 2 workers (GitHub Actions ubuntu-latest = 2 cores), scales to 1 per 3 CPUs above that
+# Use all available CPUs by default via pytest-xdist auto detection.
 # Override with: make test-systests NUM_WORKERS=4
-NUM_WORKERS ?= $(shell python3 -c "import os; print(max(2, os.cpu_count() // 3))")
+NUM_WORKERS ?= auto
 
 # Run system tests in parallel (uses all CPUs by default)
 test-systests:

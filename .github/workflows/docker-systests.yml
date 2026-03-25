@@ -69,6 +69,6 @@ jobs:
 
     - name: Run system tests
       run: |
-        NUM_WORKERS=$(python3 -c "import os; print(max(2, os.cpu_count() // 3))")
-        echo "Running systests with $NUM_WORKERS workers ($(nproc) CPUs available)"
+        NUM_WORKERS=auto
+        echo "Running systests with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
         uv run pytest jenkinsapi_tests/systests/ -n $NUM_WORKERS --timeout=120 -v

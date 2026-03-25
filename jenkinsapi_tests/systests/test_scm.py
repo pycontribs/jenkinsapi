@@ -7,6 +7,8 @@ import time
 from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi_tests.systests.job_configs import SCM_GIT_JOB
 
+pytestmark = pytest.mark.docker
+
 
 def test_git_revision_lookup(jenkins):
     """Test that get_buildnumber_for_revision works with Git SHA1 hashes."""

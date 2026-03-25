@@ -1,6 +1,8 @@
 """Docker-based Jenkins instance manager for testing."""
 
+import io
 import os
+import tarfile
 import time
 import logging
 import docker
@@ -148,18 +150,26 @@ class DockerJenkins:
         if not self.container:
             raise DockerJenkinsError("Container is not running")
 
+        archive_name = os.path.basename(output_file)
         result = self.container.exec_run(
-            f"/usr/local/bin/dump-plugin-versions {output_file}"
+            f"/usr/local/bin/dump-plugin-versions {archive_name}"
         )
         if result.exit_code != 0:
             raise DockerJenkinsError(
                 f"Failed to dump plugin versions: {result.output.decode()}"
             )
 
-        bits, _ = self.container.get_archive(output_file)
-        with open(output_file, "wb") as f:
-            for chunk in bits:
-                f.write(chunk)
+        bits, _ = self.container.get_archive(archive_name)
+        archive_bytes = b"".join(bits)
+        with tarfile.open(fileobj=io.BytesIO(archive_bytes)) as archive:
+            member = archive.getmember(archive_name)
+            extracted = archive.extractfile(member)
+            if extracted is None:
+                raise DockerJenkinsError(
+                    f"Failed to extract plugin versions: {archive_name}"
+                )
+            with open(output_file, "wb") as f:
+                f.write(extracted.read())
 
         return output_file
 

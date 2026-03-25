@@ -9,10 +9,18 @@ crumb\_requester module
    :undoc-members:
    :show-inheritance:
 
-jenkins\_launcher module
+docker\_jenkins module
 -----------------------------------------
 
-.. automodule:: jenkinsapi.utils.jenkins_launcher
+.. automodule:: jenkinsapi.utils.docker_jenkins
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+docker\_launcher module
+-----------------------------------------
+
+.. automodule:: jenkinsapi.utils.docker_launcher
    :members:
    :undoc-members:
    :show-inheritance:

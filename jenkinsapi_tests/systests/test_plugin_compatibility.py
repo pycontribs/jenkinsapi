@@ -3,6 +3,10 @@ System test to verify all required plugins load and work correctly.
 This ensures Jenkins and all plugins are compatible and functional.
 """
 
+import pytest
+
+pytestmark = pytest.mark.docker
+
 
 def test_jenkins_loads_with_all_plugins(jenkins):
     """Test that Jenkins starts successfully with all required plugins."""

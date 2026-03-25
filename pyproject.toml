@@ -83,7 +83,7 @@ docs = [
     "docutils>=0.20.1",
     "furo>=2024.8.6",
     "myst-parser>=3.0.1",
-    "pygments>=2.19.1",
+    "pygments>=2.19.1,<=2.19.2",
     "sphinx>=7.1.2",
 ]
 
@@ -99,4 +99,5 @@ timeout = 120
 timeout_method = "thread"
 markers = [
     "docker: marks tests as requiring Docker (deselect with ‘-m \"not docker\"’)",
+    "generate_new_api_token: marks tests for Jenkins API token generation",
 ]

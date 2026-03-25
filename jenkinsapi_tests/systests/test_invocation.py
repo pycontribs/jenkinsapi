@@ -15,6 +15,8 @@ from jenkinsapi.custom_exceptions import BadParams, NotFound
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 def test_invocation_object(jenkins):
     # Retry with exponential backoff for transient connection failures

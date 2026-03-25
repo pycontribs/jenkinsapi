@@ -16,6 +16,8 @@ from jenkinsapi_tests.test_utils.random_strings import random_string
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 def test_artifacts(jenkins):
     job_name = "create_%s" % random_string()

@@ -20,8 +20,6 @@ from conftest_helpers import (
     find_free_port,
 )
 
-pytestmark = pytest.mark.docker
-
 log = logging.getLogger(__name__)
 state = {}
 
@@ -216,7 +214,6 @@ def container_pool(docker_image, worker_id):
                         container_name=container_name,
                         port=port,
                         dockerfile_path=dockerfile_path,
-                        jenkins_url=os.getenv("JENKINS_URL", None),
                     )
                     launcher.start(timeout=300)
                     break

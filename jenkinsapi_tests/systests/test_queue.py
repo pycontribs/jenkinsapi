@@ -13,6 +13,8 @@ from jenkinsapi_tests.systests.job_configs import LONG_RUNNING_JOB
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 @pytest.fixture(scope="function")
 def no_executors(jenkins, request):

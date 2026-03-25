@@ -9,6 +9,8 @@ from jenkinsapi.utils.crumb_requester import CrumbRequester
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 @pytest.mark.generate_new_api_token
 def test_generate_new_api_token(jenkins_admin_admin):

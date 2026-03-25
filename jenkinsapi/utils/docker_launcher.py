@@ -6,7 +6,6 @@ reliable alternative to downloading and running Jenkins locally.
 """
 
 import logging
-from typing import Optional, List
 
 from jenkinsapi.utils.docker_jenkins import DockerJenkins
 
@@ -22,7 +21,6 @@ class DockerLauncher:
         container_name: str = "jenkinsapi-systest",
         port: int = 8080,
         dockerfile_path: str = "docker/Dockerfile",
-        jenkins_url: Optional[str] = None,
     ):
         """
         Initialize Docker launcher.
@@ -32,21 +30,13 @@ class DockerLauncher:
             container_name: Container name
             port: Port to expose Jenkins on
             dockerfile_path: Path to Dockerfile
-            jenkins_url: Override Jenkins URL (for external Jenkins)
         """
         self.image_name = image_name
         self.container_name = container_name
         self.port = port
         self.dockerfile_path = dockerfile_path
         self.docker_jenkins = None
-
-        # If external Jenkins URL provided, skip Docker
-        if jenkins_url:
-            self.jenkins_url = jenkins_url
-            self.docker_jenkins = None
-            log.info(f"Using external Jenkins at {jenkins_url}")
-        else:
-            self.jenkins_url = None
+        self.jenkins_url = None
 
     def start(self, timeout: int = 300):
         """
@@ -55,10 +45,6 @@ class DockerLauncher:
         Args:
             timeout: Time to wait for Jenkins to be ready
         """
-        # If external Jenkins, nothing to do
-        if self.docker_jenkins is None and self.jenkins_url:
-            return
-
         # Create and start Docker Jenkins
         self.docker_jenkins = DockerJenkins(
             image_name=self.image_name,

@@ -1,9 +1,11 @@
 """Tests for Docker-based Jenkins (requires Docker running). Run with: pytest -m docker"""
 
+import io
 import os
 import pytest
 import logging
 import sys
+import tarfile
 from pathlib import Path
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.docker_jenkins import DockerJenkins, DockerJenkinsError
@@ -159,6 +161,38 @@ def jenkins_client(docker_jenkins):
 
 
 class TestDockerJenkins:
+    def test_dump_plugin_versions_extracts_text_file(self, tmp_path):
+        plugin_text = "Jenkins Plugins\nworkflow-job:latest\n"
+        archive_buffer = io.BytesIO()
+        with tarfile.open(fileobj=archive_buffer, mode="w") as archive:
+            member = tarfile.TarInfo(name="plugin_versions.txt")
+            member.size = len(plugin_text.encode())
+            archive.addfile(member, io.BytesIO(plugin_text.encode()))
+
+        class FakeResult:
+            exit_code = 0
+            output = b""
+
+        class FakeContainer:
+            def exec_run(self, command):
+                assert command == (
+                    "/usr/local/bin/dump-plugin-versions plugin_versions.txt"
+                )
+                return FakeResult()
+
+            def get_archive(self, path):
+                assert path == "plugin_versions.txt"
+                return iter([archive_buffer.getvalue()]), {}
+
+        docker_jenkins = DockerJenkins.__new__(DockerJenkins)
+        docker_jenkins.container = FakeContainer()
+
+        output_file = tmp_path / "plugin_versions.txt"
+        result = docker_jenkins.dump_plugin_versions(str(output_file))
+
+        assert result == str(output_file)
+        assert output_file.read_text() == plugin_text
+
     def test_container_starts_successfully(self, docker_jenkins):
         assert docker_jenkins.container is not None
         assert docker_jenkins.jenkins_url == "http://localhost:8080"

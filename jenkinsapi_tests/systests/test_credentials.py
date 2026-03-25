@@ -13,6 +13,8 @@ from jenkinsapi.credential import SSHKeyCredential
 
 log = logging.getLogger(__name__)
 
+pytestmark = pytest.mark.docker
+
 
 def test_get_credentials(jenkins):
     # Retry with exponential backoff for transient connection failures

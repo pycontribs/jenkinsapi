@@ -4,11 +4,14 @@ System tests for `jenkinsapi.jenkins` module.
 
 import io
 import time
+import pytest
 
 from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi_tests.systests.job_configs import JOB_WITH_FILE
 from jenkinsapi_tests.systests.job_configs import JOB_WITH_FILE_AND_PARAMS
 from jenkinsapi_tests.systests.job_configs import JOB_WITH_PARAMETERS
+
+pytestmark = pytest.mark.docker
 
 
 def test_invoke_job_with_file(jenkins):
