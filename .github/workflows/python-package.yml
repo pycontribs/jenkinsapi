@@ -95,4 +95,5 @@ jobs:
           echo "Cache miss -- building locally"
           docker build -t jenkinsapi-systest:latest docker/
         fi
-        uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+        echo "Running full test suite with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
+        uv run pytest -sv -n $NUM_WORKERS --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
