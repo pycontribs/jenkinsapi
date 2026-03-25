@@ -1,21 +1,26 @@
 """Docker-based Jenkins instance manager for testing."""
 
 import io
+import logging
 import os
 import tarfile
 import time
-import logging
+from typing import Optional
+
 import docker
 import requests
-from typing import Optional
-from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 log = logging.getLogger(__name__)
 
 
+DEFAULT_IMAGE_NAME = "jenkinsapi-systest:latest"
+DEFAULT_CONTAINER_NAME = "jenkinsapi-systest"
+
+
 class DockerJenkinsError(Exception):
-    pass
+    """Raised when Docker-backed Jenkins setup or control fails."""
 
 
 class DockerJenkins:
@@ -23,8 +28,8 @@ class DockerJenkins:
 
     def __init__(
         self,
-        image_name: str = "jenkinsapi-test:latest",
-        container_name: str = "jenkinsapi-test",
+        image_name: str = DEFAULT_IMAGE_NAME,
+        container_name: str = DEFAULT_CONTAINER_NAME,
         port: int = 8080,
         jenkins_home: Optional[str] = None,
     ):
@@ -36,13 +41,13 @@ class DockerJenkins:
         self.container = None
         self.jenkins_url = f"http://localhost:{port}"
 
-    def build_image(self, dockerfile_path: str = "docker/Dockerfile") -> bool:
+    def build_image(self, dockerfile_path: str = "docker/Dockerfile") -> None:
         try:
             self.client.images.get(self.image_name)
             log.info(
                 "Image %s already exists, skipping build", self.image_name
             )
-            return True
+            return
         except docker.errors.ImageNotFound:
             pass
 
@@ -57,18 +62,13 @@ class DockerJenkins:
                 path=os.path.dirname(os.path.abspath(dockerfile_path)),
                 dockerfile=os.path.basename(dockerfile_path),
                 tag=self.image_name,
+                rm=True,
             )
-            return True
-        except docker.errors.BuildError as e:
+        except (docker.errors.BuildError, docker.errors.APIError) as e:
             raise DockerJenkinsError(f"Failed to build image: {e}")
 
     def start(self, timeout: int = 300) -> None:
-        try:
-            existing = self.client.containers.get(self.container_name)
-            existing.stop()
-            existing.remove()
-        except docker.errors.NotFound:
-            pass
+        self._remove_existing_container()
 
         volumes = {}
         if self.jenkins_home:
@@ -100,6 +100,15 @@ class DockerJenkins:
             raise DockerJenkinsError(f"Failed to start container: {e}")
 
         self.wait_for_ready(timeout)
+
+    def _remove_existing_container(self) -> None:
+        try:
+            existing = self.client.containers.get(self.container_name)
+        except docker.errors.NotFound:
+            return
+
+        existing.stop()
+        existing.remove()
 
     def stop(self) -> None:
         if self.container:
@@ -176,7 +185,7 @@ class DockerJenkins:
     def get_logs(self, lines: int = 100) -> str:
         if not self.container:
             return ""
-        return self.container.logs(tail=lines).decode()
+        return self.container.logs(tail=lines).decode(errors="replace")
 
     def __enter__(self):
         return self

@@ -17,14 +17,6 @@ docker\_jenkins module
    :undoc-members:
    :show-inheritance:
 
-docker\_launcher module
------------------------------------------
-
-.. automodule:: jenkinsapi.utils.docker_launcher
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 jsonp\_to\_json module
 ---------------------------------------
 

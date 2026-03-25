@@ -1,17 +1,19 @@
-"""Tests for Docker-based Jenkins (requires Docker running). Run with: pytest -m docker"""
+"""Tests for Docker-based Jenkins (requires Docker running)."""
 
 import io
 import os
-import pytest
 import logging
-import sys
 import tarfile
-from pathlib import Path
-from jenkinsapi.jenkins import Jenkins
-from jenkinsapi.utils.docker_jenkins import DockerJenkins, DockerJenkinsError
 
-sys.path.insert(0, str(Path(__file__).parent))
-from conftest_helpers import (
+import pytest
+
+from jenkinsapi.jenkins import Jenkins
+from jenkinsapi.utils.docker_jenkins import (
+    DEFAULT_IMAGE_NAME,
+    DockerJenkins,
+    DockerJenkinsError,
+)
+from jenkinsapi_tests.unittests.conftest_helpers import (
     parse_worker_id,
     generate_container_name,
     find_free_port,
@@ -22,10 +24,20 @@ log = logging.getLogger(__name__)
 pytestmark = pytest.mark.docker
 
 
+def _docker_client_or_skip():
+    import docker as docker_lib
+
+    try:
+        client = docker_lib.from_env()
+        client.ping()
+        return client
+    except docker_lib.errors.DockerException as exc:
+        pytest.skip(f"Docker daemon unavailable: {exc}")
+
+
 @pytest.fixture(scope="session")
 def docker_image(worker_id):
-    """Build image once per session; only worker 0 builds, others wait."""
-    import time
+    """Build the shared Docker image once per test session."""
     import docker as docker_lib
 
     worker_num, display_name = parse_worker_id(worker_id)
@@ -33,75 +45,47 @@ def docker_image(worker_id):
         os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     )
     dockerfile_path = os.path.join(repo_root, "docker", "Dockerfile")
-
-    client = docker_lib.from_env()
-
-    if worker_num == 0:
-        dj = DockerJenkins(
-            image_name="jenkinsapi-test:latest",
-            container_name="jenkinsapi-test-build",
-            port=9999,
-        )
-        try:
-            log.info("[%s] Building Docker image...", display_name)
-            dj.build_image(dockerfile_path)
-            yield
-        finally:
-            try:
-                dj.stop()
-            except Exception:
-                pass
-    else:
-        log.info("[%s] Waiting for image from worker-0...", display_name)
-        start = time.time()
-        while time.time() - start < 300:
-            try:
-                client.images.get("jenkinsapi-test:latest")
-                yield
-                return
-            except docker_lib.errors.ImageNotFound:
-                time.sleep(1)
-        raise DockerJenkinsError("Timeout waiting for image to be built")
-
-
-@pytest.fixture(scope="session")
-def shared_plugins_volume():
-    """Create a shared Docker volume for Jenkins plugins."""
-    import docker
-
-    client = docker.from_env()
-    volume_name = "jenkinsapi-plugins"
+    client = _docker_client_or_skip()
 
     try:
-        client.volumes.get(volume_name).remove()
-    except docker.errors.NotFound:
+        client.images.get(DEFAULT_IMAGE_NAME)
+        log.info("[%s] Docker image already exists", display_name)
+        return DEFAULT_IMAGE_NAME
+    except docker_lib.errors.ImageNotFound:
         pass
 
-    volume = client.volumes.create(
-        name=volume_name, driver="local", labels={"app": "jenkinsapi-test"}
+    docker_jenkins = DockerJenkins(
+        image_name=DEFAULT_IMAGE_NAME,
+        container_name="jenkinsapi-test-build",
+        port=9999,
     )
-    try:
-        yield volume
-    finally:
+    if worker_num == 0:
+        log.info("[%s] Building Docker image...", display_name)
+        docker_jenkins.build_image(dockerfile_path)
+        return docker_jenkins.image_name
+
+    log.info("[%s] Waiting for image from worker-0...", display_name)
+    import time
+
+    start = time.time()
+    while time.time() - start < 300:
         try:
-            volume.remove()
-        except Exception as e:
-            log.warning("Error removing plugins volume: %s", e)
+            client.images.get(docker_jenkins.image_name)
+            return docker_jenkins.image_name
+        except docker_lib.errors.ImageNotFound:
+            time.sleep(1)
+    raise DockerJenkinsError("Timeout waiting for image to be built")
 
 
 @pytest.fixture(scope="session")
-def docker_jenkins(docker_image, worker_id, shared_plugins_volume):
+def docker_jenkins(docker_image, worker_id):
     """Start one Jenkins container per xdist worker."""
-    import docker
-
     worker_num, display_name = parse_worker_id(worker_id)
-
-    if worker_num == 0:
-        port = 8080
-        container_name = "jenkinsapi-test"
-    else:
-        port = find_free_port(start_port=8100 + (worker_num - 1) * 10)
-        container_name = generate_container_name(worker_id)
+    base_port = 8080 if worker_num == 0 else 8100 + (worker_num - 1) * 10
+    port = find_free_port(start_port=base_port)
+    container_name = generate_container_name(
+        worker_id, base_name="jenkinsapi-systest"
+    )
 
     log.info(
         "[%s] Starting container %s on port %d...",
@@ -111,48 +95,19 @@ def docker_jenkins(docker_image, worker_id, shared_plugins_volume):
     )
 
     dj = DockerJenkins(
-        image_name="jenkinsapi-test:latest",
+        image_name=docker_image,
         container_name=container_name,
         port=port,
     )
-    client = docker.from_env()
 
     try:
-        dj.container = client.containers.run(
-            dj.image_name,
-            name=container_name,
-            ports={"8080/tcp": port},
-            detach=True,
-            remove=False,
-            cpu_quota=100000,
-            cpu_period=100000,
-            mem_limit="512m",
-            memswap_limit="512m",
-        )
-        dj.wait_for_ready(timeout=300)
-
-        try:
-            dj.container.exec_run(
-                "mkdir -p /mnt/plugins && mount -o bind /var/jenkins_home/plugins /mnt/plugins"
-            )
-        except Exception:
-            pass
-
+        dj.start(timeout=300)
         yield dj
     finally:
         try:
-            if dj.container:
-                dj.container.stop(timeout=10)
-                dj.container.remove(force=True)
+            dj.stop()
         except Exception as e:
             log.warning("[%s] Error during cleanup: %s", display_name, e)
-
-        try:
-            client.containers.get(container_name).remove(force=True)
-        except docker.errors.NotFound:
-            pass
-        except Exception as e:
-            log.warning("[%s] Error during force cleanup: %s", display_name, e)
 
 
 @pytest.fixture
@@ -195,7 +150,7 @@ class TestDockerJenkins:
 
     def test_container_starts_successfully(self, docker_jenkins):
         assert docker_jenkins.container is not None
-        assert docker_jenkins.jenkins_url == "http://localhost:8080"
+        assert docker_jenkins.jenkins_url.startswith("http://localhost:")
 
     def test_jenkins_api_accessible(self, jenkins_client):
         assert jenkins_client.version is not None

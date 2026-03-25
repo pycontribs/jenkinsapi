@@ -4,17 +4,19 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'docker/Dockerfile'
-      - 'docker/plugins.txt'
+      - 'docker/**'
       - 'jenkinsapi/**'
       - 'jenkinsapi_tests/systests/**'
+      - 'jenkinsapi_tests/unittests/test_docker_jenkins.py'
+      - '.github/workflows/docker-systests.yml'
   pull_request:
     branches: [ "master" ]
     paths:
-      - 'docker/Dockerfile'
-      - 'docker/plugins.txt'
+      - 'docker/**'
       - 'jenkinsapi/**'
       - 'jenkinsapi_tests/systests/**'
+      - 'jenkinsapi_tests/unittests/test_docker_jenkins.py'
+      - '.github/workflows/docker-systests.yml'
   schedule:
     - cron: '0 4 * * *'  # Daily at 4am UTC
   workflow_dispatch:
@@ -31,6 +33,8 @@ jobs:
   systests:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/jenkinsapi
 
     steps:
     - name: Checkout
@@ -49,6 +53,7 @@ jobs:
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
     - name: Log in to GHCR
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
       with:
         registry: ghcr.io
@@ -58,7 +63,7 @@ jobs:
     - name: Pull or build Docker image
       run: |
         HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
+        IMAGE="${IMAGE_NAME}:${HASH}"
         if docker pull "$IMAGE" 2>/dev/null; then
           echo "Cache hit: $IMAGE"
           docker tag "$IMAGE" jenkinsapi-systest:latest

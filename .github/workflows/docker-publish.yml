@@ -4,8 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
-      - 'docker/Dockerfile'
-      - 'docker/plugins.txt'
+      - 'docker/**'
       - '.github/workflows/docker-publish.yml'
   release:
     types: [ published ]
@@ -18,6 +17,8 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/jenkinsapi
 
     steps:
     - name: Checkout
@@ -44,7 +45,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
       with:
-        images: ghcr.io/${{ github.repository_owner }}/jenkinsapi
+        images: ${{ env.IMAGE_NAME }}
         tags: |
           type=raw,value=${{ steps.version.outputs.version }}
           type=raw,value=latest,enable={{is_default_branch}}
@@ -59,5 +60,5 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/jenkinsapi:buildcache
-        cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/jenkinsapi:buildcache,mode=max
+        cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+        cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max

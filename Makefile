@@ -1,10 +1,10 @@
 .PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all
 
 clean:
-	rm -rf dist/ build/ *.egg-info
+	rm -rf dist/ build/ *.egg-info jenkinsapi_tests/systests/localinstance_files
 
 test:
-	uv run pytest -sv jenkinsapi_tests/unittests/ -m "not docker"
+	uv run pytest -sv jenkinsapi_tests -m "not docker"
 
 lint:
 	uv run pylint jenkinsapi/*.py
@@ -15,7 +15,7 @@ dist:
 	uv build
 
 coverage:
-	uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests/unittests/ -m "not docker"
+	uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests -m "not docker"
 
 # Docker image configuration
 DOCKER_IMAGE ?= jenkinsapi-systest:latest
@@ -61,5 +61,5 @@ test-docker:
 
 # Run all tests (unit + system)
 test-all:
-	uv run pytest jenkinsapi_tests/unittests/ -m "not docker" -n auto -q
+	uv run pytest jenkinsapi_tests -m "not docker" -n auto -q
 	uv run pytest jenkinsapi_tests/systests/ -n $(NUM_WORKERS) -v
