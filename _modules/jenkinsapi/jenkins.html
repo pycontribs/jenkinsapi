@@ -849,7 +849,14 @@
 <span class="sd">        @param force_restart: Boolean, force Jenkins to restart,</span>
 <span class="sd">            ignoring plugin preferences</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">Plugin</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;@&quot;</span> <span class="ow">in</span> <span class="n">plugin</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Plugin name must not include a version. &quot;</span>
+                    <span class="s1">&#39;Use the short name only, e.g. &quot;plugin-name&quot; not &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span>
+                    <span class="o">%</span> <span class="n">plugin</span>
+                <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">plugin</span><span class="p">,</span> <span class="n">Plugin</span><span class="p">):</span>
             <span class="n">plugin</span> <span class="o">=</span> <span class="n">plugin</span><span class="o">.</span><span class="n">shortName</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">[</span><span class="n">plugin</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">force_restart</span> <span class="ow">or</span> <span class="p">(</span><span class="n">restart</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">restart_required</span><span class="p">):</span>

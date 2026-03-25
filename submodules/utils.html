@@ -282,101 +282,56 @@
 </dd></dl>
 
 </section>
-<section id="module-jenkinsapi.utils.jenkins_launcher">
-<span id="jenkins-launcher-module"></span><h2>jenkins_launcher module<a class="headerlink" href="#module-jenkinsapi.utils.jenkins_launcher" title="Link to this heading">¶</a></h2>
-<dl class="py exception">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.FailedToStart">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.jenkins_launcher.</span></span><span class="sig-name descname"><span class="pre">FailedToStart</span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#FailedToStart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.FailedToStart" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-</dd></dl>
-
+<section id="module-jenkinsapi.utils.docker_jenkins">
+<span id="docker-jenkins-module"></span><h2>docker_jenkins module<a class="headerlink" href="#module-jenkinsapi.utils.docker_jenkins" title="Link to this heading">¶</a></h2>
+<p>Docker-based Jenkins instance manager for testing.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.jenkins_launcher.</span></span><span class="sig-name descname"><span class="pre">JenkinsLancher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_orig_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">systests_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">war_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_urls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugins_txt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.docker_jenkins.</span></span><span class="sig-name descname"><span class="pre">DockerJenkins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'jenkinsapi-systest:latest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'jenkinsapi-systest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8080</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_home</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Launch jenkins</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL">
-<span class="sig-name descname"><span class="pre">JENKINS_LTS_WAR_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://get.jenkins.io/war-stable'</span></em><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL">
-<span class="sig-name descname"><span class="pre">JENKINS_WEEKLY_WAR_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://get.jenkins.io/war'</span></em><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.PLUGIN_MANAGER_URL">
-<span class="sig-name descname"><span class="pre">PLUGIN_MANAGER_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.github.com/repos/jenkinsci/plugin-installation-manager-tool/releases/latest'</span></em><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.PLUGIN_MANAGER_URL" title="Link to this definition">¶</a></dt>
+<p>Manage a Jenkins instance running in Docker.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.build_image">
+<span class="sig-name descname"><span class="pre">build_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dockerfile_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'docker/Dockerfile'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.build_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.build_image" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready">
-<span class="sig-name descname"><span class="pre">block_until_jenkins_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.block_until_jenkins_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.dump_plugin_versions">
+<span class="sig-name descname"><span class="pre">dump_plugin_versions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'plugin_versions.txt'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.dump_plugin_versions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.dump_plugin_versions" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin">
-<span class="sig-name descname"><span class="pre">install_plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hpi_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_dest_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.install_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.get_logs">
+<span class="sig-name descname"><span class="pre">get_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.get_logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.get_logs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins">
-<span class="sig-name descname"><span class="pre">install_plugins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.install_plugins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service">
+<span class="sig-name descname"><span class="pre">restart_jenkins_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.restart_jenkins_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.start" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.stop" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config">
-<span class="sig-name descname"><span class="pre">update_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.update_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war">
-<span class="sig-name descname"><span class="pre">update_war</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#JenkinsLancher.update_war"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.StreamThread">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.jenkins_launcher.</span></span><span class="sig-name descname"><span class="pre">StreamThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_log</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#StreamThread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.StreamThread" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.StreamThread.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#StreamThread.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.run" title="Link to this definition">¶</a></dt>
-<dd><p>Method representing the thread’s activity.</p>
-<p>You may override this method in a subclass. The standard run() method
-invokes the callable object passed to the object’s constructor as the
-target argument, if any, with sequential and keyword arguments taken
-from the args and kwargs arguments, respectively.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.StreamThread.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#StreamThread.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.stop" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.StreamThread.stopped">
-<span class="sig-name descname"><span class="pre">stopped</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#StreamThread.stopped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.stopped" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready">
+<span class="sig-name descname"><span class="pre">wait_for_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkins.wait_for_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="jenkinsapi.utils.jenkins_launcher.TimeOut">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.jenkins_launcher.</span></span><span class="sig-name descname"><span class="pre">TimeOut</span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/jenkins_launcher.html#TimeOut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.jenkins_launcher.TimeOut" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="jenkinsapi.utils.docker_jenkins.DockerJenkinsError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.utils.docker_jenkins.</span></span><span class="sig-name descname"><span class="pre">DockerJenkinsError</span></span><a class="reference internal" href="../_modules/jenkinsapi/utils/docker_jenkins.html#DockerJenkinsError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.utils.docker_jenkins.DockerJenkinsError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when Docker-backed Jenkins setup or control fails.</p>
 </dd></dl>
 
 </section>
@@ -612,28 +567,18 @@ Returns True when logging was configured.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-jenkinsapi.utils.jenkins_launcher">jenkins_launcher module</a><ul>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.FailedToStart"><code class="docutils literal notranslate"><span class="pre">FailedToStart</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher</span></code></a><ul>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.JENKINS_LTS_WAR_URL</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.JENKINS_WEEKLY_WAR_URL</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.PLUGIN_MANAGER_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.PLUGIN_MANAGER_URL</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.block_until_jenkins_ready()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.install_plugin()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.install_plugins()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.start()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.stop()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.update_config()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.update_war()</span></code></a></li>
+<li><a class="reference internal" href="#module-jenkinsapi.utils.docker_jenkins">docker_jenkins module</a><ul>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins"><code class="docutils literal notranslate"><span class="pre">DockerJenkins</span></code></a><ul>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.build_image"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.build_image()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.dump_plugin_versions"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.dump_plugin_versions()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.get_logs"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.get_logs()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.restart_jenkins_service()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.start"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.start()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.stop"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.stop()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.wait_for_ready()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.StreamThread"><code class="docutils literal notranslate"><span class="pre">StreamThread</span></code></a><ul>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.run"><code class="docutils literal notranslate"><span class="pre">StreamThread.run()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.stop"><code class="docutils literal notranslate"><span class="pre">StreamThread.stop()</span></code></a></li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.StreamThread.stopped"><code class="docutils literal notranslate"><span class="pre">StreamThread.stopped()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#jenkinsapi.utils.jenkins_launcher.TimeOut"><code class="docutils literal notranslate"><span class="pre">TimeOut</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.utils.docker_jenkins.DockerJenkinsError"><code class="docutils literal notranslate"><span class="pre">DockerJenkinsError</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-jenkinsapi.utils.jsonp_to_json">jsonp_to_json module</a><ul>

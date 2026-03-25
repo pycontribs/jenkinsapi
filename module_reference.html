@@ -426,6 +426,7 @@
 <li class="toctree-l4"><a class="reference internal" href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.invokejob"><code class="docutils literal notranslate"><span class="pre">JenkinsInvoke.invokejob()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.main"><code class="docutils literal notranslate"><span class="pre">JenkinsInvoke.main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.mkparser"><code class="docutils literal notranslate"><span class="pre">JenkinsInvoke.mkparser()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.resolve_password"><code class="docutils literal notranslate"><span class="pre">JenkinsInvoke.resolve_password()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
@@ -826,28 +827,18 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html#module-jenkinsapi.utils.jenkins_launcher">jenkins_launcher module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.FailedToStart"><code class="docutils literal notranslate"><span class="pre">FailedToStart</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.JENKINS_LTS_WAR_URL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.JENKINS_WEEKLY_WAR_URL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.PLUGIN_MANAGER_URL"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.PLUGIN_MANAGER_URL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.block_until_jenkins_ready()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.install_plugin()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.install_plugins()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.start()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.stop()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.update_config()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war"><code class="docutils literal notranslate"><span class="pre">JenkinsLancher.update_war()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="submodules/utils.html#module-jenkinsapi.utils.docker_jenkins">docker_jenkins module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins"><code class="docutils literal notranslate"><span class="pre">DockerJenkins</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.build_image"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.build_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.dump_plugin_versions"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.dump_plugin_versions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.get_logs"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.get_logs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.restart_jenkins_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.start"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.stop"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready"><code class="docutils literal notranslate"><span class="pre">DockerJenkins.wait_for_ready()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread"><code class="docutils literal notranslate"><span class="pre">StreamThread</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.run"><code class="docutils literal notranslate"><span class="pre">StreamThread.run()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stop"><code class="docutils literal notranslate"><span class="pre">StreamThread.stop()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stopped"><code class="docutils literal notranslate"><span class="pre">StreamThread.stopped()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.TimeOut"><code class="docutils literal notranslate"><span class="pre">TimeOut</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkinsError"><code class="docutils literal notranslate"><span class="pre">DockerJenkinsError</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="submodules/utils.html#module-jenkinsapi.utils.jsonp_to_json">jsonp_to_json module</a><ul>

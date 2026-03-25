@@ -316,11 +316,11 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.block_until_idle">block_until_idle() (jenkinsapi.node.Node method)</a>
 </li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.block_until_jenkins_ready">block_until_jenkins_ready() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
-</li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build">Build (class in jenkinsapi.build)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.jobs.Jobs.build">build() (jenkinsapi.jobs.Jobs method)</a>
+</li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.build_image">build_image() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.build_job">build_job() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
@@ -412,12 +412,12 @@
 </li>
         <li><a href="submodules/queue.html#jenkinsapi.queue.Queue.delete_item_by_id">delete_item_by_id() (jenkinsapi.queue.Queue method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_job">delete_job() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.delete_labels">delete_labels() (jenkinsapi.node.Node method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_node">delete_node() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugin">delete_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
@@ -433,6 +433,12 @@
         <li><a href="submodules/utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler.do_GET">do_GET() (jenkinsapi.utils.simple_post_logger.ServerHandler method)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler.do_POST">do_POST() (jenkinsapi.utils.simple_post_logger.ServerHandler method)</a>
+</li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins">DockerJenkins (class in jenkinsapi.utils.docker_jenkins)</a>
+</li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkinsError">DockerJenkinsError</a>
+</li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.dump_plugin_versions">dump_plugin_versions() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -461,8 +467,6 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.FailedNoResults">FailedNoResults</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.FailedToStart">FailedToStart</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -678,10 +682,10 @@
         </ul></li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">get_job_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/views.html#jenkinsapi.view.View.get_job_dict">get_job_dict() (jenkinsapi.view.View method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.get_job_name">get_job_name() (jenkinsapi.queue.QueueItem method)</a>
 </li>
         <li><a href="submodules/views.html#jenkinsapi.view.View.get_job_url">get_job_url() (jenkinsapi.view.View method)</a>
@@ -723,6 +727,8 @@
         <li><a href="submodules/api.html#jenkinsapi.api.get_latest_test_results">get_latest_test_results() (in module jenkinsapi.api)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_lockable_resources">get_lockable_resources() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.get_logs">get_logs() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.get_master_build">get_master_build() (jenkinsapi.build.Build method)</a>
 </li>
@@ -901,17 +907,9 @@
         <li><a href="submodules/api.html#jenkinsapi.api.install_artifacts">install_artifacts() (in module jenkinsapi.api)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.install_plugin">install_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
-
-        <ul>
-          <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugin">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
 </li>
-        </ul></li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.install_plugins">install_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
-
-        <ul>
-          <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.install_plugins">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
 </li>
-        </ul></li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.manifest.InvalidJarError">InvalidJarError</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.invoke">invoke() (jenkinsapi.job.Job method)</a>
@@ -964,8 +962,6 @@
           <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.is_reserved">(jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.is_running">is_running() (jenkinsapi.build.Build method)</a>
 
         <ul>
@@ -974,6 +970,8 @@
           <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.is_running">(jenkinsapi.queue.QueueItem method)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.is_temporarily_offline">is_temporarily_offline() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.items">items() (jenkinsapi.jenkins.Jenkins method)</a>
@@ -1041,10 +1039,6 @@
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins">Jenkins (class in jenkinsapi.jenkins)</a>
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.jenkins">jenkins (jenkinsapi.lockable_resources.LockableResources attribute)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_LTS_WAR_URL">JENKINS_LTS_WAR_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.JENKINS_WEEKLY_WAR_URL">JENKINS_WEEKLY_WAR_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
 </li>
         <li>
     jenkinsapi
@@ -1238,10 +1232,10 @@
 </li>
         </ul></li>
         <li>
-    jenkinsapi.utils.jenkins_launcher
+    jenkinsapi.utils.docker_jenkins
 
         <ul>
-          <li><a href="submodules/utils.html#module-jenkinsapi.utils.jenkins_launcher">module</a>
+          <li><a href="submodules/utils.html#module-jenkinsapi.utils.docker_jenkins">module</a>
 </li>
         </ul></li>
         <li>
@@ -1305,8 +1299,6 @@
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase">JenkinsBase (class in jenkinsapi.jenkinsbase)</a>
 </li>
         <li><a href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke">JenkinsInvoke (class in jenkinsapi.command_line.jenkins_invoke)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher">JenkinsLancher (class in jenkinsapi.utils.jenkins_launcher)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job">Job (class in jenkinsapi.job)</a>
 </li>
@@ -1478,7 +1470,7 @@
 </li>
           <li><a href="submodules/utils.html#module-jenkinsapi.utils.crumb_requester">jenkinsapi.utils.crumb_requester</a>
 </li>
-          <li><a href="submodules/utils.html#module-jenkinsapi.utils.jenkins_launcher">jenkinsapi.utils.jenkins_launcher</a>
+          <li><a href="submodules/utils.html#module-jenkinsapi.utils.docker_jenkins">jenkinsapi.utils.docker_jenkins</a>
 </li>
           <li><a href="submodules/utils.html#module-jenkinsapi.utils.jsonp_to_json">jenkinsapi.utils.jsonp_to_json</a>
 </li>
@@ -1572,8 +1564,6 @@
         <li><a href="submodules/views.html#jenkinsapi.views.Views.PIPELINE_VIEW">PIPELINE_VIEW (jenkinsapi.views.Views attribute)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugin.Plugin">Plugin (class in jenkinsapi.plugin)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.PLUGIN_MANAGER_URL">PLUGIN_MANAGER_URL (jenkinsapi.utils.jenkins_launcher.JenkinsLancher attribute)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.plugin_version_already_installed">plugin_version_already_installed() (jenkinsapi.plugins.Plugins method)</a>
 </li>
@@ -1681,6 +1671,8 @@
 </li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.resolve_job_folders">resolve_job_folders() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
 </li>
+        <li><a href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.resolve_password">resolve_password() (jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke static method)</a>
+</li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLabelSelector">ResourceLabelSelector (class in jenkinsapi.lockable_resources)</a>
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceLockedError">ResourceLockedError</a>
@@ -1693,6 +1685,8 @@
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.ResourceSelector">ResourceSelector (class in jenkinsapi.lockable_resources)</a>
 </li>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service">restart_jenkins_service() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
+</li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.restart_required">restart_required (jenkinsapi.plugins.Plugins property)</a>
 </li>
         <li><a href="submodules/results.html#jenkinsapi.result.Result">Result (class in jenkinsapi.result)</a>
@@ -1700,8 +1694,6 @@
         <li><a href="submodules/results.html#jenkinsapi.result_set.ResultSet">ResultSet (class in jenkinsapi.result_set)</a>
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockedResourceReservation.retry">retry (jenkinsapi.lockable_resources.LockedResourceReservation attribute)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.run">run() (jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.run_groovy_script">run_groovy_script() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
@@ -1741,10 +1733,10 @@
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
 </li>
-        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_offline">set_offline() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_online">set_online() (jenkinsapi.node.Node method)</a>
@@ -1753,27 +1745,21 @@
 </li>
         <li><a href="submodules/credentials.html#jenkinsapi.credential.SSHKeyCredential">SSHKeyCredential (class in jenkinsapi.credential)</a>
 </li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.start">start() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.start">start() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.stolen">stolen (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.stop">stop() (jenkinsapi.build.Build method)</a>
 
         <ul>
-          <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.stop">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
-</li>
-          <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stop">(jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
+          <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.stop">(jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
         </ul></li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread.stopped">stopped() (jenkinsapi.utils.jenkins_launcher.StreamThread method)</a>
-</li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.STR_TOTALCOUNT">STR_TOTALCOUNT (jenkinsapi.build.Build attribute)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.STR_TPL_NOTESTS_ERR">STR_TPL_NOTESTS_ERR (jenkinsapi.build.Build attribute)</a>
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.stream_logs">stream_logs() (jenkinsapi.build.Build method)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.StreamThread">StreamThread (class in jenkinsapi.utils.jenkins_launcher)</a>
 </li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.strip_trailing_slash">strip_trailing_slash() (jenkinsapi.jenkinsbase.JenkinsBase class method)</a>
 </li>
@@ -1785,7 +1771,7 @@
   <h2>T</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.TimeOut">TimeOut</a>, <a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.TimeOut">[1]</a>
+        <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.TimeOut">TimeOut</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugin.Plugin.to_plugin">to_plugin() (jenkinsapi.plugin.Plugin method)</a>
 </li>
@@ -1823,23 +1809,19 @@
           <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.unreserve">(jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
         </ul></li>
-        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_dict">update_center_dict (jenkinsapi.plugins.Plugins property)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_dict">update_center_dict (jenkinsapi.plugins.Plugins property)</a>
+</li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.update_center_install_status">update_center_install_status (jenkinsapi.plugins.Plugins property)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.update_config">update_config() (jenkinsapi.job.Job method)</a>
 
         <ul>
-          <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_config">(jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
-</li>
           <li><a href="submodules/views.html#jenkinsapi.view.View.update_config">(jenkinsapi.view.View method)</a>
 </li>
         </ul></li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.update_offline_reason">update_offline_reason() (jenkinsapi.node.Node method)</a>
-</li>
-        <li><a href="submodules/utils.html#jenkinsapi.utils.jenkins_launcher.JenkinsLancher.update_war">update_war() (jenkinsapi.utils.jenkins_launcher.JenkinsLancher method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.upload_config">upload_config() (jenkinsapi.node.Node method)</a>
 </li>
@@ -1901,10 +1883,12 @@
   <h2>W</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.wait_reserve">wait_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
+        <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready">wait_for_ready() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.wait_reserve">wait_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
+</li>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.why">why (jenkinsapi.queue.QueueItem property)</a>
 </li>
     </ul></td>
