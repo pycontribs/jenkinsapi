@@ -132,13 +132,60 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
-    - name: Prepare Docker image
-      uses: ./.github/actions/docker-image-prep
-      with:
-        image_name: ghcr.io/${{ github.repository_owner }}/jenkinsapi
-
-    - name: Test with pytest
+    - name: Test with make
+      shell: bash
       run: |
-        NUM_WORKERS=auto
-        echo "Running full test suite with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
-        uv run pytest -sv -n $NUM_WORKERS --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+        make gha-test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
+
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.14"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Test with make
+      shell: bash
+      run: |
+        uv run pytest jenkinsapi_tests -m "not docker" -q
+
+  build-macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.14"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        brew install krb5
+        echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+
+    - name: Test with make
+      shell: bash
+      run: |
+        uv run pytest jenkinsapi_tests -m "not docker" -q
