@@ -1,4 +1,4 @@
-.PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all
+.PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all gha-test
 
 clean:
 	rm -rf dist/ build/ *.egg-info jenkinsapi_tests/systests/localinstance_files
@@ -62,3 +62,7 @@ test-docker:
 # Run all tests (unit + system) through the main xdist-enabled test target.
 test-all:
 	$(MAKE) test NUM_WORKERS=$(NUM_WORKERS)
+
+# GitHub Actions entrypoint: force xdist to use the requested worker count.
+gha-test:
+	PYTEST_XDIST_AUTO_NUM_WORKERS=$(NUM_WORKERS) uv run pytest jenkinsapi_tests -n auto -v
