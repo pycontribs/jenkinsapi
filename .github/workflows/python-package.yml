@@ -83,17 +83,58 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
-    - name: Test with pytest
+    - name: Test with make
       run: |
-        NUM_WORKERS=auto
-        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
-        if docker pull "$IMAGE" 2>/dev/null; then
-          echo "Cache hit: $IMAGE"
-          docker tag "$IMAGE" jenkinsapi-systest:latest
-        else
-          echo "Cache miss -- building locally"
-          docker build -t jenkinsapi-systest:latest docker/
-        fi
-        echo "Running full test suite with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
-        uv run pytest -sv -n $NUM_WORKERS --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+        make test NUM_WORKERS=auto
+
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.14"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Test with make
+      shell: bash
+      run: |
+        make test NUM_WORKERS=auto
+
+  build-macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.14"]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7.3.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        brew install krb5
+        echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+
+    - name: Test with make
+      run: |
+        make test NUM_WORKERS=auto

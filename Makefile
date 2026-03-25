@@ -4,7 +4,7 @@ clean:
 	rm -rf dist/ build/ *.egg-info jenkinsapi_tests/systests/localinstance_files
 
 test:
-	uv run pytest -sv jenkinsapi_tests -m "not docker"
+	uv run pytest jenkinsapi_tests -n $(NUM_WORKERS) -v
 
 lint:
 	uv run pylint jenkinsapi/*.py
@@ -15,7 +15,7 @@ dist:
 	uv build
 
 coverage:
-	uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests -m "not docker"
+	uv run pytest jenkinsapi_tests -n $(NUM_WORKERS) -v --cov=jenkinsapi --cov-report=term-missing --cov-report=xml
 
 # Docker image configuration
 DOCKER_IMAGE ?= jenkinsapi-systest:latest
@@ -59,7 +59,6 @@ test-systests:
 test-docker:
 	uv run pytest jenkinsapi_tests/unittests/test_docker_jenkins.py -m docker -v
 
-# Run all tests (unit + system)
+# Run all tests (unit + system) through the main xdist-enabled test target.
 test-all:
-	uv run pytest jenkinsapi_tests -m "not docker" -n auto -q
-	uv run pytest jenkinsapi_tests/systests/ -n $(NUM_WORKERS) -v
+	$(MAKE) test NUM_WORKERS=$(NUM_WORKERS)
