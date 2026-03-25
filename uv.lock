@@ -767,7 +767,7 @@ docs = [
     { name = "docutils", specifier = ">=0.20.1" },
     { name = "furo", specifier = ">=2024.8.6" },
     { name = "myst-parser", specifier = ">=3.0.1" },
-    { name = "pygments", specifier = ">=2.19.1,<=2.19.2" },
+    { name = "pygments", specifier = ">=2.19.2" },
     { name = "sphinx", specifier = ">=7.1.2" },
 ]
 
