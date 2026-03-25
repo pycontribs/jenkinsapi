@@ -3,20 +3,8 @@ name: Docker System Tests
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - 'docker/**'
-      - 'jenkinsapi/**'
-      - 'jenkinsapi_tests/systests/**'
-      - 'jenkinsapi_tests/unittests/test_docker_jenkins.py'
-      - '.github/workflows/docker-systests.yml'
   pull_request:
     branches: [ "master" ]
-    paths:
-      - 'docker/**'
-      - 'jenkinsapi/**'
-      - 'jenkinsapi_tests/systests/**'
-      - 'jenkinsapi_tests/unittests/test_docker_jenkins.py'
-      - '.github/workflows/docker-systests.yml'
   schedule:
     - cron: '0 4 * * *'  # Daily at 4am UTC
   workflow_dispatch:
@@ -75,5 +63,5 @@ jobs:
     - name: Run system tests
       run: |
         NUM_WORKERS=auto
-        echo "Running systests with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
-        uv run pytest jenkinsapi_tests/systests/ -n $NUM_WORKERS --timeout=120 -v
+        echo "Running docker-backed tests with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
+        uv run pytest jenkinsapi_tests/unittests/test_docker_jenkins.py jenkinsapi_tests/systests/ -n $NUM_WORKERS --timeout=120 -v
