@@ -176,15 +176,33 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install krb5 colima docker
+        brew install krb5 colima docker qemu
         echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
 
     - name: Configure Docker daemon
       shell: bash
       run: |
-        colima start --runtime docker --cpu 4 --memory 8 --disk 20
+        set -euo pipefail
+        colima delete -f || true
+        if ! colima start --runtime docker --cpu 4 --memory 8 --disk 20 --vm-type=vz; then
+          echo "colima vz startup failed, retrying with qemu"
+          colima delete -f || true
+          colima start --runtime docker --cpu 4 --memory 8 --disk 20 --vm-type=qemu
+        fi
         docker context use colima
         docker version
+
+    - name: Dump Colima logs on failure
+      if: failure()
+      shell: bash
+      run: |
+        set +e
+        for f in "$HOME/.colima/_lima/colima/ha.stderr.log" "$HOME/.colima/_lima/colima/ha.log" "$HOME/.colima/_lima/colima/serial.log"; do
+          if [ -f "$f" ]; then
+            echo "===== $f ====="
+            cat "$f"
+          fi
+        done
 
     - name: Test with make
       shell: bash
