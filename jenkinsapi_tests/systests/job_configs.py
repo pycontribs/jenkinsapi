@@ -373,3 +373,29 @@ PIPELINE_SCM_CONFIG = {
     "scm_class": "hudson.plugins.git.GitSCM",
     "git_url": "https://github.com/salimfadhley/jenkinsapi.git",
 }
+
+PIPELINE_INPUT_JOB = """<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition">
+    <script>
+node {
+  stage('Before Input') {
+    echo 'Starting pipeline'
+  }
+  stage('Input Step') {
+    input id: 'deploy-approval', message: 'Deploy to production?'
+  }
+  stage('After Input') {
+    echo 'Continuing after input'
+  }
+}
+    </script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+</flow-definition>""".strip()
