@@ -815,3 +815,12 @@ class Jenkins(JenkinsBase):
             if COLOR_TO_STATUS.get(color) == target:
                 result.append(Job(row["url"].rstrip("/"), row["name"], self))
         return result
+
+    def reload(self) -> None:
+        """
+        Reload Jenkins configuration from disk without restarting.
+        Useful after manually editing config files on the server.
+        """
+        url = "%s/reload" % self.baseurl
+        valid = self.requester.VALID_STATUS_CODES + [503, 500]
+        self.requester.post_and_confirm_status(url, data="", valid=valid)
