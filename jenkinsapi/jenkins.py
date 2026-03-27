@@ -790,3 +790,28 @@ class Jenkins(JenkinsBase):
 
     def get_lockable_resources(self) -> LockableResources:
         return LockableResources(self)
+
+    def get_jobs_by_status(self, status: str) -> list:
+        """
+        Return all jobs matching the given build status.
+
+        :param status: one of "success", "failure", "unstable",
+                       "aborted", "disabled", "notbuilt"
+        :return: list of Job objects
+        """
+        COLOR_TO_STATUS = {
+            "blue": "success",
+            "red": "failure",
+            "yellow": "unstable",
+            "aborted": "aborted",
+            "disabled": "disabled",
+            "notbuilt": "notbuilt",
+            "grey": "notbuilt",
+        }
+        target = status.lower()
+        result = []
+        for row in self.jobs.poll().get("jobs", []):
+            color = row.get("color", "").replace("_anime", "")
+            if COLOR_TO_STATUS.get(color) == target:
+                result.append(Job(row["url"].rstrip("/"), row["name"], self))
+        return result
