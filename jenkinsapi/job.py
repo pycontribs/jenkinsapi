@@ -832,3 +832,16 @@ class Job(JenkinsBase, MutableJenkinsThing):
 
     def toggle_keep_build(self, build_number):
         self.get_build(build_number).toggle_keep()
+
+    def recreate(self) -> "Job":
+        """
+        Delete and recreate the job using its current configuration.
+        Useful for resetting build history while keeping job settings.
+
+        :return: the recreated Job object
+        """
+        config = self.get_config()
+        name = self.name
+        jenkins = self.get_jenkins_obj()
+        del jenkins.jobs[name]
+        return jenkins.jobs.create(name, config)
