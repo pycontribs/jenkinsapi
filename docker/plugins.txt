@@ -14,3 +14,4 @@ nested-view
 lockable-resources
 data-tables-api
 workflow-aggregator
+docker-commons
