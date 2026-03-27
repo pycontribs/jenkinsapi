@@ -722,6 +722,21 @@ class Jenkins(JenkinsBase):
         token = response.json()["data"]["tokenValue"]
         return token
 
+    def revoke_api_token(self, token_uuid: str) -> None:
+        subUrl = (
+            "/me/descriptorByName/jenkins.security.ApiTokenProperty/revoke"
+        )
+        url = "%s%s" % (self.baseurl, subUrl)
+        data = urlencode({"tokenUuid": token_uuid})
+        self.requester.post_and_confirm_status(url, data=data)
+
+    def revoke_all_api_tokens(self) -> None:
+        subUrl = (
+            "/me/descriptorByName/jenkins.security.ApiTokenProperty/revokeAll"
+        )
+        url = "%s%s" % (self.baseurl, subUrl)
+        self.requester.post_and_confirm_status(url, data="")
+
     def run_groovy_script(self, script: str) -> str:
         """
         Runs the requested groovy script on the Jenkins server returning the
