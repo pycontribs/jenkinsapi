@@ -722,6 +722,26 @@ class Jenkins(JenkinsBase):
         token = response.json()["data"]["tokenValue"]
         return token
 
+    def create_user(
+        self, username: str, password: str, full_name: str, email: str
+    ) -> None:
+        url = "%s/securityRealm/createAccountByAdmin" % self.baseurl
+        data = urlencode(
+            {
+                "username": username,
+                "password1": password,
+                "password2": password,
+                "fullname": full_name,
+                "email": email,
+            }
+        )
+        self.requester.post_and_confirm_status(url, data=data)
+
+    def delete_user(self, username: str) -> None:
+        url = "%s/securityRealm/user/%s/doDelete" % (self.baseurl, username)
+        data = urlencode({"Submit": "Yes"})
+        self.requester.post_and_confirm_status(url, data=data)
+
     def run_groovy_script(self, script: str) -> str:
         """
         Runs the requested groovy script on the Jenkins server returning the
