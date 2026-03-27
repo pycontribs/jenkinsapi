@@ -203,3 +203,48 @@ class QueueItem(JenkinsBase):
             return self._data["task"]["name"]
         except KeyError:
             raise NotBuiltYet()
+
+    @property
+    def is_blocked(self) -> bool:
+        """True if this queue item is blocked from building."""
+        return self._data.get("blocked", False)
+
+    @property
+    def is_stuck(self) -> bool:
+        """True if this queue item is stuck (blocked for a long time)."""
+        return self._data.get("stuck", False)
+
+    @property
+    def is_buildable(self) -> bool:
+        """True if this queue item is ready to be built."""
+        return self._data.get("buildable", False)
+
+    def get_age(self) -> float:
+        """
+        Return how long (in seconds) this item has been in the queue.
+        """
+        in_queue_since = self._data.get("inQueueSince")
+        if in_queue_since is None:
+            return 0.0
+        return (time.time() * 1000 - in_queue_since) / 1000.0
+
+    def get_eta(self) -> float:
+        """
+        Return the estimated time (in seconds) until the build starts.
+        Returns 0 if the item is already buildable or no estimate available.
+        """
+        start_millis = self._data.get("buildableStartMilliseconds")
+        if start_millis is None:
+            return 0.0
+        remaining = start_millis - time.time() * 1000
+        return max(0.0, remaining / 1000.0)
+
+    def get_causes(self) -> list:
+        """
+        Return the list of causes for this queue item being queued.
+        """
+        actions = self._data.get("actions", [])
+        for action in actions:
+            if isinstance(action, dict) and "causes" in action:
+                return action["causes"]
+        return []
