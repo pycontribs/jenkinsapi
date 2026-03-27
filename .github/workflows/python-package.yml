@@ -107,10 +107,34 @@ jobs:
     - name: Install python
       run: uv python install
 
+    - name: Configure Docker Linux engine
+      shell: pwsh
+      run: |
+        $dockerCli = "C:\Program Files\Docker\Docker\DockerCli.exe"
+        if (-not (Test-Path $dockerCli)) {
+          throw "DockerCli.exe not found at $dockerCli"
+        }
+        $svc = Get-Service -Name com.docker.service -ErrorAction SilentlyContinue
+        if ($svc -and $svc.Status -ne 'Running') {
+          Start-Service com.docker.service
+        }
+        & $dockerCli -SwitchLinuxEngine
+        for ($i = 0; $i -lt 30; $i++) {
+          try {
+            docker version
+            break
+          } catch {
+            if ($i -eq 29) {
+              throw "Docker daemon did not become available"
+            }
+            Start-Sleep -Seconds 2
+          }
+        }
+
     - name: Test with make
       shell: bash
       run: |
-        make gha-test-hosted NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
+        make gha-test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
 
   build-macos:
     runs-on: macos-latest
@@ -133,10 +157,17 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install krb5
+        brew install krb5 colima docker
         echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+
+    - name: Configure Docker daemon
+      shell: bash
+      run: |
+        colima start --runtime docker --cpu 4 --memory 8 --disk 20
+        docker context use colima
+        docker version
 
     - name: Test with make
       shell: bash
       run: |
-        make gha-test-hosted NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
+        make gha-test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
