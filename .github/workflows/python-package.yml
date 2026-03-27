@@ -110,15 +110,34 @@ jobs:
     - name: Configure Docker Linux engine
       shell: pwsh
       run: |
-        $dockerCli = "C:\Program Files\Docker\Docker\DockerCli.exe"
-        if (-not (Test-Path $dockerCli)) {
-          throw "DockerCli.exe not found at $dockerCli"
+        $dockerCliCandidates = @(
+          "$env:ProgramFiles\Docker\Docker\DockerCli.exe",
+          "$env:ProgramW6432\Docker\Docker\DockerCli.exe",
+          "$env:ProgramFiles\Docker\Docker\resources\DockerCli.exe",
+          "$env:ProgramW6432\Docker\Docker\resources\DockerCli.exe"
+        )
+        $dockerCli = $dockerCliCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+        $dockerService = Get-Service -Name docker -ErrorAction SilentlyContinue
+        if ($dockerService -and $dockerService.Status -ne "Running") {
+          Start-Service docker
         }
-        $svc = Get-Service -Name com.docker.service -ErrorAction SilentlyContinue
-        if ($svc -and $svc.Status -ne 'Running') {
+
+        $desktopService = Get-Service -Name com.docker.service -ErrorAction SilentlyContinue
+        if ($desktopService -and $desktopService.Status -ne "Running") {
           Start-Service com.docker.service
         }
-        & $dockerCli -SwitchLinuxEngine
+
+        if ($dockerCli) {
+          Write-Host "Switching Docker engine using $dockerCli"
+          & $dockerCli -SwitchLinuxEngine
+        } else {
+          Write-Warning "DockerCli.exe not found; continuing with current Docker engine"
+        }
+
+        $env:DOCKER_DEFAULT_PLATFORM = "linux/amd64"
+        [Environment]::SetEnvironmentVariable("DOCKER_DEFAULT_PLATFORM", "linux/amd64", "Machine")
+
         for ($i = 0; $i -lt 30; $i++) {
           try {
             docker version
