@@ -563,6 +563,38 @@ class Build(JenkinsBase):
             raise ex
         return data["envMap"]
 
+    def get_pending_input_actions(self) -> List[Dict[str, Any]]:
+        """
+        Get pending input actions for a Pipeline build.
+
+        Returns a list of pending input action dicts, each containing:
+        - id: The input step ID
+        - message: The prompt message
+        - inputs: List of parameter definitions
+
+        :return: List of pending input action dicts
+        """
+        url: str = "%s/wfapi/pendingInputActions" % self.baseurl
+        return self.get_data(url)
+
+    def proceed_input(self, input_id: str) -> None:
+        """
+        Proceed (approve) a pending Pipeline input step.
+
+        :param input_id: The ID of the input step to proceed
+        """
+        url: str = "%s/input/%s/proceedEmpty" % (self.baseurl, input_id)
+        self.job.jenkins.requester.post_and_confirm_status(url, data="")
+
+    def abort_input(self, input_id: str) -> None:
+        """
+        Abort a pending Pipeline input step.
+
+        :param input_id: The ID of the input step to abort
+        """
+        url: str = "%s/input/%s/abort" % (self.baseurl, input_id)
+        self.job.jenkins.requester.post_and_confirm_status(url, data="")
+
     def toggle_keep(self) -> None:
         """
         Toggle "keep this build forever" on and off
