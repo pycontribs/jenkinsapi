@@ -832,3 +832,21 @@ class Job(JenkinsBase, MutableJenkinsThing):
 
     def toggle_keep_build(self, build_number):
         self.get_build(build_number).toggle_keep()
+
+    def wipe_out_workspace(self):
+        """
+        Wipe out the workspace of this job.
+        """
+        url = "%s/doWipeOutWorkspace" % self.baseurl
+        return self.get_jenkins_obj().requester.post_and_confirm_status(
+            url, data=""
+        )
+
+    def trigger_scm_poll(self):
+        """
+        Trigger an SCM poll for this job to check for new changes.
+        """
+        url = "%s/polling" % self.baseurl
+        return self.get_jenkins_obj().requester.post_and_confirm_status(
+            url, data=""
+        )
