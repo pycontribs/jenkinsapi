@@ -308,6 +308,68 @@ class SSHKeyCredential(Credential):
         return super(SSHKeyCredential, self)._get_attributes_xml(data)
 
 
+class FileCredentials(Credential):
+    """
+    Secret file credential
+
+    Constructor expects following dict:
+        {
+            'credential_id': str,   Automatically set by jenkinsapi
+            'displayName': str,     Automatically set by Jenkins
+            'fullName': str,        Automatically set by Jenkins
+            'typeName': str,        Automatically set by Jenkins
+            'description': str,
+            'filename': str,
+            'secret_bytes': str,    Base64-encoded file content
+        }
+
+    When creating credential via jenkinsapi automatic fields not need to be in
+    dict
+    """
+
+    def __init__(self, cred_dict):
+        jenkins_class = (
+            "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl"
+        )
+        super(FileCredentials, self).__init__(cred_dict, jenkins_class)
+        self.filename = cred_dict.get("filename", "")
+        self.secret_bytes = cred_dict.get("secret_bytes", "")
+
+    def get_attributes(self):
+        """
+        Used by Credentials object to create credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        return {
+            "stapler-class": self.jenkins_class,
+            "Submit": "OK",
+            "json": {
+                "": "1",
+                "credentials": {
+                    "stapler-class": self.jenkins_class,
+                    "$class": self.jenkins_class,
+                    "id": c_id,
+                    "filename": self.filename,
+                    "secretBytes": self.secret_bytes,
+                    "description": self.description,
+                },
+            },
+        }
+
+    def get_attributes_xml(self):
+        """
+        Used by Credentials object to update a credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        data = {
+            "id": c_id,
+            "fileName": self.filename,
+            "secretBytes": self.secret_bytes,
+            "description": self.description,
+        }
+        return super(FileCredentials, self)._get_attributes_xml(data)
+
+
 class AmazonWebServicesCredentials(Credential):
     """
     AWS credential using the CloudBees AWS Credentials Plugin

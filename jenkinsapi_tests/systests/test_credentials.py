@@ -10,6 +10,7 @@ from jenkinsapi.credentials import Credentials
 from jenkinsapi.credentials import UsernamePasswordCredential
 from jenkinsapi.credentials import SecretTextCredential
 from jenkinsapi.credential import SSHKeyCredential
+from jenkinsapi.credential import FileCredentials
 
 log = logging.getLogger(__name__)
 
@@ -247,3 +248,26 @@ def test_create_secret_text_credential(jenkins):
                 )  # exponential backoff, capped at 5s
 
     raise last_error
+
+
+def test_create_file_credential(jenkins):
+    import base64
+
+    creds = jenkins.credentials
+
+    cred_descr = random_string()
+    secret_content = b"my secret file content"
+    cred_dict = {
+        "description": cred_descr,
+        "filename": "secret.txt",
+        "secret_bytes": base64.b64encode(secret_content).decode("utf-8"),
+    }
+    creds[cred_descr] = FileCredentials(cred_dict)
+
+    assert cred_descr in creds
+    cred = creds[cred_descr]
+    assert isinstance(cred, FileCredentials)
+    assert cred.description == cred_descr
+
+    del creds[cred_descr]
+    assert cred_descr not in creds
