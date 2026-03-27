@@ -832,3 +832,17 @@ class Job(JenkinsBase, MutableJenkinsThing):
 
     def toggle_keep_build(self, build_number):
         self.get_build(build_number).toggle_keep()
+
+    def change_description(self, description: str) -> None:
+        """
+        Update the description of this job.
+
+        :param description: new description text
+        """
+        element_tree = self._get_config_element_tree()
+        node = element_tree.find("description")
+        if node is None:
+            node = ET.SubElement(element_tree, "description")
+        if node.text != description:
+            node.text = description
+            self.update_config(ET.tostring(element_tree))
