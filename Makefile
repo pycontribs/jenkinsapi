@@ -1,4 +1,4 @@
-.PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all gha-test
+.PHONY: test lint coverage dist clean docker-build docker-run docker-clean docker-logs test-systests test-docker test-all gha-test gha-test-hosted
 
 clean:
 	rm -rf dist/ build/ *.egg-info jenkinsapi_tests/systests/localinstance_files
@@ -66,3 +66,7 @@ test-all:
 # GitHub Actions entrypoint: force xdist to use the requested worker count.
 gha-test:
 	PYTEST_XDIST_AUTO_NUM_WORKERS=$(NUM_WORKERS) uv run pytest jenkinsapi_tests -n auto -v
+
+# Hosted non-Linux runners cannot execute the Linux Docker-backed test suite.
+gha-test-hosted:
+	PYTEST_XDIST_AUTO_NUM_WORKERS=$(NUM_WORKERS) uv run pytest jenkinsapi_tests/unittests -m "not docker" -n auto -v

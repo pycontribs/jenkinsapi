@@ -159,7 +159,7 @@ jobs:
     - name: Test with make
       shell: bash
       run: |
-        uv run pytest jenkinsapi_tests -m "not docker" -q
+        make gha-test-hosted NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
 
   build-macos:
     runs-on: macos-latest
@@ -188,4 +188,4 @@ jobs:
     - name: Test with make
       shell: bash
       run: |
-        uv run pytest jenkinsapi_tests -m "not docker" -q
+        make gha-test-hosted NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
