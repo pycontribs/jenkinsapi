@@ -16,6 +16,7 @@ from jenkinsapi.credential import UsernamePasswordCredential
 from jenkinsapi.credential import SecretTextCredential
 from jenkinsapi.credential import SSHKeyCredential
 from jenkinsapi.credential import FileCredentials
+from jenkinsapi.credential import DockerServerCredentials
 from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.custom_exceptions import JenkinsAPIException
 
@@ -170,6 +171,8 @@ class Credentials(JenkinsBase):
             key in cred_dict for key in ("fileName", "filename", "secretBytes")
         ):
             cr = FileCredentials(cred_dict)
+        elif cred_type == "Docker Host Certificate Authentication":
+            cr = DockerServerCredentials(cred_dict)
         else:
             cr = Credential(cred_dict)
 

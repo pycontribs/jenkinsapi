@@ -11,6 +11,7 @@ from jenkinsapi.credentials import UsernamePasswordCredential
 from jenkinsapi.credentials import SecretTextCredential
 from jenkinsapi.credential import SSHKeyCredential
 from jenkinsapi.credential import FileCredentials
+from jenkinsapi.credential import DockerServerCredentials
 
 log = logging.getLogger(__name__)
 
@@ -267,6 +268,24 @@ def test_create_file_credential(jenkins):
     assert cred_descr in creds
     cred = creds[cred_descr]
     assert isinstance(cred, FileCredentials)
+
+
+def test_create_docker_server_credential(jenkins):
+    creds = jenkins.credentials
+
+    cred_descr = random_string()
+    cred_dict = {
+        "description": cred_descr,
+        "username": "dockeruser",
+        "clientKey": "-----BEGIN RSA PRIVATE KEY-----\nclient-key\n-----END RSA PRIVATE KEY-----",
+        "clientCertificate": "-----BEGIN CERTIFICATE-----\nclient-cert\n-----END CERTIFICATE-----",
+        "serverCaCertificate": "-----BEGIN CERTIFICATE-----\nca-cert\n-----END CERTIFICATE-----",
+    }
+    creds[cred_descr] = DockerServerCredentials(cred_dict)
+
+    assert cred_descr in creds
+    cred = creds[cred_descr]
+    assert isinstance(cred, DockerServerCredentials)
     assert cred.description == cred_descr
 
     del creds[cred_descr]
