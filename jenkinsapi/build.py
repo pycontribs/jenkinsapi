@@ -563,6 +563,14 @@ class Build(JenkinsBase):
             raise ex
         return data["envMap"]
 
+    def set_description(self, description: str) -> None:
+        """
+        Set the description for this build.
+        """
+        url: str = "%s/submitDescription" % self.baseurl
+        data = "description=%s" % description
+        self.job.jenkins.requester.post_and_confirm_status(url, data=data)
+
     def toggle_keep(self) -> None:
         """
         Toggle "keep this build forever" on and off
