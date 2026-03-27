@@ -21,6 +21,38 @@ jobs:
       IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/jenkinsapi
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+      with:
+        egress-policy: audit
+        # azure.archive.ubuntu.com:80               - Ubuntu apt packages
+        # esm.ubuntu.com:443                        - Ubuntu ESM security updates
+        # files.pythonhosted.org:443                - Python package downloads
+        # github.com:443                            - Git operations / Actions
+        # api.github.com:443                        - GitHub API
+        # int.api.stepsecurity.io:443               - harden-runner telemetry
+        # motd.ubuntu.com:443                       - Ubuntu MOTD
+        # packages.microsoft.com:443                - Microsoft apt repo (ubuntu-latest runner)
+        # ppa.launchpadcontent.net:443              - Ubuntu PPA
+        # pypi.org:443                              - PyPI package index
+        # objects.githubusercontent.com:443         - GitHub release artifacts / LFS
+        # ghcr.io:443                               - GitHub Container Registry (pull image)
+        # pkg-containers.githubusercontent.com:443  - Docker layer storage for GHCR
+        allowed-endpoints: >
+          azure.archive.ubuntu.com:80
+          esm.ubuntu.com:443
+          files.pythonhosted.org:443
+          github.com:443
+          api.github.com:443
+          int.api.stepsecurity.io:443
+          motd.ubuntu.com:443
+          packages.microsoft.com:443
+          ppa.launchpadcontent.net:443
+          pypi.org:443
+          objects.githubusercontent.com:443
+          ghcr.io:443
+          pkg-containers.githubusercontent.com:443
+
     - name: Checkout
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
@@ -44,17 +76,10 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Pull or build Docker image
-      run: |
-        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        IMAGE="${IMAGE_NAME}:${HASH}"
-        if docker pull "$IMAGE" 2>/dev/null; then
-          echo "Cache hit: $IMAGE"
-          docker tag "$IMAGE" jenkinsapi-systest:latest
-        else
-          echo "Cache miss — building locally"
-          docker build -t jenkinsapi-systest:latest docker/
-        fi
+    - name: Prepare Docker image
+      uses: ./.github/actions/docker-image-prep
+      with:
+        image_name: ${{ env.IMAGE_NAME }}
 
     - name: Run system tests
       run: |

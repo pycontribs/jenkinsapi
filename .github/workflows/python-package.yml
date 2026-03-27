@@ -3,6 +3,7 @@ name: CI_TEST
 on:
   push:
   pull_request:
+    branches: [master]
   workflow_dispatch: # allow manual run
 
 permissions:
@@ -21,37 +22,24 @@ jobs:
         python-version: ["3.13"]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-    - name: Install uv
-      uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Install python
-      run: uv python install
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
-
-    - name: Lint with ruff
-      run: |
-        uv run ruff check jenkinsapi/ --output-format full
-
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
-
-    steps:
     - name: Harden Runner
       uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
       with:
         egress-policy: audit
+        # azure.archive.ubuntu.com:80           - Ubuntu apt packages
+        # esm.ubuntu.com:443                    - Ubuntu ESM security updates
+        # files.pythonhosted.org:443            - Python package downloads
+        # ftp-chi.osuosl.org:443                - Python mirror fallback (Chicago)
+        # ftp-nyc.osuosl.org:443                - Python mirror fallback (NYC)
+        # github.com:443                        - Git operations / Actions
+        # api.github.com:443                    - GitHub API
+        # int.api.stepsecurity.io:443           - harden-runner telemetry
+        # mirror.xmission.com:443               - Python mirror fallback (Utah)
+        # motd.ubuntu.com:443                   - Ubuntu MOTD
+        # packages.microsoft.com:443            - Microsoft apt repo (ubuntu-latest runner)
+        # ppa.launchpadcontent.net:443          - Ubuntu PPA
+        # pypi.org:443                          - PyPI package index
+        # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
         allowed-endpoints: >
           azure.archive.ubuntu.com:80
           esm.ubuntu.com:443
@@ -83,17 +71,74 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
+    - name: Lint with ruff
+      run: |
+        uv run ruff check jenkinsapi/ --output-format full
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+      with:
+        egress-policy: audit
+        # azure.archive.ubuntu.com:80           - Ubuntu apt packages
+        # esm.ubuntu.com:443                    - Ubuntu ESM security updates
+        # files.pythonhosted.org:443            - Python package downloads
+        # ftp-chi.osuosl.org:443                - Python mirror fallback (Chicago)
+        # ftp-nyc.osuosl.org:443                - Python mirror fallback (NYC)
+        # github.com:443                        - Git operations / Actions
+        # api.github.com:443                    - GitHub API
+        # int.api.stepsecurity.io:443           - harden-runner telemetry
+        # mirror.xmission.com:443               - Python mirror fallback (Utah)
+        # motd.ubuntu.com:443                   - Ubuntu MOTD
+        # packages.microsoft.com:443            - Microsoft apt repo (ubuntu-latest runner)
+        # ppa.launchpadcontent.net:443          - Ubuntu PPA
+        # pypi.org:443                          - PyPI package index
+        # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
+        allowed-endpoints: >
+          azure.archive.ubuntu.com:80
+          esm.ubuntu.com:443
+          files.pythonhosted.org:443
+          ftp-chi.osuosl.org:443
+          ftp-nyc.osuosl.org:443
+          github.com:443
+          api.github.com:443
+          int.api.stepsecurity.io:443
+          mirror.xmission.com:443
+          motd.ubuntu.com:443
+          packages.microsoft.com:443
+          ppa.launchpadcontent.net:443
+          pypi.org:443
+          objects.githubusercontent.com:443
+
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+
+    - name: Prepare Docker image
+      uses: ./.github/actions/docker-image-prep
+      with:
+        image_name: ghcr.io/${{ github.repository_owner }}/jenkinsapi
+
     - name: Test with pytest
       run: |
         NUM_WORKERS=auto
-        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi:${HASH}"
-        if docker pull "$IMAGE" 2>/dev/null; then
-          echo "Cache hit: $IMAGE"
-          docker tag "$IMAGE" jenkinsapi-systest:latest
-        else
-          echo "Cache miss -- building locally"
-          docker build -t jenkinsapi-systest:latest docker/
-        fi
         echo "Running full test suite with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
         uv run pytest -sv -n $NUM_WORKERS --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
