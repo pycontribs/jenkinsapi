@@ -790,3 +790,12 @@ class Jenkins(JenkinsBase):
 
     def get_lockable_resources(self) -> LockableResources:
         return LockableResources(self)
+
+    def reload(self) -> None:
+        """
+        Reload Jenkins configuration from disk without restarting.
+        Useful after manually editing config files on the server.
+        """
+        url = "%s/reload" % self.baseurl
+        valid = self.requester.VALID_STATUS_CODES + [503, 500]
+        self.requester.post_and_confirm_status(url, data="", valid=valid)
