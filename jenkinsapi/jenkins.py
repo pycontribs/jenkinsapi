@@ -816,7 +816,7 @@ class Jenkins(JenkinsBase):
                 result.append(Job(row["url"].rstrip("/"), row["name"], self))
         return result
 
-    def reload(self) -> None:
+    def reload(self, wait_for_completion: bool = True) -> None:
         """
         Reload Jenkins configuration from disk without restarting.
         Useful after manually editing config files on the server.
@@ -824,3 +824,5 @@ class Jenkins(JenkinsBase):
         url = "%s/reload" % self.baseurl
         valid = self.requester.VALID_STATUS_CODES + [503, 500]
         self.requester.post_and_confirm_status(url, data="", valid=valid)
+        if wait_for_completion:
+            self._wait_for_reboot()
