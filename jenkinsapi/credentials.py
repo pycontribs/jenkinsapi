@@ -6,6 +6,7 @@ Jenkins node.
 
 from __future__ import annotations
 
+import json
 from typing import Iterator
 
 import logging
@@ -97,11 +98,21 @@ class Credentials(JenkinsBase):
         """
         if description not in self:
             params = credential.get_attributes()
+            files = credential.get_files()
             url = "%s/createCredentials" % self.baseurl
             try:
-                self.jenkins.requester.post_and_confirm_status(
-                    url, params={}, data=urlencode(params)
-                )
+                if files:
+                    payload = {
+                        key: json.dumps(value) if key == "json" else value
+                        for key, value in params.items()
+                    }
+                    self.jenkins.requester.post_and_confirm_status(
+                        url, params={}, data=payload, files=files
+                    )
+                else:
+                    self.jenkins.requester.post_and_confirm_status(
+                        url, params={}, data=urlencode(params)
+                    )
             except JenkinsAPIException as jae:
                 raise JenkinsAPIException(
                     "Latest version of Credentials "
@@ -172,8 +183,13 @@ class Credentials(JenkinsBase):
         ):
             cr = FileCredentials(cred_dict)
         elif (
-            cred_type == "Docker Host Certificate Authentication"
+            cred_type
+            in (
+                "Docker Host Certificate Authentication",
+                "X.509 Client Certificate",
+            )
             or "clientKey" in cred_dict
+            or "clientKeySecret" in cred_dict
             or "clientCertificate" in cred_dict
             or "serverCaCertificate" in cred_dict
         ):

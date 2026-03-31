@@ -351,7 +351,7 @@ BUILD_ENV_VARS = {
 
 PIPELINE_INPUT_ACTIONS = [
     {
-        "id": "input-step-1",
+        "id": "Input-step-1",
         "message": "Deploy to production?",
         "inputs": [
             {

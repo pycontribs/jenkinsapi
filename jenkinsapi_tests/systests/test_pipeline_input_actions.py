@@ -35,11 +35,12 @@ def test_get_pending_input_actions(jenkins):
 
     actions = _wait_for_input(build)
     assert len(actions) >= 1
-    assert actions[0]["id"] == "deploy-approval"
+    input_id = actions[0]["id"]
+    assert input_id.lower() == "deploy-approval"
     assert "Deploy to production?" in actions[0]["message"]
 
     # Clean up — abort so build doesn't hang
-    build.abort_input("deploy-approval")
+    build.abort_input(input_id)
 
 
 def test_proceed_input(jenkins):
@@ -51,8 +52,9 @@ def test_proceed_input(jenkins):
 
     actions = _wait_for_input(build)
     assert actions
+    input_id = actions[0]["id"]
 
-    build.proceed_input("deploy-approval")
+    build.proceed_input(input_id)
 
     deadline = time.time() + 30
     while time.time() < deadline and build.is_running():
@@ -70,8 +72,9 @@ def test_abort_input(jenkins):
 
     actions = _wait_for_input(build)
     assert actions
+    input_id = actions[0]["id"]
 
-    build.abort_input("deploy-approval")
+    build.abort_input(input_id)
 
     deadline = time.time() + 30
     while time.time() < deadline and build.is_running():

@@ -2,6 +2,7 @@
 Module for jenkinsapi Credential class
 """
 
+import base64
 import logging
 import xml.etree.cElementTree as ET
 
@@ -48,6 +49,9 @@ class Credential(object):
 
     def get_attributes_xml(self):
         pass
+
+    def get_files(self):
+        return None
 
     def _get_attributes_xml(self, data):
         root = ET.Element(self.jenkins_class)
@@ -332,8 +336,12 @@ class FileCredentials(Credential):
             "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl"
         )
         super(FileCredentials, self).__init__(cred_dict, jenkins_class)
-        self.filename = cred_dict.get("filename", "")
-        self.secret_bytes = cred_dict.get("secret_bytes", "")
+        self.filename = cred_dict.get(
+            "filename", cred_dict.get("fileName", "")
+        )
+        self.secret_bytes = cred_dict.get(
+            "secret_bytes", cred_dict.get("secretBytes", "")
+        )
 
     def get_attributes(self):
         """
@@ -349,11 +357,20 @@ class FileCredentials(Credential):
                     "stapler-class": self.jenkins_class,
                     "$class": self.jenkins_class,
                     "id": c_id,
-                    "filename": self.filename,
-                    "secretBytes": self.secret_bytes,
+                    "file": "file0",
                     "description": self.description,
                 },
             },
+        }
+
+    def get_files(self):
+        if not self.secret_bytes:
+            return None
+        return {
+            "file0": (
+                self.filename or "secret.file",
+                base64.b64decode(self.secret_bytes),
+            )
         }
 
     def get_attributes_xml(self):
@@ -473,7 +490,9 @@ class DockerServerCredentials(Credential):
         )
         super(DockerServerCredentials, self).__init__(cred_dict, jenkins_class)
         self.username = cred_dict.get("username", "")
-        self.client_key = cred_dict.get("clientKey", "")
+        self.client_key = cred_dict.get(
+            "clientKeySecret", cred_dict.get("clientKey", "")
+        )
         self.client_certificate = cred_dict.get("clientCertificate", "")
         self.server_ca_certificate = cred_dict.get("serverCaCertificate", "")
 
@@ -492,7 +511,7 @@ class DockerServerCredentials(Credential):
                     "$class": self.jenkins_class,
                     "id": c_id,
                     "username": self.username,
-                    "clientKey": self.client_key,
+                    "clientKeySecret": self.client_key,
                     "clientCertificate": self.client_certificate,
                     "serverCaCertificate": self.server_ca_certificate,
                     "description": self.description,
@@ -508,7 +527,7 @@ class DockerServerCredentials(Credential):
         data = {
             "id": c_id,
             "username": self.username,
-            "clientKey": self.client_key,
+            "clientKeySecret": self.client_key,
             "clientCertificate": self.client_certificate,
             "serverCaCertificate": self.server_ca_certificate,
             "description": self.description,
