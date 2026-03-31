@@ -1141,6 +1141,53 @@
         <span class="k">return</span> <span class="n">token</span></div>
 
 
+<div class="viewcode-block" id="Jenkins.revoke_api_token">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.revoke_api_token">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">revoke_api_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token_uuid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">subUrl</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;/me/descriptorByName/jenkins.security.ApiTokenProperty/revoke&quot;</span>
+        <span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">subUrl</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">({</span><span class="s2">&quot;tokenUuid&quot;</span><span class="p">:</span> <span class="n">token_uuid</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.revoke_all_api_tokens">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.revoke_all_api_tokens">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">revoke_all_api_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">subUrl</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;/me/descriptorByName/jenkins.security.ApiTokenProperty/revokeAll&quot;</span>
+        <span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">subUrl</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.create_user">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">full_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/securityRealm/createAccountByAdmin&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+                <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+                <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+                <span class="s2">&quot;fullname&quot;</span><span class="p">:</span> <span class="n">full_name</span><span class="p">,</span>
+                <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.delete_user">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/securityRealm/user/</span><span class="si">%s</span><span class="s2">/doDelete&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">({</span><span class="s2">&quot;Submit&quot;</span><span class="p">:</span> <span class="s2">&quot;Yes&quot;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Jenkins.run_groovy_script">
 <a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.run_groovy_script">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_groovy_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">script</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -1217,6 +1264,48 @@
 <a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_lockable_resources">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_lockable_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LockableResources</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">LockableResources</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.get_jobs_by_status">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_jobs_by_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_jobs_by_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all jobs matching the given build status.</span>
+
+<span class="sd">        :param status: one of &quot;success&quot;, &quot;failure&quot;, &quot;unstable&quot;,</span>
+<span class="sd">                       &quot;aborted&quot;, &quot;disabled&quot;, &quot;notbuilt&quot;</span>
+<span class="sd">        :return: list of Job objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">COLOR_TO_STATUS</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="s2">&quot;failure&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;yellow&quot;</span><span class="p">:</span> <span class="s2">&quot;unstable&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aborted&quot;</span><span class="p">:</span> <span class="s2">&quot;aborted&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;disabled&quot;</span><span class="p">:</span> <span class="s2">&quot;disabled&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;notbuilt&quot;</span><span class="p">:</span> <span class="s2">&quot;notbuilt&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;grey&quot;</span><span class="p">:</span> <span class="s2">&quot;notbuilt&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;jobs&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_anime&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">COLOR_TO_STATUS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Job</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">),</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="Jenkins.reload">
+<a class="viewcode-back" href="../../submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.reload">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait_for_completion</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reload Jenkins configuration from disk without restarting.</span>
+<span class="sd">        Useful after manually editing config files on the server.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/reload&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">VALID_STATUS_CODES</span> <span class="o">+</span> <span class="p">[</span><span class="mi">503</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="n">valid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wait_for_completion</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_reboot</span><span class="p">()</span></div>
 </div>
 
 </pre></div>

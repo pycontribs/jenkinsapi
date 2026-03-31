@@ -359,6 +359,11 @@ Config should be resemble the output of node.get_node_attributes()
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.create_user">
+<span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.create_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.create_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.credentials">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">credentials</span></span><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.credentials" title="Link to this definition">¶</a></dt>
@@ -422,6 +427,11 @@ delete dependencies.
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.delete_user">
+<span class="sig-name descname"><span class="pre">delete_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.delete_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.delete_user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.delete_view_by_url">
 <span class="sig-name descname"><span class="pre">delete_view_by_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">viewurl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.delete_view_by_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.delete_view_by_url" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -483,6 +493,21 @@ delete dependencies.
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.get_jobs">
 <span class="sig-name descname"><span class="pre">get_jobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.get_jobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.get_jobs" title="Link to this definition">¶</a></dt>
 <dd><p>Fetch all the build-names on this Jenkins server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.get_jobs_by_status">
+<span class="sig-name descname"><span class="pre">get_jobs_by_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.get_jobs_by_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.get_jobs_by_status" title="Link to this definition">¶</a></dt>
+<dd><p>Return all jobs matching the given build status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>status</strong> – one of “success”, “failure”, “unstable”,
+“aborted”, “disabled”, “notbuilt”</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of Job objects</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -663,6 +688,13 @@ No new builds started</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.reload">
+<span class="sig-name descname"><span class="pre">reload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wait_for_completion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.reload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.reload" title="Link to this definition">¶</a></dt>
+<dd><p>Reload Jenkins configuration from disk without restarting.
+Useful after manually editing config files on the server.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.rename_job">
 <span class="sig-name descname"><span class="pre">rename_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jobname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newjobname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="jobs.html#jenkinsapi.job.Job" title="jenkinsapi.job.Job"><span class="pre">Job</span></a></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.rename_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.rename_job" title="Link to this definition">¶</a></dt>
 <dd><p>Rename a job
@@ -670,6 +702,16 @@ No new builds started</p>
 :param newjobname: name of new job, str
 :return: new Job obj</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.revoke_all_api_tokens">
+<span class="sig-name descname"><span class="pre">revoke_all_api_tokens</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.revoke_all_api_tokens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.revoke_all_api_tokens" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.revoke_api_token">
+<span class="sig-name descname"><span class="pre">revoke_api_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/jenkins.html#Jenkins.revoke_api_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.jenkins.Jenkins.revoke_api_token" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.jenkins.Jenkins.run_groovy_script">
@@ -799,12 +841,14 @@ print(result) # will print “Hello world!”</p>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job"><code class="docutils literal notranslate"><span class="pre">Jenkins.create_multibranch_pipeline_job()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.create_node"><code class="docutils literal notranslate"><span class="pre">Jenkins.create_node()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.create_node_with_config"><code class="docutils literal notranslate"><span class="pre">Jenkins.create_node_with_config()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.create_user"><code class="docutils literal notranslate"><span class="pre">Jenkins.create_user()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.credentials"><code class="docutils literal notranslate"><span class="pre">Jenkins.credentials</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.credentials_by_id"><code class="docutils literal notranslate"><span class="pre">Jenkins.credentials_by_id</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_job"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_job()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_node"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_node()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_plugin"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_plugin()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_plugins"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_plugins()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_user"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_user()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.delete_view_by_url"><code class="docutils literal notranslate"><span class="pre">Jenkins.delete_view_by_url()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.generate_new_api_token"><code class="docutils literal notranslate"><span class="pre">Jenkins.generate_new_api_token()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_artifact_data"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_artifact_data()</span></code></a></li>
@@ -816,6 +860,7 @@ print(result) # will print “Hello world!”</p>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_job"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_job()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_job_by_url"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_job_by_url()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs_by_status"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_by_status()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs_info"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_info()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_jobs_list"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_jobs_list()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.get_label"><code class="docutils literal notranslate"><span class="pre">Jenkins.get_label()</span></code></a></li>
@@ -844,7 +889,10 @@ print(result) # will print “Hello world!”</p>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.nodes"><code class="docutils literal notranslate"><span class="pre">Jenkins.nodes</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.plugins"><code class="docutils literal notranslate"><span class="pre">Jenkins.plugins</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.quiet_down"><code class="docutils literal notranslate"><span class="pre">Jenkins.quiet_down()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.reload"><code class="docutils literal notranslate"><span class="pre">Jenkins.reload()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.rename_job"><code class="docutils literal notranslate"><span class="pre">Jenkins.rename_job()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.revoke_all_api_tokens"><code class="docutils literal notranslate"><span class="pre">Jenkins.revoke_all_api_tokens()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.revoke_api_token"><code class="docutils literal notranslate"><span class="pre">Jenkins.revoke_api_token()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.run_groovy_script"><code class="docutils literal notranslate"><span class="pre">Jenkins.run_groovy_script()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.safe_exit"><code class="docutils literal notranslate"><span class="pre">Jenkins.safe_exit()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.jenkins.Jenkins.safe_restart"><code class="docutils literal notranslate"><span class="pre">Jenkins.safe_restart()</span></code></a></li>
