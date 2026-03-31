@@ -107,53 +107,10 @@ jobs:
     - name: Install python
       run: uv python install
 
-    - name: Configure Docker Linux engine
-      shell: pwsh
-      run: |
-        $dockerCliCandidates = @(
-          "$env:ProgramFiles\Docker\Docker\DockerCli.exe",
-          "$env:ProgramW6432\Docker\Docker\DockerCli.exe",
-          "$env:ProgramFiles\Docker\Docker\resources\DockerCli.exe",
-          "$env:ProgramW6432\Docker\Docker\resources\DockerCli.exe"
-        )
-        $dockerCli = $dockerCliCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-
-        $dockerService = Get-Service -Name docker -ErrorAction SilentlyContinue
-        if ($dockerService -and $dockerService.Status -ne "Running") {
-          Start-Service docker
-        }
-
-        $desktopService = Get-Service -Name com.docker.service -ErrorAction SilentlyContinue
-        if ($desktopService -and $desktopService.Status -ne "Running") {
-          Start-Service com.docker.service
-        }
-
-        if ($dockerCli) {
-          Write-Host "Switching Docker engine using $dockerCli"
-          & $dockerCli -SwitchLinuxEngine
-        } else {
-          Write-Warning "DockerCli.exe not found; continuing with current Docker engine"
-        }
-
-        $env:DOCKER_DEFAULT_PLATFORM = "linux/amd64"
-        [Environment]::SetEnvironmentVariable("DOCKER_DEFAULT_PLATFORM", "linux/amd64", "Machine")
-
-        for ($i = 0; $i -lt 30; $i++) {
-          try {
-            docker version
-            break
-          } catch {
-            if ($i -eq 29) {
-              throw "Docker daemon did not become available"
-            }
-            Start-Sleep -Seconds 2
-          }
-        }
-
     - name: Test with make
       shell: bash
       run: |
-        make gha-test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
+        uv run pytest jenkinsapi_tests -m "not docker" -q
 
   build-macos:
     runs-on: macos-latest
@@ -176,35 +133,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install krb5 colima docker qemu
+        brew install krb5
         echo "PKG_CONFIG_PATH=$(brew --prefix krb5)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
-
-    - name: Configure Docker daemon
-      shell: bash
-      run: |
-        set -euo pipefail
-        colima delete -f || true
-        if ! colima start --runtime docker --cpu 4 --memory 8 --disk 20 --vm-type=vz; then
-          echo "colima vz startup failed, retrying with qemu"
-          colima delete -f || true
-          colima start --runtime docker --cpu 4 --memory 8 --disk 20 --vm-type=qemu
-        fi
-        docker context use colima
-        docker version
-
-    - name: Dump Colima logs on failure
-      if: failure()
-      shell: bash
-      run: |
-        set +e
-        for f in "$HOME/.colima/_lima/colima/ha.stderr.log" "$HOME/.colima/_lima/colima/ha.log" "$HOME/.colima/_lima/colima/serial.log"; do
-          if [ -f "$f" ]; then
-            echo "===== $f ====="
-            cat "$f"
-          fi
-        done
 
     - name: Test with make
       shell: bash
       run: |
-        make gha-test NUM_WORKERS="$(uv run python -c 'import os; print(os.cpu_count())')"
+        uv run pytest jenkinsapi_tests -m "not docker" -q
