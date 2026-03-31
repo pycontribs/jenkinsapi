@@ -722,6 +722,41 @@ class Jenkins(JenkinsBase):
         token = response.json()["data"]["tokenValue"]
         return token
 
+    def revoke_api_token(self, token_uuid: str) -> None:
+        subUrl = (
+            "/me/descriptorByName/jenkins.security.ApiTokenProperty/revoke"
+        )
+        url = "%s%s" % (self.baseurl, subUrl)
+        data = urlencode({"tokenUuid": token_uuid})
+        self.requester.post_and_confirm_status(url, data=data)
+
+    def revoke_all_api_tokens(self) -> None:
+        subUrl = (
+            "/me/descriptorByName/jenkins.security.ApiTokenProperty/revokeAll"
+        )
+        url = "%s%s" % (self.baseurl, subUrl)
+        self.requester.post_and_confirm_status(url, data="")
+
+    def create_user(
+        self, username: str, password: str, full_name: str, email: str
+    ) -> None:
+        url = "%s/securityRealm/createAccountByAdmin" % self.baseurl
+        data = urlencode(
+            {
+                "username": username,
+                "password1": password,
+                "password2": password,
+                "fullname": full_name,
+                "email": email,
+            }
+        )
+        self.requester.post_and_confirm_status(url, data=data)
+
+    def delete_user(self, username: str) -> None:
+        url = "%s/securityRealm/user/%s/doDelete" % (self.baseurl, username)
+        data = urlencode({"Submit": "Yes"})
+        self.requester.post_and_confirm_status(url, data=data)
+
     def run_groovy_script(self, script: str) -> str:
         """
         Runs the requested groovy script on the Jenkins server returning the
@@ -790,3 +825,39 @@ class Jenkins(JenkinsBase):
 
     def get_lockable_resources(self) -> LockableResources:
         return LockableResources(self)
+
+    def get_jobs_by_status(self, status: str) -> list:
+        """
+        Return all jobs matching the given build status.
+
+        :param status: one of "success", "failure", "unstable",
+                       "aborted", "disabled", "notbuilt"
+        :return: list of Job objects
+        """
+        COLOR_TO_STATUS = {
+            "blue": "success",
+            "red": "failure",
+            "yellow": "unstable",
+            "aborted": "aborted",
+            "disabled": "disabled",
+            "notbuilt": "notbuilt",
+            "grey": "notbuilt",
+        }
+        target = status.lower()
+        result = []
+        for row in self.jobs.poll().get("jobs", []):
+            color = row.get("color", "").replace("_anime", "")
+            if COLOR_TO_STATUS.get(color) == target:
+                result.append(Job(row["url"].rstrip("/"), row["name"], self))
+        return result
+
+    def reload(self, wait_for_completion: bool = True) -> None:
+        """
+        Reload Jenkins configuration from disk without restarting.
+        Useful after manually editing config files on the server.
+        """
+        url = "%s/reload" % self.baseurl
+        valid = self.requester.VALID_STATUS_CODES + [503, 500]
+        self.requester.post_and_confirm_status(url, data="", valid=valid)
+        if wait_for_completion:
+            self._wait_for_reboot()

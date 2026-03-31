@@ -307,6 +307,62 @@ class Plugins(JenkinsBase):
         )
         return False
 
+    def enable_plugin(self, shortName: str) -> None:
+        """
+        Enable a disabled plugin.
+
+        :param shortName: Plugin short name (ID)
+        """
+        url = "%s/pluginManager/plugin/%s/makeEnabled" % (
+            self.jenkins_obj.baseurl,
+            shortName,
+        )
+        self.jenkins_obj.requester.post_and_confirm_status(
+            url, params={}, data=""
+        )
+
+    def downgrade_plugin(self, shortName: str) -> None:
+        """
+        Downgrade a plugin to its previous version.
+
+        :param shortName: Plugin short name (ID)
+        """
+        url = "%s/pluginManager/plugin/%s/downgrade" % (
+            self.jenkins_obj.baseurl,
+            shortName,
+        )
+        self.jenkins_obj.requester.post_and_confirm_status(
+            url, params={}, data="", valid=[200, 404]
+        )
+
+    def disable_plugin(self, shortName: str) -> None:
+        """
+        Disable an enabled plugin.
+
+        :param shortName: Plugin short name (ID)
+        """
+        url = "%s/pluginManager/plugin/%s/makeDisabled" % (
+            self.jenkins_obj.baseurl,
+            shortName,
+        )
+        self.jenkins_obj.requester.post_and_confirm_status(
+            url, params={}, data=""
+        )
+
+    def unpin_plugin(self, shortName: str) -> None:
+        """
+        Unpin a pinned plugin, allowing it to be updated or replaced.
+
+        :param shortName: Plugin short name (ID)
+        """
+        url = "%s/pluginManager/plugin/%s/unpin" % (
+            self.jenkins_obj.baseurl,
+            shortName,
+        )
+        self.jenkins_obj.requester.post_and_confirm_status(
+            url, params={}, data="", valid=[200, 404]
+        )
+
     def __contains__(self, plugin_name):
         """
         True if plugin_name is the name of a defined plugin
