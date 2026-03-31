@@ -826,7 +826,7 @@ docs = [
 [package.metadata]
 requires-dist = [
     { name = "pytz", specifier = ">=2014.4" },
-    { name = "requests", specifier = ">=2.3.0" },
+    { name = "requests", specifier = ">=2.32.5" },
 ]
 
 [package.metadata.requires-dev]

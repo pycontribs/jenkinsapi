@@ -40,7 +40,7 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "pytz>=2014.4",
-    "requests>=2.3.0",
+    "requests>=2.32.5",
 ]
 
 [tool.setuptools]
