@@ -318,7 +318,7 @@ class Plugins(JenkinsBase):
             shortName,
         )
         self.jenkins_obj.requester.post_and_confirm_status(
-            url, params={}, data=""
+            url, params={}, data="", valid=[200, 404]
         )
 
     def unpin_plugin(self, shortName: str) -> None:
@@ -332,7 +332,7 @@ class Plugins(JenkinsBase):
             shortName,
         )
         self.jenkins_obj.requester.post_and_confirm_status(
-            url, params={}, data=""
+            url, params={}, data="", valid=[200, 404]
         )
 
     def __contains__(self, plugin_name):
