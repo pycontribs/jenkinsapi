@@ -341,6 +341,12 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_age">
+<span class="sig-name descname"><span class="pre">get_age</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.get_age"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.get_age" title="Link to this definition">¶</a></dt>
+<dd><p>Return how long (in seconds) this item has been in the queue.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_build">
 <span class="sig-name descname"><span class="pre">get_build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="build.html#jenkinsapi.build.Build" title="jenkinsapi.build.Build"><span class="pre">Build</span></a></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.get_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.get_build" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -349,6 +355,19 @@
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_build_number">
 <span class="sig-name descname"><span class="pre">get_build_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.get_build_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.get_build_number" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_causes">
+<span class="sig-name descname"><span class="pre">get_causes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.get_causes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.get_causes" title="Link to this definition">¶</a></dt>
+<dd><p>Return the list of causes for this queue item being queued.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_eta">
+<span class="sig-name descname"><span class="pre">get_eta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.get_eta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.get_eta" title="Link to this definition">¶</a></dt>
+<dd><p>Return the estimated time (in seconds) until the build starts.
+Returns 0 if the item is already buildable or no estimate available.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.get_jenkins_obj">
@@ -372,6 +391,18 @@
 <dd><p>returns parameters of queue item</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_blocked">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_blocked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_blocked" title="Link to this definition">¶</a></dt>
+<dd><p>True if this queue item is blocked from building.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_buildable">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_buildable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_buildable" title="Link to this definition">¶</a></dt>
+<dd><p>True if this queue item is ready to be built.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_queued">
 <span class="sig-name descname"><span class="pre">is_queued</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.is_queued"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_queued" title="Link to this definition">¶</a></dt>
@@ -382,6 +413,12 @@
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_running">
 <span class="sig-name descname"><span class="pre">is_running</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem.is_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_running" title="Link to this definition">¶</a></dt>
 <dd><p>Return True if this queued item is running.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_stuck">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_stuck</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_stuck" title="Link to this definition">¶</a></dt>
+<dd><p>True if this queue item is stuck (blocked for a long time).</p>
 </dd></dl>
 
 <dl class="py property">
@@ -475,14 +512,20 @@
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem"><code class="docutils literal notranslate"><span class="pre">QueueItem</span></code></a><ul>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.block_until_building"><code class="docutils literal notranslate"><span class="pre">QueueItem.block_until_building()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.block_until_complete"><code class="docutils literal notranslate"><span class="pre">QueueItem.block_until_complete()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_age"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_age()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_build"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_build()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_build_number"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_build_number()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_causes"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_causes()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_eta"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_eta()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_jenkins_obj"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_jenkins_obj()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_job"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_job()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_job_name"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_job_name()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.get_parameters"><code class="docutils literal notranslate"><span class="pre">QueueItem.get_parameters()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.is_blocked"><code class="docutils literal notranslate"><span class="pre">QueueItem.is_blocked</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.is_buildable"><code class="docutils literal notranslate"><span class="pre">QueueItem.is_buildable</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.is_queued"><code class="docutils literal notranslate"><span class="pre">QueueItem.is_queued()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.is_running"><code class="docutils literal notranslate"><span class="pre">QueueItem.is_running()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.is_stuck"><code class="docutils literal notranslate"><span class="pre">QueueItem.is_stuck</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.name"><code class="docutils literal notranslate"><span class="pre">QueueItem.name</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.queue_id"><code class="docutils literal notranslate"><span class="pre">QueueItem.queue_id</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.queue.QueueItem.why"><code class="docutils literal notranslate"><span class="pre">QueueItem.why</span></code></a></li>
