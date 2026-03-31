@@ -1259,6 +1259,22 @@
 <a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.toggle_keep_build">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">toggle_keep_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">build_number</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_build</span><span class="p">(</span><span class="n">build_number</span><span class="p">)</span><span class="o">.</span><span class="n">toggle_keep</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Job.recreate">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.recreate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">recreate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Job&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete and recreate the job using its current configuration.</span>
+<span class="sd">        Useful for resetting build history while keeping job settings.</span>
+
+<span class="sd">        :return: the recreated Job object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">jenkins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">jobs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

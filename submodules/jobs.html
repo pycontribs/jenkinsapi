@@ -779,6 +779,18 @@ to be modified</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.recreate">
+<span class="sig-name descname"><span class="pre">recreate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#jenkinsapi.job.Job" title="jenkinsapi.job.Job"><span class="pre">Job</span></a></span></span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.recreate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.recreate" title="Link to this definition">¶</a></dt>
+<dd><p>Delete and recreate the job using its current configuration.
+Useful for resetting build history while keeping job settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the recreated Job object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.toggle_keep_build">
 <span class="sig-name descname"><span class="pre">toggle_keep_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.toggle_keep_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.toggle_keep_build" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -927,6 +939,7 @@ Useful for debugging and validation workflows.</p>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.modify_scm_branch"><code class="docutils literal notranslate"><span class="pre">Job.modify_scm_branch()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.modify_scm_url"><code class="docutils literal notranslate"><span class="pre">Job.modify_scm_url()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.poll"><code class="docutils literal notranslate"><span class="pre">Job.poll()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.recreate"><code class="docutils literal notranslate"><span class="pre">Job.recreate()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.toggle_keep_build"><code class="docutils literal notranslate"><span class="pre">Job.toggle_keep_build()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.update_config"><code class="docutils literal notranslate"><span class="pre">Job.update_config()</span></code></a></li>
 </ul>
