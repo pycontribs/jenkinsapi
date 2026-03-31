@@ -42,5 +42,8 @@ def test_change_mode_to_normal(slave_node):
 
 def test_change_mode_invalid(slave_node):
     """Invalid mode raises ValueError."""
-    with pytest.raises(ValueError, match="NORMAL.*EXCLUSIVE"):
+    with pytest.raises(
+        ValueError,
+        match=r"mode must be one of .* got 'INVALID'",
+    ):
         slave_node.change_mode("INVALID")
