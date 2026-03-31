@@ -171,7 +171,12 @@ class Credentials(JenkinsBase):
             key in cred_dict for key in ("fileName", "filename", "secretBytes")
         ):
             cr = FileCredentials(cred_dict)
-        elif cred_type == "Docker Host Certificate Authentication":
+        elif (
+            cred_type == "Docker Host Certificate Authentication"
+            or "clientKey" in cred_dict
+            or "clientCertificate" in cred_dict
+            or "serverCaCertificate" in cred_dict
+        ):
             cr = DockerServerCredentials(cred_dict)
         else:
             cr = Credential(cred_dict)
