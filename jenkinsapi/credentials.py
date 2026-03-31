@@ -159,13 +159,19 @@ class Credentials(JenkinsBase):
             raise JenkinsAPIException("Problem deleting credential.")
 
     def _make_credential(self, cred_dict):
-        if cred_dict["typeName"] == "Username with password":
+        cred_type = cred_dict.get("typeName")
+        if cred_type == "Username with password":
             cr = UsernamePasswordCredential(cred_dict)
-        elif cred_dict["typeName"] == "SSH Username with private key":
+        elif cred_type == "SSH Username with private key":
             cr = SSHKeyCredential(cred_dict)
-        elif cred_dict["typeName"] == "Secret text":
+        elif cred_type == "Secret text":
             cr = SecretTextCredential(cred_dict)
-        elif cred_dict["typeName"] == "Docker Host Certificate Authentication":
+        elif (
+            cred_type == "Docker Host Certificate Authentication"
+            or "clientKey" in cred_dict
+            or "clientCertificate" in cred_dict
+            or "serverCaCertificate" in cred_dict
+        ):
             cr = DockerServerCredentials(cred_dict)
         else:
             cr = Credential(cred_dict)
