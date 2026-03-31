@@ -657,7 +657,10 @@ class Job(JenkinsBase, MutableJenkinsThing):
             Useful for debugging and validation workflows.
         """
         url = self.get_config_xml_url()
-        config = str(config)  # cast unicode in case of Python 2
+        if isinstance(config, bytes):
+            config = config.decode(encoding)
+        else:
+            config = str(config)  # cast unicode in case of Python 2
         response = self.jenkins.requester.post_url(
             url, params={}, data=config.encode(encoding)
         )
