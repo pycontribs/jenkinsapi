@@ -18,12 +18,12 @@ def test_create_and_delete_user(jenkins_admin_admin):
     )
 
     url = "%s/user/%s/api/json" % (jenkins_admin_admin.baseurl, username)
-    resp = jenkins_admin_admin.requester.get_url(url)
+    resp = jenkins_admin_admin.requester.get_and_confirm_status(url)
     assert resp.status_code == 200
 
     jenkins_admin_admin.delete_user(username)
 
-    resp = jenkins_admin_admin.requester.get_url(
-        url, params={}, valid=[404, 200]
+    resp = jenkins_admin_admin.requester.get_and_confirm_status(
+        url, valid=[404, 200]
     )
     assert resp.status_code == 404
