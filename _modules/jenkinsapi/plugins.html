@@ -594,6 +594,74 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
 
+<div class="viewcode-block" id="Plugins.enable_plugin">
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.enable_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">enable_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enable a disabled plugin.</span>
+
+<span class="sd">        :param shortName: Plugin short name (ID)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/pluginManager/plugin/</span><span class="si">%s</span><span class="s2">/makeEnabled&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span>
+            <span class="n">shortName</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Plugins.downgrade_plugin">
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.downgrade_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">downgrade_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Downgrade a plugin to its previous version.</span>
+
+<span class="sd">        :param shortName: Plugin short name (ID)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/pluginManager/plugin/</span><span class="si">%s</span><span class="s2">/downgrade&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span>
+            <span class="n">shortName</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Plugins.disable_plugin">
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.disable_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disable_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Disable an enabled plugin.</span>
+
+<span class="sd">        :param shortName: Plugin short name (ID)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/pluginManager/plugin/</span><span class="si">%s</span><span class="s2">/makeDisabled&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span>
+            <span class="n">shortName</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Plugins.unpin_plugin">
+<a class="viewcode-back" href="../../submodules/plugins.html#jenkinsapi.plugins.Plugins.unpin_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unpin_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shortName</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unpin a pinned plugin, allowing it to be updated or replaced.</span>
+
+<span class="sd">        :param shortName: Plugin short name (ID)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/pluginManager/plugin/</span><span class="si">%s</span><span class="s2">/unpin&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span>
+            <span class="n">shortName</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jenkins_obj</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">404</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        True if plugin_name is the name of a defined plugin</span>
