@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Mutable_jenkins_thing" href="mutable_jenkins.html"><link rel="prev" title="Label" href="label.html">
         <link rel="prefetch" href="../_static/jenkins.png" as="image">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.12.19 -->
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Lockable Resources - JenkinsAPI 0.3.20 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
@@ -269,18 +269,18 @@
 <span id="lockable-resources"></span><h1>Lockable Resources<a class="headerlink" href="#module-jenkinsapi.lockable_resources" title="Link to this heading">¶</a></h1>
 <dl class="py data">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.HTTP_STATUS_CODE_LOCKED">
-<span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">HTTP_STATUS_CODE_LOCKED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">423</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.HTTP_STATUS_CODE_LOCKED" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">HTTP_STATUS_CODE_LOCKED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">423</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.HTTP_STATUS_CODE_LOCKED" title="Link to this definition">¶</a></dt>
 <dd><p>Specific HTTP status code returned by API when resource is locked</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResource" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResource" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Object representation of a lockable resource</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResource.data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResource.data" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResource.data" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -309,123 +309,123 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResourceDict</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResourceDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResourceDict</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResourceDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
 <p>Dictionary representation of a lockable resource</p>
 <p>This is exactly as returned by Jenkins API</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.buildName">
-<span class="sig-name descname"><span class="pre">buildName</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.buildName" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">buildName</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.buildName" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.description">
-<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.description" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">description</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.description" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.ephemeral">
-<span class="sig-name descname"><span class="pre">ephemeral</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.ephemeral" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ephemeral</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.ephemeral" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.free">
-<span class="sig-name descname"><span class="pre">free</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.free" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">free</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.free" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.labels">
-<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.labels" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">labels</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.labels" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.labelsAsList">
-<span class="sig-name descname"><span class="pre">labelsAsList</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.labelsAsList" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">labelsAsList</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.labelsAsList" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.lockCause">
-<span class="sig-name descname"><span class="pre">lockCause</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.lockCause" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">lockCause</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.lockCause" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.locked">
-<span class="sig-name descname"><span class="pre">locked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.locked" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">locked</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.locked" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.note">
-<span class="sig-name descname"><span class="pre">note</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.note" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">note</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.note" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.properties">
-<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict" title="jenkinsapi.lockable_resources.LockableResourcePropertyDict"><span class="pre">LockableResourcePropertyDict</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.properties" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">properties</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict" title="jenkinsapi.lockable_resources.LockableResourcePropertyDict"><span class="pre">LockableResourcePropertyDict</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.properties" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.reserved">
-<span class="sig-name descname"><span class="pre">reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reserved" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reserved</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reserved" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.reservedBy">
-<span class="sig-name descname"><span class="pre">reservedBy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedBy" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reservedBy</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedBy" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail">
-<span class="sig-name descname"><span class="pre">reservedByEmail</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reservedByEmail</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp">
-<span class="sig-name descname"><span class="pre">reservedTimestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reservedTimestamp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourceDict.stolen">
-<span class="sig-name descname"><span class="pre">stolen</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.stolen" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">stolen</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourceDict.stolen" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourcePropertyDict">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResourcePropertyDict</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResourcePropertyDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResourcePropertyDict</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResourcePropertyDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
 <p>Property of a lockable resource, as returned by Jenkins API</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourcePropertyDict.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict.name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResourcePropertyDict.value">
-<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict.value" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">value</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResourcePropertyDict.value" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResources">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_after_post</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockableResources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_after_post</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockableResources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase" title="jenkinsapi.jenkinsbase.JenkinsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">JenkinsBase</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Mapping</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResource" title="jenkinsapi.lockable_resources.LockableResource"><code class="xref py py-class docutils literal notranslate"><span class="pre">LockableResource</span></code></a>]</p>
 <p>Object representation of the lockable resource jenkins API</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResources.data_dict">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.data_dict" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_dict</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.data_dict" title="Link to this definition">¶</a></dt>
 <dd><p>API data as a dict mapping name to <cite>LockableResourceDict</cite></p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResources.data_list">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.data_list" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_list</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResourceDict" title="jenkinsapi.lockable_resources.LockableResourceDict"><span class="pre">LockableResourceDict</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.data_list" title="Link to this definition">¶</a></dt>
 <dd><p>API data as a list of <cite>LockableResourceDict</cite></p>
 </dd></dl>
 
@@ -446,7 +446,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResources.jenkins">
-<span class="sig-name descname"><span class="pre">jenkins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.jenkins" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">jenkins</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.jenkins" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -456,7 +456,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockableResources.poll_after_post">
-<span class="sig-name descname"><span class="pre">poll_after_post</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.poll_after_post" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">poll_after_post</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockableResources.poll_after_post" title="Link to this definition">¶</a></dt>
 <dd><p>If true then poll again after every successful post request</p>
 <p>This ensure that resource properties are up-to-date after any changes.
 Setting this to False would require manual poll() calls but could be more
@@ -520,7 +520,7 @@ efficient in advanced scenarios with careful usage.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockedResourceReservation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockedResourceReservation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">selector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><span class="pre">ResourceSelector</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RetryConfig</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SimpleRetryConfig(sleep_period=5,</span> <span class="pre">timeout=3600)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockedResourceReservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">LockedResourceReservation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">selector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><span class="pre">ResourceSelector</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RetryConfig</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SimpleRetryConfig(sleep_period=5,</span> <span class="pre">timeout=3600)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#LockedResourceReservation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Context manager for locking a Jenkins resource</p>
 <p>Creating this object does not lock the resource, it is only locked and
@@ -549,21 +549,21 @@ unlocked on <code class="xref py py-meth docutils literal notranslate"><span cla
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockedResourceReservation.locked_resource_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">locked_resource_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation.locked_resource_name" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">locked_resource_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation.locked_resource_name" title="Link to this definition">¶</a></dt>
 <dd><p>Return the name of the locked resource</p>
 <p>This throws an error if the resource is not currently locked.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.LockedResourceReservation.retry">
-<span class="sig-name descname"><span class="pre">retry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">RetryConfig</span></em><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation.retry" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">retry</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">RetryConfig</span></span><a class="headerlink" href="#jenkinsapi.lockable_resources.LockedResourceReservation.retry" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceLabelSelector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceLabelSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceLabelSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceLabelSelector" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceLabelSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceLabelSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceLabelSelector" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a></p>
 <p>Implementation of <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a> that selects any resources with a given jenkins label</p>
 <dl class="py method">
@@ -576,14 +576,14 @@ unlocked on <code class="xref py py-meth docutils literal notranslate"><span cla
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceLockedError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceLockedError</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceLockedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceLockedError" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceLockedError</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceLockedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceLockedError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="custom_exceptions.html#jenkinsapi.custom_exceptions.JenkinsAPIException" title="jenkinsapi.custom_exceptions.JenkinsAPIException"><code class="xref py py-class docutils literal notranslate"><span class="pre">JenkinsAPIException</span></code></a></p>
 <p>Raised when a resource is locked and cannot be reserved</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceNameListSelector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceNameListSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceNameListSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceNameListSelector" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceNameListSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceNameListSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceNameListSelector" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a></p>
 <p>Implementation of <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a> that selects from a list of resources</p>
 <dl class="py method">
@@ -596,7 +596,7 @@ unlocked on <code class="xref py py-meth docutils literal notranslate"><span cla
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceNameSelector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceNameSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceNameSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceNameSelector" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceNameSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceNameSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceNameSelector" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a></p>
 <p>Implementation of <a class="reference internal" href="#jenkinsapi.lockable_resources.ResourceSelector" title="jenkinsapi.lockable_resources.ResourceSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResourceSelector</span></code></a> that selects a single resource by name</p>
 <dl class="py method">
@@ -609,19 +609,19 @@ unlocked on <code class="xref py py-meth docutils literal notranslate"><span cla
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceReservationTimeoutError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceReservationTimeoutError</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceReservationTimeoutError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceReservationTimeoutError" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceReservationTimeoutError</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceReservationTimeoutError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceReservationTimeoutError" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="custom_exceptions.html#jenkinsapi.custom_exceptions.JenkinsAPIException" title="jenkinsapi.custom_exceptions.JenkinsAPIException"><code class="xref py py-class docutils literal notranslate"><span class="pre">JenkinsAPIException</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeoutError</span></code></p>
 <p>Raised when resource reservation times out</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceSelector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceSelector</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceSelector" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.lockable_resources.</span></span><span class="sig-name descname"><span class="pre">ResourceSelector</span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceSelector" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Base class for which iterates acceptable resources for a reservation</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.lockable_resources.ResourceSelector.select">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lockable_resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceSelector.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceSelector.select" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lockable_resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#jenkinsapi.lockable_resources.LockableResources" title="jenkinsapi.lockable_resources.LockableResources"><span class="pre">LockableResources</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/jenkinsapi/lockable_resources.html#ResourceSelector.select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.lockable_resources.ResourceSelector.select" title="Link to this definition">¶</a></dt>
 <dd><p>Iterate acceptable resource names</p>
 </dd></dl>
 
@@ -772,8 +772,8 @@ unlocked on <code class="xref py py-meth docutils literal notranslate"><span cla
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=3226d6c8"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>

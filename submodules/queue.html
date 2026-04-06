@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Result_set and result" href="results.html"><link rel="prev" title="Utils" href="utils.html">
         <link rel="prefetch" href="../_static/jenkins.png" as="image">
 
-    <!-- Generated with Sphinx 8.1.3 and Furo 2025.12.19 -->
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Queue - JenkinsAPI 0.3.20 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
@@ -270,7 +270,7 @@
 <p>Queue module for jenkinsapi</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.queue.Queue">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.queue.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#Queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.Queue" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.queue.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#Queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.Queue" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase" title="jenkinsapi.jenkinsbase.JenkinsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">JenkinsBase</span></code></a></p>
 <p>Class that represents the Jenkins queue</p>
 <dl class="py method">
@@ -327,7 +327,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">jenkinsapi.queue.</span></span><span class="sig-name descname"><span class="pre">QueueItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">jenkinsapi.queue.</span></span><span class="sig-name descname"><span class="pre">QueueItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baseurl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jenkins_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="jenkins.html#jenkinsapi.jenkins.Jenkins" title="jenkinsapi.jenkins.Jenkins"><span class="pre">Jenkins</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/queue.html#QueueItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.queue.QueueItem" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase" title="jenkinsapi.jenkinsbase.JenkinsBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">JenkinsBase</span></code></a></p>
 <p>An individual item in the queue</p>
 <dl class="py method">
@@ -393,13 +393,13 @@ Returns 0 if the item is already buildable or no estimate available.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_blocked">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_blocked</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_blocked" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_blocked</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_blocked" title="Link to this definition">¶</a></dt>
 <dd><p>True if this queue item is blocked from building.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_buildable">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_buildable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_buildable" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_buildable</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_buildable" title="Link to this definition">¶</a></dt>
 <dd><p>True if this queue item is ready to be built.</p>
 </dd></dl>
 
@@ -417,23 +417,23 @@ Returns 0 if the item is already buildable or no estimate available.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.is_stuck">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_stuck</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_stuck" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_stuck</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.is_stuck" title="Link to this definition">¶</a></dt>
 <dd><p>True if this queue item is stuck (blocked for a long time).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.name" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.queue_id">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue_id</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.queue_id" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">queue_id</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.queue_id" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="jenkinsapi.queue.QueueItem.why">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">why</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.why" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">why</span></span><a class="headerlink" href="#jenkinsapi.queue.QueueItem.why" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -543,8 +543,8 @@ Returns 0 if the item is already buildable or no estimate available.</p>
     </aside>
   </div>
 </div><script src="../_static/documentation_options.js?v=3226d6c8"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
     </body>
 </html>
