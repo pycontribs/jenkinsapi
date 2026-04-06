@@ -9,8 +9,6 @@ from typing import Optional
 
 import docker
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 log = logging.getLogger(__name__)
 
@@ -115,6 +113,8 @@ class DockerJenkins:
             try:
                 self.container.stop(timeout=10)
                 self.container.remove()
+            except docker.errors.NotFound:
+                pass  # container already removed
             except docker.errors.APIError as e:
                 log.warning("Error stopping container: %s", e)
             finally:
@@ -134,15 +134,9 @@ class DockerJenkins:
 
     def wait_for_ready(self, timeout: int = 300) -> None:
         start_time = time.time()
-        session = requests.Session()
-        session.mount(
-            "http://",
-            HTTPAdapter(max_retries=Retry(total=5, backoff_factor=1)),
-        )
-
         while time.time() - start_time < timeout:
             try:
-                resp = session.get(f"{self.jenkins_url}/api/json", timeout=5)
+                resp = requests.get(f"{self.jenkins_url}/api/json", timeout=5)
                 if resp.status_code == 200:
                     return
             except requests.RequestException:

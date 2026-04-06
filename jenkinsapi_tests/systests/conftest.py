@@ -171,13 +171,13 @@ def ensure_jenkins_up(url, timeout=60):
     start = time.time()
     while time.time() - start < timeout:
         try:
-            resp = requests.get(url, timeout=5)
+            resp = requests.get(f"{url}/api/json", timeout=5)
             if resp.status_code == 200:
                 return
-        except Exception as err:
-            print("Exception connecting to jenkins", err)
+        except Exception:
+            pass
         time.sleep(2)
-    pytest.exit("Jenkins didnt become available to call")
+    pytest.exit("Jenkins didn't become available to call")
 
 
 @pytest.fixture(scope="function")
