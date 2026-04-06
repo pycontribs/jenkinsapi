@@ -42,6 +42,9 @@ dependencies = [
     "requests>=2.33.0",
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["jenkinsapi"]
+
 [project.scripts]
 jenkins_invoke = "jenkinsapi.command_line.jenkins_invoke:main"
 jenkinsapi_version = "jenkinsapi.command_line.jenkinsapi_version:main"
