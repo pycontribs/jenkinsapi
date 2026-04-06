@@ -136,7 +136,7 @@ Python versions
 
 The project has been tested against Python versions:
 
-* 3.9 - 3.14
+* 3.10 - 3.14
 
 Jenkins versions
 ----------------
