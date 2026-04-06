@@ -348,3 +348,20 @@ BUILD_ENV_VARS = {
     "_class": "org.jenkinsci.plugins.envinject.EnvInjectVarList",
     "envMap": {"KEY": "VALUE"},
 }
+
+PIPELINE_INPUT_ACTIONS = [
+    {
+        "id": "Input-step-1",
+        "message": "Deploy to production?",
+        "inputs": [
+            {
+                "name": "DEPLOY_ENV",
+                "description": "Target environment",
+                "type": "StringParameterDefinition",
+            }
+        ],
+        "proceedText": "Proceed",
+        "abortUrl": "/input/input-step-1/abort",
+        "proceedUrl": "/input/input-step-1/proceed",
+    }
+]
