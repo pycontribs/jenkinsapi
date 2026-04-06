@@ -43,7 +43,7 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["jenkinsapi"]
+packages = ["jenkinsapi", "jenkinsapi_tests"]
 
 [project.scripts]
 jenkins_invoke = "jenkinsapi.command_line.jenkins_invoke:main"
