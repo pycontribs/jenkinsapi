@@ -2,6 +2,7 @@
 Module for jenkinsapi Credential class
 """
 
+import base64
 import logging
 import xml.etree.cElementTree as ET
 
@@ -48,6 +49,9 @@ class Credential(object):
 
     def get_attributes_xml(self):
         pass
+
+    def get_files(self):
+        return None
 
     def _get_attributes_xml(self, data):
         root = ET.Element(self.jenkins_class)
@@ -308,6 +312,81 @@ class SSHKeyCredential(Credential):
         return super(SSHKeyCredential, self)._get_attributes_xml(data)
 
 
+class FileCredentials(Credential):
+    """
+    Secret file credential
+
+    Constructor expects following dict:
+        {
+            'credential_id': str,   Automatically set by jenkinsapi
+            'displayName': str,     Automatically set by Jenkins
+            'fullName': str,        Automatically set by Jenkins
+            'typeName': str,        Automatically set by Jenkins
+            'description': str,
+            'filename': str,
+            'secret_bytes': str,    Base64-encoded file content
+        }
+
+    When creating credential via jenkinsapi automatic fields not need to be in
+    dict
+    """
+
+    def __init__(self, cred_dict):
+        jenkins_class = (
+            "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl"
+        )
+        super(FileCredentials, self).__init__(cred_dict, jenkins_class)
+        self.filename = cred_dict.get(
+            "filename", cred_dict.get("fileName", "")
+        )
+        self.secret_bytes = cred_dict.get(
+            "secret_bytes", cred_dict.get("secretBytes", "")
+        )
+
+    def get_attributes(self):
+        """
+        Used by Credentials object to create credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        return {
+            "stapler-class": self.jenkins_class,
+            "Submit": "OK",
+            "json": {
+                "": "1",
+                "credentials": {
+                    "stapler-class": self.jenkins_class,
+                    "$class": self.jenkins_class,
+                    "id": c_id,
+                    "file": "file0",
+                    "description": self.description,
+                },
+            },
+        }
+
+    def get_files(self):
+        if not self.secret_bytes:
+            return None
+        return {
+            "file0": (
+                self.filename or "secret.file",
+                base64.b64decode(self.secret_bytes),
+            )
+        }
+
+    def get_attributes_xml(self):
+        """
+        Used by Credentials object to update a credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        data = {
+            "id": c_id,
+            "fileName": self.filename,
+            "secretBytes": self.secret_bytes,
+            "description": self.description,
+        }
+        return super(FileCredentials, self)._get_attributes_xml(data)
+
+
 class AmazonWebServicesCredentials(Credential):
     """
     AWS credential using the CloudBees AWS Credentials Plugin
@@ -382,3 +461,75 @@ class AmazonWebServicesCredentials(Credential):
         return super(AmazonWebServicesCredentials, self)._get_attributes_xml(
             data
         )
+
+
+class DockerServerCredentials(Credential):
+    """
+    Docker server credentials using the Docker Commons Plugin
+
+    Constructor expects following dict:
+        {
+            'credential_id': str,   Automatically set by jenkinsapi
+            'displayName': str,     Automatically set by Jenkins
+            'fullName': str,        Automatically set by Jenkins
+            'description': str,
+            'username': str,
+            'clientKey': str,
+            'clientCertificate': str,
+            'serverCaCertificate': str,
+        }
+
+    When creating credential via jenkinsapi automatic fields not need to be in
+    dict
+    """
+
+    def __init__(self, cred_dict):
+        jenkins_class = (
+            "org.jenkinsci.plugins.docker.commons.credentials."
+            "DockerServerCredentials"
+        )
+        super(DockerServerCredentials, self).__init__(cred_dict, jenkins_class)
+        self.username = cred_dict.get("username", "")
+        self.client_key = cred_dict.get(
+            "clientKeySecret", cred_dict.get("clientKey", "")
+        )
+        self.client_certificate = cred_dict.get("clientCertificate", "")
+        self.server_ca_certificate = cred_dict.get("serverCaCertificate", "")
+
+    def get_attributes(self):
+        """
+        Used by Credentials object to create credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        return {
+            "stapler-class": self.jenkins_class,
+            "Submit": "OK",
+            "json": {
+                "": "1",
+                "credentials": {
+                    "stapler-class": self.jenkins_class,
+                    "$class": self.jenkins_class,
+                    "id": c_id,
+                    "username": self.username,
+                    "clientKeySecret": self.client_key,
+                    "clientCertificate": self.client_certificate,
+                    "serverCaCertificate": self.server_ca_certificate,
+                    "description": self.description,
+                },
+            },
+        }
+
+    def get_attributes_xml(self):
+        """
+        Used by Credentials object to update a credential in Jenkins
+        """
+        c_id = "" if self.credential_id is None else self.credential_id
+        data = {
+            "id": c_id,
+            "username": self.username,
+            "clientKeySecret": self.client_key,
+            "clientCertificate": self.client_certificate,
+            "serverCaCertificate": self.server_ca_certificate,
+            "description": self.description,
+        }
+        return super(DockerServerCredentials, self)._get_attributes_xml(data)
