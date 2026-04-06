@@ -302,6 +302,86 @@ def test_wrong_mk_json_from_build_parameters(job):
     assert "Build parameters must be a dict" in str(ar.value)
 
 
+def test_update_config_accepts_bytes(job, mocker):
+    response = mocker.Mock(text="ok")
+    job.jenkins.requester.post_url = mocker.Mock(return_value=response)
+
+    config = (
+        b'<?xml version="1.0" encoding="UTF-8"?>'
+        b"<project><description>bytes</description></project>"
+    )
+
+    result = job.update_config(config)
+
+    assert result == "ok"
+    job.jenkins.requester.post_url.assert_called_once_with(
+        job.get_config_xml_url(), params={}, data=config
+    )
+    assert job._element_tree.find("description").text == "bytes"
+
+
+def test_change_description_same_value_is_noop(job, mocker):
+    job._config = "<project><description>test job</description></project>"
+    update_config = mocker.patch.object(job, "update_config")
+
+    job.change_description("test job")
+
+    update_config.assert_not_called()
+
+
+def test_set_concurrent_builds_same_value_is_noop(job, mocker):
+    job._config = "<project><concurrentBuild>false</concurrentBuild></project>"
+    update_config = mocker.patch.object(job, "update_config")
+
+    job.set_concurrent_builds(False)
+
+    update_config.assert_not_called()
+
+
+def test_wipe_out_workspace_posts_expected_url(job, mocker):
+    post_and_confirm_status = mocker.patch.object(
+        job.jenkins.requester,
+        "post_and_confirm_status",
+        return_value="ok",
+    )
+
+    result = job.wipe_out_workspace()
+
+    assert result == "ok"
+    post_and_confirm_status.assert_called_once_with(
+        "http://halob:8080/job/foo/doWipeOutWorkspace",
+        data="",
+    )
+
+
+def test_trigger_scm_poll_posts_expected_url(job, mocker):
+    post_and_confirm_status = mocker.patch.object(
+        job.jenkins.requester,
+        "post_and_confirm_status",
+        return_value="ok",
+    )
+
+    result = job.trigger_scm_poll()
+
+    assert result == "ok"
+    post_and_confirm_status.assert_called_once_with(
+        "http://halob:8080/job/foo/polling",
+        data="",
+    )
+
+
+def test_restrict_to_node_sets_assigned_node_and_disables_roaming(job, mocker):
+    job._config = "<project><canRoam>true</canRoam></project>"
+    update_config = mocker.patch.object(job, "update_config")
+
+    job.restrict_to_node("agent-1")
+
+    update_config.assert_called_once()
+    updated_config = update_config.call_args.args[0].decode("utf-8")
+    assert "<assignedNode>agent-1</assignedNode>" in updated_config
+    assert "<canRoam>false</canRoam>" in updated_config
+
+
 def test_get_build_by_params(jenkins, monkeypatch, mocker):
     build_params = {"param1": "value1"}
     fake_builds = (
