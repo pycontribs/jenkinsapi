@@ -306,6 +306,21 @@ def test_build_get_number(build) -> None:
     assert build.get_number() == 1
 
 
+def test_is_good_returns_true_for_successful_completed_build(build) -> None:
+    assert build.is_good() is True
+
+
+def test_is_good_returns_false_when_running(build, monkeypatch) -> None:
+    monkeypatch.setattr(Build, "is_running", lambda self: True)
+    assert build.is_good() is False
+
+
+def test_is_good_polls_fresh_data(build, monkeypatch) -> None:
+    """is_good() must call _poll() to avoid returning stale cached data."""
+    build._data = dict(configs.BUILD_DATA, result="FAILURE")
+    assert build.is_good() is True  # _poll() refreshes result to SUCCESS
+
+
 def test_build_get_artifacts(build) -> None:
     afs: List[Artifact] = list(build.get_artifacts())
     assert len(afs) == 1
