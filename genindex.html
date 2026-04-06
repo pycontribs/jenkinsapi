@@ -266,6 +266,8 @@
   <h2>A</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/build.html#jenkinsapi.build.Build.abort_input">abort_input() (jenkinsapi.build.Build method)</a>
+</li>
         <li><a href="submodules/views.html#jenkinsapi.view.View.add_job">add_job() (jenkinsapi.view.View method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.add_labels">add_labels() (jenkinsapi.node.Node method)</a>
@@ -428,10 +430,10 @@
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_node">delete_node() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugin">delete_plugin() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_plugins">delete_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.delete_user">delete_user() (jenkinsapi.jenkins.Jenkins method)</a>
@@ -451,6 +453,8 @@
         <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins">DockerJenkins (class in jenkinsapi.utils.docker_jenkins)</a>
 </li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkinsError">DockerJenkinsError</a>
+</li>
+        <li><a href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials">DockerServerCredentials (class in jenkinsapi.credential)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.downgrade_plugin">downgrade_plugin() (jenkinsapi.plugins.Plugins method)</a>
 </li>
@@ -485,6 +489,8 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.FailedNoResults">FailedNoResults</a>
+</li>
+        <li><a href="submodules/credentials.html#jenkinsapi.credential.FileCredentials">FileCredentials (class in jenkinsapi.credential)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
@@ -527,6 +533,10 @@
         <ul>
           <li><a href="submodules/credentials.html#jenkinsapi.credential.Credential.get_attributes">(jenkinsapi.credential.Credential method)</a>
 </li>
+          <li><a href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials.get_attributes">(jenkinsapi.credential.DockerServerCredentials method)</a>
+</li>
+          <li><a href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_attributes">(jenkinsapi.credential.FileCredentials method)</a>
+</li>
           <li><a href="submodules/credentials.html#jenkinsapi.credential.SecretTextCredential.get_attributes">(jenkinsapi.credential.SecretTextCredential method)</a>
 </li>
           <li><a href="submodules/credentials.html#jenkinsapi.credential.SSHKeyCredential.get_attributes">(jenkinsapi.credential.SSHKeyCredential method)</a>
@@ -540,6 +550,10 @@
 
         <ul>
           <li><a href="submodules/credentials.html#jenkinsapi.credential.Credential.get_attributes_xml">(jenkinsapi.credential.Credential method)</a>
+</li>
+          <li><a href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials.get_attributes_xml">(jenkinsapi.credential.DockerServerCredentials method)</a>
+</li>
+          <li><a href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_attributes_xml">(jenkinsapi.credential.FileCredentials method)</a>
 </li>
           <li><a href="submodules/credentials.html#jenkinsapi.credential.SecretTextCredential.get_attributes_xml">(jenkinsapi.credential.SecretTextCredential method)</a>
 </li>
@@ -650,6 +664,12 @@
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_executors">get_executors() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
+        <li><a href="submodules/credentials.html#jenkinsapi.credential.Credential.get_files">get_files() (jenkinsapi.credential.Credential method)</a>
+
+        <ul>
+          <li><a href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_files">(jenkinsapi.credential.FileCredentials method)</a>
+</li>
+        </ul></li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.get_first_build">get_first_build() (jenkinsapi.job.Job method)</a>
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.get_first_buildnumber">get_first_buildnumber() (jenkinsapi.job.Job method)</a>
@@ -706,10 +726,10 @@
           <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.get_job">(jenkinsapi.queue.QueueItem method)</a>
 </li>
         </ul></li>
-        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">get_job_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_job_by_url">get_job_by_url() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
         <li><a href="submodules/views.html#jenkinsapi.view.View.get_job_dict">get_job_dict() (jenkinsapi.view.View method)</a>
 </li>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.get_job_name">get_job_name() (jenkinsapi.queue.QueueItem method)</a>
@@ -809,6 +829,8 @@
 </li>
         </ul></li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.get_params_list">get_params_list() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="submodules/build.html#jenkinsapi.build.Build.get_pending_input_actions">get_pending_input_actions() (jenkinsapi.build.Build method)</a>
 </li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.get_plugins">get_plugins() (jenkinsapi.jenkins.Jenkins method)</a>
 </li>
@@ -1639,6 +1661,8 @@
 </li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.pprint">pprint() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
 </li>
+        <li><a href="submodules/build.html#jenkinsapi.build.Build.proceed_input">proceed_input() (jenkinsapi.build.Build method)</a>
+</li>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.process_job_folder">process_job_folder() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.properties">properties (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
@@ -1779,9 +1803,11 @@
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.job.Job.set_concurrent_builds">set_concurrent_builds() (jenkinsapi.job.Job method)</a>
 </li>
+        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
+        <li><a href="submodules/build.html#jenkinsapi.build.Build.set_description">set_description() (jenkinsapi.build.Build method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
 </li>

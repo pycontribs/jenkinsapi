@@ -298,6 +298,7 @@
 <li class="toctree-l2"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build"><code class="docutils literal notranslate"><span class="pre">Build</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.STR_TOTALCOUNT"><code class="docutils literal notranslate"><span class="pre">Build.STR_TOTALCOUNT</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.STR_TPL_NOTESTS_ERR"><code class="docutils literal notranslate"><span class="pre">Build.STR_TPL_NOTESTS_ERR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.abort_input"><code class="docutils literal notranslate"><span class="pre">Build.abort_input()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.block"><code class="docutils literal notranslate"><span class="pre">Build.block()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.block_until_complete"><code class="docutils literal notranslate"><span class="pre">Build.block_until_complete()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_actions"><code class="docutils literal notranslate"><span class="pre">Build.get_actions()</span></code></a></li>
@@ -322,6 +323,7 @@
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_matrix_runs"><code class="docutils literal notranslate"><span class="pre">Build.get_matrix_runs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_number"><code class="docutils literal notranslate"><span class="pre">Build.get_number()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_params"><code class="docutils literal notranslate"><span class="pre">Build.get_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_pending_input_actions"><code class="docutils literal notranslate"><span class="pre">Build.get_pending_input_actions()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_repo_url"><code class="docutils literal notranslate"><span class="pre">Build.get_repo_url()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_result_url"><code class="docutils literal notranslate"><span class="pre">Build.get_result_url()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.get_resultset"><code class="docutils literal notranslate"><span class="pre">Build.get_resultset()</span></code></a></li>
@@ -340,6 +342,8 @@
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.is_kept_forever"><code class="docutils literal notranslate"><span class="pre">Build.is_kept_forever()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.is_running"><code class="docutils literal notranslate"><span class="pre">Build.is_running()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.name"><code class="docutils literal notranslate"><span class="pre">Build.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.proceed_input"><code class="docutils literal notranslate"><span class="pre">Build.proceed_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.set_description"><code class="docutils literal notranslate"><span class="pre">Build.set_description()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.stop"><code class="docutils literal notranslate"><span class="pre">Build.stop()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.stream_logs"><code class="docutils literal notranslate"><span class="pre">Build.stream_logs()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/build.html#jenkinsapi.build.Build.toggle_keep"><code class="docutils literal notranslate"><span class="pre">Build.toggle_keep()</span></code></a></li>
@@ -373,6 +377,18 @@
 <li class="toctree-l3"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.Credential"><code class="docutils literal notranslate"><span class="pre">Credential</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.Credential.get_attributes"><code class="docutils literal notranslate"><span class="pre">Credential.get_attributes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.Credential.get_attributes_xml"><code class="docutils literal notranslate"><span class="pre">Credential.get_attributes_xml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.Credential.get_files"><code class="docutils literal notranslate"><span class="pre">Credential.get_files()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials"><code class="docutils literal notranslate"><span class="pre">DockerServerCredentials</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials.get_attributes"><code class="docutils literal notranslate"><span class="pre">DockerServerCredentials.get_attributes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.DockerServerCredentials.get_attributes_xml"><code class="docutils literal notranslate"><span class="pre">DockerServerCredentials.get_attributes_xml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.FileCredentials"><code class="docutils literal notranslate"><span class="pre">FileCredentials</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_attributes"><code class="docutils literal notranslate"><span class="pre">FileCredentials.get_attributes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_attributes_xml"><code class="docutils literal notranslate"><span class="pre">FileCredentials.get_attributes_xml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.FileCredentials.get_files"><code class="docutils literal notranslate"><span class="pre">FileCredentials.get_files()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="submodules/credentials.html#jenkinsapi.credential.SSHKeyCredential"><code class="docutils literal notranslate"><span class="pre">SSHKeyCredential</span></code></a><ul>

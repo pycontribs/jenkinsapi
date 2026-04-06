@@ -949,6 +949,58 @@
         <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;envMap&quot;</span><span class="p">]</span></div>
 
 
+<div class="viewcode-block" id="Build.set_description">
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.set_description">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the description for this build.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/submitDescription&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;description=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">description</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Build.get_pending_input_actions">
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.get_pending_input_actions">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_pending_input_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get pending input actions for a Pipeline build.</span>
+
+<span class="sd">        Returns a list of pending input action dicts, each containing:</span>
+<span class="sd">        - id: The input step ID</span>
+<span class="sd">        - message: The prompt message</span>
+<span class="sd">        - inputs: List of parameter definitions</span>
+
+<span class="sd">        :return: List of pending input action dicts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/wfapi/pendingInputActions&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Build.proceed_input">
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.proceed_input">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">proceed_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Proceed (approve) a pending Pipeline input step.</span>
+
+<span class="sd">        :param input_id: The ID of the input step to proceed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/input/</span><span class="si">%s</span><span class="s2">/proceedEmpty&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">input_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Build.abort_input">
+<a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.abort_input">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">abort_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Abort a pending Pipeline input step.</span>
+
+<span class="sd">        :param input_id: The ID of the input step to abort</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/input/</span><span class="si">%s</span><span class="s2">/abort&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span><span class="p">,</span> <span class="n">input_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Build.toggle_keep">
 <a class="viewcode-back" href="../../submodules/build.html#jenkinsapi.build.Build.toggle_keep">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">toggle_keep</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
