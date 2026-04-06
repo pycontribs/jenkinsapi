@@ -302,6 +302,10 @@
 </li>
         <li><a href="submodules/build.html#jenkinsapi.build.Build.block">block() (jenkinsapi.build.Build method)</a>
 </li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.block_build_when_downstream_building">block_build_when_downstream_building() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.block_build_when_upstream_building">block_build_when_upstream_building() (jenkinsapi.job.Job method)</a>
+</li>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.block_until_building">block_until_building() (jenkinsapi.queue.QueueItem method)</a>
 </li>
         <li><a href="submodules/api.html#jenkinsapi.api.block_until_complete">block_until_complete() (in module jenkinsapi.api)</a>
@@ -338,6 +342,8 @@
 </li>
         <li><a href="submodules/views.html#jenkinsapi.views.Views.CATEGORIZED_VIEW">CATEGORIZED_VIEW (jenkinsapi.views.Views attribute)</a>
 </li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.change_description">change_description() (jenkinsapi.job.Job method)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.change_mode">change_mode() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.check_updates_server">check_updates_server() (jenkinsapi.plugins.Plugins method)</a>
@@ -358,10 +364,10 @@
 </li>
         <li><a href="submodules/jobs.html#jenkinsapi.jobs.Jobs.create_multibranch_pipeline">create_multibranch_pipeline() (jenkinsapi.jobs.Jobs method)</a>
 </li>
-        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job">create_multibranch_pipeline_job() (jenkinsapi.jenkins.Jenkins method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_multibranch_pipeline_job">create_multibranch_pipeline_job() (jenkinsapi.jenkins.Jenkins method)</a>
+</li>
         <li><a href="submodules/jenkins.html#jenkinsapi.jenkins.Jenkins.create_node">create_node() (jenkinsapi.jenkins.Jenkins method)</a>
 
         <ul>
@@ -1699,10 +1705,10 @@
 </li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedByEmail">reservedByEmail (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResourceDict.reservedTimestamp">reservedTimestamp (jenkinsapi.lockable_resources.LockableResourceDict attribute)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/jenkinsbase.html#jenkinsapi.jenkinsbase.JenkinsBase.resolve_job_folders">resolve_job_folders() (jenkinsapi.jenkinsbase.JenkinsBase method)</a>
 </li>
         <li><a href="submodules/command_line.html#jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke.resolve_password">resolve_password() (jenkinsapi.command_line.jenkins_invoke.JenkinsInvoke static method)</a>
@@ -1722,6 +1728,8 @@
         <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.restart_jenkins_service">restart_jenkins_service() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
         <li><a href="submodules/plugins.html#jenkinsapi.plugins.Plugins.restart_required">restart_required (jenkinsapi.plugins.Plugins property)</a>
+</li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.restrict_to_node">restrict_to_node() (jenkinsapi.job.Job method)</a>
 </li>
         <li><a href="submodules/results.html#jenkinsapi.result.Result">Result (class in jenkinsapi.result)</a>
 </li>
@@ -1769,10 +1777,12 @@
         </ul></li>
         <li><a href="submodules/utils.html#jenkinsapi.utils.simple_post_logger.ServerHandler">ServerHandler (class in jenkinsapi.utils.simple_post_logger)</a>
 </li>
-        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.set_concurrent_builds">set_concurrent_builds() (jenkinsapi.job.Job method)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_config_element">set_config_element() (jenkinsapi.node.Node method)</a>
+</li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_num_executors">set_num_executors() (jenkinsapi.node.Node method)</a>
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.set_offline">set_offline() (jenkinsapi.node.Node method)</a>
@@ -1821,6 +1831,8 @@
 </li>
         <li><a href="submodules/nodes.html#jenkinsapi.node.Node.toggle_temporarily_offline">toggle_temporarily_offline() (jenkinsapi.node.Node method)</a>
 </li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.trigger_scm_poll">trigger_scm_poll() (jenkinsapi.job.Job method)</a>
+</li>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.try_reserve">try_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
     </ul></td>
@@ -1831,6 +1843,10 @@
   <h2>U</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.unblock_build_when_downstream_building">unblock_build_when_downstream_building() (jenkinsapi.job.Job method)</a>
+</li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.unblock_build_when_upstream_building">unblock_build_when_upstream_building() (jenkinsapi.job.Job method)</a>
+</li>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownJob">UnknownJob</a>
 </li>
         <li><a href="submodules/custom_exceptions.html#jenkinsapi.custom_exceptions.UnknownNode">UnknownNode</a>
@@ -1925,11 +1941,13 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/utils.html#jenkinsapi.utils.docker_jenkins.DockerJenkins.wait_for_ready">wait_for_ready() (jenkinsapi.utils.docker_jenkins.DockerJenkins method)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/lockable_resources.html#jenkinsapi.lockable_resources.LockableResources.wait_reserve">wait_reserve() (jenkinsapi.lockable_resources.LockableResources method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="submodules/queue.html#jenkinsapi.queue.QueueItem.why">why (jenkinsapi.queue.QueueItem property)</a>
+</li>
+        <li><a href="submodules/jobs.html#jenkinsapi.job.Job.wipe_out_workspace">wipe_out_workspace() (jenkinsapi.job.Job method)</a>
 </li>
     </ul></td>
   </tr></table>

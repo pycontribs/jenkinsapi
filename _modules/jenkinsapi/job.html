@@ -1039,7 +1039,10 @@
 <span class="sd">            Useful for debugging and validation workflows.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_config_xml_url</span><span class="p">()</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>  <span class="c1"># cast unicode in case of Python 2</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>  <span class="c1"># cast unicode in case of Python 2</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_url</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{},</span> <span class="n">data</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
         <span class="p">)</span>
@@ -1275,6 +1278,132 @@
         <span class="n">jenkins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span>
         <span class="k">del</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">jobs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">jobs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.wipe_out_workspace">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.wipe_out_workspace">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wipe_out_workspace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wipe out the workspace of this job.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/doWipeOutWorkspace&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.trigger_scm_poll">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.trigger_scm_poll">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">trigger_scm_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trigger an SCM poll for this job to check for new changes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/polling&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_jenkins_obj</span><span class="p">()</span><span class="o">.</span><span class="n">requester</span><span class="o">.</span><span class="n">post_and_confirm_status</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.change_description">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.change_description">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the description of this job.</span>
+
+<span class="sd">        :param description: new description text</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">element_tree</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="n">description</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">description</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Job.set_concurrent_builds">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.set_concurrent_builds">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_concurrent_builds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enable or disable concurrent build execution for this job.</span>
+
+<span class="sd">        :param enabled: bool, True to allow concurrent builds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;concurrentBuild&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">element_tree</span><span class="p">,</span> <span class="s2">&quot;concurrentBuild&quot;</span><span class="p">)</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span> <span class="k">if</span> <span class="n">enabled</span> <span class="k">else</span> <span class="s2">&quot;false&quot;</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="n">new_value</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Job.block_build_when_downstream_building">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.block_build_when_downstream_building">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">block_build_when_downstream_building</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Block builds of this job while downstream projects are building.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_build_block</span><span class="p">(</span><span class="s2">&quot;blockBuildWhenDownstreamBuilding&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.unblock_build_when_downstream_building">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.unblock_build_when_downstream_building">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unblock_build_when_downstream_building</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allow builds of this job while downstream projects are building.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_build_block</span><span class="p">(</span><span class="s2">&quot;blockBuildWhenDownstreamBuilding&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.block_build_when_upstream_building">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.block_build_when_upstream_building">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">block_build_when_upstream_building</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Block builds of this job while upstream projects are building.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_build_block</span><span class="p">(</span><span class="s2">&quot;blockBuildWhenUpstreamBuilding&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Job.unblock_build_when_upstream_building">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.unblock_build_when_upstream_building">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unblock_build_when_upstream_building</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allow builds of this job while upstream projects are building.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_build_block</span><span class="p">(</span><span class="s2">&quot;blockBuildWhenUpstreamBuilding&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_build_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element_name</span><span class="p">,</span> <span class="n">block</span><span class="p">):</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">element_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">element_tree</span><span class="p">,</span> <span class="n">element_name</span><span class="p">)</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span> <span class="k">if</span> <span class="n">block</span> <span class="k">else</span> <span class="s2">&quot;false&quot;</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="n">new_value</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">new_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Job.restrict_to_node">
+<a class="viewcode-back" href="../../submodules/jobs.html#jenkinsapi.job.Job.restrict_to_node">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">restrict_to_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restrict this job to run only on the specified node or label.</span>
+
+<span class="sd">        :param node_name: string, name of the node or label to restrict to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element_tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_config_element_tree</span><span class="p">()</span>
+        <span class="n">assigned_node</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;assignedNode&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">assigned_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">assigned_node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">node_name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">assigned_node</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">element_tree</span><span class="p">,</span> <span class="s2">&quot;assignedNode&quot;</span><span class="p">)</span>
+            <span class="n">assigned_node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">node_name</span>
+            <span class="n">can_roam</span> <span class="o">=</span> <span class="n">element_tree</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;canRoam&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">can_roam</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">can_roam</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">ET</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">element_tree</span><span class="p">))</span></div>
 </div>
 
 </pre></div>

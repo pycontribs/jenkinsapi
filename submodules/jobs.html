@@ -405,6 +405,29 @@ jenkinsapi.Job objects.</p>
 <p>Represents a jenkins job
 A job can hold N builds which are the actual execution environments</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.block_build_when_downstream_building">
+<span class="sig-name descname"><span class="pre">block_build_when_downstream_building</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.block_build_when_downstream_building"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.block_build_when_downstream_building" title="Link to this definition">¶</a></dt>
+<dd><p>Block builds of this job while downstream projects are building.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.block_build_when_upstream_building">
+<span class="sig-name descname"><span class="pre">block_build_when_upstream_building</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.block_build_when_upstream_building"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.block_build_when_upstream_building" title="Link to this definition">¶</a></dt>
+<dd><p>Block builds of this job while upstream projects are building.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.change_description">
+<span class="sig-name descname"><span class="pre">change_description</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.change_description"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.change_description" title="Link to this definition">¶</a></dt>
+<dd><p>Update the description of this job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong> – new description text</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.delete_build">
 <span class="sig-name descname"><span class="pre">delete_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.delete_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.delete_build" title="Link to this definition">¶</a></dt>
 <dd><p>Remove build</p>
@@ -791,9 +814,49 @@ Useful for resetting build history while keeping job settings.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.restrict_to_node">
+<span class="sig-name descname"><span class="pre">restrict_to_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.restrict_to_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.restrict_to_node" title="Link to this definition">¶</a></dt>
+<dd><p>Restrict this job to run only on the specified node or label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node_name</strong> – string, name of the node or label to restrict to</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.set_concurrent_builds">
+<span class="sig-name descname"><span class="pre">set_concurrent_builds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.set_concurrent_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.set_concurrent_builds" title="Link to this definition">¶</a></dt>
+<dd><p>Enable or disable concurrent build execution for this job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enabled</strong> – bool, True to allow concurrent builds</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.toggle_keep_build">
 <span class="sig-name descname"><span class="pre">toggle_keep_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.toggle_keep_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.toggle_keep_build" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.trigger_scm_poll">
+<span class="sig-name descname"><span class="pre">trigger_scm_poll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.trigger_scm_poll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.trigger_scm_poll" title="Link to this definition">¶</a></dt>
+<dd><p>Trigger an SCM poll for this job to check for new changes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.unblock_build_when_downstream_building">
+<span class="sig-name descname"><span class="pre">unblock_build_when_downstream_building</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.unblock_build_when_downstream_building"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.unblock_build_when_downstream_building" title="Link to this definition">¶</a></dt>
+<dd><p>Allow builds of this job while downstream projects are building.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.unblock_build_when_upstream_building">
+<span class="sig-name descname"><span class="pre">unblock_build_when_upstream_building</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.unblock_build_when_upstream_building"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.unblock_build_when_upstream_building" title="Link to this definition">¶</a></dt>
+<dd><p>Allow builds of this job while upstream projects are building.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.update_config">
@@ -805,6 +868,12 @@ Also refresh the ElementTree object since the config has changed
 <div><p>response object instead of just the response text.
 Useful for debugging and validation workflows.</p>
 </div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.wipe_out_workspace">
+<span class="sig-name descname"><span class="pre">wipe_out_workspace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.wipe_out_workspace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.wipe_out_workspace" title="Link to this definition">¶</a></dt>
+<dd><p>Wipe out the workspace of this job.</p>
 </dd></dl>
 
 </dd></dl>
@@ -886,6 +955,9 @@ Useful for debugging and validation workflows.</p>
 </li>
 <li><a class="reference internal" href="#module-jenkinsapi.job">Job</a><ul>
 <li><a class="reference internal" href="#jenkinsapi.job.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a><ul>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.block_build_when_downstream_building"><code class="docutils literal notranslate"><span class="pre">Job.block_build_when_downstream_building()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.block_build_when_upstream_building"><code class="docutils literal notranslate"><span class="pre">Job.block_build_when_upstream_building()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.change_description"><code class="docutils literal notranslate"><span class="pre">Job.change_description()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.delete_build"><code class="docutils literal notranslate"><span class="pre">Job.delete_build()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.delete_from_queue"><code class="docutils literal notranslate"><span class="pre">Job.delete_from_queue()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.disable"><code class="docutils literal notranslate"><span class="pre">Job.disable()</span></code></a></li>
@@ -940,8 +1012,14 @@ Useful for debugging and validation workflows.</p>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.modify_scm_url"><code class="docutils literal notranslate"><span class="pre">Job.modify_scm_url()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.poll"><code class="docutils literal notranslate"><span class="pre">Job.poll()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.recreate"><code class="docutils literal notranslate"><span class="pre">Job.recreate()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.restrict_to_node"><code class="docutils literal notranslate"><span class="pre">Job.restrict_to_node()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.set_concurrent_builds"><code class="docutils literal notranslate"><span class="pre">Job.set_concurrent_builds()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.toggle_keep_build"><code class="docutils literal notranslate"><span class="pre">Job.toggle_keep_build()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.trigger_scm_poll"><code class="docutils literal notranslate"><span class="pre">Job.trigger_scm_poll()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.unblock_build_when_downstream_building"><code class="docutils literal notranslate"><span class="pre">Job.unblock_build_when_downstream_building()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.unblock_build_when_upstream_building"><code class="docutils literal notranslate"><span class="pre">Job.unblock_build_when_upstream_building()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.update_config"><code class="docutils literal notranslate"><span class="pre">Job.update_config()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.wipe_out_workspace"><code class="docutils literal notranslate"><span class="pre">Job.wipe_out_workspace()</span></code></a></li>
 </ul>
 </li>
 </ul>
