@@ -1,5 +1,6 @@
 # Changelog
 
+- chore: drop Python 3.9 support, require Python 3.10+
 - packaging: raise minimum requests version to 2.32.5 to avoid vulnerable installs
 - node class: add ability to add, modify, and delete node labels
 
