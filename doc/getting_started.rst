@@ -35,13 +35,12 @@ the testsuite with the following command:
     uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
-Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
-missing test dependencies:
+To set up a fresh environment explicitly:
 
 .. code-block:: bash
 
     uv venv
-    uv python install
+    uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Get version of Jenkins
@@ -57,7 +56,7 @@ Get version of Jenkins
         return server
 
     if __name__ == '__main__':
-        print get_server_instance().version
+        print(get_server_instance().version)
 
 The above code prints version of Jenkins running on the host *jenkins_host*.
 
@@ -77,10 +76,10 @@ Get details of jobs running on Jenkins server
         # Refer Example #1 for definition of function 'get_server_instance'
         server = get_server_instance()
         for job_name, job_instance in server.get_jobs():
-            print 'Job Name:%s' % (job_instance.name)
-            print 'Job Description:%s' % (job_instance.get_description())
-            print 'Is Job running:%s' % (job_instance.is_running())
-            print 'Is Job enabled:%s' % (job_instance.is_enabled())
+            print('Job Name:%s' % (job_instance.name))
+            print('Job Description:%s' % (job_instance.get_description()))
+            print('Is Job running:%s' % (job_instance.is_running()))
+            print('Is Job enabled:%s' % (job_instance.is_enabled()))
 
 Disable/Enable a Jenkins Job
 ----------------------------
@@ -95,7 +94,7 @@ Disable/Enable a Jenkins Job
         if (server.has_job(job_name)):
             job_instance = server.get_job(job_name)
             job_instance.disable()
-            print 'Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled())
+            print('Name:%s,Is Job Enabled ?:%s' % (job_name, job_instance.is_enabled()))
 
 Use the call ``job_instance.enable()`` to enable a Jenkins Job.
 
@@ -111,12 +110,12 @@ Jenkins instance.
         # Refer Example #1 for definition of function 'get_server_instance'
         server = get_server_instance()
         for plugin in server.get_plugins().values():
-            print "Short Name:%s" % (plugin.shortName)
-            print "Long Name:%s" % (plugin.longName)
-            print "Version:%s" % (plugin.version)
-            print "URL:%s" % (plugin.url)
-            print "Active:%s" % (plugin.active)
-            print "Enabled:%s" % (plugin.enabled)
+            print("Short Name:%s" % (plugin.shortName))
+            print("Long Name:%s" % (plugin.longName))
+            print("Version:%s" % (plugin.version))
+            print("URL:%s" % (plugin.url))
+            print("Active:%s" % (plugin.active))
+            print("Enabled:%s" % (plugin.enabled))
 
 Getting version information from a completed build
 --------------------------------------------------
@@ -136,6 +135,6 @@ In a continuous-integration environment you want to be able to programatically d
         return lgb.get_revision()
 
     if __name__ == '__main__':
-        print getSCMInfroFromLatestGoodBuild('http://localhost:8080', 'fooJob')
+        print(getSCMInfroFromLatestGoodBuild('http://localhost:8080', 'fooJob'))
 
 When used with the Git source-control system line 20 will print out something like '8b4f4e6f6d0af609bb77f95d8fb82ff1ee2bba0d' - which looks suspiciously like a Git revision number.

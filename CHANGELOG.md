@@ -1,9 +1,12 @@
 # Changelog
 
+## 0.3.20
+
 - packaging: raise minimum requests version to 2.32.5 to avoid vulnerable installs
 - node class: add ability to add, modify, and delete node labels
+- drop Python 3.9 support; require Python 3.10+
 
-## 3.3.13
+## 0.3.13
 
 - docs: fix doc and add autobuild
 - feature: add launch method to Node class (#849)

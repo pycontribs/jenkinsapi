@@ -7,9 +7,8 @@ test:
 	uv run pytest -sv jenkinsapi_tests -m "not docker"
 
 lint:
-	uv run pylint jenkinsapi/*.py
-	uv run flake8 jenkinsapi/ --count --select=E9,F63,F7,F82 --ignore F821,W503,W504 --show-source --statistics
-	uv run flake8 jenkinsapi/ --count --exit-zero --max-complexity=10 --max-line-length=79 --statistics
+	uv run ruff check jenkinsapi/
+	uv run ruff format --check jenkinsapi/
 
 dist:
 	uv build

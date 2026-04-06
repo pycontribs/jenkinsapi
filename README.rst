@@ -74,10 +74,10 @@ Get details of jobs running on Jenkins server
         # Refer Example #1 for definition of function 'get_server_instance'
         server = get_server_instance()
         for job_name, job_instance in server.get_jobs():
-            print 'Job Name:%s' % (job_instance.name)
-            print 'Job Description:%s' % (job_instance.get_description())
-            print 'Is Job running:%s' % (job_instance.is_running())
-            print 'Is Job enabled:%s' % (job_instance.is_enabled())
+            print('Job Name:%s' % (job_instance.name))
+            print('Job Description:%s' % (job_instance.get_description()))
+            print('Is Job running:%s' % (job_instance.is_running()))
+            print('Is Job enabled:%s' % (job_instance.is_enabled()))
 
 Disable/Enable a Jenkins Job
 ----------------------------
@@ -92,7 +92,7 @@ Disable/Enable a Jenkins Job
         if (server.has_job(job_name)):
             job_instance = server.get_job(job_name)
             job_instance.disable()
-            print 'Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled())
+            print('Name:%s,Is Job Enabled ?:%s' % (job_name, job_instance.is_enabled()))
 
 Use the call ``job_instance.enable()`` to enable a Jenkins Job.
 
@@ -136,7 +136,7 @@ Python versions
 
 The project has been tested against Python versions:
 
-* 3.9 - 3.14
+* 3.10 - 3.14 (tested via CI)
 
 Jenkins versions
 ----------------

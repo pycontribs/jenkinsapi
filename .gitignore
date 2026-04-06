@@ -31,3 +31,5 @@ coverage.xml
 venv/
 tags
 .pytype/
+.ruff_cache/
+__pycache__/
