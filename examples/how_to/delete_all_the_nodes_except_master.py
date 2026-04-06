@@ -10,7 +10,7 @@ logging.basicConfig()
 
 j = Jenkins("http://localhost:8080")
 
-for node_id, _ in j.get_nodes().iteritems():
+for node_id, _ in j.get_nodes().items():
     if node_id != "master":
         print(node_id)
         j.delete_node(node_id)
