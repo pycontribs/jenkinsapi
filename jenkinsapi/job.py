@@ -657,7 +657,10 @@ class Job(JenkinsBase, MutableJenkinsThing):
             Useful for debugging and validation workflows.
         """
         url = self.get_config_xml_url()
-        config = str(config)  # cast unicode in case of Python 2
+        if isinstance(config, bytes):
+            config = config.decode(encoding)
+        else:
+            config = str(config)  # cast unicode in case of Python 2
         response = self.jenkins.requester.post_url(
             url, params={}, data=config.encode(encoding)
         )
@@ -845,3 +848,102 @@ class Job(JenkinsBase, MutableJenkinsThing):
         jenkins = self.get_jenkins_obj()
         del jenkins.jobs[name]
         return jenkins.jobs.create(name, config)
+
+    def wipe_out_workspace(self):
+        """
+        Wipe out the workspace of this job.
+        """
+        url = "%s/doWipeOutWorkspace" % self.baseurl
+        return self.get_jenkins_obj().requester.post_and_confirm_status(
+            url, data=""
+        )
+
+    def trigger_scm_poll(self):
+        """
+        Trigger an SCM poll for this job to check for new changes.
+        """
+        url = "%s/polling" % self.baseurl
+        return self.get_jenkins_obj().requester.post_and_confirm_status(
+            url, data=""
+        )
+
+    def change_description(self, description: str) -> None:
+        """
+        Update the description of this job.
+
+        :param description: new description text
+        """
+        element_tree = self._get_config_element_tree()
+        node = element_tree.find("description")
+        if node is None:
+            node = ET.SubElement(element_tree, "description")
+        if node.text != description:
+            node.text = description
+            self.update_config(ET.tostring(element_tree))
+
+    def set_concurrent_builds(self, enabled):
+        """
+        Enable or disable concurrent build execution for this job.
+
+        :param enabled: bool, True to allow concurrent builds
+        """
+        element_tree = self._get_config_element_tree()
+        node = element_tree.find("concurrentBuild")
+        if node is None:
+            node = ET.SubElement(element_tree, "concurrentBuild")
+        new_value = "true" if enabled else "false"
+        if node.text != new_value:
+            node.text = new_value
+            self.update_config(ET.tostring(element_tree))
+
+    def block_build_when_downstream_building(self):
+        """
+        Block builds of this job while downstream projects are building.
+        """
+        self._set_build_block("blockBuildWhenDownstreamBuilding", True)
+
+    def unblock_build_when_downstream_building(self):
+        """
+        Allow builds of this job while downstream projects are building.
+        """
+        self._set_build_block("blockBuildWhenDownstreamBuilding", False)
+
+    def block_build_when_upstream_building(self):
+        """
+        Block builds of this job while upstream projects are building.
+        """
+        self._set_build_block("blockBuildWhenUpstreamBuilding", True)
+
+    def unblock_build_when_upstream_building(self):
+        """
+        Allow builds of this job while upstream projects are building.
+        """
+        self._set_build_block("blockBuildWhenUpstreamBuilding", False)
+
+    def _set_build_block(self, element_name, block):
+        element_tree = self._get_config_element_tree()
+        node = element_tree.find(element_name)
+        if node is None:
+            node = ET.SubElement(element_tree, element_name)
+        new_value = "true" if block else "false"
+        if node.text != new_value:
+            node.text = new_value
+            self.update_config(ET.tostring(element_tree))
+
+    def restrict_to_node(self, node_name):
+        """
+        Restrict this job to run only on the specified node or label.
+
+        :param node_name: string, name of the node or label to restrict to
+        """
+        element_tree = self._get_config_element_tree()
+        assigned_node = element_tree.find("assignedNode")
+        if assigned_node is not None:
+            assigned_node.text = node_name
+        else:
+            assigned_node = ET.SubElement(element_tree, "assignedNode")
+            assigned_node.text = node_name
+            can_roam = element_tree.find("canRoam")
+            if can_roam is not None:
+                can_roam.text = "false"
+        self.update_config(ET.tostring(element_tree))
