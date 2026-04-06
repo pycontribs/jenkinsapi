@@ -144,11 +144,10 @@ jobs:
         uv run pytest -sv -n $NUM_WORKERS --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
   test-macos:
-    # macOS: runs full suite (unit + systests) using Docker via Colima.
-    # Tests Python 3.10 (min supported) and 3.13 (latest stable).
-    # The Jenkins image may run under Rosetta 2 emulation on Apple Silicon
-    # if the GHCR image doesn't include an arm64 variant; docker-image-prep
-    # will build locally in that case.
+    # macOS: unit tests only. GitHub Actions macOS runners are themselves VMs
+    # and do not expose the Hypervisor Framework (HVF) to nested processes,
+    # so QEMU-backed Docker (Lima/Colima) cannot start. Systests are covered
+    # by the Linux build job; macOS validates pure-Python portability.
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -179,34 +178,19 @@ jobs:
         echo "PKG_CONFIG_PATH=${KRB5_PREFIX}/lib/pkgconfig" >> "$GITHUB_ENV"
         echo "KRB5_CONFIG=${KRB5_PREFIX}/etc/krb5.conf" >> "$GITHUB_ENV"
 
-    - name: Set up Docker (macOS via Colima)
-      uses: crazy-max/ghaction-setup-docker@v3
-      with:
-        version: v27.3.1
-        daemon-config: |
-          {
-            "features": {
-              "containerd-snapshotter": true
-            }
-          }
-
     - name: Install project dependencies
       run: uv sync --all-groups
 
-    - name: Prepare Docker image
-      uses: ./.github/actions/docker-image-prep
-      with:
-        image_name: ghcr.io/${{ github.repository_owner }}/jenkinsapi
-
-    - name: Test with pytest (macOS)
+    - name: Unit tests (macOS)
       run: |
-        uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
+        uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing \
+          jenkinsapi_tests/unittests/ -m "not docker"
 
   test-windows:
-    # Windows: runs unit tests unconditionally; attempts systests by switching
-    # Docker Desktop to Linux container mode. The systest step uses
-    # continue-on-error because Linux container support on Windows CI can be
-    # unstable — failures are informational until the setup is validated.
+    # Windows: unit tests only. requests-kerberos on Windows uses winkerberos
+    # (Windows SSPI) — no system Kerberos library needed. Linux containers
+    # are not reliably available on Windows CI runners, so systests are
+    # skipped; they are covered by the Linux build job.
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -230,12 +214,6 @@ jobs:
     - name: Install python
       run: uv python install
 
-    - name: Install MIT Kerberos (Windows)
-      # requests-kerberos uses Windows SSPI (winkerberos) on Windows, but
-      # MIT Kerberos is still required for the build-time dependency resolution.
-      run: choco install -y mitkerberos --no-progress
-      shell: pwsh
-
     - name: Install project dependencies
       run: uv sync --all-groups
       shell: pwsh
@@ -244,34 +222,4 @@ jobs:
       run: |
         uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing `
           jenkinsapi_tests/unittests/ -m "not docker"
-      shell: pwsh
-
-    - name: Switch Docker to Linux container mode
-      # Windows runners ship Docker Desktop in Windows-container mode.
-      # Switch to Linux containers so we can run the Jenkins image.
-      run: |
-        & "$Env:ProgramFiles\Docker\Docker\DockerCli.exe" -SwitchLinuxEngine
-        # Wait for Docker daemon to restart in Linux mode
-        $retries = 0
-        do {
-          Start-Sleep -Seconds 5
-          $retries++
-          $status = docker info 2>&1
-        } while ($LASTEXITCODE -ne 0 -and $retries -lt 12)
-        if ($LASTEXITCODE -ne 0) { Write-Error "Docker Linux mode failed to start" }
-      shell: pwsh
-
-    - name: Prepare Docker image (Windows)
-      uses: ./.github/actions/docker-image-prep
-      with:
-        image_name: ghcr.io/${{ github.repository_owner }}/jenkinsapi
-      continue-on-error: true
-
-    - name: System tests (Windows)
-      # continue-on-error: Linux containers on Windows CI can be unstable;
-      # treat failures as informational until the setup is fully validated.
-      continue-on-error: true
-      run: |
-        uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing `
-          jenkinsapi_tests/systests/
       shell: pwsh
