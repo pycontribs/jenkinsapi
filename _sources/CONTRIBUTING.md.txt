@@ -14,7 +14,7 @@ From within doc: make && python -m http.server --directory html
 Python compatibility
 --------------------
 
-The project currently targets Python 3.9+.
+The project currently targets Python 3.10+.
 
 Code formatting
 ---------------
