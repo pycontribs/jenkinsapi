@@ -39,6 +39,49 @@ def test_object_creation(jenkins, dummy_md5, monkeypatch):
 
 
 def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
+    """404 with default enable_if_disabled=False: unknown=True, no groovy call."""
+
+    class FakeResponse(object):
+        status_code = 404
+        text = "{}"
+
+    class FakeHTTPError(HTTPError):
+        def __init__(self):
+            self.response = FakeResponse()
+
+    def fake_poll(cls, tree=None):  # pylint: disable=unused-argument
+        raise FakeHTTPError()
+
+    monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
+
+    def fake_get_url(
+        url,  # pylint: disable=unused-argument
+        params=None,  # pylint: disable=unused-argument
+        headers=None,  # pylint: disable=unused-argument
+        allow_redirects=True,  # pylint: disable=unused-argument
+        stream=False,
+    ):  # pylint: disable=unused-argument
+        return FakeResponse()
+
+    monkeypatch.setattr(Requester, "get_url", fake_get_url)
+
+    groovy_calls = []
+
+    def fake_run_groovy_script(self, script):  # pylint: disable=unused-argument
+        groovy_calls.append(script)
+        return ""
+
+    monkeypatch.setattr(Jenkins, "run_groovy_script", fake_run_groovy_script)
+
+    fingerprint = Fingerprint("http://foo:8080", dummy_md5, jenkins)
+    assert fingerprint.valid() is True
+    assert fingerprint.unknown is True
+    assert len(groovy_calls) == 0
+
+
+def test_valid_for_404_enable_if_disabled(jenkins, dummy_md5, monkeypatch):
+    """404 with enable_if_disabled=True: enables fingerprints and retries poll."""
+
     class FakeResponse(object):
         status_code = 404
         text = "{}"
@@ -77,7 +120,8 @@ def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
     monkeypatch.setattr(Jenkins, "run_groovy_script", fake_run_groovy_script)
 
     fingerprint = Fingerprint("http://foo:8080", dummy_md5, jenkins)
-    assert fingerprint.valid() is True
+    assert fingerprint.valid(enable_if_disabled=True) is True
+    assert fingerprint.unknown is False
     assert len(groovy_calls) == 1
     assert "setEnabled(true)" in groovy_calls[0]
 

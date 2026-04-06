@@ -49,13 +49,18 @@ class Fingerprint(JenkinsBase):
         )
         self.jenkins_obj.run_groovy_script(script)
 
-    def valid(self) -> bool:
+    def valid(self, enable_if_disabled: bool = False) -> bool:
         """
         Return True / False if valid. If returns True, self.unknown is
         set to either True or False, and can be checked if we have
         positive validity (fingerprint known at server) or negative
         validity (fingerprint not known at server, but not really an
         error).
+
+        If *enable_if_disabled* is True and the server returns 404
+        (fingerprints disabled), the fingerprint feature is enabled via
+        a Groovy script and the poll is retried.  The default is False
+        to avoid silently mutating Jenkins configuration.
         """
         try:
             self.poll()
@@ -65,11 +70,17 @@ class Fingerprint(JenkinsBase):
             # extract the status code from it
             response_obj: Any = err.response
             if response_obj.status_code == 404:
-                self._enable_fingerprints()
-                try:
-                    self.poll()
-                    self.unknown = False
-                except requests.exceptions.HTTPError:
+                if enable_if_disabled:
+                    self._enable_fingerprints()
+                    try:
+                        self.poll()
+                        self.unknown = False
+                    except requests.exceptions.HTTPError:
+                        self.unknown = True
+                else:
+                    log.info(
+                        "MD5 cannot be checked if fingerprints are not enabled"
+                    )
                     self.unknown = True
                 return True
 
