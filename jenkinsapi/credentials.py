@@ -6,6 +6,7 @@ Jenkins node.
 
 from __future__ import annotations
 
+import json
 from typing import Iterator
 
 import logging
@@ -15,6 +16,8 @@ from jenkinsapi.credential import Credential
 from jenkinsapi.credential import UsernamePasswordCredential
 from jenkinsapi.credential import SecretTextCredential
 from jenkinsapi.credential import SSHKeyCredential
+from jenkinsapi.credential import FileCredentials
+from jenkinsapi.credential import DockerServerCredentials
 from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.custom_exceptions import JenkinsAPIException
 
@@ -95,11 +98,21 @@ class Credentials(JenkinsBase):
         """
         if description not in self:
             params = credential.get_attributes()
+            files = credential.get_files()
             url = "%s/createCredentials" % self.baseurl
             try:
-                self.jenkins.requester.post_and_confirm_status(
-                    url, params={}, data=urlencode(params)
-                )
+                if files:
+                    payload = {
+                        key: json.dumps(value) if key == "json" else value
+                        for key, value in params.items()
+                    }
+                    self.jenkins.requester.post_and_confirm_status(
+                        url, params={}, data=payload, files=files
+                    )
+                else:
+                    self.jenkins.requester.post_and_confirm_status(
+                        url, params={}, data=urlencode(params)
+                    )
             except JenkinsAPIException as jae:
                 raise JenkinsAPIException(
                     "Latest version of Credentials "
@@ -158,12 +171,29 @@ class Credentials(JenkinsBase):
             raise JenkinsAPIException("Problem deleting credential.")
 
     def _make_credential(self, cred_dict):
-        if cred_dict["typeName"] == "Username with password":
+        cred_type = cred_dict.get("typeName")
+        if cred_type == "Username with password":
             cr = UsernamePasswordCredential(cred_dict)
-        elif cred_dict["typeName"] == "SSH Username with private key":
+        elif cred_type == "SSH Username with private key":
             cr = SSHKeyCredential(cred_dict)
-        elif cred_dict["typeName"] == "Secret text":
+        elif cred_type == "Secret text":
             cr = SecretTextCredential(cred_dict)
+        elif cred_type == "Secret file" or any(
+            key in cred_dict for key in ("fileName", "filename", "secretBytes")
+        ):
+            cr = FileCredentials(cred_dict)
+        elif (
+            cred_type
+            in (
+                "Docker Host Certificate Authentication",
+                "X.509 Client Certificate",
+            )
+            or "clientKey" in cred_dict
+            or "clientKeySecret" in cred_dict
+            or "clientCertificate" in cred_dict
+            or "serverCaCertificate" in cred_dict
+        ):
+            cr = DockerServerCredentials(cred_dict)
         else:
             cr = Credential(cred_dict)
 
