@@ -40,6 +40,15 @@ class Fingerprint(JenkinsBase):
     def __str__(self) -> str:
         return self.id_
 
+    def _enable_fingerprints(self) -> None:
+        script = (
+            "Jenkins.instance"
+            ".getDescriptorByType(jenkins.model.GlobalFingerprintConfiguration.class)"
+            ".setEnabled(true)\n"
+            "Jenkins.instance.save()"
+        )
+        self.jenkins_obj.run_groovy_script(script)
+
     def valid(self) -> bool:
         """
         Return True / False if valid. If returns True, self.unknown is
@@ -52,18 +61,16 @@ class Fingerprint(JenkinsBase):
             self.poll()
             self.unknown = False
         except requests.exceptions.HTTPError as err:
-            # We can't really say anything about the validity of
-            # fingerprints not found -- but the artifact can still
-            # exist, so it is not possible to definitely say they are
-            # valid or not.
             # The response object is of type: requests.models.Response
             # extract the status code from it
             response_obj: Any = err.response
             if response_obj.status_code == 404:
-                log.info(
-                    "MD5 cannot be checked if fingerprints are not enabled"
-                )
-                self.unknown = True
+                self._enable_fingerprints()
+                try:
+                    self.poll()
+                    self.unknown = False
+                except requests.exceptions.HTTPError:
+                    self.unknown = True
                 return True
 
             return False
