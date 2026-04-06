@@ -357,6 +357,23 @@ Delete all the nodes except master
     for node in j.nodes.keys():
         del j.nodes[node]
 
+Query a build
+-------------
+
+.. code-block:: python
+
+    from jenkinsapi.jenkins import Jenkins
+
+    jenkins = Jenkins("http://localhost:8080")
+    print(jenkins.items())
+
+    job = jenkins.get_job("foo")
+    build = job.get_last_build()
+    print(build)
+
+    mjn = build.get_master_job_name()
+    print(mjn)
+
 Use JenkinsAPI to fetch the config XML of a job.
 ------------------------------------------------
 

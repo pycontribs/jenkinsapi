@@ -6,7 +6,8 @@ You need to have at least one job in your Jenkins to see views
 """
 
 import logging
-from pkg_resources import resource_string
+from pathlib import Path
+
 from jenkinsapi.views import Views
 from jenkinsapi.jenkins import Jenkins
 
@@ -18,7 +19,7 @@ jenkins_url = "http://127.0.0.1:8080/"
 jenkins = Jenkins(jenkins_url)
 
 job_name = "foo_job2"
-xml = resource_string("examples", "addjob.xml")
+xml = Path("examples/addjob.xml").read_text()
 j = jenkins.create_job(jobname=job_name, xml=xml)
 
 # Create ListView in main view
