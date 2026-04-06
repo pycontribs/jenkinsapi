@@ -473,6 +473,20 @@ class Node(JenkinsBase):
 
         self.poll()
 
+    def change_mode(self, mode: str) -> None:
+        """
+        Change the node's usage mode.
+
+        :param mode: "NORMAL" (use this node as much as possible) or
+                     "EXCLUSIVE" (only build jobs tied to this node)
+        """
+        valid_modes = {"NORMAL", "EXCLUSIVE"}
+        if mode not in valid_modes:
+            raise ValueError(
+                "mode must be one of %s, got %r" % (valid_modes, mode)
+            )
+        self.set_config_element("mode", mode)
+
     def get_config_element(self, el_name: str) -> str:
         """
         Returns simple config element.
@@ -586,6 +600,22 @@ class Node(JenkinsBase):
         """
         # no need to poll as the architecture will never change
         return self.get_monitor("ArchitectureMonitor", poll_monitor=False)
+
+    def get_log_text(self) -> str:
+        """
+        Return the node's log text.
+        """
+        url: str = "%s/logText/progressiveHtml/?start=0" % self.baseurl
+        resp = self.jenkins.requester.get_url(url)
+        content = resp.content
+        if isinstance(content, str):
+            return content
+        elif isinstance(content, bytes):
+            return content.decode(resp.encoding or "UTF-8")
+        else:
+            from jenkinsapi.custom_exceptions import JenkinsAPIException
+
+            raise JenkinsAPIException("Unknown content type for node log")
 
     def block_until_idle(self, timeout: int, poll_time: int = 5) -> None:
         """

@@ -364,6 +364,32 @@ class TestPlugins(unittest.TestCase):
         )
         self.assertEqual(repr(p), "<jenkinsapi.plugin.Plugin subversion>")
 
+    @mock.patch.object(Plugins, "_poll")
+    @mock.patch.object(Requester, "post_and_confirm_status")
+    def test_downgrade_plugin_accepts_not_found_as_noop(
+        self, post, _poll_plugins
+    ):
+        plugins = Plugins("http://localhost:8080/pluginManager", self.J)
+        plugins.downgrade_plugin("mailer")
+        post.assert_called_with(
+            "http://localhost:8080/pluginManager/plugin/mailer/downgrade",
+            params={},
+            data="",
+            valid=[200, 404],
+        )
+
+    @mock.patch.object(Plugins, "_poll")
+    @mock.patch.object(Requester, "post_and_confirm_status")
+    def test_unpin_plugin_accepts_not_found_as_noop(self, post, _poll_plugins):
+        plugins = Plugins("http://localhost:8080/pluginManager", self.J)
+        plugins.unpin_plugin("mailer")
+        post.assert_called_with(
+            "http://localhost:8080/pluginManager/plugin/mailer/unpin",
+            params={},
+            data="",
+            valid=[200, 404],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
