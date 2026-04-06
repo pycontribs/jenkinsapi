@@ -64,7 +64,7 @@ class Artifact(object):
                         )
                         return fspath
                 except ArtifactBroken:
-                    log.warning("Jenkins artifact could not be identified.")
+                    log.info("Jenkins artifact could not be identified.")
             else:
                 log.info(
                     "This file did not originate from Jenkins, "

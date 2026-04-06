@@ -21,8 +21,11 @@ ADMIN_PASSWORD = "admin"
 
 def _delete_all_jobs(jenkins):
     jenkins.poll()
-    for name in jenkins.keys():
-        del jenkins[name]
+    for name in list(jenkins.keys()):
+        try:
+            del jenkins[name]
+        except Exception:
+            pass
 
 
 def _delete_all_views(jenkins):
@@ -171,13 +174,17 @@ def ensure_jenkins_up(url, timeout=60):
     start = time.time()
     while time.time() - start < timeout:
         try:
-            resp = requests.get(url, timeout=5)
+            resp = requests.get(
+                f"{url}/api/python",
+                params={"tree": "jobs[name,color,url]"},
+                timeout=5,
+            )
             if resp.status_code == 200:
                 return
-        except Exception as err:
-            print("Exception connecting to jenkins", err)
+        except Exception:
+            pass
         time.sleep(2)
-    pytest.exit("Jenkins didnt become available to call")
+    pytest.exit("Jenkins didn't become available to call")
 
 
 @pytest.fixture(scope="function")
