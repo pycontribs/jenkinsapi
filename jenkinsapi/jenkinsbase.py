@@ -82,7 +82,7 @@ class JenkinsBase(object):
 
         response = requester.get_url(url, params)
         if response.status_code != 200:
-            logger.error(
+            logger.warning(
                 "Failed request at %s with params: %s %s",
                 url,
                 params,

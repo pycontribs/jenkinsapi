@@ -47,8 +47,13 @@ def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
         def __init__(self):
             self.response = FakeResponse()
 
+    call_count = [0]
+
     def fake_poll(cls, tree=None):  # pylint: disable=unused-argument
-        raise FakeHTTPError()
+        call_count[0] += 1
+        if call_count[0] == 1:
+            raise FakeHTTPError()
+        return {}
 
     monkeypatch.setattr(JenkinsBase, "_poll", fake_poll)
 
@@ -63,8 +68,18 @@ def test_valid_for_404(jenkins, dummy_md5, monkeypatch):
 
     monkeypatch.setattr(Requester, "get_url", fake_get_url)
 
+    groovy_calls = []
+
+    def fake_run_groovy_script(self, script):  # pylint: disable=unused-argument
+        groovy_calls.append(script)
+        return ""
+
+    monkeypatch.setattr(Jenkins, "run_groovy_script", fake_run_groovy_script)
+
     fingerprint = Fingerprint("http://foo:8080", dummy_md5, jenkins)
     assert fingerprint.valid() is True
+    assert len(groovy_calls) == 1
+    assert "setEnabled(true)" in groovy_calls[0]
 
 
 def test_invalid_for_401(jenkins, dummy_md5, monkeypatch):
