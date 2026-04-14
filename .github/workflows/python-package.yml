@@ -148,3 +148,84 @@ jobs:
       with:
         name: test-results-py${{ matrix.python-version }}
         path: test-results.xml
+
+  test-macos:
+    # macOS: unit tests only. GitHub Actions macOS runners are themselves VMs
+    # and do not expose the Hypervisor Framework (HVF) to nested processes,
+    # so QEMU-backed Docker (Lima/Colima) cannot start. Systests are covered
+    # by the Linux build job; macOS validates pure-Python portability.
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+
+    steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+      with:
+        egress-policy: audit
+
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install Kerberos (macOS)
+      run: |
+        brew install krb5
+        KRB5_PREFIX=$(brew --prefix krb5)
+        echo "PKG_CONFIG_PATH=${KRB5_PREFIX}/lib/pkgconfig" >> "$GITHUB_ENV"
+        echo "KRB5_CONFIG=${KRB5_PREFIX}/etc/krb5.conf" >> "$GITHUB_ENV"
+
+    - name: Install project dependencies
+      run: uv sync --all-groups
+
+    - name: Unit tests (macOS)
+      run: |
+        uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing \
+          jenkinsapi_tests/unittests/ -m "not docker"
+
+  test-windows:
+    # Windows: unit tests only. requests-kerberos on Windows uses winkerberos
+    # (Windows SSPI) — no system Kerberos library needed. Linux containers
+    # are not reliably available on Windows CI runners, so systests are
+    # skipped; they are covered by the Linux build job.
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
+
+    steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+      with:
+        egress-policy: audit
+
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python
+      run: uv python install
+
+    - name: Install project dependencies
+      run: uv sync --all-groups
+      shell: pwsh
+
+    - name: Unit tests (Windows)
+      run: |
+        uv run pytest -sv -n auto --cov=jenkinsapi --cov-report=term-missing `
+          jenkinsapi_tests/unittests/ -m "not docker"
+      shell: pwsh
