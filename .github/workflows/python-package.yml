@@ -15,6 +15,97 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_version: ${{ steps.version.outputs.version }}
+      image_digest: ${{ steps.push.outputs.digest }}
+      is_fork: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true }}
+
+    steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+      with:
+        egress-policy: audit
+        # azure.archive.ubuntu.com:80           - Ubuntu apt packages
+        # esm.ubuntu.com:443                    - Ubuntu ESM security updates
+        # files.pythonhosted.org:443            - Python package downloads
+        # ftp-chi.osuosl.org:443                - Python mirror fallback (Chicago)
+        # ftp-nyc.osuosl.org:443                - Python mirror fallback (NYC)
+        # github.com:443                        - Git operations / Actions
+        # api.github.com:443                    - GitHub API
+        # int.api.stepsecurity.io:443           - harden-runner telemetry
+        # mirror.xmission.com:443               - Python mirror fallback (Utah)
+        # motd.ubuntu.com:443                   - Ubuntu MOTD
+        # packages.microsoft.com:443            - Microsoft apt repo (ubuntu-latest runner)
+        # ppa.launchpadcontent.net:443          - Ubuntu PPA
+        # pypi.org:443                          - PyPI package index
+        # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
+        # ghcr.io:443                           - GitHub Container Registry (push image)
+        # pkg-containers.githubusercontent.com:443 - Docker layer storage for GHCR
+        allowed-endpoints: >
+          azure.archive.ubuntu.com:80
+          esm.ubuntu.com:443
+          files.pythonhosted.org:443
+          ftp-chi.osuosl.org:443
+          ftp-nyc.osuosl.org:443
+          github.com:443
+          api.github.com:443
+          int.api.stepsecurity.io:443
+          mirror.xmission.com:443
+          motd.ubuntu.com:443
+          packages.microsoft.com:443
+          ppa.launchpadcontent.net:443
+          pypi.org:443
+          objects.githubusercontent.com:443
+          ghcr.io:443
+          pkg-containers.githubusercontent.com:443
+
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Calculate image version from Dockerfile & plugins.txt
+      id: version
+      run: |
+        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
+        echo "version=$HASH" >> "$GITHUB_OUTPUT"
+        echo "Image version: $HASH"
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+
+    - name: Log in to GHCR
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+      uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build Docker image
+      id: push
+      uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
+      with:
+        context: docker
+        push: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
+        load: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true }}
+        tags: ghcr.io/${{ github.repository_owner }}/jenkinsapi-systest:${{ steps.version.outputs.version }}
+
+    - name: Export Docker image (fork fallback)
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
+      run: docker save jenkinsapi-systest:latest | gzip > /tmp/jenkinsapi-systest.tar.gz
+
+    - name: Upload Docker image artifact (fork fallback)
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
+      uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+      with:
+        name: docker-image
+        path: /tmp/jenkinsapi-systest.tar.gz
+        retention-days: 1
+
   lint:
     runs-on: ubuntu-latest
 
@@ -71,7 +162,11 @@ jobs:
         uv run ruff check jenkinsapi/ --output-format full
 
   build:
+    needs: [build-docker-image]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     strategy:
       fail-fast: false
       matrix:
@@ -97,6 +192,8 @@ jobs:
         # ppa.launchpadcontent.net:443          - Ubuntu PPA
         # pypi.org:443                          - PyPI package index
         # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
+        # ghcr.io:443                           - GitHub Container Registry (pull image)
+        # pkg-containers.githubusercontent.com:443 - Docker layer storage for GHCR
         allowed-endpoints: >
           azure.archive.ubuntu.com:80
           esm.ubuntu.com:443
@@ -112,6 +209,8 @@ jobs:
           ppa.launchpadcontent.net:443
           pypi.org:443
           objects.githubusercontent.com:443
+          ghcr.io:443
+          pkg-containers.githubusercontent.com:443
 
     - name: Checkout
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -128,10 +227,31 @@ jobs:
       run: |
         sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
-    - name: Prepare Docker image
-      uses: ./.github/actions/docker-image-prep
+    - name: Log in to GHCR
+      if: needs.build-docker-image.outputs.is_fork != 'true'
+      uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
       with:
-        image_name: ghcr.io/${{ github.repository_owner }}/jenkinsapi
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Pull Jenkins image
+      if: needs.build-docker-image.outputs.is_fork != 'true'
+      run: |
+        IMAGE="ghcr.io/${{ github.repository_owner }}/jenkinsapi-systest@${{ needs.build-docker-image.outputs.image_digest }}"
+        docker pull "$IMAGE"
+        docker tag "$IMAGE" jenkinsapi-systest:latest
+
+    - name: Download Docker image artifact (fork fallback)
+      if: needs.build-docker-image.outputs.is_fork == 'true'
+      uses: actions/download-artifact@834a6f5f6ecc573fab266ee2d44f671cb716ec250 # v4.1.7
+      with:
+        name: docker-image
+        path: /tmp
+
+    - name: Load Docker image (fork fallback)
+      if: needs.build-docker-image.outputs.is_fork == 'true'
+      run: docker load < /tmp/jenkinsapi-systest.tar.gz
 
     - name: Test with pytest
       run: |
