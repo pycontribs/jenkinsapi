@@ -55,7 +55,7 @@ master_doc = "index"
 
 # General information about the project.
 project = " JenkinsAPI"
-copyright = "2012, %s" % PROJECT_AUTHORS
+copyright = "2012-2026, %s" % PROJECT_AUTHORS
 
 # The version info for the project you're documenting, acts as replacement for
 # built documents.
@@ -200,7 +200,13 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ("index", "JenkinsAPI.tex", "JenkinsAPI Documentation", "xxx", "manual"),
+    (
+        "index",
+        "JenkinsAPI.tex",
+        "JenkinsAPI Documentation",
+        PROJECT_AUTHORS,
+        "manual",
+    ),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -228,7 +234,9 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [("index", "jenkinsapi", " JenkinsAPI Documentation", ["xxx"], 1)]
+man_pages = [
+    ("index", "jenkinsapi", " JenkinsAPI Documentation", [PROJECT_AUTHORS], 1)
+]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -244,7 +252,7 @@ texinfo_documents = [
         "index",
         "JenkinsAPI",
         "JenkinsAPI Documentation",
-        "xxx",
+        PROJECT_AUTHORS,
         "JenkinsAPI",
         "One line description of project.",
         "Miscellaneous",

@@ -35,13 +35,12 @@ the testsuite with the following command:
     uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
-Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
-missing test dependencies:
+To set up a fresh environment explicitly:
 
 .. code-block:: bash
 
     uv venv
-    uv python install
+    uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
 
 Get version of Jenkins
@@ -95,7 +94,7 @@ Disable/Enable a Jenkins Job
         if (server.has_job(job_name)):
             job_instance = server.get_job(job_name)
             job_instance.disable()
-            print('Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled()))
+            print('Name:%s,Is Job Enabled ?:%s' % (job_name, job_instance.is_enabled()))
 
 Use the call ``job_instance.enable()`` to enable a Jenkins Job.
 

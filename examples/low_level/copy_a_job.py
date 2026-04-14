@@ -3,7 +3,8 @@ A lower-level implementation of copying a job in Jenkins
 """
 
 import requests
-from pkg_resources import resource_string
+from pathlib import Path
+
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi_tests.test_utils.random_strings import random_string
 
@@ -16,7 +17,7 @@ url = "http://localhost:8080/createItem?from=%s&name=%s&mode=copy" % (
     jobName2,
 )
 
-xml = resource_string("examples", "addjob.xml")
+xml = Path("examples/addjob.xml").read_text()
 j = J.create_job(jobname=jobName, xml=xml)
 
 
