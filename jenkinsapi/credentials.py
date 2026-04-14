@@ -32,12 +32,16 @@ class Credentials(JenkinsBase):
     Returns a list of Credential Objects.
     """
 
-    def __init__(self, baseurl: str, jenkins_obj: "Jenkins"):
+    def __init__(
+        self, baseurl: str, jenkins_obj: "Jenkins", poll: bool = True
+    ):
         self.baseurl: str = baseurl
         self.jenkins: "Jenkins" = jenkins_obj
-        JenkinsBase.__init__(self, baseurl)
+        JenkinsBase.__init__(self, baseurl, poll=poll)
 
-        self.credentials = self._data["credentials"]
+        self.credentials = (
+            self._data.get("credentials", {}) if self._data else {}
+        )
 
     def _poll(self, tree=None):
         url: str = self.python_api_url(self.baseurl) + "?depth=2"
