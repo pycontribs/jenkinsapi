@@ -5,7 +5,7 @@ The JenkinsAPI project welcomes contributions via GitHub. Please bear in mind th
 
 Pre-commit
 ----------
-Ensure pre-commit has been setup prior to comitting
+Ensure pre-commit has been setup prior to committing
 
 Build the Docs
 --------------
@@ -19,7 +19,7 @@ The project currently targets Python 3.10+.
 Code formatting
 ---------------
 
-The project follows strict PEP8 guidelines. Please use a tool like black to format your code before submitting a pull request. Tell black to use 79 characters per line (black -l 79).
+The project uses ruff for linting and formatting. Run `uv run ruff check` and `uv run ruff format` before submitting a pull request. Line length is 79 characters.
 
 Test Driven Development
 -----------------------
@@ -32,7 +32,7 @@ Put simply: Write your tests first and only implement features required to make 
 
 Features implemented without tests will be removed. Unmaintained features (which break because of changes in Jenkins) will also be removed.
 
-Check the CI status before comitting
+Check the CI status before committing
 ------------------------------------
 
 Project uses Github Actions, please verify that your branch passes all tests before making a pull request.

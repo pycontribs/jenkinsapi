@@ -52,12 +52,12 @@ Create and delete jobs from XML file
 
 .. code-block:: python
 
-    from pkg_resources import resource_string
+    from pathlib import Path
     from jenkinsapi.jenkins import Jenkins
 
     jenkins = Jenkins("http://localhost:8080")
     job_name = "foo_job2"
-    xml = resource_string("examples", "addjob.xml")
+    xml = Path("examples/addjob.xml").read_text()
 
     print(xml)
 
@@ -264,7 +264,7 @@ Create views
 .. code-block:: python
 
     import logging
-    from pkg_resources import resource_string
+    from pathlib import Path
     from jenkinsapi.jenkins import Jenkins
 
     logging.basicConfig(level=logging.INFO)
@@ -296,7 +296,7 @@ Create views
 
     logger.info("Create job and assign it to a view")
     job_name = "foo_job2"
-    xml = resource_string("examples", "addjob.xml")
+    xml = Path("examples/addjob.xml").read_text()
 
     my_job = jenkins.create_job(jobname=job_name, xml=xml)
 
@@ -348,7 +348,7 @@ Delete all the nodes except master
 
     j = Jenkins("http://localhost:8080")
 
-    for node_id, _ in j.get_nodes().iteritems():
+    for node_id, _ in j.get_nodes().items():
         if node_id != "master":
             print(node_id)
             j.delete_node(node_id)
@@ -356,6 +356,23 @@ Delete all the nodes except master
     # Alternative way - this method will not delete 'master'
     for node in j.nodes.keys():
         del j.nodes[node]
+
+Query a build
+-------------
+
+.. code-block:: python
+
+    from jenkinsapi.jenkins import Jenkins
+
+    jenkins = Jenkins("http://localhost:8080")
+    print(jenkins.items())
+
+    job = jenkins.get_job("foo")
+    build = job.get_last_build()
+    print(build)
+
+    mjn = build.get_master_job_name()
+    print(mjn)
 
 Use JenkinsAPI to fetch the config XML of a job.
 ------------------------------------------------
@@ -436,7 +453,7 @@ Use NestedViews Jenkins plugin
     """
 
     import logging
-    from pkg_resources import resource_string
+    from pathlib import Path
     from jenkinsapi.views import Views
     from jenkinsapi.jenkins import Jenkins
 
@@ -448,7 +465,7 @@ Use NestedViews Jenkins plugin
     jenkins = Jenkins(jenkins_url)
 
     job_name = "foo_job2"
-    xml = resource_string("examples", "addjob.xml")
+    xml = Path("examples/addjob.xml").read_text()
     j = jenkins.create_job(jobname=job_name, xml=xml)
 
     # Create ListView in main view
