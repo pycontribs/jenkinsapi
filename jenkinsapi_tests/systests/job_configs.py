@@ -399,3 +399,10 @@ node {
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
 </flow-definition>""".strip()
+
+FOLDER = """<?xml version='1.0' encoding='UTF-8'?>
+<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder">
+  <actions/>
+  <description></description>
+  <properties/>
+</com.cloudbees.hudson.plugins.folder.Folder>""".strip()
