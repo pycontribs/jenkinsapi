@@ -17,41 +17,19 @@ jobs:
       pages: write
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        uses: ./.github/actions/harden-runner
         with:
-          egress-policy: audit
-          # azure.archive.ubuntu.com:80           - Ubuntu apt packages
-          # esm.ubuntu.com:443                    - Ubuntu ESM security updates
-          # files.pythonhosted.org:443            - Python package downloads
-          # github.com:443                        - Git operations / Actions
-          # api.github.com:443                    - GitHub API
-          # int.api.stepsecurity.io:443           - harden-runner telemetry
-          # motd.ubuntu.com:443                   - Ubuntu MOTD
-          # packages.microsoft.com:443            - Microsoft apt repo (ubuntu-latest runner)
-          # ppa.launchpadcontent.net:443          - Ubuntu PPA
-          # pypi.org:443                          - PyPI package index
-          # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
-          allowed-endpoints: >
+          extra-endpoints: |
             azure.archive.ubuntu.com:80
             esm.ubuntu.com:443
             files.pythonhosted.org:443
-            github.com:443
-            api.github.com:443
-            int.api.stepsecurity.io:443
             motd.ubuntu.com:443
             packages.microsoft.com:443
             ppa.launchpadcontent.net:443
             pypi.org:443
-            objects.githubusercontent.com:443
 
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update; sudo apt-get install libkrb5-dev gcc
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
 
       - name: Build HTML
         run: make

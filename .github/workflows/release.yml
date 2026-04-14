@@ -12,51 +12,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        uses: ./.github/actions/harden-runner
         with:
-          egress-policy: audit
-          # azure.archive.ubuntu.com:80           - Ubuntu apt packages
-          # esm.ubuntu.com:443                    - Ubuntu ESM security updates
-          # files.pythonhosted.org:443            - Python package downloads
-          # github.com:443                        - Git operations / Actions
-          # api.github.com:443                    - GitHub API
-          # int.api.stepsecurity.io:443           - harden-runner telemetry
-          # motd.ubuntu.com:443                   - Ubuntu MOTD
-          # packages.microsoft.com:443            - Microsoft apt repo (ubuntu-latest runner)
-          # ppa.launchpadcontent.net:443          - Ubuntu PPA
-          # pypi.org:443                          - PyPI package index
-          # objects.githubusercontent.com:443     - GitHub release artifacts / LFS
-          allowed-endpoints: >
+          extra-endpoints: |
             azure.archive.ubuntu.com:80
             esm.ubuntu.com:443
             files.pythonhosted.org:443
-            github.com:443
-            api.github.com:443
-            int.api.stepsecurity.io:443
             motd.ubuntu.com:443
             packages.microsoft.com:443
             ppa.launchpadcontent.net:443
             pypi.org:443
-            objects.githubusercontent.com:443
 
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
+      - name: Setup Python
+        uses: ./.github/actions/setup-python
         with:
           python-version: "3.13"
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update; sudo apt-get install libkrb5-dev gcc
 
       - name: Set pyproject.toml version from release tag
         run: |
           uv version "${GITHUB_REF##*/}"
-
-      - name: Install python
-        run: uv python install
 
       - name: build
         run: uv build
@@ -79,19 +53,9 @@ jobs:
         url: https://pypi.org/project/jenkinsapi/
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        uses: ./.github/actions/harden-runner
         with:
-          egress-policy: audit
-          # github.com:443                        - Git operations / Actions
-          # api.github.com:443                    - GitHub API
-          # int.api.stepsecurity.io:443           - harden-runner telemetry
-          # objects.githubusercontent.com:443     - Download build artifact from prior job
-          # upload.pypi.org:443                   - PyPI package upload endpoint
-          allowed-endpoints: >
-            github.com:443
-            api.github.com:443
-            int.api.stepsecurity.io:443
-            objects.githubusercontent.com:443
+          extra-endpoints: |
             upload.pypi.org:443
 
       - name: Download artifact
@@ -115,19 +79,9 @@ jobs:
       contents: write
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+        uses: ./.github/actions/harden-runner
         with:
-          egress-policy: audit
-          # github.com:443                        - Git operations / Actions
-          # api.github.com:443                    - GitHub API
-          # int.api.stepsecurity.io:443           - harden-runner telemetry
-          # objects.githubusercontent.com:443     - Download build artifact from prior job
-          # uploads.github.com:443               - GitHub release asset upload endpoint
-          allowed-endpoints: >
-            github.com:443
-            api.github.com:443
-            int.api.stepsecurity.io:443
-            objects.githubusercontent.com:443
+          extra-endpoints: |
             uploads.github.com:443
 
       - name: Download artifact

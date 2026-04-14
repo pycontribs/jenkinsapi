@@ -22,32 +22,19 @@ jobs:
 
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176 # v2.17.0
+      uses: ./.github/actions/harden-runner
       with:
-        egress-policy: audit
-        # github.com:443                            - Git operations / Actions
-        # api.github.com:443                        - GitHub API
-        # int.api.stepsecurity.io:443               - harden-runner telemetry
-        # objects.githubusercontent.com:443         - GitHub release artifacts / LFS
-        # ghcr.io:443                               - GitHub Container Registry (push image)
-        # pkg-containers.githubusercontent.com:443  - Docker layer storage for GHCR
-        allowed-endpoints: >
-          github.com:443
-          api.github.com:443
-          int.api.stepsecurity.io:443
-          objects.githubusercontent.com:443
+        extra-endpoints: |
           ghcr.io:443
           pkg-containers.githubusercontent.com:443
 
-    - name: Checkout
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-    - name: Calculate image version from Dockerfile & plugins.txt
+    - name: Prepare Docker image
       id: version
-      run: |
-        HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        echo "version=$HASH" >> "$GITHUB_OUTPUT"
-        echo "Image version: $HASH"
+      uses: ./.github/actions/docker-image-prep
+      with:
+        image_name: ${{ env.IMAGE_NAME }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0

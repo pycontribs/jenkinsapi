@@ -6,14 +6,25 @@ inputs:
     description: Full image name prefix (e.g. ghcr.io/owner/jenkinsapi)
     required: true
 
+outputs:
+  version:
+    description: Image version hash (first 8 chars of sha256sum)
+    value: ${{ steps.calc-version.outputs.version }}
+
 runs:
   using: composite
   steps:
-    - name: Pull or build Docker image
+    - name: Calculate image version
+      id: calc-version
       shell: bash
       run: |
         HASH=$(sha256sum docker/Dockerfile docker/plugins.txt | sha256sum | cut -c1-8)
-        IMAGE="${{ inputs.image_name }}:${HASH}"
+        echo "version=$HASH" >> "$GITHUB_OUTPUT"
+
+    - name: Pull or build Docker image
+      shell: bash
+      run: |
+        IMAGE="${{ inputs.image_name }}:${{ steps.calc-version.outputs.version }}"
         if docker pull "$IMAGE" 2>/dev/null; then
           echo "Cache hit: $IMAGE"
           docker tag "$IMAGE" jenkinsapi-systest:latest

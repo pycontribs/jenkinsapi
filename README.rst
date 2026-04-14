@@ -136,11 +136,7 @@ Python versions
 
 The project has been tested against Python versions:
 
-<<<<<<< HEAD
 * 3.10 - 3.14
-=======
-* 3.10 - 3.14 (tested via CI)
->>>>>>> e554089 (docs: comprehensive documentation and examples updates)
 
 Jenkins versions
 ----------------
