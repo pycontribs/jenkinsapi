@@ -77,13 +77,11 @@ def test_start_and_stop_long_running_job(jenkins):
     time.sleep(1)
     assert j.is_queued_or_running() is True
 
-    while j.is_queued():
-        time.sleep(0.5)
+    # Get queue item and wait for it to transition to a build
+    queue_item = j.get_queue_item()
+    build = queue_item.block_until_building()
 
-    if j.is_running():
-        time.sleep(1)
-
-    j.get_first_build().stop()
+    build.stop()
     time.sleep(1)
     assert j.is_queued_or_running() is False
 
