@@ -3,7 +3,8 @@ How to create views
 """
 
 import logging
-from pkg_resources import resource_string
+from pathlib import Path
+
 from jenkinsapi.jenkins import Jenkins
 
 logging.basicConfig(level=logging.INFO)
@@ -35,7 +36,7 @@ my_view = jenkins.views.create(test_view_name)
 
 logger.info("Create job and assign it to a view")
 job_name = "foo_job2"
-xml = resource_string("examples", "addjob.xml")
+xml = Path("examples/addjob.xml").read_text()
 
 my_job = jenkins.create_job(jobname=job_name, xml=xml)
 

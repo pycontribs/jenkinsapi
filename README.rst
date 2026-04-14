@@ -92,7 +92,7 @@ Disable/Enable a Jenkins Job
         if (server.has_job(job_name)):
             job_instance = server.get_job(job_name)
             job_instance.disable()
-            print('Name:%s,Is Job Enabled ?:%s' % (job_name,job_instance.is_enabled()))
+            print('Name:%s,Is Job Enabled ?:%s' % (job_name, job_instance.is_enabled()))
 
 Use the call ``job_instance.enable()`` to enable a Jenkins Job.
 
@@ -136,7 +136,11 @@ Python versions
 
 The project has been tested against Python versions:
 
+<<<<<<< HEAD
 * 3.10 - 3.14
+=======
+* 3.10 - 3.14 (tested via CI)
+>>>>>>> e554089 (docs: comprehensive documentation and examples updates)
 
 Jenkins versions
 ----------------

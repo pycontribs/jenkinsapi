@@ -2,12 +2,13 @@
 This example shows how to create job from XML file and how to delete job
 """
 
-from pkg_resources import resource_string
+from pathlib import Path
+
 from jenkinsapi.jenkins import Jenkins
 
 jenkins = Jenkins("http://localhost:8080")
 job_name = "foo_job2"
-xml = resource_string("examples", "addjob.xml")
+xml = Path("examples/addjob.xml").read_text()
 
 print(xml)
 
