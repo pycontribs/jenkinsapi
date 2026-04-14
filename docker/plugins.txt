@@ -16,3 +16,4 @@ data-tables-api
 workflow-aggregator
 pipeline-rest-api
 docker-commons
+cloudbees-folder

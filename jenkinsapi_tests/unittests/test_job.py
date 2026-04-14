@@ -8,6 +8,7 @@ from jenkinsapi.build import Build
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.jenkinsbase import JenkinsBase
 from jenkinsapi.custom_exceptions import NoBuildData
+from jenkinsapi.credentials import Credentials2x
 
 
 @pytest.fixture(scope="function")
@@ -440,3 +441,17 @@ def test_get_build_by_params_not_found(jenkins, monkeypatch, mocker):
 
     assert job.get_build.call_count == 3
     assert build_call_count[0] == 3
+
+
+def test_credentials_property(job, monkeypatch):
+    def fake_get_data(cls, url, tree=None):  # pylint: disable=unused-argument
+        return {"credentials": []}
+
+    monkeypatch.setattr(JenkinsBase, "get_data", fake_get_data)
+
+    credentials = job.credentials
+    assert isinstance(credentials, Credentials2x)
+    assert (
+        credentials.baseurl
+        == "http://halob:8080/job/foo/credentials/store/folder/domain/_"
+    )

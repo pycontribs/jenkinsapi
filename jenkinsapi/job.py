@@ -11,6 +11,7 @@ import urllib.parse as urlparse
 
 from collections import defaultdict
 from jenkinsapi.build import Build
+from jenkinsapi.credentials import Credentials2x
 from jenkinsapi.custom_exceptions import (
     NoBuildData,
     NotConfiguredSCM,
@@ -81,6 +82,15 @@ class Job(JenkinsBase, MutableJenkinsThing):
 
     def get_jenkins_obj(self) -> "Jenkins":
         return self.jenkins
+
+    @property
+    def credentials(self) -> "Credentials2x":
+        """
+        Return folder-scoped credentials for this job/folder.
+        Requires the Credentials Binding plugin and the job to be a folder.
+        """
+        url = "%s/credentials/store/folder/domain/_/" % self.baseurl
+        return Credentials2x(url, self.jenkins, poll=False)
 
     # When the name of the hg branch used in the job is default hg branch (i.e.
     # default), Mercurial plugin doesn't store default branch name in
