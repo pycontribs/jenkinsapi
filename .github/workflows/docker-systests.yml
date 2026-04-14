@@ -105,6 +105,11 @@ jobs:
     - name: Install python
       run: uv python install
 
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libkrb5-dev
+
     - name: Log in to GHCR
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0

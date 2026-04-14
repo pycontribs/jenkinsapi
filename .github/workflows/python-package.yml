@@ -100,6 +100,11 @@ jobs:
     - name: Install python
       run: uv python install
 
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libkrb5-dev
+
     - name: Lint with ruff
       run: |
         uv run ruff check jenkinsapi/ --output-format full
@@ -159,14 +164,12 @@ jobs:
     - name: Install python
       run: uv python install
 
-    - name: Log in to GHCR
-      uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4.1.0
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libkrb5-dev
 
-    - name: Test with pytest
+    - name: Test with pytest (matrix)
       run: |
         NUM_WORKERS=auto
         echo "Running full test suite with xdist mode '$NUM_WORKERS' ($(nproc) CPUs available)"
