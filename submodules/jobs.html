@@ -427,6 +427,13 @@ A job can hold N builds which are the actual execution environments</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="jenkinsapi.job.Job.credentials">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">credentials</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="credentials.html#jenkinsapi.credentials.Credentials2x" title="jenkinsapi.credentials.Credentials2x"><span class="pre">Credentials2x</span></a></span><a class="headerlink" href="#jenkinsapi.job.Job.credentials" title="Link to this definition">¶</a></dt>
+<dd><p>Return folder-scoped credentials for this job/folder.
+Requires the Credentials Binding plugin and the job to be a folder.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="jenkinsapi.job.Job.delete_build">
 <span class="sig-name descname"><span class="pre">delete_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jenkinsapi/job.html#Job.delete_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#jenkinsapi.job.Job.delete_build" title="Link to this definition">¶</a></dt>
@@ -958,6 +965,7 @@ Useful for debugging and validation workflows.</p>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.block_build_when_downstream_building"><code class="docutils literal notranslate"><span class="pre">Job.block_build_when_downstream_building()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.block_build_when_upstream_building"><code class="docutils literal notranslate"><span class="pre">Job.block_build_when_upstream_building()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.change_description"><code class="docutils literal notranslate"><span class="pre">Job.change_description()</span></code></a></li>
+<li><a class="reference internal" href="#jenkinsapi.job.Job.credentials"><code class="docutils literal notranslate"><span class="pre">Job.credentials</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.delete_build"><code class="docutils literal notranslate"><span class="pre">Job.delete_build()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.delete_from_queue"><code class="docutils literal notranslate"><span class="pre">Job.delete_from_queue()</span></code></a></li>
 <li><a class="reference internal" href="#jenkinsapi.job.Job.disable"><code class="docutils literal notranslate"><span class="pre">Job.disable()</span></code></a></li>

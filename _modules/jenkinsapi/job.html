@@ -272,6 +272,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">Build</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.credentials</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials2x</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.custom_exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">NoBuildData</span><span class="p">,</span>
     <span class="n">NotConfiguredSCM</span><span class="p">,</span>
@@ -350,6 +351,15 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">get_jenkins_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Jenkins&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span></div>
 
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Credentials2x&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return folder-scoped credentials for this job/folder.</span>
+<span class="sd">        Requires the Credentials Binding plugin and the job to be a folder.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/credentials/store/folder/domain/_/&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseurl</span>
+        <span class="k">return</span> <span class="n">Credentials2x</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jenkins</span><span class="p">,</span> <span class="n">poll</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="c1"># When the name of the hg branch used in the job is default hg branch (i.e.</span>
     <span class="c1"># default), Mercurial plugin doesn&#39;t store default branch name in</span>
