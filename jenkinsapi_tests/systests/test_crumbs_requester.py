@@ -1,5 +1,4 @@
 import io
-import time
 import json
 import logging
 import pytest
@@ -7,6 +6,7 @@ import pytest
 from urllib.parse import urljoin
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.utils.crumb_requester import CrumbRequester
+from jenkinsapi_tests.test_utils.retry import retry
 from jenkinsapi_tests.test_utils.random_strings import random_string
 from jenkinsapi_tests.systests.job_configs import JOB_WITH_FILE
 
@@ -91,39 +91,26 @@ def crumbed_jenkins(jenkins):
     log.info("Disabled Jenkins security")
 
 
+@retry()
 def test_invoke_job_with_file(crumbed_jenkins):
-    # Retry with exponential backoff for transient connection failures
-    max_retries = 5
-    retry_delay = 1
-    last_error = None
-    for attempt in range(max_retries):
-        try:
-            file_data = random_string()
-            param_file = io.BytesIO(file_data.encode("utf-8"))
+    import time
 
-            job_name = "create1_%s" % random_string()
-            job = crumbed_jenkins.create_job(job_name, JOB_WITH_FILE)
+    file_data = random_string()
+    param_file = io.BytesIO(file_data.encode("utf-8"))
 
-            assert job.has_params()
-            assert len(job.get_params_list())
+    job_name = "create1_%s" % random_string()
+    job = crumbed_jenkins.create_job(job_name, JOB_WITH_FILE)
 
-            job.invoke(block=True, files={"file.txt": param_file})
+    assert job.has_params()
+    assert len(job.get_params_list())
 
-            build = job.get_last_build()
-            while build.is_running():
-                time.sleep(0.25)
+    job.invoke(block=True, files={"file.txt": param_file})
 
-            artifacts = build.get_artifact_dict()
-            assert isinstance(artifacts, dict) is True
-            art_file = artifacts["file.txt"]
-            assert art_file.get_data().decode("utf-8").strip() == file_data
-            return
-        except Exception as e:
-            last_error = e
-            if attempt < max_retries - 1:
-                time.sleep(retry_delay)
-                retry_delay = min(
-                    retry_delay * 1.5, 5
-                )  # exponential backoff, capped at 5s
+    build = job.get_last_build()
+    while build.is_running():
+        time.sleep(0.25)
 
-    raise last_error
+    artifacts = build.get_artifact_dict()
+    assert isinstance(artifacts, dict) is True
+    art_file = artifacts["file.txt"]
+    assert art_file.get_data().decode("utf-8").strip() == file_data

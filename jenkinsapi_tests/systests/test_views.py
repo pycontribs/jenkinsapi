@@ -3,8 +3,8 @@ System tests for `jenkinsapi.jenkins` module.
 """
 
 import logging
-import time
 import pytest
+from jenkinsapi_tests.test_utils.retry import retry
 from jenkinsapi.view import View
 from jenkinsapi.views import Views
 from jenkinsapi.job import Job
@@ -75,30 +75,15 @@ def test_add_job_to_view(jenkins):
     del jenkins.views[view_name]
 
 
+@retry()
 def test_create_and_delete_views(jenkins):
     view1_name = random_string()
 
-    # Retry with exponential backoff for transient connection failures
-    max_retries = 5
-    retry_delay = 1
-    last_error = None
-    for attempt in range(max_retries):
-        try:
-            new_view = jenkins.views.create(view1_name)
-            assert isinstance(new_view, View) is True
-            assert view1_name in jenkins.views
-            del jenkins.views[view1_name]
-            assert view1_name not in jenkins.views
-            return
-        except Exception as e:
-            last_error = e
-            if attempt < max_retries - 1:
-                time.sleep(retry_delay)
-                retry_delay = min(
-                    retry_delay * 1.5, 5
-                )  # exponential backoff, capped at 5s
-
-    raise last_error
+    new_view = jenkins.views.create(view1_name)
+    assert isinstance(new_view, View) is True
+    assert view1_name in jenkins.views
+    del jenkins.views[view1_name]
+    assert view1_name not in jenkins.views
 
 
 def test_create_and_delete_views_by_url(jenkins):
