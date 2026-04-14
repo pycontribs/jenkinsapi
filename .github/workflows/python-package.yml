@@ -75,7 +75,9 @@ jobs:
         context: docker
         push: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
         load: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true }}
-        tags: ghcr.io/${{ github.repository_owner }}/jenkinsapi-systest:${{ steps.version.outputs.version }}
+        tags: |
+          ghcr.io/${{ github.repository_owner }}/jenkinsapi-systest:${{ steps.version.outputs.version }}
+          jenkinsapi-systest:latest
 
     - name: Export Docker image (fork fallback)
       if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == true
@@ -188,7 +190,7 @@ jobs:
 
     - name: Load Docker image (fork fallback)
       if: needs.build-docker-image.outputs.is_fork == 'true'
-      run: docker load < /tmp/jenkinsapi-systest.tar.gz
+      run: gunzip -c /tmp/jenkinsapi-systest.tar.gz | docker load
 
     - name: Test with pytest
       run: |
