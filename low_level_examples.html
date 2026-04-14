@@ -271,7 +271,7 @@
 <section id="copy-an-existing-job-jenkins-copy-job">
 <h2>Copy an existing job - jenkins.copy_job()<a class="headerlink" href="#copy-an-existing-job-jenkins-copy-job" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">resource_string</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi_tests.test_utils.random_strings</span><span class="w"> </span><span class="kn">import</span> <span class="n">random_string</span>
 
@@ -284,7 +284,7 @@
     <span class="n">jobName2</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">xml</span> <span class="o">=</span> <span class="n">resource_string</span><span class="p">(</span><span class="s2">&quot;examples&quot;</span><span class="p">,</span> <span class="s2">&quot;addjob.xml&quot;</span><span class="p">)</span>
+<span class="n">xml</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;examples/addjob.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 <span class="n">j</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="n">jobName</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="n">xml</span><span class="p">)</span>
 
 
@@ -421,7 +421,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

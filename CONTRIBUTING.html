@@ -270,7 +270,7 @@
 <p>The JenkinsAPI project welcomes contributions via GitHub. Please bear in mind the following guidelines when preparing your pull-request.</p>
 <section id="pre-commit">
 <h2>Pre-commit<a class="headerlink" href="#pre-commit" title="Link to this heading">¶</a></h2>
-<p>Ensure pre-commit has been setup prior to comitting</p>
+<p>Ensure pre-commit has been setup prior to committing</p>
 </section>
 <section id="build-the-docs">
 <h2>Build the Docs<a class="headerlink" href="#build-the-docs" title="Link to this heading">¶</a></h2>
@@ -282,7 +282,7 @@
 </section>
 <section id="code-formatting">
 <h2>Code formatting<a class="headerlink" href="#code-formatting" title="Link to this heading">¶</a></h2>
-<p>The project follows strict PEP8 guidelines. Please use a tool like black to format your code before submitting a pull request. Tell black to use 79 characters per line (black -l 79).</p>
+<p>The project uses ruff for linting and formatting. Run <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">ruff</span> <span class="pre">check</span></code> and <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">run</span> <span class="pre">ruff</span> <span class="pre">format</span></code> before submitting a pull request. Line length is 79 characters.</p>
 </section>
 <section id="test-driven-development">
 <h2>Test Driven Development<a class="headerlink" href="#test-driven-development" title="Link to this heading">¶</a></h2>
@@ -291,8 +291,8 @@
 <p>Put simply: Write your tests first and only implement features required to make your tests pass. Do not let your implementation get ahead of your tests.</p>
 <p>Features implemented without tests will be removed. Unmaintained features (which break because of changes in Jenkins) will also be removed.</p>
 </section>
-<section id="check-the-ci-status-before-comitting">
-<h2>Check the CI status before comitting<a class="headerlink" href="#check-the-ci-status-before-comitting" title="Link to this heading">¶</a></h2>
+<section id="check-the-ci-status-before-committing">
+<h2>Check the CI status before committing<a class="headerlink" href="#check-the-ci-status-before-committing" title="Link to this heading">¶</a></h2>
 <p>Project uses Github Actions, please verify that your branch passes all tests before making a pull request.</p>
 </section>
 <section id="any-problems">
@@ -322,7 +322,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -354,7 +354,7 @@
 <li><a class="reference internal" href="#python-compatibility">Python compatibility</a></li>
 <li><a class="reference internal" href="#code-formatting">Code formatting</a></li>
 <li><a class="reference internal" href="#test-driven-development">Test Driven Development</a></li>
-<li><a class="reference internal" href="#check-the-ci-status-before-comitting">Check the CI status before comitting</a></li>
+<li><a class="reference internal" href="#check-the-ci-status-before-committing">Check the CI status before committing</a></li>
 <li><a class="reference internal" href="#any-problems">Any problems?</a></li>
 </ul>
 </li>

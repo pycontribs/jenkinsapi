@@ -314,12 +314,12 @@
 </section>
 <section id="create-and-delete-jobs-from-xml-file">
 <h2>Create and delete jobs from XML file<a class="headerlink" href="#create-and-delete-jobs-from-xml-file" title="Link to this heading">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">resource_string</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 
 <span class="n">jenkins</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
 <span class="n">job_name</span> <span class="o">=</span> <span class="s2">&quot;foo_job2&quot;</span>
-<span class="n">xml</span> <span class="o">=</span> <span class="n">resource_string</span><span class="p">(</span><span class="s2">&quot;examples&quot;</span><span class="p">,</span> <span class="s2">&quot;addjob.xml&quot;</span><span class="p">)</span>
+<span class="n">xml</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;examples/addjob.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
 
@@ -521,7 +521,7 @@
 <section id="create-views">
 <h2>Create views<a class="headerlink" href="#create-views" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">resource_string</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
@@ -553,7 +553,7 @@
 
 <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Create job and assign it to a view&quot;</span><span class="p">)</span>
 <span class="n">job_name</span> <span class="o">=</span> <span class="s2">&quot;foo_job2&quot;</span>
-<span class="n">xml</span> <span class="o">=</span> <span class="n">resource_string</span><span class="p">(</span><span class="s2">&quot;examples&quot;</span><span class="p">,</span> <span class="s2">&quot;addjob.xml&quot;</span><span class="p">)</span>
+<span class="n">xml</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;examples/addjob.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 
 <span class="n">my_job</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="n">xml</span><span class="p">)</span>
 
@@ -604,7 +604,7 @@
 
 <span class="n">j</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">node_id</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">get_nodes</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">node_id</span> <span class="o">!=</span> <span class="s2">&quot;master&quot;</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
         <span class="n">j</span><span class="o">.</span><span class="n">delete_node</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
@@ -612,6 +612,22 @@
 <span class="c1"># Alternative way - this method will not delete &#39;master&#39;</span>
 <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
     <span class="k">del</span> <span class="n">j</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="query-a-build">
+<h2>Query a build<a class="headerlink" href="#query-a-build" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
+
+<span class="n">jenkins</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jenkins</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">get_job</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+<span class="n">build</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">get_last_build</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">build</span><span class="p">)</span>
+
+<span class="n">mjn</span> <span class="o">=</span> <span class="n">build</span><span class="o">.</span><span class="n">get_master_job_name</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mjn</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -686,7 +702,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pkg_resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">resource_string</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">Views</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jenkinsapi.jenkins</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jenkins</span>
 
@@ -698,7 +714,7 @@
 <span class="n">jenkins</span> <span class="o">=</span> <span class="n">Jenkins</span><span class="p">(</span><span class="n">jenkins_url</span><span class="p">)</span>
 
 <span class="n">job_name</span> <span class="o">=</span> <span class="s2">&quot;foo_job2&quot;</span>
-<span class="n">xml</span> <span class="o">=</span> <span class="n">resource_string</span><span class="p">(</span><span class="s2">&quot;examples&quot;</span><span class="p">,</span> <span class="s2">&quot;addjob.xml&quot;</span><span class="p">)</span>
+<span class="n">xml</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;examples/addjob.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
 <span class="n">j</span> <span class="o">=</span> <span class="n">jenkins</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="n">xml</span><span class="p">)</span>
 
 <span class="c1"># Create ListView in main view</span>
@@ -801,7 +817,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -836,6 +852,7 @@
 <li><a class="reference internal" href="#create-slaves-nodes">Create slaves/nodes</a></li>
 <li><a class="reference internal" href="#create-views">Create views</a></li>
 <li><a class="reference internal" href="#delete-all-the-nodes-except-master">Delete all the nodes except master</a></li>
+<li><a class="reference internal" href="#query-a-build">Query a build</a></li>
 <li><a class="reference internal" href="#use-jenkinsapi-to-fetch-the-config-xml-of-a-job">Use JenkinsAPI to fetch the config XML of a job.</a></li>
 <li><a class="reference internal" href="#print-currently-installed-plugin-information">Print currently installed plugin information</a></li>
 <li><a class="reference internal" href="#print-version-info-from-last-good-build">Print version info from last good build</a></li>

@@ -294,10 +294,9 @@ the testsuite with the following command:</p>
 uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
 </pre></div>
 </div>
-<p>Otherwise using a virtualenv is recommended. Setuptools will automatically fetch
-missing test dependencies:</p>
+<p>To set up a fresh environment explicitly:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv
-uv<span class="w"> </span>python<span class="w"> </span>install
+uv<span class="w"> </span>sync
 uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
 </pre></div>
 </div>
@@ -344,7 +343,7 @@ uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </sp
     <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">has_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)):</span>
         <span class="n">job_instance</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
         <span class="n">job_instance</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name:</span><span class="si">%s</span><span class="s1">,Is Job Enabled ?:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_name</span><span class="p">,</span><span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name:</span><span class="si">%s</span><span class="s1">,Is Job Enabled ?:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Use the call <code class="docutils literal notranslate"><span class="pre">job_instance.enable()</span></code> to enable a Jenkins Job.</p>
@@ -415,7 +414,7 @@ Jenkins instance.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

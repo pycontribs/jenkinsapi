@@ -361,7 +361,7 @@ You can opt in with the environment variable or by calling the helper:</p>
     <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">has_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)):</span>
         <span class="n">job_instance</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">get_job</span><span class="p">(</span><span class="n">job_name</span><span class="p">)</span>
         <span class="n">job_instance</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name:</span><span class="si">%s</span><span class="s1">,Is Job Enabled ?:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_name</span><span class="p">,</span><span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name:</span><span class="si">%s</span><span class="s1">,Is Job Enabled ?:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">job_name</span><span class="p">,</span> <span class="n">job_instance</span><span class="o">.</span><span class="n">is_enabled</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Use the call <code class="docutils literal notranslate"><span class="pre">job_instance.enable()</span></code> to enable a Jenkins Job.</p>
@@ -402,9 +402,11 @@ downloaded and started during tests.</p></li>
 <section id="python-versions">
 <h2>Python versions<a class="headerlink" href="#python-versions" title="Link to this heading">¶</a></h2>
 <p>The project has been tested against Python versions:</p>
-<ul class="simple">
-<li><p>3.10 - 3.14</p></li>
-</ul>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+* 3.10 - 3.14
+=======
+* 3.10 - 3.14 (tested via CI)
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; e554089 (docs: comprehensive documentation and examples updates)</p>
 </section>
 <section id="jenkins-versions">
 <h2>Jenkins versions<a class="headerlink" href="#jenkins-versions" title="Link to this heading">¶</a></h2>
@@ -460,7 +462,7 @@ downloaded and started during tests.</p></li>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

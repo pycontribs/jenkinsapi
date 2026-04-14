@@ -5,7 +5,7 @@ Jenkins is the market leading continuous integration system.
 
 This API makes Jenkins even easier to use by providing an easy to use conventional Python interface.
 
-Jenkins (and It's predecessor Hudson) are fantastic projects - but they are somewhat Java-centric.
+Jenkins (and its predecessor Hudson) are fantastic projects - but they are somewhat Java-centric.
 
 Thankfully the designers have provided an excellent and complete REST interface.
 
@@ -85,11 +85,11 @@ You can use Jenkins to get information about recently completed builds. For exam
         return lgb.get_revision()
 
     if __name__ == '__main__':
-        print getSCMInfroFromLatestGoodBuild('http://localhost:8080', 'fooJob')
+        print(getSCMInfroFromLatestGoodBuild('http://localhost:8080', 'fooJob'))
 
 When used with the Git source-control system line 20 will print out something like '8b4f4e6f6d0af609bb77f95d8fb82ff1ee2bba0d' - which looks suspiciously like a Git revision number.
 
-Note: As of Jenkins version 1.426, and above, an API token can be specified instead of your real password, while authenticating the user against the Jenkins instance. Refer to the the Jenkis wiki page [Authenticating scripted clients](https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients) for details about how a user can generate an API token. Once you have obtained an API token you can pass the API token instead of real password while creating an Jenkins server instance using Jenkins API.
+Note: An API token can be specified instead of a real password when authenticating against Jenkins. Tokens can be generated from your user profile page under *Configure* > *API Token*.
 
 Tips & Tricks
 -------------
@@ -127,24 +127,21 @@ Extending and Improving JenkinsAPI
 
 JenkinsAPI is a pure-Python project and can be improved with almost any programmer's text-editor or IDE. I'd recommend the following project layout which has been shown to work with both SublimeText2 and Eclipse/PyDev
 
- * Make sure that pip and uv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.
+ * Make sure that uv is installed on your computer.
 
- * Change to the new directory and check out the project code into the **src** subdirectory
+ * Clone the project
 
 .. code-block:: bash
 
+    git clone https://github.com/pycontribs/jenkinsapi.git
     cd jenkinsapi
-    git clone https://github.com/pycontribs/jenkinsapi.git src
 
- * Install python dependencies and test the project
+ * Install dependencies and run tests
 
 .. code-block:: bash
 
-    uv venv
-    uv python install
+    uv sync
     uv run pytest -sv --cov=jenkinsapi --cov-report=term-missing --cov-report=xml jenkinsapi_tests
-
- * Set up your IDE/Editor configuration - the **misc** folder contains configuration for Sublime Text 2. I hope in time that other developers will contribute useful configurations for their favorite development tools.
 
 Testing
 -------

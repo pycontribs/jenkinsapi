@@ -269,7 +269,7 @@
 <h1>JenkinsAPI<a class="headerlink" href="#jenkinsapi" title="Link to this heading">¶</a></h1>
 <p>Jenkins is the market leading continuous integration system.</p>
 <p>This API makes Jenkins even easier to use by providing an easy to use conventional Python interface.</p>
-<p>Jenkins (and It’s predecessor Hudson) are fantastic projects - but they are somewhat Java-centric.</p>
+<p>Jenkins (and its predecessor Hudson) are fantastic projects - but they are somewhat Java-centric.</p>
 <p>Thankfully the designers have provided an excellent and complete REST interface.</p>
 <p>This library wraps up that interface as more conventional Python objects in order to make most Jenkins oriented tasks simpler.</p>
 <p>This library can help you:</p>
@@ -364,11 +364,11 @@
     <span class="k">return</span> <span class="n">lgb</span><span class="o">.</span><span class="n">get_revision</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="n">getSCMInfroFromLatestGoodBuild</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">,</span> <span class="s1">&#39;fooJob&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">getSCMInfroFromLatestGoodBuild</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">,</span> <span class="s1">&#39;fooJob&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>When used with the Git source-control system line 20 will print out something like ‘8b4f4e6f6d0af609bb77f95d8fb82ff1ee2bba0d’ - which looks suspiciously like a Git revision number.</p>
-<p>Note: As of Jenkins version 1.426, and above, an API token can be specified instead of your real password, while authenticating the user against the Jenkins instance. Refer to the the Jenkis wiki page [Authenticating scripted clients](<a class="reference external" href="https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients">https://wiki.jenkins-ci.org/display/JENKINS/Authenticating+scripted+clients</a>) for details about how a user can generate an API token. Once you have obtained an API token you can pass the API token instead of real password while creating an Jenkins server instance using Jenkins API.</p>
+<p>Note: An API token can be specified instead of a real password when authenticating against Jenkins. Tokens can be generated from your user profile page under <em>Configure</em> &gt; <em>API Token</em>.</p>
 </section>
 <section id="tips-tricks">
 <h2>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Link to this heading">¶</a></h2>
@@ -403,21 +403,18 @@
 <p>JenkinsAPI is a pure-Python project and can be improved with almost any programmer’s text-editor or IDE. I’d recommend the following project layout which has been shown to work with both SublimeText2 and Eclipse/PyDev</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Make sure that pip and uv are installed on your computer. On most Linux systems these can be installed directly by the OS package-manager.</p></li>
-<li><p>Change to the new directory and check out the project code into the <strong>src</strong> subdirectory</p></li>
+<li><p>Make sure that uv is installed on your computer.</p></li>
+<li><p>Clone the project</p></li>
 </ul>
 </div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="nb">cd</span><span class="w"> </span>jenkinsapi
-<span class="w">   </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pycontribs/jenkinsapi.git<span class="w"> </span>src
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pycontribs/jenkinsapi.git
+<span class="w">   </span><span class="nb">cd</span><span class="w"> </span>jenkinsapi
 
-*<span class="w"> </span>Install<span class="w"> </span>python<span class="w"> </span>dependencies<span class="w"> </span>and<span class="w"> </span><span class="nb">test</span><span class="w"> </span>the<span class="w"> </span>project
+*<span class="w"> </span>Install<span class="w"> </span>dependencies<span class="w"> </span>and<span class="w"> </span>run<span class="w"> </span>tests
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>uv<span class="w"> </span>venv
-<span class="w">   </span>uv<span class="w"> </span>python<span class="w"> </span>install
-<span class="w">   </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
-
-*<span class="w"> </span>Set<span class="w"> </span>up<span class="w"> </span>your<span class="w"> </span>IDE/Editor<span class="w"> </span>configuration<span class="w"> </span>-<span class="w"> </span>the<span class="w"> </span>**misc**<span class="w"> </span>folder<span class="w"> </span>contains<span class="w"> </span>configuration<span class="w"> </span><span class="k">for</span><span class="w"> </span>Sublime<span class="w"> </span>Text<span class="w"> </span><span class="m">2</span>.<span class="w"> </span>I<span class="w"> </span>hope<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span>that<span class="w"> </span>other<span class="w"> </span>developers<span class="w"> </span>will<span class="w"> </span>contribute<span class="w"> </span>useful<span class="w"> </span>configurations<span class="w"> </span><span class="k">for</span><span class="w"> </span>their<span class="w"> </span>favorite<span class="w"> </span>development<span class="w"> </span>tools.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-sv<span class="w"> </span>--cov<span class="o">=</span>jenkinsapi<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>--cov-report<span class="o">=</span>xml<span class="w"> </span>jenkinsapi_tests
 </pre></div>
 </div>
 <section id="testing">
@@ -460,7 +457,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2012, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
+                Copyright &#169; 2012-2026, Salim Fadhley, Ramon van Alteren, Ruslan Lutsenko, Aleksey Maksimov, Clinton Steiner
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
