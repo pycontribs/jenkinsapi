@@ -362,7 +362,9 @@ class TestPlugins(unittest.TestCase):
                 "shortName": "subversion",
             }
         )
-        self.assertEqual(repr(p), "<jenkinsapi.plugin.Plugin subversion>")
+        self.assertEqual(
+            repr(p), "<jenkinsapi.plugin.Plugin subversion@Unknown>"
+        )
 
     @mock.patch.object(Plugins, "_poll")
     @mock.patch.object(Requester, "post_and_confirm_status")

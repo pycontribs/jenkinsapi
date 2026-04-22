@@ -19,6 +19,7 @@ class Plugin(object):
             self.__dict__ = self.to_plugin(plugin_dict)
         self.shortName: str = self.__dict__["shortName"]
         self.version: str = self.__dict__.get("version", "Unknown")
+        self.url: str = self.__dict__.get("url", None)
 
     def to_plugin(self, plugin_string: str) -> dict:
         plugin_string = str(plugin_string)
@@ -37,7 +38,7 @@ class Plugin(object):
         return self.__dict__ == other.__dict__
 
     def __str__(self) -> str:
-        return self.shortName
+        return f"{self.shortName}@{self.version}"
 
     def __repr__(self) -> str:
         return "<%s.%s %s>" % (
@@ -68,6 +69,9 @@ class Plugin(object):
         return center_plugin["version"] == self.version
 
     def get_download_link(self, update_center_dict) -> str:
+        if self.url:
+            return self.url
+
         latest_version = update_center_dict["plugins"][self.shortName][
             "version"
         ]
