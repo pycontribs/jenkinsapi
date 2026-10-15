@@ -94,3 +94,28 @@ def test_invalid_for_401(jenkins, dummy_md5, monkeypatch):
 
     fingerprint = Fingerprint("http://foo:8080", dummy_md5, jenkins)
     assert fingerprint.valid() is not True
+
+
+def test_validate_for_build_rejects_build_at_usage_range_end(
+    jenkins, dummy_md5, monkeypatch
+):
+    def fake_poll(self, tree=None):
+        return {
+            "original": None,
+            "fileName": "artifact.jar",
+            "usage": [
+                {
+                    "name": "consumer-job",
+                    "ranges": {
+                        "ranges": [{"start": 10, "end": 13}],
+                    },
+                },
+            ],
+        }
+
+    monkeypatch.setattr(Fingerprint, "_poll", fake_poll)
+    fingerprint = Fingerprint("http://foo:8080", dummy_md5, jenkins)
+    assert (
+        fingerprint.validate_for_build("artifact.jar", "consumer-job", 13)
+        is False
+    )
